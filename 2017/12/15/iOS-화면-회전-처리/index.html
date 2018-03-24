@@ -10,43 +10,43 @@
 <meta name="keywords" content="Swift,iOS,Orientations">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS 화면 회전 처리">
-<meta property="og:url" content="https://wnstkdyu.github.io/2017/12/15/orientations/orientations/index.html">
+<meta property="og:url" content="https://wnstkdyu.github.io/2017/12/15/iOS-화면-회전-처리/index.html">
 <meta property="og:site_name" content="Alpaca&#39;s Blog">
 <meta property="og:description" content="최근 프로젝트 도중 화면 회전에 관련된 코드를 사용해 보았다. 비교적 간단한 내용이지만 나에게 다시 상기시키고자 정리해본다. 프로젝트 앱은 기본적으로 아이폰의 세로모드만 지원했지만 영상을 관리하는 뷰 컨트롤러를 새로 만들면서 비디오가 재생되는 곳은 가로모드를 지원하게 하고 싶었다. 전체적인 방향 설정Supported interface orientations">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-03-24T11:13:38.000Z">
+<meta property="og:updated_time" content="2018-03-24T10:37:03.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 화면 회전 처리">
 <meta name="twitter:description" content="최근 프로젝트 도중 화면 회전에 관련된 코드를 사용해 보았다. 비교적 간단한 내용이지만 나에게 다시 상기시키고자 정리해본다. 프로젝트 앱은 기본적으로 아이폰의 세로모드만 지원했지만 영상을 관리하는 뷰 컨트롤러를 새로 만들면서 비디오가 재생되는 곳은 가로모드를 지원하게 하고 싶었다. 전체적인 방향 설정Supported interface orientations">
-    
-    
-        
-          
+
+
+
+
               <link rel="shortcut icon" href="/images/favicon.ico">
-          
-        
-        
-          
+
+
+
+
             <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-          
-        
-        
-          
+
+
+
+
             <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-          
-        
-    
+
+
+
     <!-- title -->
     <title>iOS 화면 회전 처리</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- rss -->
-    
-    
+
+
 </head>
 
 <body class="max-width mx-auto px3">
-    
+
       <div id="header-post">
   <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
   <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
@@ -54,22 +54,20 @@
   <span id="menu">
     <span id="nav">
       <ul>
-         
+
           <li><a href="/">Home</a></li>
-         
+
           <li><a href="/about/">About</a></li>
-         
+
           <li><a href="/archives/">Writing</a></li>
-        
+
       </ul>
     </span>
     <br/>
     <span id="actions">
       <ul>
-        
-        <li><a class="icon" href="/2017/12/29/uiwindowStudy/uiwindowStudy/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
-        
-        
+
+
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
       </ul>
@@ -81,16 +79,16 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2017/12/15/orientations/orientations/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2017/12/15/orientations/orientations/&text=iOS 화면 회전 처리"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2017/12/15/orientations/orientations/&title=iOS 화면 회전 처리"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2017/12/15/orientations/orientations/&is_video=false&description=iOS 화면 회전 처리"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=iOS 화면 회전 처리&body=Check out this article: https://wnstkdyu.github.io/2017/12/15/orientations/orientations/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2017/12/15/orientations/orientations/&title=iOS 화면 회전 처리"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2017/12/15/orientations/orientations/&title=iOS 화면 회전 처리"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2017/12/15/orientations/orientations/&title=iOS 화면 회전 처리"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2017/12/15/orientations/orientations/&title=iOS 화면 회전 처리"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2017/12/15/orientations/orientations/&name=iOS 화면 회전 처리&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2017/12/15/iOS-화면-회전-처리/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2017/12/15/iOS-화면-회전-처리/&text=iOS 화면 회전 처리"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2017/12/15/iOS-화면-회전-처리/&title=iOS 화면 회전 처리"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2017/12/15/iOS-화면-회전-처리/&is_video=false&description=iOS 화면 회전 처리"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=iOS 화면 회전 처리&body=Check out this article: https://wnstkdyu.github.io/2017/12/15/iOS-화면-회전-처리/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2017/12/15/iOS-화면-회전-처리/&title=iOS 화면 회전 처리"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2017/12/15/iOS-화면-회전-처리/&title=iOS 화면 회전 처리"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2017/12/15/iOS-화면-회전-처리/&title=iOS 화면 회전 처리"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2017/12/15/iOS-화면-회전-처리/&title=iOS 화면 회전 처리"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2017/12/15/iOS-화면-회전-처리/&name=iOS 화면 회전 처리&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -100,12 +98,12 @@
   </span>
 </div>
 
-    
+
     <div class="content index my4">
-        
+
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   <header>
-    
+
     <h1 class="posttitle" itemprop="name headline">
         iOS 화면 회전 처리
     </h1>
@@ -116,13 +114,13 @@
       <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
         <span itemprop="name">Alpaca's Blog</span>
       </span>
-      
+
     <div class="postdate">
         <time datetime="2017-12-15T08:36:02.000Z" itemprop="datePublished">2017-12-15</time>
     </div>
 
 
-      
+
     <div class="article-tag">
         <i class="fas fa-tag"></i>
         <a class="tag-link" href="/tags/Orientations/">Orientations</a>, <a class="tag-link" href="/tags/Swift/">Swift</a>, <a class="tag-link" href="/tags/iOS/">iOS</a>
@@ -131,7 +129,7 @@
 
     </div>
   </header>
-  
+
 
   <div class="content" itemprop="articleBody">
     <p>최근 프로젝트 도중 화면 회전에 관련된 코드를 사용해 보았다. 비교적 간단한 내용이지만 나에게 다시 상기시키고자 정리해본다.</p>
@@ -194,19 +192,19 @@
 
 
     </div>
-    
+
       <div id="footer-post-container">
   <div id="footer-post">
 
     <div id="nav-footer" style="display: none">
       <ul>
-         
+
           <li><a href="/">Home</a></li>
-         
+
           <li><a href="/about/">About</a></li>
-         
+
           <li><a href="/archives/">Writing</a></li>
-        
+
       </ul>
     </div>
 
@@ -216,16 +214,16 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2017/12/15/orientations/orientations/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2017/12/15/orientations/orientations/&text=iOS 화면 회전 처리"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2017/12/15/orientations/orientations/&title=iOS 화면 회전 처리"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2017/12/15/orientations/orientations/&is_video=false&description=iOS 화면 회전 처리"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=iOS 화면 회전 처리&body=Check out this article: https://wnstkdyu.github.io/2017/12/15/orientations/orientations/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2017/12/15/orientations/orientations/&title=iOS 화면 회전 처리"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2017/12/15/orientations/orientations/&title=iOS 화면 회전 처리"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2017/12/15/orientations/orientations/&title=iOS 화면 회전 처리"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2017/12/15/orientations/orientations/&title=iOS 화면 회전 처리"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2017/12/15/orientations/orientations/&name=iOS 화면 회전 처리&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2017/12/15/iOS-화면-회전-처리/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2017/12/15/iOS-화면-회전-처리/&text=iOS 화면 회전 처리"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2017/12/15/iOS-화면-회전-처리/&title=iOS 화면 회전 처리"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2017/12/15/iOS-화면-회전-처리/&is_video=false&description=iOS 화면 회전 처리"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=iOS 화면 회전 처리&body=Check out this article: https://wnstkdyu.github.io/2017/12/15/iOS-화면-회전-처리/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2017/12/15/iOS-화면-회전-처리/&title=iOS 화면 회전 처리"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2017/12/15/iOS-화면-회전-처리/&title=iOS 화면 회전 처리"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2017/12/15/iOS-화면-회전-처리/&title=iOS 화면 회전 처리"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2017/12/15/iOS-화면-회전-처리/&title=iOS 화면 회전 처리"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2017/12/15/iOS-화면-회전-처리/&name=iOS 화면 회전 처리&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -240,7 +238,7 @@
   </div>
 </div>
 
-    
+
     <footer id="footer">
   <div class="footer-left">
     Copyright &copy; 2018 Alpaca
@@ -248,13 +246,13 @@
   <div class="footer-right">
     <nav>
       <ul>
-         
+
           <li><a href="/">Home</a></li>
-         
+
           <li><a href="/about/">About</a></li>
-         
+
           <li><a href="/archives/">Writing</a></li>
-        
+
       </ul>
     </nav>
   </div>
@@ -296,5 +294,3 @@
             (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
         }());
     </script>
-
-
