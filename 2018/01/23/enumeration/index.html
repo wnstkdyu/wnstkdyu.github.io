@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Enumeration, 열거형은 경우를 한정할 때 많이 쓰이는 타입으로 프로젝트를 하면서 경우를 명시적으로 정하고 싶을 때 써 본 경험이 있다. 하지만 열거형을 더욱 유용하게 쓸 수 있는 원시 값(Raw Value), 연관 값(Associated Value)은 정확히 알지 못해 정리해보려 한다. 정리는 야곰 님의 스위프트 프로그래밍을 토대로 하였다. 열거형">
+<meta name="keywords" content="Enumeration,iOS,Swift">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Enumeration 정리">
+<meta property="og:url" content="https://wnstkdyu.github.io/2018/01/23/enumeration/index.html">
+<meta property="og:site_name" content="Alpaca&#39;s Blog">
+<meta property="og:description" content="Enumeration, 열거형은 경우를 한정할 때 많이 쓰이는 타입으로 프로젝트를 하면서 경우를 명시적으로 정하고 싶을 때 써 본 경험이 있다. 하지만 열거형을 더욱 유용하게 쓸 수 있는 원시 값(Raw Value), 연관 값(Associated Value)은 정확히 알지 못해 정리해보려 한다. 정리는 야곰 님의 스위프트 프로그래밍을 토대로 하였다. 열거형">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-03-24T20:03:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Enumeration 정리">
+<meta name="twitter:description" content="Enumeration, 열거형은 경우를 한정할 때 많이 쓰이는 타입으로 프로젝트를 하면서 경우를 명시적으로 정하고 싶을 때 써 본 경험이 있다. 하지만 열거형을 더욱 유용하게 쓸 수 있는 원시 값(Raw Value), 연관 값(Associated Value)은 정확히 알지 못해 정리해보려 한다. 정리는 야곰 님의 스위프트 프로그래밍을 토대로 하였다. 열거형">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Enumeration 정리</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2018/01/19/threepattern/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/01/23/enumeration/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/01/23/enumeration/&text=Enumeration 정리"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/01/23/enumeration/&title=Enumeration 정리"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/01/23/enumeration/&is_video=false&description=Enumeration 정리"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Enumeration 정리&body=Check out this article: https://wnstkdyu.github.io/2018/01/23/enumeration/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/01/23/enumeration/&title=Enumeration 정리"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/01/23/enumeration/&title=Enumeration 정리"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/01/23/enumeration/&title=Enumeration 정리"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/01/23/enumeration/&title=Enumeration 정리"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/01/23/enumeration/&name=Enumeration 정리&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#열거형이란"><span class="toc-number">1.</span> <span class="toc-text">열거형이란?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#기본적인-열거형"><span class="toc-number">1.1.</span> <span class="toc-text">기본적인 열거형</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#원시-값-Raw-Value"><span class="toc-number">2.</span> <span class="toc-text">원시 값(Raw Value)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#연관-값-Associated-Value"><span class="toc-number">3.</span> <span class="toc-text">연관 값(Associated Value)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Enumeration 정리
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Alpaca's Blog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-01-22T15:00:00.000Z" itemprop="datePublished">2018-01-23</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Enumeration/">Enumeration</a>, <a class="tag-link" href="/tags/Swift/">Swift</a>, <a class="tag-link" href="/tags/iOS/">iOS</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>Enumeration, 열거형은 경우를 한정할 때 많이 쓰이는 타입으로 프로젝트를 하면서 경우를 명시적으로 정하고 싶을 때 써 본 경험이 있다. 하지만 열거형을 더욱 유용하게 쓸 수 있는 <code>원시 값(Raw Value)</code>, <code>연관 값(Associated Value)</code>은 정확히 알지 못해 정리해보려 한다. 정리는 <strong>야곰</strong> 님의 <a href="http://www.hanbit.co.kr/store/books/look.php?p_code=B5682208459" target="_blank" rel="noopener">스위프트 프로그래밍</a>을 토대로 하였다.</p>
+<h2 id="열거형이란"><a href="#열거형이란" class="headerlink" title="열거형이란?"></a>열거형이란?</h2><p>열거형은 연관된 항목을 묶어서 표현할 수 있는 타입이다. 배열이나 딕셔너리와 달리 프로그래머가 정의해준 항목 값 외에는 항목의 추가/수정이 불가능한다. 다음은 열거형이 유용하게 쓰일 수 있는 경우이다.</p>
+<ul>
+<li>제한된 선택지를 주고 싶을 때</li>
+<li>정해진 값 외에는 입력받고 싶지 않을 때</li>
+<li>예상된 입력 값이 한정되어 있을 때</li>
+</ul>
+<p>Swift는 다른 보통의 언어와 달리 열거형의 각 항목이 값을 가질 수도, 갖지 않을 수도 있다. C 같은 경우 정수형의 값들에 별칭을 달아 놓은 것일뿐이지만 Swift는 열거형 <strong>그 자체가 고유한 타입</strong>으로 인식된다.</p>
+<h3 id="기본적인-열거형"><a href="#기본적인-열거형" class="headerlink" title="기본적인 열거형"></a>기본적인 열거형</h3><p>기본적인 열거형은 다음과 같이 선언하고 사용한다.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">PokemonType</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> fire</span><br><span class="line">    <span class="keyword">case</span> water</span><br><span class="line">    <span class="keyword">case</span> grass</span><br><span class="line">    <span class="keyword">case</span> dragon</span><br><span class="line">    <span class="keyword">case</span> normal</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Pokemon</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> type: <span class="type">PokemonType</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">init</span>(type: <span class="type">PokemonType</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.type = type</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> bulbasaur = <span class="type">Pokemon</span>(type: <span class="type">PokemonType</span>.grass)</span><br><span class="line"><span class="keyword">let</span> charmander = <span class="type">Pokemon</span>(type: .fire)</span><br></pre></td></tr></table></figure>
+<h2 id="원시-값-Raw-Value"><a href="#원시-값-Raw-Value" class="headerlink" title="원시 값(Raw Value)"></a>원시 값(Raw Value)</h2><p>열거형은 각 항목마다 값을 가질 수도 있는데 이를 <code>원시 값(Raw Value)</code>라고 한다. 원시 값을 가지려면 그 값에 맞는 타입을 열거형의 이름 옆에 명시적으로 적어주면 된다.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">PokemonType</span>: <span class="title">String</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> fire = <span class="string">"불 타입"</span></span><br><span class="line">    <span class="keyword">case</span> water = <span class="string">"물 타입"</span></span><br><span class="line">    <span class="keyword">case</span> grass = <span class="string">"풀 타입"</span></span><br><span class="line">    <span class="keyword">case</span> normal = <span class="string">"노말 타입"</span></span><br><span class="line">    <span class="keyword">case</span> dragon</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> charmander = <span class="type">Pokemon</span>(type: .fire)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"파이리의 타입은 <span class="subst">\(charmander.type.rawValue)</span>입니다."</span>)</span><br><span class="line"><span class="comment">// 파이리의 타입은 불 타입입니다.</span></span><br><span class="line"><span class="keyword">let</span> normalType = <span class="type">PokemonType</span>(rawValue: <span class="string">"노말 타입"</span>)</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> normalType = normalType &#123;</span><br><span class="line">    <span class="keyword">let</span> snorlax = <span class="type">Pokemon</span>(type: normalType)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"잠만보의 타입은 <span class="subst">\(snorlax.type.rawValue)</span>입니다."</span>)</span><br><span class="line">    <span class="comment">// 잠만보의 타입은 노말 타입입니다.</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> dragonite = <span class="type">Pokemon</span>(type: .dragon)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"망나뇽의 타입은 <span class="subst">\(dragonite.type.rawValue)</span>입니다."</span>)</span><br><span class="line"><span class="comment">// 망나뇽의 타입은 dragon입니다.</span></span><br></pre></td></tr></table></figure>
+<p>원시 값을 추가한 열거형원시 값을 가져올 때는 <code>rawValue</code> 프로퍼티로 가져오면 된다. 만약 원시 값을 알고 있을 경우에는 원시 값으로 열거형 변수/상수를 선언할 수 있다. 이 때 원시 값이 맞지 않는 경우에 nil이 되는 <strong>실패 가능한 초기화</strong>이므로 위의 예제에서는 언래핑 후 사용한 것을 볼 수 있다.</p>
+<p>원시 값이 주어지지 않았을 경우 String 타입은 항목의 이름을, Int 타입이라면 첫 항목을 기준으로 0부터 1씩 늘어난 값을 원시 값으로 가진다.</p>
+<h2 id="연관-값-Associated-Value"><a href="#연관-값-Associated-Value" class="headerlink" title="연관 값(Associated Value)"></a>연관 값(Associated Value)</h2><p>Swift에서는 열거형의 각 항목에 자신과 연관된 값을 가질 수 있다. 연관 값은 각 항목 옆에 괄호를 붙여서 표현한다. 원시 값과 마찬가지로 모든 항목이 연관 값을 가질 필요는 없다.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Beverage</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> coke</span><br><span class="line">    <span class="keyword">case</span> cider</span><br><span class="line">    <span class="keyword">case</span> fanta</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Food</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> burrito(isCheese: <span class="type">Bool</span>, beverage: <span class="type">Beverage</span>)</span><br><span class="line">    <span class="keyword">case</span> burger</span><br><span class="line">    <span class="keyword">case</span> pizza(topping: <span class="type">String</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="http://www.hanbit.co.kr/store/books/look.php?p_code=B5682208459" target="_blank" rel="noopener">스위프트 프로그래밍 - 야곰 님</a></li>
+</ul>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#열거형이란"><span class="toc-number">1.</span> <span class="toc-text">열거형이란?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#기본적인-열거형"><span class="toc-number">1.1.</span> <span class="toc-text">기본적인 열거형</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#원시-값-Raw-Value"><span class="toc-number">2.</span> <span class="toc-text">원시 값(Raw Value)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#연관-값-Associated-Value"><span class="toc-number">3.</span> <span class="toc-text">연관 값(Associated Value)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/01/23/enumeration/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/01/23/enumeration/&text=Enumeration 정리"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/01/23/enumeration/&title=Enumeration 정리"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/01/23/enumeration/&is_video=false&description=Enumeration 정리"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Enumeration 정리&body=Check out this article: https://wnstkdyu.github.io/2018/01/23/enumeration/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/01/23/enumeration/&title=Enumeration 정리"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/01/23/enumeration/&title=Enumeration 정리"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/01/23/enumeration/&title=Enumeration 정리"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/01/23/enumeration/&title=Enumeration 정리"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/01/23/enumeration/&name=Enumeration 정리&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Alpaca
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-116302583-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'alpacablog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
