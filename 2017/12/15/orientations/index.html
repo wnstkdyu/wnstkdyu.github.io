@@ -15,7 +15,7 @@
 <meta property="og:description" content="최근 프로젝트 도중 화면 회전에 관련된 코드를 사용해 보았다. 비교적 간단한 내용이지만 나에게 다시 상기시키고자 정리해본다. 프로젝트 앱은 기본적으로 아이폰의 세로모드만 지원했지만 영상을 관리하는 뷰 컨트롤러를 새로 만들면서 비디오가 재생되는 곳은 가로모드를 지원하게 하고 싶었다. 전체적인 방향 설정먼저 앱의 전체적인 방향 설정부터 알아보자. Support">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://wnstkdyu.github.io/2017/12/15/orientations/supportedInterfaceOrientations.png">
-<meta property="og:updated_time" content="2018-03-24T11:24:40.000Z">
+<meta property="og:updated_time" content="2018-03-24T12:03:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 화면 회전 처리">
 <meta name="twitter:description" content="최근 프로젝트 도중 화면 회전에 관련된 코드를 사용해 보았다. 비교적 간단한 내용이지만 나에게 다시 상기시키고자 정리해본다. 프로젝트 앱은 기본적으로 아이폰의 세로모드만 지원했지만 영상을 관리하는 뷰 컨트롤러를 새로 만들면서 비디오가 재생되는 곳은 가로모드를 지원하게 하고 싶었다. 전체적인 방향 설정먼저 앱의 전체적인 방향 설정부터 알아보자. Support">
@@ -69,7 +69,7 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/2017/12/29/uiwindowStudy/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        <li><a class="icon" href="/2017/12/29/uiwindow/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
@@ -97,7 +97,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#전체적인-방향-설정"><span class="toc-number">1.</span> <span class="toc-text">전체적인 방향 설정</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Supported-interface-orientations"><span class="toc-number">1.1.</span> <span class="toc-text">Supported interface orientations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#supportedInterfaceOrientations-for"><span class="toc-number">1.2.</span> <span class="toc-text">supportedInterfaceOrientations(for:)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#View-Controller의-방향-설정"><span class="toc-number">2.</span> <span class="toc-text">View Controller의 방향 설정</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#shouldAutorotate"><span class="toc-number">2.1.</span> <span class="toc-text">shouldAutorotate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#supportedInterfaceOrientations"><span class="toc-number">2.2.</span> <span class="toc-text">supportedInterfaceOrientations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reference"><span class="toc-number">2.3.</span> <span class="toc-text">Reference</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#전체적인-방향-설정"><span class="toc-number">1.</span> <span class="toc-text">전체적인 방향 설정</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Supported-interface-orientations"><span class="toc-number">1.1.</span> <span class="toc-text">Supported interface orientations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#supportedInterfaceOrientations-for"><span class="toc-number">1.2.</span> <span class="toc-text">supportedInterfaceOrientations(for:)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#View-Controller의-방향-설정"><span class="toc-number">2.</span> <span class="toc-text">View Controller의 방향 설정</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#shouldAutorotate"><span class="toc-number">2.1.</span> <span class="toc-text">shouldAutorotate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#supportedInterfaceOrientations"><span class="toc-number">2.2.</span> <span class="toc-text">supportedInterfaceOrientations</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">3.</span> <span class="toc-text">Reference</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -177,7 +177,7 @@
 <p>이 두가지 메소드를 통해 뷰 컨트롤러의 회전을 제어할 수 있다. 여기서 중요한 것은 만약 뷰 컨트롤러의 상위 뷰 컨트롤러가 있다면 그 뷰 컨트롤러의 두 메소드를 따른다는 것이다. 예를 들어 UINavigationController가 Portrait 모드만 지원한다면 그 안에 있는 ViewController에서 Landscape를 지원한다고 명시해도 지원할 수 없다.</p>
 <p>추가적으로 화면을 뷰가 전환되거나 할 때 강제로 뷰의 방향을 바꾸고 싶다면 currentDevice의 key-value로 접근하여 바꿀 수 있다.</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> orientationValue = <span class="type">UIInterfaceOrientationMask</span>.landscapeLeft.rawValue</span><br><span class="line"><span class="type">UIDevice</span>.current.setValue(orientationValue, forKey: <span class="string">"orientation"</span>)</span><br></pre></td></tr></table></figure>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
 <li><a href="https://medium.com/@jongwonwoo/ios-%EB%94%94%EB%B0%94%EC%9D%B4%EC%8A%A4-%ED%9A%8C%EC%A0%84-%EC%B2%98%EB%A6%AC%EC%97%90-%EB%8C%80%ED%95%9C-%EC%A0%95%EB%A6%AC-340f37204a27" target="_blank" rel="noopener">iOS 디바이스 회전 처리에 대한 정리 - Medium by ‘Jongwon Woo’
 </a></li>
 <li><a href="https://developer.apple.com/documentation/uikit/uiapplication/1623091-supportedinterfaceorientations" target="_blank" rel="noopener">supportedInterfaceOrientations(for:) - Apple Developer Documentation</a></li>
@@ -214,7 +214,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#전체적인-방향-설정"><span class="toc-number">1.</span> <span class="toc-text">전체적인 방향 설정</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Supported-interface-orientations"><span class="toc-number">1.1.</span> <span class="toc-text">Supported interface orientations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#supportedInterfaceOrientations-for"><span class="toc-number">1.2.</span> <span class="toc-text">supportedInterfaceOrientations(for:)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#View-Controller의-방향-설정"><span class="toc-number">2.</span> <span class="toc-text">View Controller의 방향 설정</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#shouldAutorotate"><span class="toc-number">2.1.</span> <span class="toc-text">shouldAutorotate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#supportedInterfaceOrientations"><span class="toc-number">2.2.</span> <span class="toc-text">supportedInterfaceOrientations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reference"><span class="toc-number">2.3.</span> <span class="toc-text">Reference</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#전체적인-방향-설정"><span class="toc-number">1.</span> <span class="toc-text">전체적인 방향 설정</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Supported-interface-orientations"><span class="toc-number">1.1.</span> <span class="toc-text">Supported interface orientations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#supportedInterfaceOrientations-for"><span class="toc-number">1.2.</span> <span class="toc-text">supportedInterfaceOrientations(for:)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#View-Controller의-방향-설정"><span class="toc-number">2.</span> <span class="toc-text">View Controller의 방향 설정</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#shouldAutorotate"><span class="toc-number">2.1.</span> <span class="toc-text">shouldAutorotate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#supportedInterfaceOrientations"><span class="toc-number">2.2.</span> <span class="toc-text">supportedInterfaceOrientations</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">3.</span> <span class="toc-text">Reference</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
