@@ -6,18 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="최근 프로젝트 도중 화면 회전에 관련된 코드를 사용해 보았다. 비교적 간단한 내용이지만 나에게 다시 상기시키고자 정리해본다. 프로젝트 앱은 기본적으로 아이폰의 세로모드만 지원했지만 영상을 관리하는 뷰 컨트롤러를 새로 만들면서 비디오가 재생되는 곳은 가로모드를 지원하게 하고 싶었다. 전체적인 방향 설정Supported interface orientations">
+    <meta name="description" content="최근 프로젝트 도중 화면 회전에 관련된 코드를 사용해 보았다. 비교적 간단한 내용이지만 나에게 다시 상기시키고자 정리해본다. 프로젝트 앱은 기본적으로 아이폰의 세로모드만 지원했지만 영상을 관리하는 뷰 컨트롤러를 새로 만들면서 비디오가 재생되는 곳은 가로모드를 지원하게 하고 싶었다. 전체적인 방향 설정먼저 앱의 전체적인 방향 설정부터 알아보자. Support">
 <meta name="keywords" content="Swift,iOS,Orientations">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS 화면 회전 처리">
 <meta property="og:url" content="https://wnstkdyu.github.io/2017/12/15/orientations/orientations/index.html">
 <meta property="og:site_name" content="Alpaca&#39;s Blog">
-<meta property="og:description" content="최근 프로젝트 도중 화면 회전에 관련된 코드를 사용해 보았다. 비교적 간단한 내용이지만 나에게 다시 상기시키고자 정리해본다. 프로젝트 앱은 기본적으로 아이폰의 세로모드만 지원했지만 영상을 관리하는 뷰 컨트롤러를 새로 만들면서 비디오가 재생되는 곳은 가로모드를 지원하게 하고 싶었다. 전체적인 방향 설정Supported interface orientations">
+<meta property="og:description" content="최근 프로젝트 도중 화면 회전에 관련된 코드를 사용해 보았다. 비교적 간단한 내용이지만 나에게 다시 상기시키고자 정리해본다. 프로젝트 앱은 기본적으로 아이폰의 세로모드만 지원했지만 영상을 관리하는 뷰 컨트롤러를 새로 만들면서 비디오가 재생되는 곳은 가로모드를 지원하게 하고 싶었다. 전체적인 방향 설정먼저 앱의 전체적인 방향 설정부터 알아보자. Support">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-03-24T11:13:38.000Z">
+<meta property="og:updated_time" content="2018-03-24T11:24:40.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 화면 회전 처리">
-<meta name="twitter:description" content="최근 프로젝트 도중 화면 회전에 관련된 코드를 사용해 보았다. 비교적 간단한 내용이지만 나에게 다시 상기시키고자 정리해본다. 프로젝트 앱은 기본적으로 아이폰의 세로모드만 지원했지만 영상을 관리하는 뷰 컨트롤러를 새로 만들면서 비디오가 재생되는 곳은 가로모드를 지원하게 하고 싶었다. 전체적인 방향 설정Supported interface orientations">
+<meta name="twitter:description" content="최근 프로젝트 도중 화면 회전에 관련된 코드를 사용해 보았다. 비교적 간단한 내용이지만 나에게 다시 상기시키고자 정리해본다. 프로젝트 앱은 기본적으로 아이폰의 세로모드만 지원했지만 영상을 관리하는 뷰 컨트롤러를 새로 만들면서 비디오가 재생되는 곳은 가로모드를 지원하게 하고 싶었다. 전체적인 방향 설정먼저 앱의 전체적인 방향 설정부터 알아보자. Support">
     
     
         
@@ -95,7 +95,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#전체적인-방향-설정"><span class="toc-number">1.</span> <span class="toc-text">전체적인 방향 설정</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Supported-interface-orientations"><span class="toc-number">1.1.</span> <span class="toc-text">Supported interface orientations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#supportedInterfaceOrientations-for"><span class="toc-number">1.2.</span> <span class="toc-text">supportedInterfaceOrientations(for:)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#View-Controller-내의-방향-설정"><span class="toc-number">2.</span> <span class="toc-text">View Controller 내의 방향 설정</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#shouldAutorotate"><span class="toc-number">2.1.</span> <span class="toc-text">shouldAutorotate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#supportedInterfaceOrientations"><span class="toc-number">2.2.</span> <span class="toc-text">supportedInterfaceOrientations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reference"><span class="toc-number">2.3.</span> <span class="toc-text">Reference</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#전체적인-방향-설정"><span class="toc-number">1.</span> <span class="toc-text">전체적인 방향 설정</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Supported-interface-orientations"><span class="toc-number">1.1.</span> <span class="toc-text">Supported interface orientations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#supportedInterfaceOrientations-for"><span class="toc-number">1.2.</span> <span class="toc-text">supportedInterfaceOrientations(for:)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#View-Controller의-방향-설정"><span class="toc-number">2.</span> <span class="toc-text">View Controller의 방향 설정</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#shouldAutorotate"><span class="toc-number">2.1.</span> <span class="toc-text">shouldAutorotate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#supportedInterfaceOrientations"><span class="toc-number">2.2.</span> <span class="toc-text">supportedInterfaceOrientations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reference"><span class="toc-number">2.3.</span> <span class="toc-text">Reference</span></a></li></ol></li></ol>
     </div>
   </span>
 </div>
@@ -136,8 +136,8 @@
   <div class="content" itemprop="articleBody">
     <p>최근 프로젝트 도중 화면 회전에 관련된 코드를 사용해 보았다. 비교적 간단한 내용이지만 나에게 다시 상기시키고자 정리해본다.</p>
 <p>프로젝트 앱은 기본적으로 아이폰의 세로모드만 지원했지만 영상을 관리하는 뷰 컨트롤러를 새로 만들면서 비디오가 재생되는 곳은 가로모드를 지원하게 하고 싶었다.</p>
-<h2 id="전체적인-방향-설정"><a href="#전체적인-방향-설정" class="headerlink" title="전체적인 방향 설정"></a>전체적인 방향 설정</h2><h3 id="Supported-interface-orientations"><a href="#Supported-interface-orientations" class="headerlink" title="Supported interface orientations"></a>Supported interface orientations</h3><p>먼저 앱의 전체적인 방향 설정부터 알아보자.</p>
-<p>앱은 기본적으로 <code>Info.plist</code>의 <code>Supported interface orientations</code>를 참조한다. 다음 그림은 프로젝트 생성 후 <code>Info.plist</code>의 <code>Supported interface orientations</code> 키의 디폴트 값을 보여준다.</p>
+<h2 id="전체적인-방향-설정"><a href="#전체적인-방향-설정" class="headerlink" title="전체적인 방향 설정"></a>전체적인 방향 설정</h2><p>먼저 앱의 전체적인 방향 설정부터 알아보자.</p>
+<h3 id="Supported-interface-orientations"><a href="#Supported-interface-orientations" class="headerlink" title="Supported interface orientations"></a>Supported interface orientations</h3><p>앱은 기본적으로 <code>Info.plist</code>의 <code>Supported interface orientations</code>를 참조한다. 다음 그림은 프로젝트 생성 후 <code>Info.plist</code>의 <code>Supported interface orientations</code> 키의 디폴트 값을 보여준다.</p>
 
 <p>정리해보면,</p>
 <ul>
@@ -165,7 +165,8 @@
 <p>When determining whether to rotate a particular view controller, the orientations returned by this method are intersected with the orientations supported by the root view controller or topmost presented view controller. The app and view controller must agree before the rotation is allowed.</p>
 </blockquote>
 <p>즉, <strong>어떤 뷰 컨트롤러를 돌리는 것을 결정할 때 이 메소드에서 지원하는 방향이 그 뷰가 돌리려는 방향을 지원하지 않으면 돌릴 수 없다는 말이다.</strong> 이 메소드가 앱의 가장 상위에서 방향을 제어하고 있다고 볼 수 있다. 이것은 특정 뷰 컨트롤러의 방향을 설정할 때 중요한데 예를 들어 전체적인 앱의 방향은 세로로 고정되어 있는데 특정 뷰 컨트롤러는 가로 모드도 지원을 하고 싶다면 이 <code>AppDelegate</code> 메소드에서 가로 모드를 명시해줘야 한다는 뜻이다.</p>
-<h2 id="View-Controller-내의-방향-설정"><a href="#View-Controller-내의-방향-설정" class="headerlink" title="View Controller 내의 방향 설정"></a>View Controller 내의 방향 설정</h2><h3 id="shouldAutorotate"><a href="#shouldAutorotate" class="headerlink" title="shouldAutorotate"></a>shouldAutorotate</h3><p>먼저 <a href="https://developer.apple.com/documentation/uikit/uiviewcontroller/1621419-shouldautorotate" target="_blank" rel="noopener"><code>shouldAutorotate</code></a> 프로퍼티를 보자.</p>
+<h2 id="View-Controller의-방향-설정"><a href="#View-Controller의-방향-설정" class="headerlink" title="View Controller의 방향 설정"></a>View Controller의 방향 설정</h2><p>다음은 개별 View Controller의 방향 설정이다.</p>
+<h3 id="shouldAutorotate"><a href="#shouldAutorotate" class="headerlink" title="shouldAutorotate"></a>shouldAutorotate</h3><p>먼저 <a href="https://developer.apple.com/documentation/uikit/uiviewcontroller/1621419-shouldautorotate" target="_blank" rel="noopener"><code>shouldAutorotate</code></a> 프로퍼티를 보자.</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> shouldAutorotate: <span class="type">Bool</span> &#123; <span class="keyword">get</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 뷰 컨트롤러 내에서 오버라이드하여 사용합니다.</span></span><br><span class="line"><span class="keyword">override</span> <span class="keyword">var</span> shouldAutorotate: <span class="type">Bool</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span> <span class="comment">// or false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>뷰 컨트롤러가 돌아가는 것을 결정하는 <code>Bool</code> 타입의 뷰 컨트롤러 인스턴스 프로퍼티이다. 뷰 컨트롤러 내에서 <code>self</code>로 접근하면 읽는 것만 가능하지만 상위 클래스인 <code>UIViewController</code>의 프로퍼티를 <strong>오버라이드</strong>하여 수정할 수 있다.</p>
 <h3 id="supportedInterfaceOrientations"><a href="#supportedInterfaceOrientations" class="headerlink" title="supportedInterfaceOrientations"></a>supportedInterfaceOrientations</h3><p>그 다음으로 <a href="https://developer.apple.com/documentation/uikit/uiviewcontroller/1621435-supportedinterfaceorientations" target="_blank" rel="noopener"><code>supportedInterfaceOrientations</code></a> 프로퍼티를 보자.</p>
@@ -211,7 +212,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#전체적인-방향-설정"><span class="toc-number">1.</span> <span class="toc-text">전체적인 방향 설정</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Supported-interface-orientations"><span class="toc-number">1.1.</span> <span class="toc-text">Supported interface orientations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#supportedInterfaceOrientations-for"><span class="toc-number">1.2.</span> <span class="toc-text">supportedInterfaceOrientations(for:)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#View-Controller-내의-방향-설정"><span class="toc-number">2.</span> <span class="toc-text">View Controller 내의 방향 설정</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#shouldAutorotate"><span class="toc-number">2.1.</span> <span class="toc-text">shouldAutorotate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#supportedInterfaceOrientations"><span class="toc-number">2.2.</span> <span class="toc-text">supportedInterfaceOrientations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reference"><span class="toc-number">2.3.</span> <span class="toc-text">Reference</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#전체적인-방향-설정"><span class="toc-number">1.</span> <span class="toc-text">전체적인 방향 설정</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Supported-interface-orientations"><span class="toc-number">1.1.</span> <span class="toc-text">Supported interface orientations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#supportedInterfaceOrientations-for"><span class="toc-number">1.2.</span> <span class="toc-text">supportedInterfaceOrientations(for:)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#View-Controller의-방향-설정"><span class="toc-number">2.</span> <span class="toc-text">View Controller의 방향 설정</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#shouldAutorotate"><span class="toc-number">2.1.</span> <span class="toc-text">shouldAutorotate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#supportedInterfaceOrientations"><span class="toc-number">2.2.</span> <span class="toc-text">supportedInterfaceOrientations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reference"><span class="toc-number">2.3.</span> <span class="toc-text">Reference</span></a></li></ol></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
