@@ -10,11 +10,11 @@
 <meta name="keywords" content="iOS,Swift,Protocol Oriented Programming,POP,Extension">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Protocol Oriented Programming에 대한 얕은 공부">
-<meta property="og:url" content="https://wnstkdyu.github.io/2018/03/25/pop/index.html">
+<meta property="og:url" content="https://wnstkdyu.github.io/2018/01/27/pop/index.html">
 <meta property="og:site_name" content="Alpaca&#39;s Blog">
 <meta property="og:description" content="Swift는 프로토콜 지향 언어라고 한다. 아직도 대부분 클래스를 사용하고 구조체, 열거형 등은 특별한 경우에만 쓰는 나로서는 Swift의 특징적인 면을 제대로 이해하지 못 하고 사용하고 있다는 느낌을 받았다. 그래서 이번 주제로 잡고 조사하게 되었다. POP가 나오게 된 배경기존의 객체 지향 프로그래밍에서는 공통된 기능을 Class의 상속을 통해 구현한다">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-03-24T20:20:08.000Z">
+<meta property="og:updated_time" content="2018-03-24T20:21:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Protocol Oriented Programming에 대한 얕은 공부">
 <meta name="twitter:description" content="Swift는 프로토콜 지향 언어라고 한다. 아직도 대부분 클래스를 사용하고 구조체, 열거형 등은 특별한 경우에만 쓰는 나로서는 Swift의 특징적인 면을 제대로 이해하지 못 하고 사용하고 있다는 느낌을 받았다. 그래서 이번 주제로 잡고 조사하게 되었다. POP가 나오게 된 배경기존의 객체 지향 프로그래밍에서는 공통된 기능을 Class의 상속을 통해 구현한다">
@@ -81,16 +81,16 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/03/25/pop/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/03/25/pop/&text=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/03/25/pop/&title=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/03/25/pop/&is_video=false&description=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Protocol Oriented Programming에 대한 얕은 공부&body=Check out this article: https://wnstkdyu.github.io/2018/03/25/pop/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/03/25/pop/&title=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/03/25/pop/&title=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/03/25/pop/&title=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/03/25/pop/&title=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/03/25/pop/&name=Protocol Oriented Programming에 대한 얕은 공부&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/01/27/pop/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/01/27/pop/&text=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/01/27/pop/&title=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/01/27/pop/&is_video=false&description=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Protocol Oriented Programming에 대한 얕은 공부&body=Check out this article: https://wnstkdyu.github.io/2018/01/27/pop/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/01/27/pop/&title=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/01/27/pop/&title=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/01/27/pop/&title=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/01/27/pop/&title=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/01/27/pop/&name=Protocol Oriented Programming에 대한 얕은 공부&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -118,7 +118,7 @@
       </span>
       
     <div class="postdate">
-        <time datetime="2018-03-24T20:05:04.000Z" itemprop="datePublished">2018-03-25</time>
+        <time datetime="2018-01-26T15:00:00.000Z" itemprop="datePublished">2018-01-27</time>
     </div>
 
 
@@ -205,16 +205,16 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/03/25/pop/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/03/25/pop/&text=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/03/25/pop/&title=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/03/25/pop/&is_video=false&description=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Protocol Oriented Programming에 대한 얕은 공부&body=Check out this article: https://wnstkdyu.github.io/2018/03/25/pop/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/03/25/pop/&title=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/03/25/pop/&title=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/03/25/pop/&title=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/03/25/pop/&title=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/03/25/pop/&name=Protocol Oriented Programming에 대한 얕은 공부&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/01/27/pop/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/01/27/pop/&text=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/01/27/pop/&title=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/01/27/pop/&is_video=false&description=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Protocol Oriented Programming에 대한 얕은 공부&body=Check out this article: https://wnstkdyu.github.io/2018/01/27/pop/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/01/27/pop/&title=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/01/27/pop/&title=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/01/27/pop/&title=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/01/27/pop/&title=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/01/27/pop/&name=Protocol Oriented Programming에 대한 얕은 공부&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
