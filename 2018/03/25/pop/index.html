@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Swift는 프로토콜 지향 언어라고 한다. 아직도 대부분 클래스를 사용하고 구조체, 열거형 등은 특별한 경우에만 쓰는 나로서는 Swift의 특징적인 면을 제대로 이해하지 못 하고 사용하고 있다는 느낌을 받았다. 그래서 이번 주제로 잡고 조사하게 되었다. POP가 나오게 된 배경기존의 객체 지향 프로그래밍에서는 공통된 기능을 Class의 상속을 통해 구현한다">
+<meta name="keywords" content="iOS,Swift,Protocol Oriented Programming,POP,Extension">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Protocol Oriented Programming에 대한 얕은 공부">
+<meta property="og:url" content="https://wnstkdyu.github.io/2018/03/25/pop/index.html">
+<meta property="og:site_name" content="Alpaca&#39;s Blog">
+<meta property="og:description" content="Swift는 프로토콜 지향 언어라고 한다. 아직도 대부분 클래스를 사용하고 구조체, 열거형 등은 특별한 경우에만 쓰는 나로서는 Swift의 특징적인 면을 제대로 이해하지 못 하고 사용하고 있다는 느낌을 받았다. 그래서 이번 주제로 잡고 조사하게 되었다. POP가 나오게 된 배경기존의 객체 지향 프로그래밍에서는 공통된 기능을 Class의 상속을 통해 구현한다">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-03-24T20:20:08.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Protocol Oriented Programming에 대한 얕은 공부">
+<meta name="twitter:description" content="Swift는 프로토콜 지향 언어라고 한다. 아직도 대부분 클래스를 사용하고 구조체, 열거형 등은 특별한 경우에만 쓰는 나로서는 Swift의 특징적인 면을 제대로 이해하지 못 하고 사용하고 있다는 느낌을 받았다. 그래서 이번 주제로 잡고 조사하게 되었다. POP가 나오게 된 배경기존의 객체 지향 프로그래밍에서는 공통된 기능을 Class의 상속을 통해 구현한다">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Protocol Oriented Programming에 대한 얕은 공부</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2018/01/23/enumeration/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/03/25/pop/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/03/25/pop/&text=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/03/25/pop/&title=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/03/25/pop/&is_video=false&description=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Protocol Oriented Programming에 대한 얕은 공부&body=Check out this article: https://wnstkdyu.github.io/2018/03/25/pop/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/03/25/pop/&title=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/03/25/pop/&title=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/03/25/pop/&title=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/03/25/pop/&title=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/03/25/pop/&name=Protocol Oriented Programming에 대한 얕은 공부&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#POP가-나오게-된-배경"><span class="toc-number">1.</span> <span class="toc-text">POP가 나오게 된 배경</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#프로토콜-초기-구현-Protocol-Default-Implementation"><span class="toc-number">2.</span> <span class="toc-text">프로토콜 초기 구현(Protocol Default Implementation)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#프로토콜의-한계"><span class="toc-number">2.1.</span> <span class="toc-text">프로토콜의 한계</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Extension-적용"><span class="toc-number">2.2.</span> <span class="toc-text">Extension 적용</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Protocol과-Generic"><span class="toc-number">3.</span> <span class="toc-text">Protocol과 Generic</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#프로토콜-추가"><span class="toc-number">3.1.</span> <span class="toc-text">프로토콜 추가</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#POP의-이점"><span class="toc-number">4.</span> <span class="toc-text">POP의 이점</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">5.</span> <span class="toc-text">Reference</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Protocol Oriented Programming에 대한 얕은 공부
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Alpaca's Blog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-03-24T20:05:04.000Z" itemprop="datePublished">2018-03-25</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Extension/">Extension</a>, <a class="tag-link" href="/tags/POP/">POP</a>, <a class="tag-link" href="/tags/Protocol-Oriented-Programming/">Protocol Oriented Programming</a>, <a class="tag-link" href="/tags/Swift/">Swift</a>, <a class="tag-link" href="/tags/iOS/">iOS</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>Swift는 프로토콜 지향 언어라고 한다. 아직도 대부분 클래스를 사용하고 구조체, 열거형 등은 특별한 경우에만 쓰는 나로서는 Swift의 특징적인 면을 제대로 이해하지 못 하고 사용하고 있다는 느낌을 받았다. 그래서 이번 주제로 잡고 조사하게 되었다.</p>
+<h2 id="POP가-나오게-된-배경"><a href="#POP가-나오게-된-배경" class="headerlink" title="POP가 나오게 된 배경"></a>POP가 나오게 된 배경</h2><p>기존의 객체 지향 프로그래밍에서는 공통된 기능을 Class의 상속을 통해 구현한다. Swift도 많은 부분이 Class로 이루어져 있다. 대표적인 것이 <code>UIViewController</code>일 것이다. 그런데 참조 타입의 경우 다중 스레드 환경 같은 곳에서 원본 데이터가 바뀔 수 있기 때문에 값 타입을 사용하는 것이 권장되고 있다. 그렇지만 Struct나 Enum의 경우 상속이 불가능하기 때문에 공통적인 기능을 어떻게 구현할지 의문이 생긴다.</p>
+<p>이 의문에 대한 답으로 2015년 애플은 Swift 2의 <code>Extension</code>을 제시하였다. Protocol과 <code>Extension</code>의 조합으로 Protocol은 메서드, 프로퍼티 등 구현해야 할 사항들을 모아놓은 껍데기에서 구현까지 할 수 있게 되었다. 이것을 <strong>Protocol Default Implementation, 프로토콜 초기 구현</strong>이라고 하고 이를 통해 Class의 상속과 같이 공통된 기능을 구현할 수 있게 되어 POP가 가능하게 되었다.</p>
+<h2 id="프로토콜-초기-구현-Protocol-Default-Implementation"><a href="#프로토콜-초기-구현-Protocol-Default-Implementation" class="headerlink" title="프로토콜 초기 구현(Protocol Default Implementation)"></a>프로토콜 초기 구현(Protocol Default Implementation)</h2><h3 id="프로토콜의-한계"><a href="#프로토콜의-한계" class="headerlink" title="프로토콜의 한계"></a>프로토콜의 한계</h3><p>프로토콜은 위에서 언급했듯이 일종의 설계도일 뿐 그 속에 실제 값들을 담지 못 한다. 그래서 다음과 같은 일이 일어난다.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span> &#123; <span class="keyword">get</span> &#125;</span><br><span class="line">    <span class="keyword">var</span> age: <span class="type">Int</span> &#123; <span class="keyword">get</span> &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">getAge</span><span class="params">()</span></span> -&gt; <span class="type">Int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">FireFighter</span>: <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">    <span class="keyword">var</span> age: <span class="type">Int</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 중복 구현</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">getAge</span><span class="params">()</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> age</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">extinguish</span><span class="params">()</span></span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">PolieMan</span>: <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">    <span class="keyword">var</span> age: <span class="type">Int</span></span><br><span class="line">    <span class="keyword">var</span> jail: [<span class="type">Criminal</span>] = []</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 중복 구현</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">getAge</span><span class="params">()</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> age</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">arrest</span><span class="params">(criminal: Criminal)</span></span> &#123;</span><br><span class="line">        jail.append(criminal)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>getAge()</code> 메서드는 하는 일이 같은데도 불구하고 구현부를 따로 둬야 하기 때문에 중복으로 구현해야하는 문제가 발생한다.</p>
+<h3 id="Extension-적용"><a href="#Extension-적용" class="headerlink" title="Extension 적용"></a>Extension 적용</h3><p>여기서 사용할 수 있는 것이 <code>Extension</code>이다. 다음과 같이 구현하면 된다.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span> &#123; <span class="keyword">get</span> &#125;</span><br><span class="line">    <span class="keyword">var</span> age: <span class="type">Int</span> &#123; <span class="keyword">get</span> &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">getAge</span><span class="params">()</span></span> -&gt; <span class="type">Int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 프로토콜 초기구현</span></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">getAge</span><span class="params">()</span></span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">self</span>.age</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">FireFighter</span>: <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">    <span class="keyword">var</span> age: <span class="type">Int</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">extinguish</span><span class="params">()</span></span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">PolieMan</span>: <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">    <span class="keyword">var</span> age: <span class="type">Int</span></span><br><span class="line">    <span class="keyword">var</span> jail: [<span class="type">Criminal</span>] = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">arrest</span><span class="params">(criminal: Criminal)</span></span> &#123;</span><br><span class="line">        jail.append(criminal)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>Extension</code>을 통해 Person 프로토콜의 <code>getAge()</code> 메서드를 미리 구현하여 Person 프로토콜을 준수하는 구조체가 따로 구현할 필요없이 사용할 수 있다. 그런데 만약 변형해서 사용하고 싶다면 재정의하여 사용하면 된다.</p>
+<h2 id="Protocol과-Generic"><a href="#Protocol과-Generic" class="headerlink" title="Protocol과 Generic"></a>Protocol과 Generic</h2><p>프로토콜은 <code>Generic</code>과 <code>AssociatedType</code>을 적용하면 더욱 더 재사용성을 높일 수 있다.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Box</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 연관값으로 선언</span></span><br><span class="line">    associatedtype <span class="type">Item</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> items: [<span class="type">Item</span>] &#123; <span class="keyword">get</span> <span class="keyword">set</span> &#125;</span><br><span class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">addItem</span><span class="params">(item: Item)</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Box</span> </span>&#123;</span><br><span class="line">    <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">addItem</span><span class="params">(item: Item)</span></span> &#123;</span><br><span class="line">        items.append(item)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 제네릭으로 선언</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">StructBox</span>&lt;<span class="title">Element</span>&gt;: <span class="title">Box</span> </span>&#123;</span><br><span class="line">    <span class="keyword">typealias</span> <span class="type">Item</span> = <span class="type">Element</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> items: [<span class="type">Element</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> intBox: <span class="type">StructBox</span>&lt;<span class="type">Int</span>&gt; = <span class="type">StructBox</span>(items: [<span class="number">0</span>, <span class="number">1</span>])</span><br><span class="line"><span class="keyword">let</span> stringBox: <span class="type">StructBox</span>&lt;<span class="type">String</span>&gt; = <span class="type">StructBox</span>(items: [<span class="string">"Alpaca"</span>, <span class="string">"Cattle"</span>])</span><br></pre></td></tr></table></figure>
+<h3 id="프로토콜-추가"><a href="#프로토콜-추가" class="headerlink" title="프로토콜 추가"></a>프로토콜 추가</h3><p>여기서 새로운 기능을 추가할 경우 <code>Extension</code>으로 새로운 프로토콜을 따르게 하면 된다.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Printable</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">printSelf</span><span class="params">()</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// where로 Self가 Box 프로토콜을 따르는 경우에만 초기 구현이 되도록 제약.</span></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Printable</span> <span class="title">where</span> <span class="title">Self</span>: <span class="title">Box</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">printSelf</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(items)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">StructBox</span>: <span class="title">Printable</span> </span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// StructBox는 Box 프로토콜을 따르므로 초기 구현된 것을 바로 사용 가능.</span></span><br><span class="line">stringBox.printSelf()</span><br><span class="line"><span class="comment">// ["Alpaca", "Cattle"]</span></span><br></pre></td></tr></table></figure>
+<h2 id="POP의-이점"><a href="#POP의-이점" class="headerlink" title="POP의 이점"></a>POP의 이점</h2><ul>
+<li>가볍고 안전하다.<br>굳이 알려주지 않아야 할 것은 알려주지 않아도 되고 그로 인해 필요한 것만 쓸 수 있다.</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">drive</span><span class="params">()</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Sedan</span>: <span class="title">Car</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> brand: <span class="type">String</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">drive</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"drive"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Struct로</span></span><br><span class="line"><span class="keyword">let</span> sedan1: <span class="type">Sedan</span> = <span class="type">Sedan</span>(brand: <span class="string">"BMW"</span>)</span><br><span class="line">sedan1.brand <span class="comment">// 접근 가능</span></span><br><span class="line"><span class="comment">// Protocol로</span></span><br><span class="line"><span class="keyword">let</span> sedan2: <span class="type">Car</span> = <span class="type">Sedan</span>(brand: <span class="string">"Audi"</span>)</span><br><span class="line"><span class="comment">// sedan2.brand // 접근 불가</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>값 타입의 상속 효과</li>
+</ul>
+<p>위에서 보듯이 값 타입도 공통된 기능을 쉽게 구현할 수 있다.</p>
+<ul>
+<li>수평적인 기능 확장</li>
+</ul>
+<p>Class는 하나의 상속만 가능하고 수직적인 구조를 고려하여야 하지만 Protocol은 마치 블럭처럼 기능을 추가할 수 있다.</p>
+<ul>
+<li>제네릭의 활용</li>
+</ul>
+<p>자료형의 구애를 받지 않는 제네릭을 활용하였을 때 POP의 힘은 훨씬 강력해진다고 한다. Swift의 <code>Array</code> 타입을 예로 들 수 있겠다. 수많은 프로토콜을 준수하는 <code>Array</code> 타입은 타입에 관계없이 만들 수 있으며 그에 따른 메서드들도 다양하게 지원이 된다.</p>
+<hr>
+<p>이번 공부를 하면서 느낀 것은 Swift 언어가 깊이 들어갈수록 배울 것이 많아지고 그만큼 활용성이 커진다는 것이다. POP를 당장 활용할 수는 없겠지만 좀 더 유연한 사고를 가지고 이것을 직접 적용해보는 시간을 점차 늘려야겠다.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://developer.apple.com/videos/play/wwdc2015/408/" target="_blank" rel="noopener">Protocol-Oriented Programming in Swift - WWDC 2015</a></li>
+<li><a href="https://m.blog.naver.com/PostView.nhn?blogId=jdub7138&amp;logNo=220968251035&amp;proxyReferer=https%3A%2F%2Fwww.google.co.kr%2F" target="_blank" rel="noopener">[iOS Swift] 프로토콜 지향 - Protocol Oriented Programming</a></li>
+<li><a href="http://blog.yagom.net/531" target="_blank" rel="noopener">Swift - 프로토콜 지향 프로그래밍</a></li>
+</ul>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#POP가-나오게-된-배경"><span class="toc-number">1.</span> <span class="toc-text">POP가 나오게 된 배경</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#프로토콜-초기-구현-Protocol-Default-Implementation"><span class="toc-number">2.</span> <span class="toc-text">프로토콜 초기 구현(Protocol Default Implementation)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#프로토콜의-한계"><span class="toc-number">2.1.</span> <span class="toc-text">프로토콜의 한계</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Extension-적용"><span class="toc-number">2.2.</span> <span class="toc-text">Extension 적용</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Protocol과-Generic"><span class="toc-number">3.</span> <span class="toc-text">Protocol과 Generic</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#프로토콜-추가"><span class="toc-number">3.1.</span> <span class="toc-text">프로토콜 추가</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#POP의-이점"><span class="toc-number">4.</span> <span class="toc-text">POP의 이점</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">5.</span> <span class="toc-text">Reference</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/03/25/pop/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/03/25/pop/&text=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/03/25/pop/&title=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/03/25/pop/&is_video=false&description=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Protocol Oriented Programming에 대한 얕은 공부&body=Check out this article: https://wnstkdyu.github.io/2018/03/25/pop/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/03/25/pop/&title=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/03/25/pop/&title=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/03/25/pop/&title=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/03/25/pop/&title=Protocol Oriented Programming에 대한 얕은 공부"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/03/25/pop/&name=Protocol Oriented Programming에 대한 얕은 공부&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Alpaca
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-116302583-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'alpacablog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
