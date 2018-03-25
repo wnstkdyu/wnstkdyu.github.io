@@ -6,18 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="UINavigationController에서 어떤 UIViewController를 push할 때 생기는 이벤트를 관찰하며 View Controller와 View의 생명주기에 대해 알아보자. Start는 메소드가 시작되었음을, End는 메소드가 끝난 것을 의미한다. 만약 시작점과 끝점이 다를 경우 중간에 다른 많은 메소드들이 있다는 것을 의미한다.  View">
+    <meta name="description" content="UINavigationController에서 어떤 UIViewController를 push할 때 생기는 이벤트를 관찰하며 ViewController와 View의 생명주기에 대해 알아보자. Start는 메소드가 시작되었음을, End는 메소드가 끝난 것을 의미한다. 만약 시작점과 끝점이 다를 경우 중간에 다른 많은 메소드들이 있다는 것을 의미한다. 1. Vie">
 <meta name="keywords" content="iOS,Swift,LifeCycle,View Controller,View">
 <meta property="og:type" content="article">
 <meta property="og:title" content="View Controller &amp; View LifeCycle">
 <meta property="og:url" content="https://wnstkdyu.github.io/2018/02/10/vc-view-lifecycle/index.html">
-<meta property="og:site_name" content="Alpaca&#39;s Blog">
-<meta property="og:description" content="UINavigationController에서 어떤 UIViewController를 push할 때 생기는 이벤트를 관찰하며 View Controller와 View의 생명주기에 대해 알아보자. Start는 메소드가 시작되었음을, End는 메소드가 끝난 것을 의미한다. 만약 시작점과 끝점이 다를 경우 중간에 다른 많은 메소드들이 있다는 것을 의미한다.  View">
+<meta property="og:site_name" content="PacaLog">
+<meta property="og:description" content="UINavigationController에서 어떤 UIViewController를 push할 때 생기는 이벤트를 관찰하며 ViewController와 View의 생명주기에 대해 알아보자. Start는 메소드가 시작되었음을, End는 메소드가 끝난 것을 의미한다. 만약 시작점과 끝점이 다를 경우 중간에 다른 많은 메소드들이 있다는 것을 의미한다. 1. Vie">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-03-25T07:04:41.000Z">
+<meta property="og:updated_time" content="2018-03-25T07:28:09.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="View Controller &amp; View LifeCycle">
-<meta name="twitter:description" content="UINavigationController에서 어떤 UIViewController를 push할 때 생기는 이벤트를 관찰하며 View Controller와 View의 생명주기에 대해 알아보자. Start는 메소드가 시작되었음을, End는 메소드가 끝난 것을 의미한다. 만약 시작점과 끝점이 다를 경우 중간에 다른 많은 메소드들이 있다는 것을 의미한다.  View">
+<meta name="twitter:description" content="UINavigationController에서 어떤 UIViewController를 push할 때 생기는 이벤트를 관찰하며 ViewController와 View의 생명주기에 대해 알아보자. Start는 메소드가 시작되었음을, End는 메소드가 끝난 것을 의미한다. 만약 시작점과 끝점이 다를 경우 중간에 다른 많은 메소드들이 있다는 것을 의미한다. 1. Vie">
     
     
         
@@ -95,7 +95,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">1.</span> <span class="toc-text">Reference</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-ViewController-VC-—-init-coder-Start-End"><span class="toc-number">1.</span> <span class="toc-text">1. ViewController(VC) — init(coder:) Start / End</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-VC-—-awakeFromNib-Start-End"><span class="toc-number">2.</span> <span class="toc-text">2. VC — awakeFromNib Start / End</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-VC-—-willMove-toParentViewController-Start-End"><span class="toc-number">3.</span> <span class="toc-text">3. VC — willMove(toParentViewController:) Start / End</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-VC-—-StatusBar의-모습에-관련된-메소드"><span class="toc-number">4.</span> <span class="toc-text">4. VC — StatusBar의 모습에 관련된 메소드</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-VC-—-loadView-Start"><span class="toc-number">5.</span> <span class="toc-text">5. VC — loadView() Start</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-View-—-init-coder-Start"><span class="toc-number">6.</span> <span class="toc-text">6. View — init(coder:) Start</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-View-—-layerClass-Start-End"><span class="toc-number">7.</span> <span class="toc-text">7. View — layerClass Start / End</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-View-—-setNeedsDisplay-Start-End"><span class="toc-number">8.</span> <span class="toc-text">8. View — setNeedsDisplay() Start / End</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number"></span> <span class="toc-text">Reference</span></a>
     </div>
   </span>
 </div>
@@ -114,7 +114,7 @@
 
     <div class="meta">
       <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">Alpaca's Blog</span>
+        <span itemprop="name">PacaLog</span>
       </span>
       
     <div class="postdate">
@@ -134,30 +134,16 @@
   
 
   <div class="content" itemprop="articleBody">
-    <p><code>UINavigationController</code>에서 어떤 <code>UIViewController</code>를 push할 때 생기는 이벤트를 관찰하며 <code>View Controller</code>와 <code>View</code>의 생명주기에 대해 알아보자.</p>
-<p>Start는 메소드가 시작되었음을, End는 메소드가 끝난 것을 의미한다. 만약 시작점과 끝점이 다를 경우 중간에 다른 많은 메소드들이 있다는 것을 의미한다.</p>
-<ol>
-<li>ViewController(VC)— init(coder:) Start / End<br>unarchiver로 ViewController를 초기화한다. 스토리보드로 VC를 초기화하는 경우 nib파일에서 unarchive되며 불리게 된다.</li>
-<li>VC — awakeFromNib Start / End</li>
-</ol>
-<p>IB/nib 파일에서 로드되고 초기화가 다 되었다는 것을 알려준다. 이 메소드가 불릴 때는 이 VC와 관련된 Outlet, Action이 모두 연결되었다는 것을 보장한다.</p>
-<ol>
-<li>VC — willMove(toParentViewController:) Start / End</li>
-</ol>
-<p>parentVC가 childVC를 추가할 때 childVC에서 불리게 되며 이 때 ParentView는 NavigationVC, TabBarVC가 될 수 있다.</p>
-<ol>
-<li><p>VC — prefersStatusBarHidden, preferredStatusBarUpdateAnimation 등 StatusBar의 모습과 관련된 메소드들이 불린다.</p>
-</li>
-<li><p>VC — loadView() Start<br>View를 로드하거나 만들어 VC의 view 프로퍼티에 할당한다.<br>스토리보드에 View가 존재할 경우 Nib 파일로부터 로드하지만 그렇지 않은 경우 plain한 View를 만들게 된다.<br>스토리보드로 View를 만들경우 이 메소드를 오버라이드하면 안 된다. 오직 새로운 뷰를 만들어 할당할 경우에 사용한다.</p>
-</li>
-<li>View — init(coder:) Start<br>VC가 가지고 있는 View를 초기화하고 view 프로퍼티에 assign한다.</li>
-<li>View — layerClass Start / End</li>
-</ol>
-<p>View의 layer를 그리는 데 쓰이는 기본적인 CALayer의 인스턴스를 반환한다.</p>
-<ol>
-<li>View — setNeedsDisplay() Start / End</li>
-</ol>
-<p>View의 전체 바운드를 다시 그릴 필요가 있다라는 것을 마크해두는 것이다. 바로 다시 그려지지 않고 다음 그리기 주기에 그려진다.<br>CAEAGLayer(OpenGL 컨텐트 그리기를 지원하는 Layer)를 통해 그리는 View는 영향이 없고 오로지 UIKit이나 CoreGraphics로 그려지는 것들만 영향을 받는다.<br>여러 번 불릴 수 있다.</p>
+    <p><code>UINavigationController</code>에서 어떤 <code>UIViewController</code>를 push할 때 생기는 이벤트를 관찰하며 <code>ViewController</code>와 <code>View</code>의 생명주기에 대해 알아보자.</p>
+<p><strong>Start</strong>는 메소드가 시작되었음을, <strong>End</strong>는 메소드가 끝난 것을 의미한다. 만약 시작점과 끝점이 다를 경우 중간에 다른 많은 메소드들이 있다는 것을 의미한다.</p>
+<h3 id="1-ViewController-VC-—-init-coder-Start-End"><a href="#1-ViewController-VC-—-init-coder-Start-End" class="headerlink" title="1. ViewController(VC) — init(coder:) Start / End"></a>1. ViewController(VC) — init(coder:) Start / End</h3><p>unarchiver로 <code>ViewController</code>를 초기화한다. 스토리보드로 VC를 초기화하는 경우 <code>nib</code>파일에서 unarchive되며 불리게 된다.</p>
+<h3 id="2-VC-—-awakeFromNib-Start-End"><a href="#2-VC-—-awakeFromNib-Start-End" class="headerlink" title="2. VC — awakeFromNib Start / End"></a>2. VC — awakeFromNib Start / End</h3><p>IB나 nib 파일에서 로드되고 초기화가 다 되었다는 것을 알려준다. 이 메소드가 불릴 때는 이 <strong>VC와 관련된 <code>Outlet</code>, <code>Action</code>이 모두 연결되었다는 것을 보장</strong>한다.</p>
+<h3 id="3-VC-—-willMove-toParentViewController-Start-End"><a href="#3-VC-—-willMove-toParentViewController-Start-End" class="headerlink" title="3. VC — willMove(toParentViewController:) Start / End"></a>3. VC — willMove(toParentViewController:) Start / End</h3><p><code>parentVC</code>가 <code>childVC</code>를 추가할 때 childVC에서 불리게 되며 이 때 ParentView는 <code>UINavigationVC</code>, <code>UITabBarVC</code>가 될 수 있다.</p>
+<h3 id="4-VC-—-StatusBar의-모습에-관련된-메소드"><a href="#4-VC-—-StatusBar의-모습에-관련된-메소드" class="headerlink" title="4. VC — StatusBar의 모습에 관련된 메소드"></a>4. VC — StatusBar의 모습에 관련된 메소드</h3><p>prefersStatusBarHidden, preferredStatusBarUpdateAnimation 등이 호출된다.</p>
+<h3 id="5-VC-—-loadView-Start"><a href="#5-VC-—-loadView-Start" class="headerlink" title="5. VC — loadView() Start"></a>5. VC — loadView() Start</h3><p>View를 로드하거나 만들어 VC의 <code>view</code> 프로퍼티에 할당한다.<br>스토리보드에 View가 존재할 경우 <code>nib</code> 파일로부터 로드하지만 그렇지 않은 경우 plain한 View를 만들게 된다.<br><strong>스토리보드로 View를 만들경우 이 메소드를 오버라이드하면 안 된다.</strong> 오직 새로운 뷰를 만들어 할당할 경우에 사용한다.</p>
+<h3 id="6-View-—-init-coder-Start"><a href="#6-View-—-init-coder-Start" class="headerlink" title="6. View — init(coder:) Start"></a>6. View — init(coder:) Start</h3><p>VC가 가지고 있는 <code>view</code>를 초기화하고 <code>view</code> 프로퍼티에 할당한다.</p>
+<h3 id="7-View-—-layerClass-Start-End"><a href="#7-View-—-layerClass-Start-End" class="headerlink" title="7. View — layerClass Start / End"></a>7. View — layerClass Start / End</h3><p>View의 <code>layer</code>를 그리는 데 쓰이는 기본적인 <code>CALayer</code>의 인스턴스를 반환한다.</p>
+<h3 id="8-View-—-setNeedsDisplay-Start-End"><a href="#8-View-—-setNeedsDisplay-Start-End" class="headerlink" title="8. View — setNeedsDisplay() Start / End"></a>8. View — setNeedsDisplay() Start / End</h3><p>View의 전체 바운드를 다시 그릴 필요가 있다라는 것을 마크해두는 것이다. 바로 다시 그려지지 않고 다음 그리기 주기에 그려진다.<br>CAEAGLayer(OpenGL 컨텐트 그리기를 지원하는 Layer)를 통해 그리는 View는 영향이 없고 오로지 UIKit이나 CoreGraphics로 그려지는 것들만 영향을 받는다.<br>여러 번 불릴 수 있다.</p>
 <ol>
 <li>View — translatesAutoresizingMaskIntoConstraints Start / End</li>
 </ol>
@@ -269,7 +255,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">1.</span> <span class="toc-text">Reference</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-ViewController-VC-—-init-coder-Start-End"><span class="toc-number">1.</span> <span class="toc-text">1. ViewController(VC) — init(coder:) Start / End</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-VC-—-awakeFromNib-Start-End"><span class="toc-number">2.</span> <span class="toc-text">2. VC — awakeFromNib Start / End</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-VC-—-willMove-toParentViewController-Start-End"><span class="toc-number">3.</span> <span class="toc-text">3. VC — willMove(toParentViewController:) Start / End</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-VC-—-StatusBar의-모습에-관련된-메소드"><span class="toc-number">4.</span> <span class="toc-text">4. VC — StatusBar의 모습에 관련된 메소드</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-VC-—-loadView-Start"><span class="toc-number">5.</span> <span class="toc-text">5. VC — loadView() Start</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-View-—-init-coder-Start"><span class="toc-number">6.</span> <span class="toc-text">6. View — init(coder:) Start</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-View-—-layerClass-Start-End"><span class="toc-number">7.</span> <span class="toc-text">7. View — layerClass Start / End</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-View-—-setNeedsDisplay-Start-End"><span class="toc-number">8.</span> <span class="toc-text">8. View — setNeedsDisplay() Start / End</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number"></span> <span class="toc-text">Reference</span></a>
     </div>
 
     <div id="share-footer" style="display: none">
@@ -344,7 +330,7 @@
 <!-- Disqus Comments -->
 
     <script type="text/javascript">
-        var disqus_shortname = 'alpacablog';
+        var disqus_shortname = 'PacaLog';
 
         (function(){
             var dsq = document.createElement('script');

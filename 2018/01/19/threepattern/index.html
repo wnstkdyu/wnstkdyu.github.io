@@ -6,18 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="언제, 어디서 써야할까?  위의 세 가지는 iOS를 만들다 보면 자주 나오는 패턴들이다. 또 Key Value Observing(KVO)를 제외하면 나머지 두 가지는 자주 사용한다. 대부분의 경우 View와 View Controller 간, 또는 각각의 것들 사이에서 소통이 필요할 때 사용하였다. 조금씩 사용하는 방법에 차이가 있을뿐 사용하는 메커니즘은">
+    <meta name="description" content="언제, 어디서 써야할까?  위의 세 가지는 iOS를 만들다 보면 자주 나오는 패턴들이다. 또 Key Value Observing(KVO)를 제외하면 나머지 두 가지는 자주 사용한다. 대부분의 경우 View와 ViewController 간, 또는 각각의 것들 사이에서 소통이 필요할 때 사용하였다. 조금씩 사용하는 방법에 차이가 있을뿐 사용하는 메커니즘은 비">
 <meta name="keywords" content="Swift,Delegation,Notification,KVO,iOs">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Delegation, Notification, 그리고 KVO">
 <meta property="og:url" content="https://wnstkdyu.github.io/2018/01/19/threepattern/index.html">
-<meta property="og:site_name" content="Alpaca&#39;s Blog">
-<meta property="og:description" content="언제, 어디서 써야할까?  위의 세 가지는 iOS를 만들다 보면 자주 나오는 패턴들이다. 또 Key Value Observing(KVO)를 제외하면 나머지 두 가지는 자주 사용한다. 대부분의 경우 View와 View Controller 간, 또는 각각의 것들 사이에서 소통이 필요할 때 사용하였다. 조금씩 사용하는 방법에 차이가 있을뿐 사용하는 메커니즘은">
+<meta property="og:site_name" content="PacaLog">
+<meta property="og:description" content="언제, 어디서 써야할까?  위의 세 가지는 iOS를 만들다 보면 자주 나오는 패턴들이다. 또 Key Value Observing(KVO)를 제외하면 나머지 두 가지는 자주 사용한다. 대부분의 경우 View와 ViewController 간, 또는 각각의 것들 사이에서 소통이 필요할 때 사용하였다. 조금씩 사용하는 방법에 차이가 있을뿐 사용하는 메커니즘은 비">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-03-24T19:50:13.000Z">
+<meta property="og:updated_time" content="2018-03-25T07:14:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Delegation, Notification, 그리고 KVO">
-<meta name="twitter:description" content="언제, 어디서 써야할까?  위의 세 가지는 iOS를 만들다 보면 자주 나오는 패턴들이다. 또 Key Value Observing(KVO)를 제외하면 나머지 두 가지는 자주 사용한다. 대부분의 경우 View와 View Controller 간, 또는 각각의 것들 사이에서 소통이 필요할 때 사용하였다. 조금씩 사용하는 방법에 차이가 있을뿐 사용하는 메커니즘은">
+<meta name="twitter:description" content="언제, 어디서 써야할까?  위의 세 가지는 iOS를 만들다 보면 자주 나오는 패턴들이다. 또 Key Value Observing(KVO)를 제외하면 나머지 두 가지는 자주 사용한다. 대부분의 경우 View와 ViewController 간, 또는 각각의 것들 사이에서 소통이 필요할 때 사용하였다. 조금씩 사용하는 방법에 차이가 있을뿐 사용하는 메커니즘은 비">
     
     
         
@@ -116,7 +116,7 @@
 
     <div class="meta">
       <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">Alpaca's Blog</span>
+        <span itemprop="name">PacaLog</span>
       </span>
       
     <div class="postdate">
@@ -139,12 +139,12 @@
     <blockquote>
 <p>언제, 어디서 써야할까?</p>
 </blockquote>
-<p>위의 세 가지는 iOS를 만들다 보면 자주 나오는 패턴들이다. 또 Key Value Observing(KVO)를 제외하면 나머지 두 가지는 자주 사용한다. 대부분의 경우 <code>View</code>와 <code>View Controller</code> 간, 또는 각각의 것들 사이에서 소통이 필요할 때 사용하였다. 조금씩 사용하는 방법에 차이가 있을뿐 사용하는 메커니즘은 비슷하다. 어떤 이벤트가 A에서 일어나면 B에 알려주어 적절한 조치를 취한다.</p>
+<p>위의 세 가지는 iOS를 만들다 보면 자주 나오는 패턴들이다. 또 Key Value Observing(KVO)를 제외하면 나머지 두 가지는 자주 사용한다. 대부분의 경우 <code>View</code>와 <code>ViewController</code> 간, 또는 각각의 것들 사이에서 소통이 필요할 때 사용하였다. 조금씩 사용하는 방법에 차이가 있을뿐 사용하는 메커니즘은 비슷하다. 어떤 이벤트가 A에서 일어나면 B에 알려주어 적절한 조치를 취한다.</p>
 <p>그러나 언제, 어디서 무엇을 사용하면 좋을지에 대해서는 제대로 알지 못하여 잘 몰랐던 KVO를 포함하여 이번 주제로 잡게 되었고 <a href="https://shinesolutions.com/2011/06/14/delegation-notification-and-observation/" target="_blank" rel="noopener">When to use delegation, notification, or observation in iOS</a>을 번역하au 공부해보았다.</p>
 <h2 id="세-가지-패턴이-나오게-된-배경"><a href="#세-가지-패턴이-나오게-된-배경" class="headerlink" title="세 가지 패턴이 나오게 된 배경"></a>세 가지 패턴이 나오게 된 배경</h2><blockquote>
 <p>하나의 객체가 다른 객체와 소통은 하지만 묶이기(coupled)는 싫을 때</p>
 </blockquote>
-<p>세 패턴 모두 특정 이벤트가 일어나면 원하는 객체에 알려주어 해당되는 처리를 하는 방법을 가지고 있다. 어플리케이션의 특성상 객체 간 소통은 필수적이다. 하지만 한 객체는 그 자체로 존재하면서 소통하고 싶을뿐 다른 객체에 종속되어 동작하는 것은 <strong>재사용성</strong>과 <strong>독립된 기능요소</strong> 측면에서 볼 때 바람직하지 않다. 대표적으로 <code>View Controller</code>는 한 <code>View</code>를 관리하는 독립적인 객체로서 존재해야지, 소통을 위해 다른 <code>View Controller</code>에 묶여 동작하는 것은 옳지 않은 방식이다. 그래서 Delegation, Notification, KVO를 사용한다.</p>
+<p>세 패턴 모두 특정 이벤트가 일어나면 원하는 객체에 알려주어 해당되는 처리를 하는 방법을 가지고 있다. 어플리케이션의 특성상 객체 간 소통은 필수적이다. 하지만 한 객체는 그 자체로 존재하면서 소통하고 싶을뿐 다른 객체에 종속되어 동작하는 것은 <strong>재사용성</strong>과 <strong>독립된 기능요소</strong> 측면에서 볼 때 바람직하지 않다. 대표적으로 <code>ViewController</code>는 한 <code>View</code>를 관리하는 독립적인 객체로서 존재해야지, 소통을 위해 다른 <code>ViewController</code>에 묶여 동작하는 것은 옳지 않은 방식이다. 그래서 Delegation, Notification, KVO를 사용한다.</p>
 <h2 id="Delegation"><a href="#Delegation" class="headerlink" title="Delegation"></a>Delegation</h2><p>Delegate는 보통 <strong>Protocol</strong>을 정의하여 사용한다. Protocol이란 <strong>일종의 기능 명세서</strong> 같은 것으로 Delegate로 지정된 객체가 해야 하는 메소드들의 원형을 적어 놓는다. Delegate 역할을 하려는 객체는 이 Protocol을 따르며 원형만 있던 메소드들의 구현을 한다. 이렇게 세팅 후 이전 객체는 어떤 이벤트가 일어났을 시 delegate로 지정한 객체에 알려줄 수 있다.</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1) Delegate 프로토콜 선언</span></span><br><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">SomeDelegate</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">someFunction</span><span class="params">(someProperty: Int)</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeView</span>: <span class="title">UIView</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 2) 순환 참조를 막기 위해 weak으로 delegate 프로퍼티를 가지고 있음</span></span><br><span class="line">    <span class="keyword">weak</span> <span class="keyword">var</span> delegate: <span class="type">SomeDelegate</span>?</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">someTapped</span><span class="params">(num: Int)</span></span> &#123;</span><br><span class="line">        <span class="comment">// 3) 이벤트가 일어날 시 delegate가 동작하게끔 함</span></span><br><span class="line">        delegate?.someFunction(someProperty: num)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 4) Delegate 프로토콜을 따르도록 함</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeController</span>: <span class="title">SomeDelegate</span> </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> view: <span class="type">SomeView</span>?</span><br><span class="line"></span><br><span class="line">    <span class="keyword">init</span>() &#123;</span><br><span class="line">        view = <span class="type">SomeView</span>()</span><br><span class="line">        <span class="comment">// 6) delegate를 자신으로 설정</span></span><br><span class="line">        view?.delegate = <span class="keyword">self</span></span><br><span class="line">        someFunction(someProperty: <span class="number">0</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 5) Delegate 프로토콜에 적힌 메소드 구현</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">someFunction</span><span class="params">(someProperty: Int)</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(someProperty)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> someController = <span class="type">SomeController</span>()</span><br><span class="line"><span class="comment">// prints 0</span></span><br></pre></td></tr></table></figure>
 <h3 id="장점"><a href="#장점" class="headerlink" title="장점"></a>장점</h3><ul>
@@ -297,7 +297,7 @@
 <!-- Disqus Comments -->
 
     <script type="text/javascript">
-        var disqus_shortname = 'alpacablog';
+        var disqus_shortname = 'PacaLog';
 
         (function(){
             var dsq = document.createElement('script');
