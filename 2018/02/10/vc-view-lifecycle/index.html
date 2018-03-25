@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="PacaLog">
 <meta property="og:description" content="UINavigationController에서 어떤 UIViewController를 push할 때 생기는 이벤트를 관찰하며 ViewController와 View의 생명주기에 대해 알아보자. Start는 메소드가 시작되었음을, End는 메소드가 끝난 것을 의미한다. 만약 시작점과 끝점이 다를 경우 중간에 다른 많은 메소드들이 있다는 것을 의미한다. 초기화 및">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-03-25T07:59:19.000Z">
+<meta property="og:updated_time" content="2018-03-25T08:09:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="View Controller &amp; View LifeCycle">
 <meta name="twitter:description" content="UINavigationController에서 어떤 UIViewController를 push할 때 생기는 이벤트를 관찰하며 ViewController와 View의 생명주기에 대해 알아보자. Start는 메소드가 시작되었음을, End는 메소드가 끝난 것을 의미한다. 만약 시작점과 끝점이 다를 경우 중간에 다른 많은 메소드들이 있다는 것을 의미한다. 초기화 및">
@@ -164,7 +164,11 @@
 <h3 id="15-VC-—-loadView-End"><a href="#15-VC-—-loadView-End" class="headerlink" title="15. VC — loadView() End"></a>15. VC — loadView() End</h3><h3 id="16-VC-—-prepare-for-sender-Start-End"><a href="#16-VC-—-prepare-for-sender-Start-End" class="headerlink" title="16. VC — prepare(for:sender:) Start / End"></a>16. VC — prepare(for:sender:) Start / End</h3><p>VC와 View의 <code>awakeFromNib()</code>의 호출이 완료되었다는 것은 모든 <code>Outlet</code>, <code>Action</code>의 연결이 되었다는 뜻이므로 <code>segue</code>를 준비하라는 뜻이다.</p>
 <h3 id="17-VC-—-viewDidLoad-Start-End"><a href="#17-VC-—-viewDidLoad-Start-End" class="headerlink" title="17. VC — viewDidLoad() Start / End"></a>17. VC — viewDidLoad() Start / End</h3><p>View의 로드가 모두 끝났다는 의미이다. 다른 커스텀 초기화 작업을 여기서 해주면 된다.</p>
 <h2 id="보여주기"><a href="#보여주기" class="headerlink" title="보여주기"></a>보여주기</h2><h3 id="18-VC-—-viewWillAppear-Start-End"><a href="#18-VC-—-viewWillAppear-Start-End" class="headerlink" title="18. VC — viewWillAppear() Start / End"></a>18. VC — viewWillAppear() Start / End</h3><p>VC의 View가 이제 보일 준비를 한다는 뜻으로 이는 곧 <strong>View Hierarchy</strong>에 곧 포함될 것이란 말이 된다. View가 어떻게 보여질지 보여지기 전 꾸밀 수 있는 기회이다.</p>
-<h3 id="19-View-—-willMove-toWindow-Start-End"><a href="#19-View-—-willMove-toWindow-Start-End" class="headerlink" title="19. View — willMove(toWindow:) Start / End"></a>19. View — willMove(toWindow:) Start / End</h3><p>새로운 View Hierarchy에 들어가게 되므로 View Hierarchy의 <code>root</code>에 해당되는 <code>window</code> 객체가 바뀐다는 의미이다.<br>이 메소드는 기본적으로 window 객체가 바뀌는 것을 알려주는 역할만 수행하며 SubClass는 이것을 오버라이드하여 window 객체가 바뀔 때 하는 작업을 정의할 수 있다.<br>newWindow는 nil이 될 수 있다.</p>
+<h3 id="19-View-—-willMove-toWindow-Start-End"><a href="#19-View-—-willMove-toWindow-Start-End" class="headerlink" title="19. View — willMove(toWindow:) Start / End"></a>19. View — willMove(toWindow:) Start / End</h3><ul>
+<li>새로운 View Hierarchy에 들어가게 되므로 View Hierarchy의 <code>root</code>에 해당되는 <code>window</code> 객체가 바뀐다는 의미이다.</li>
+<li>이 메소드는 기본적으로 <code>window</code> 객체가 바뀌는 것을 알려주는 역할만 수행하며 SubClass는 이것을 오버라이드하여 window 객체가 바뀔 때 하는 작업을 정의할 수 있다.</li>
+<li>newWindow는 nil이 될 수 있다.</li>
+</ul>
 <ol>
 <li>View — needsUpdateConstraints() Start / End</li>
 </ol>
