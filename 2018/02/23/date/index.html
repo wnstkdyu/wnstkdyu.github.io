@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="iOS에서 날짜를 다루는 방법에 대해 알아보자.Swift에서 날짜를 다루는 타입으로는 Date, DateFormatter, Calendar, DateComponent 등이 있다. Date시간의 특정 시점을 나타내는 구조체로 달력이나 타임 존에 독립적이다. 날짜 비교, 날짜 간격 계산, 날짜 간격으로 새 날짜 생성 등 다양한 메서드를 지원한다. 참고로 Obj">
+<meta name="keywords" content="Date,Calendar,Swift,iOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="date">
+<meta property="og:url" content="https://wnstkdyu.github.io/2018/02/23/date/index.html">
+<meta property="og:site_name" content="PacaLog">
+<meta property="og:description" content="iOS에서 날짜를 다루는 방법에 대해 알아보자.Swift에서 날짜를 다루는 타입으로는 Date, DateFormatter, Calendar, DateComponent 등이 있다. Date시간의 특정 시점을 나타내는 구조체로 달력이나 타임 존에 독립적이다. 날짜 비교, 날짜 간격 계산, 날짜 간격으로 새 날짜 생성 등 다양한 메서드를 지원한다. 참고로 Obj">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-03-25T09:11:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="date">
+<meta name="twitter:description" content="iOS에서 날짜를 다루는 방법에 대해 알아보자.Swift에서 날짜를 다루는 타입으로는 Date, DateFormatter, Calendar, DateComponent 등이 있다. Date시간의 특정 시점을 나타내는 구조체로 달력이나 타임 존에 독립적이다. 날짜 비교, 날짜 간격 계산, 날짜 간격으로 새 날짜 생성 등 다양한 메서드를 지원한다. 참고로 Obj">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>date</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2018/02/10/vc-view-lifecycle/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/02/23/date/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/02/23/date/&text=date"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/02/23/date/&title=date"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/02/23/date/&is_video=false&description=date"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=date&body=Check out this article: https://wnstkdyu.github.io/2018/02/23/date/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/02/23/date/&title=date"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/02/23/date/&title=date"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/02/23/date/&title=date"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/02/23/date/&title=date"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/02/23/date/&name=date&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Date"><span class="toc-number">1.</span> <span class="toc-text">Date</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DateFormatter"><span class="toc-number">2.</span> <span class="toc-text">DateFormatter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Calendar"><span class="toc-number">3.</span> <span class="toc-text">Calendar</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        date
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">PacaLog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-02-22T15:00:00.000Z" itemprop="datePublished">2018-02-23</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Calendar/">Calendar</a>, <a class="tag-link" href="/tags/Date/">Date</a>, <a class="tag-link" href="/tags/Swift/">Swift</a>, <a class="tag-link" href="/tags/iOS/">iOS</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>iOS에서 날짜를 다루는 방법에 대해 알아보자.<br>Swift에서 날짜를 다루는 타입으로는 <code>Date</code>, <code>DateFormatter</code>, <code>Calendar</code>, <code>DateComponent</code> 등이 있다.</p>
+<h2 id="Date"><a href="#Date" class="headerlink" title="Date"></a><a href="https://developer.apple.com/documentation/foundation/date" target="_blank" rel="noopener">Date</a></h2><p><strong>시간의 특정 시점</strong>을 나타내는 구조체로 달력이나 타임 존에 독립적이다. 날짜 비교, 날짜 간격 계산, 날짜 간격으로 새 날짜 생성 등 다양한 메서드를 지원한다. 참고로 Objective-C에서는 <code>NSDate</code>라는 클래스를 이용했는데 iOS 7 이후 Swift에서는 <code>Date</code> 구조체로 이와 같은 기능을 제공한다.</p>
+<p><code>Date</code> 타입의 초기화는 다음과 같이 할 수 있다.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 현재 시간</span></span><br><span class="line"><span class="keyword">let</span> date1 = <span class="type">Date</span>()</span><br><span class="line"><span class="comment">// 2. 지금으로부터 300초 지난 시점</span></span><br><span class="line"><span class="keyword">let</span> date2 = <span class="type">Date</span>(timeIntervalSinceNow: <span class="number">300</span>)</span><br><span class="line"><span class="comment">// 3. date2로부터 300초 지난 시점</span></span><br><span class="line"><span class="keyword">let</span> date3 = <span class="type">Date</span>(timeInterval: <span class="number">300</span>, since: date2)</span><br><span class="line"><span class="comment">// 4. 유닉스 시간인 1970년 1월 1일 00:00:00 UTC로부터 300초 지난 시점</span></span><br><span class="line"><span class="keyword">let</span> date4 = <span class="type">Date</span>(timeIntervalSince1970: <span class="number">300</span>)</span><br><span class="line"><span class="comment">// 5. 2001 1월 1일 00:00:00 UTC로부터 300초 지난 시점</span></span><br><span class="line"><span class="keyword">let</span> date5 = <span class="type">Date</span>(timeIntervalSinceReferenceDate: <span class="number">300</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(date1) <span class="comment">// 2018-02-23 06:15:51 +0000</span></span><br><span class="line"><span class="built_in">print</span>(date2) <span class="comment">// 2018-02-23 06:20:51 +0000</span></span><br><span class="line"><span class="built_in">print</span>(date3) <span class="comment">// 2018-02-23 06:25:51 +0000</span></span><br><span class="line"><span class="built_in">print</span>(date4) <span class="comment">// 1970-01-01 00:05:00 +0000</span></span><br><span class="line"><span class="built_in">print</span>(date5) <span class="comment">// 2001-01-01 00:05:00 +0000</span></span><br></pre></td></tr></table></figure>
+<p>위의 초기화에서 timeInterval은 <code>TimeInterval</code> 타입을 말하며 이는 <code>Double</code> 타입의 typealias로 시간의 초를 나타낸다. 특정 시점을 나타내는 <code>Date</code> 타입에 <code>TimeInterval</code>을 더하고 뺌으로써 새로운 <code>Date</code>를 얻을 수 있다. 또한 <code>Date</code> 구조체는 날짜 간 비교를 지원한다.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> date1 = <span class="type">Date</span>()</span><br><span class="line">date1.addTimeInterval(<span class="number">300</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> date2 = date1.addingTimeInterval(<span class="number">300</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(date1) <span class="comment">// 2018-02-23 06:48:37 +0000</span></span><br><span class="line"><span class="built_in">print</span>(date2) <span class="comment">// 2018-02-23 06:53:37 +0000</span></span><br><span class="line"><span class="built_in">print</span>(date1 == date2) <span class="comment">// false</span></span><br><span class="line"><span class="built_in">print</span>(date1 != date2) <span class="comment">// true</span></span><br><span class="line"><span class="built_in">print</span>(date1 &gt; date2)  <span class="comment">// false</span></span><br><span class="line"><span class="built_in">print</span>(date1 &lt; date2)  <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<h2 id="DateFormatter"><a href="#DateFormatter" class="headerlink" title="DateFormatter"></a><a href="https://developer.apple.com/documentation/foundation/dateformatter" target="_blank" rel="noopener">DateFormatter</a></h2><p><code>Date</code> 타입은 날짜의 한 지점을 나타내지만 이것을 <strong>텍스트로 표현</strong>하고 싶을 때는 <code>DateFormatter</code>를 사용한다.</p>
+<p><code>DateFormatter</code>를 인스턴스화 시켜 사용하며 <code>dateStyle</code>, <code>timeStyle</code>, <code>locale</code>, 그리고 <code>dateFormat</code>을 통해 다양한 방법으로 <code>Date</code>를 문자화한다.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> date = <span class="type">Date</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> dateFormatter = <span class="type">DateFormatter</span>()</span><br><span class="line">dateFormatter.dateStyle = .medium</span><br><span class="line">dateFormatter.timeStyle = .medium</span><br><span class="line"></span><br><span class="line">dateFormatter.locale = <span class="type">Locale</span>(identifier: <span class="string">"en_US"</span>)</span><br><span class="line"><span class="built_in">print</span>(dateFormatter.string(from: date)) <span class="comment">// Feb 23, 2018 at 4:34:31 PM</span></span><br><span class="line"></span><br><span class="line">dateFormatter.locale = <span class="type">Locale</span>(identifier: <span class="string">"fr_FR"</span>)</span><br><span class="line"><span class="built_in">print</span>(dateFormatter.string(from: date)) <span class="comment">// 23 févr. 2018 à 16:34:31</span></span><br><span class="line"></span><br><span class="line">dateFormatter.locale = <span class="type">Locale</span>(identifier: <span class="string">"ko_KR"</span>)</span><br><span class="line"><span class="built_in">print</span>(dateFormatter.string(from: date)) <span class="comment">// 2018. 2. 23. 오후 4:34:31</span></span><br><span class="line"></span><br><span class="line">dateFormatter.dateFormat = <span class="string">"YY년 M월 d일 h시 mm분 ss초"</span></span><br><span class="line"><span class="built_in">print</span>(dateFormatter.string(from: date)) <span class="comment">// 18년 2월 23일 4시 34분 31초</span></span><br></pre></td></tr></table></figure>
+<p><code>DateFormatter</code>를 사용하면 <code>String</code> 타입으로부터 <code>Date</code>를 얻는 것도 가능해진다. 이 때 <code>String</code>이 <code>DateFormatter</code>의 형식과 맞지 않을 경우에는 <code>nil</code>을 리턴해야하므로 반환형이 Optional이다. <code>Date Format</code>은 <a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/DataFormatting/Articles/dfDateFormatting10_4.html#//apple_ref/doc/uid/TP40002369-SW1" target="_blank" rel="noopener">Apple의 Date Formatting Guide</a>를 참고하면 된다.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dateFormatter = <span class="type">DateFormatter</span>()</span><br><span class="line">dateFormatter.dateFormat = <span class="string">"YY년 M월 d일"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> string1 = <span class="string">"18년 2월 1일"</span></span><br><span class="line"><span class="keyword">let</span> string2 = <span class="string">"18.02.23"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(dateFormatter.date(from: string1)) <span class="comment">// Optional(2018-01-31 15:00:00 +0000)</span></span><br><span class="line"><span class="built_in">print</span>(dateFormatter.date(from: string2)) <span class="comment">// nil</span></span><br></pre></td></tr></table></figure>
+<h2 id="Calendar"><a href="#Calendar" class="headerlink" title="Calendar"></a><a href="https://developer.apple.com/documentation/foundation/calendar" target="_blank" rel="noopener">Calendar</a></h2><p><strong>달력과 관련된 정보</strong>를 담는 구조체로 달력과 관련된 계산과 각 달력의 요소인 <code>DateComponent</code>를 얻을 수 있다.</p>
+<p><code>Calendar</code>의 생성은 <a href="https://developer.apple.com/documentation/foundation/calendar.identifier" target="_blank" rel="noopener">Calendar.Identifier</a> 열거형을 <code>init</code> 메소드에 전달함으로써 이루지는데 이는 나라 또는 종교 별로 달력이 다른 것을 반영한 것이다.</p>
+<p>인스턴스로 만든 뒤에는 달력의 요소를 나타내는 <code>DateComponent</code> 구조체에 관한 다양한 메서드를 사용할 수 있다. <code>Date</code>에서 <code>DateComponent</code>를 뽑아낼 수도 있고 그 반대도 가능하다.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> date = <span class="type">Date</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> calendar = <span class="type">Calendar</span>(identifier: .gregorian)</span><br><span class="line"><span class="built_in">print</span>(calendar.dateComponents([.day, .month], from: date)) <span class="comment">// month: 2 day: 23 isLeapMonth: false</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> dateComponents = <span class="type">DateComponents</span>()</span><br><span class="line">dateComponents.year = <span class="number">1998</span></span><br><span class="line"><span class="built_in">print</span>(calendar.date(from: dateComponents)) <span class="comment">// Optional(1997-12-31 15:00:00 +0000)</span></span><br></pre></td></tr></table></figure>
+<p>그 외에도 AM/PM, Weekday, Month, Quarter, Era 등 <code>locale</code> 설정 별로 달라질 수 있는 <code>Symbols</code>의 배열을 얻을 수 있다.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> calendar = <span class="type">Calendar</span>(identifier: .gregorian)</span><br><span class="line">calendar.locale = <span class="type">Locale</span>(identifier: <span class="string">"fr_FR"</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(calendar.amSymbol) <span class="comment">// AM</span></span><br><span class="line"><span class="built_in">print</span>(calendar.eraSymbols) <span class="comment">// ["av. J.-C.", "ap. J.-C."]</span></span><br><span class="line"><span class="built_in">print</span>(calendar.weekdaySymbols) <span class="comment">// ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"]</span></span><br><span class="line"><span class="built_in">print</span>(calendar.quarterSymbols) <span class="comment">// ["1er trimestre", "2e trimestre", "3e trimestre", "4e trimestre"]</span></span><br></pre></td></tr></table></figure>
+<p>Reference<br>날짜와 시간을 다루기(Swift) · Wireframe<br>날짜와 시간 다루기 (Swift) Swift에서 날짜와 시간을 다루는 방법은 Foundation 프레임워크의 NSDate, NSCalendar, NSDateFormatter, NSDateComponents 등을…soooprmx.com<br>[iOS] 날짜 표현 형식표 (Date Field Symbol Table)<br>“NSDateFormatter”를 통해 표현할 수 있는 날짜 형식입니다. 심볼의 대소문자 구분에 주의해야 합니다. *1)은 “ko-KR” locale 설정 결과입니다. 필드 심볼 결과1) 결과 내용 시대 (Era)…ownstory.tistory.com</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://soooprmx.com/archives/5713" target="_blank" rel="noopener">날짜와 시간을 다루기(Swift) · Wireframe</a></li>
+<li><a href="http://ownstory.tistory.com/21" target="_blank" rel="noopener">[iOS] 날짜 표현 형식표 (Date Field Symbol Table)</a></li>
+<li><a href="https://developer.apple.com/documentation/foundation/date" target="_blank" rel="noopener">Date - Apple Developer Documentation</a></li>
+<li><a href="https://developer.apple.com/documentation/foundation/dateformatter" target="_blank" rel="noopener">DateFormatter - Apple Developer Documentation</a></li>
+<li><a href="https://developer.apple.com/documentation/foundation/calendar" target="_blank" rel="noopener">Calendar - Apple Developer Documentation</a></li>
+<li><a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/DataFormatting/Articles/dfDateFormatting10_4.html#//apple_ref/doc/uid/TP40002369-SW1" target="_blank" rel="noopener">Date Formatting Guide - Apple Developer</a></li>
+</ul>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Date"><span class="toc-number">1.</span> <span class="toc-text">Date</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DateFormatter"><span class="toc-number">2.</span> <span class="toc-text">DateFormatter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Calendar"><span class="toc-number">3.</span> <span class="toc-text">Calendar</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/02/23/date/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/02/23/date/&text=date"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/02/23/date/&title=date"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/02/23/date/&is_video=false&description=date"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=date&body=Check out this article: https://wnstkdyu.github.io/2018/02/23/date/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/02/23/date/&title=date"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/02/23/date/&title=date"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/02/23/date/&title=date"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/02/23/date/&title=date"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/02/23/date/&name=date&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Alpaca
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-116302583-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'alpacablog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
