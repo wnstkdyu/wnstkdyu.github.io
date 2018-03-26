@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="PacaLog">
 <meta property="og:description" content="UINavigationController에서 어떤 UIViewController를 push할 때 생기는 이벤트를 관찰하며 ViewController와 View의 생명주기에 대해 알아보자. Start는 메소드가 시작되었음을, End는 메소드가 끝난 것을 의미한다. 만약 시작점과 끝점이 다를 경우 중간에 다른 많은 메소드들이 있다는 것을 의미한다. 초기화 및">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-03-25T08:17:39.000Z">
+<meta property="og:updated_time" content="2018-03-26T14:41:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="View Controller &amp; View LifeCycle">
 <meta name="twitter:description" content="UINavigationController에서 어떤 UIViewController를 push할 때 생기는 이벤트를 관찰하며 ViewController와 View의 생명주기에 대해 알아보자. Start는 메소드가 시작되었음을, End는 메소드가 끝난 것을 의미한다. 만약 시작점과 끝점이 다를 경우 중간에 다른 많은 메소드들이 있다는 것을 의미한다. 초기화 및">
@@ -140,7 +140,7 @@
 <p><strong>Start</strong>는 메소드가 시작되었음을, <strong>End</strong>는 메소드가 끝난 것을 의미한다. 만약 시작점과 끝점이 다를 경우 중간에 다른 많은 메소드들이 있다는 것을 의미한다.</p>
 <h2 id="초기화-및-로드"><a href="#초기화-및-로드" class="headerlink" title="초기화 및 로드"></a>초기화 및 로드</h2><h3 id="1-ViewController-VC-—-init-coder-Start-End"><a href="#1-ViewController-VC-—-init-coder-Start-End" class="headerlink" title="1. ViewController(VC) — init(coder:) Start / End"></a>1. ViewController(VC) — init(coder:) Start / End</h3><p>unarchiver로 <code>ViewController</code>를 초기화한다. 스토리보드로 VC를 초기화하는 경우 <code>nib</code>파일에서 unarchive되며 불리게 된다.</p>
 <h3 id="2-VC-—-awakeFromNib-Start-End"><a href="#2-VC-—-awakeFromNib-Start-End" class="headerlink" title="2. VC — awakeFromNib Start / End"></a>2. VC — awakeFromNib Start / End</h3><p>IB나 nib 파일에서 로드되고 초기화가 다 되었다는 것을 알려준다. 이 메소드가 불릴 때는 이 <strong>VC와 관련된 <code>Outlet</code>, <code>Action</code>이 모두 연결되었다는 것을 보장</strong>한다.</p>
-<h3 id="3-VC-—-willMove-toParentViewController-Start-End"><a href="#3-VC-—-willMove-toParentViewController-Start-End" class="headerlink" title="3. VC — willMove(toParentViewController:) Start / End"></a>3. VC — willMove(toParentViewController:) Start / End</h3><p><code>parentVC</code>가 <code>childVC</code>를 추가할 때 childVC에서 불리게 되며 이 때 ParentView는 <code>UINavigationVC</code>, <code>UITabBarVC</code>가 될 수 있다.</p>
+<h3 id="3-VC-—-willMove-toParentViewController-Start-End"><a href="#3-VC-—-willMove-toParentViewController-Start-End" class="headerlink" title="3. VC — willMove(toParentViewController:) Start / End"></a>3. VC — willMove(toParentViewController:) Start / End</h3><p><code>parentVC</code>가 <code>childVC</code>를 추가할 때 childVC에서 불리게 되며 이 때 <code>ParentVC</code>는 <code>UINavigationVC</code>, <code>UITabBarVC</code>가 될 수 있다.</p>
 <h3 id="4-VC-—-StatusBar의-모습에-관련된-메소드"><a href="#4-VC-—-StatusBar의-모습에-관련된-메소드" class="headerlink" title="4. VC — StatusBar의 모습에 관련된 메소드"></a>4. VC — StatusBar의 모습에 관련된 메소드</h3><p>prefersStatusBarHidden, preferredStatusBarUpdateAnimation 등이 호출된다.</p>
 <h3 id="5-VC-—-loadView-Start"><a href="#5-VC-—-loadView-Start" class="headerlink" title="5. VC — loadView() Start"></a>5. VC — loadView() Start</h3><p>View를 로드하거나 만들어 VC의 <code>view</code> 프로퍼티에 할당한다.<br>스토리보드에 View가 존재할 경우 <code>nib</code> 파일로부터 로드하지만 그렇지 않은 경우 plain한 View를 만들게 된다.<br><strong>스토리보드로 View를 만들경우 이 메소드를 오버라이드하면 안 된다.</strong> 오직 새로운 뷰를 만들어 할당할 경우에 사용한다.</p>
 <h3 id="6-View-—-init-coder-Start"><a href="#6-View-—-init-coder-Start" class="headerlink" title="6. View — init(coder:) Start"></a>6. View — init(coder:) Start</h3><p>VC가 가지고 있는 <code>view</code>를 초기화하고 <code>view</code> 프로퍼티에 할당한다.</p>
