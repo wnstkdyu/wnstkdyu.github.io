@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="PacaLog">
 <meta property="og:description" content="iOS 상에서 파일 관련 작업을 해주는 FileManager에 대해 공부하려 한다. FileManager란?iOS와 macOS에서 파일을 다룰 수 있게 해주는 클래스로 iOS 2.0 이상, macOS 10.0 이상부터 사용 가능하다. 파일 시스템과 상호작용하게끔 해주며 파일과 디렉토리의 위치 결정(locate), 생성(create), 복사(copy), 옮기">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-03-30T18:10:20.000Z">
+<meta property="og:updated_time" content="2018-03-30T18:18:20.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FileManager 공부">
 <meta name="twitter:description" content="iOS 상에서 파일 관련 작업을 해주는 FileManager에 대해 공부하려 한다. FileManager란?iOS와 macOS에서 파일을 다룰 수 있게 해주는 클래스로 iOS 2.0 이상, macOS 10.0 이상부터 사용 가능하다. 파일 시스템과 상호작용하게끔 해주며 파일과 디렉토리의 위치 결정(locate), 생성(create), 복사(copy), 옮기">
@@ -136,11 +136,11 @@
   <div class="content" itemprop="articleBody">
     <p>iOS 상에서 파일 관련 작업을 해주는 <a href="https://developer.apple.com/documentation/foundation/filemanager" target="_blank" rel="noopener">FileManager</a>에 대해 공부하려 한다.</p>
 <h2 id="FileManager란"><a href="#FileManager란" class="headerlink" title="FileManager란?"></a>FileManager란?</h2><p><code>iOS</code>와 <code>macOS</code>에서 파일을 다룰 수 있게 해주는 클래스로 <strong>iOS 2.0 이상, macOS 10.0 이상</strong>부터 사용 가능하다. 파일 시스템과 상호작용하게끔 해주며 파일과 디렉토리의 <code>위치 결정(locate)</code>, <code>생성(create)</code>, <code>복사(copy)</code>, <code>옮기기(move)</code>가 가능하다. 물론 특정 파일이나 디렉토리의 정보를 얻어오는 것도 지원된다.</p>
-<p>특정 파일의 위치를 명시할 때, Apple은 <code>NSString</code> 객체 대신 <code>NSURL</code>객체를 사용하는 것을 권장하는데, 이는 시스템 내부적으로 <code>URL</code> 객체가 경로 정보를 더 효율적인 표현으로 바꿔주기 때문이다.</p>
+<p>특정 파일의 위치를 명시할 때, <strong>Apple은 <code>NSString</code> 객체 대신 <code>NSURL</code>객체를 사용하는 것을 권장</strong>하는데, 이는 시스템 내부적으로 <code>URL</code> 객체가 경로 정보를 더 효율적인 표현으로 바꿔주기 때문이다.</p>
 <p>파일이나 디렉토리를 옮기거나, 복사하거나, 링크하거나, 삭제할 때 <a href="https://developer.apple.com/documentation/foundation/filemanagerdelegate" target="_blank" rel="noopener"><code>FileManagerDelegate</code></a> 프로토콜을 따르는 <code>delegate</code>를 사용할 수 있다. 이 <code>delegate</code>는 <code>FileManager</code>의 동작을 확인하거나, 에러가 일어났을 때 진행할 것인지를 결정한다.</p>
 <p><code>FileManager</code> 클래스는 <strong>iOS 5.0, macOS 10.7 이상</strong>부터 iCloud에 저장된 아이템들을 관리할 수 있게 되었다. iCloud의 파일들을 조작하면 iCloud와 동기화된 모든 기기의 파일들이 바뀌게 된다.</p>
-<h2 id="FileManagerDelegate에-대해"><a href="#FileManagerDelegate에-대해" class="headerlink" title="FileManagerDelegate에 대해"></a>FileManagerDelegate에 대해</h2><p><code>FileManager</code>의 동작들을 관리하는 <strong>옵셔널</strong>한 메서드들을 가지고 있다. <code>NSURL</code>과 <code>NSString</code> 객체 둘 다를 받는 메서드들을 가지고 있지만 <code>FileManager</code>와 마찬가지로 <code>NSURL</code> 객체를 선호한다.</p>
-<p>이것을 사용할 때 주의할 것은 <strong>직접 생성</strong>한 <code>FileManager</code>의 인스턴스와 연결해야 한다는 것이다. shared한 <code>FileManager.default</code>를 사용하면 안 된다.</p>
+<h2 id="FileManagerDelegate에-대해"><a href="#FileManagerDelegate에-대해" class="headerlink" title="FileManagerDelegate에 대해"></a>FileManagerDelegate에 대해</h2><p><code>FileManager</code>의 동작들을 관리하는 <strong>옵셔널</strong>한 메서드들을 가지고 있다. <code>NSURL</code>과 <code>NSString</code> 객체 둘 다를 받는 메서드들을 가지고 있지만 <code>FileManager</code>와 마찬가지로 <strong><code>NSURL</code> 객체를 선호</strong>한다.</p>
+<p>이것을 사용할 때 <strong>주의할 것은 직접 생성한 <code>FileManager</code>의 인스턴스와 연결해야 한다는 것</strong>이다. shared한 <code>FileManager.default</code>를 사용하면 안 된다.</p>
 <p><code>FileManager</code>의 동작 별로 다음과 같은 메서드들을 가지고 있다.</p>
 <ul>
 <li>동작을 시작해도 되는지 확인: <code>should~ItemAt</code></li>
