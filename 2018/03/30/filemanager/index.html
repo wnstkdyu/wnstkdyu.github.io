@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="iOS 상에서 파일 관련 작업을 해주는 FileManager에 대해 공부하려 한다. FileManager란?iOS와 macOS에서 파일을 다룰 수 있게 해주는 클래스로 iOS 2.0 이상, macOS 10.0 이상부터 사용 가능하다. 파일 시스템과 상호작용하게끔 해주며 파일과 디렉토리의 위치 결정(locate), 생성(create), 복사(copy), 옮기">
+<meta name="keywords" content="Swift,iOS,FileManager">
+<meta property="og:type" content="article">
+<meta property="og:title" content="FileManager 공부">
+<meta property="og:url" content="https://wnstkdyu.github.io/2018/03/30/filemanager/index.html">
+<meta property="og:site_name" content="PacaLog">
+<meta property="og:description" content="iOS 상에서 파일 관련 작업을 해주는 FileManager에 대해 공부하려 한다. FileManager란?iOS와 macOS에서 파일을 다룰 수 있게 해주는 클래스로 iOS 2.0 이상, macOS 10.0 이상부터 사용 가능하다. 파일 시스템과 상호작용하게끔 해주며 파일과 디렉토리의 위치 결정(locate), 생성(create), 복사(copy), 옮기">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-03-30T18:10:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="FileManager 공부">
+<meta name="twitter:description" content="iOS 상에서 파일 관련 작업을 해주는 FileManager에 대해 공부하려 한다. FileManager란?iOS와 macOS에서 파일을 다룰 수 있게 해주는 클래스로 iOS 2.0 이상, macOS 10.0 이상부터 사용 가능하다. 파일 시스템과 상호작용하게끔 해주며 파일과 디렉토리의 위치 결정(locate), 생성(create), 복사(copy), 옮기">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>FileManager 공부</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2018/03/17/iOSfilesystem/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/03/30/filemanager/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/03/30/filemanager/&text=FileManager 공부"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/03/30/filemanager/&title=FileManager 공부"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/03/30/filemanager/&is_video=false&description=FileManager 공부"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=FileManager 공부&body=Check out this article: https://wnstkdyu.github.io/2018/03/30/filemanager/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/03/30/filemanager/&title=FileManager 공부"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/03/30/filemanager/&title=FileManager 공부"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/03/30/filemanager/&title=FileManager 공부"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/03/30/filemanager/&title=FileManager 공부"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/03/30/filemanager/&name=FileManager 공부&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#FileManager란"><span class="toc-number">1.</span> <span class="toc-text">FileManager란?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FileManagerDelegate에-대해"><span class="toc-number">2.</span> <span class="toc-text">FileManagerDelegate에 대해</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-use"><span class="toc-number">3.</span> <span class="toc-text">How to use</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#위치-지정"><span class="toc-number">3.1.</span> <span class="toc-text">위치 지정</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#쓰기"><span class="toc-number">3.2.</span> <span class="toc-text">쓰기</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#디렉토리"><span class="toc-number">3.2.1.</span> <span class="toc-text">디렉토리</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#파일"><span class="toc-number">3.2.2.</span> <span class="toc-text">파일</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#읽기"><span class="toc-number">3.3.</span> <span class="toc-text">읽기</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#디렉토리-1"><span class="toc-number">3.3.1.</span> <span class="toc-text">디렉토리</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#파일-1"><span class="toc-number">3.3.2.</span> <span class="toc-text">파일</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        FileManager 공부
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">PacaLog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-03-30T08:56:32.000Z" itemprop="datePublished">2018-03-30</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/FileManager/">FileManager</a>, <a class="tag-link" href="/tags/Swift/">Swift</a>, <a class="tag-link" href="/tags/iOS/">iOS</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>iOS 상에서 파일 관련 작업을 해주는 <a href="https://developer.apple.com/documentation/foundation/filemanager" target="_blank" rel="noopener">FileManager</a>에 대해 공부하려 한다.</p>
+<h2 id="FileManager란"><a href="#FileManager란" class="headerlink" title="FileManager란?"></a>FileManager란?</h2><p><code>iOS</code>와 <code>macOS</code>에서 파일을 다룰 수 있게 해주는 클래스로 <strong>iOS 2.0 이상, macOS 10.0 이상</strong>부터 사용 가능하다. 파일 시스템과 상호작용하게끔 해주며 파일과 디렉토리의 <code>위치 결정(locate)</code>, <code>생성(create)</code>, <code>복사(copy)</code>, <code>옮기기(move)</code>가 가능하다. 물론 특정 파일이나 디렉토리의 정보를 얻어오는 것도 지원된다.</p>
+<p>특정 파일의 위치를 명시할 때, Apple은 <code>NSString</code> 객체 대신 <code>NSURL</code>객체를 사용하는 것을 권장하는데, 이는 시스템 내부적으로 <code>URL</code> 객체가 경로 정보를 더 효율적인 표현으로 바꿔주기 때문이다.</p>
+<p>파일이나 디렉토리를 옮기거나, 복사하거나, 링크하거나, 삭제할 때 <a href="https://developer.apple.com/documentation/foundation/filemanagerdelegate" target="_blank" rel="noopener"><code>FileManagerDelegate</code></a> 프로토콜을 따르는 <code>delegate</code>를 사용할 수 있다. 이 <code>delegate</code>는 <code>FileManager</code>의 동작을 확인하거나, 에러가 일어났을 때 진행할 것인지를 결정한다.</p>
+<p><code>FileManager</code> 클래스는 <strong>iOS 5.0, macOS 10.7 이상</strong>부터 iCloud에 저장된 아이템들을 관리할 수 있게 되었다. iCloud의 파일들을 조작하면 iCloud와 동기화된 모든 기기의 파일들이 바뀌게 된다.</p>
+<h2 id="FileManagerDelegate에-대해"><a href="#FileManagerDelegate에-대해" class="headerlink" title="FileManagerDelegate에 대해"></a>FileManagerDelegate에 대해</h2><p><code>FileManager</code>의 동작들을 관리하는 <strong>옵셔널</strong>한 메서드들을 가지고 있다. <code>NSURL</code>과 <code>NSString</code> 객체 둘 다를 받는 메서드들을 가지고 있지만 <code>FileManager</code>와 마찬가지로 <code>NSURL</code> 객체를 선호한다.</p>
+<p>이것을 사용할 때 주의할 것은 <strong>직접 생성</strong>한 <code>FileManager</code>의 인스턴스와 연결해야 한다는 것이다. shared한 <code>FileManager.default</code>를 사용하면 안 된다.</p>
+<p><code>FileManager</code>의 동작 별로 다음과 같은 메서드들을 가지고 있다.</p>
+<ul>
+<li>동작을 시작해도 되는지 확인: <code>should~ItemAt</code></li>
+<li>에러가 일어난 뒤 지속할지 확인: <code>shouldProceedAfterError</code></li>
+</ul>
+<h2 id="How-to-use"><a href="#How-to-use" class="headerlink" title="How to use"></a>How to use</h2><p><code>FileManager</code> 클래스는 <strong>싱글턴 객체</strong>를 제공하며 여러 스레드에서 안전하게 동작이 가능하다. 다음과 같이 접근한다.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">FileManager</span>.<span class="keyword">default</span></span><br></pre></td></tr></table></figure>
+<p>그러나 위에서 언급했듯이 <code>delegate</code>를 사용해 <code>move</code>, <code>copy</code>, <code>remove</code>, <code>link</code> 동작들의 상태를 체크하려면 직접 <code>FileManager</code> 인스턴스를 만들어야 한다. 그리고 인스턴스에 <code>delegate</code>를 연결한다.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fileManager = <span class="type">FileManager</span>()</span><br><span class="line">fileManager.delegate = <span class="keyword">self</span></span><br></pre></td></tr></table></figure>
+<h3 id="위치-지정"><a href="#위치-지정" class="headerlink" title="위치 지정"></a>위치 지정</h3><p><code>FileManager</code>의 인스턴스 메서드인 <a href="https://developer.apple.com/documentation/foundation/filemanager/1407726-urls" target="_blank" rel="noopener"><code>urls(for:in:)</code></a>로 특정 디렉토리의 URL의 배열을 얻어올 수 있다. 이 메서드는 두 가지 인자를 가진다.</p>
+<ul>
+<li>directory: <a href="https://developer.apple.com/documentation/foundation/filemanager.searchpathdirectory" target="_blank" rel="noopener"><code>FileManager.SearchPathDirectory</code></a> 타입이며 탐색할 디렉토리를 지정한다.</li>
+<li>domainMask: <a href="https://developer.apple.com/documentation/foundation/filemanager.searchpathdomainmask" target="_blank" rel="noopener"><code>FileManager.SearchPathDomainMask</code></a> 타입이며 파일 시스템의 <code>도메인(domain)</code>을 지정한다.</li>
+</ul>
+<p>여기서 중요한 것은 <strong>도메인이 디렉토리를 포함해야 한다</strong>는 것이다.</p>
+<p>반환되는 <code>NSURL</code>의 배열은 <code>Domain Mask</code>의 상수의 순서대로 정렬되어 있는데, 이는 <strong>System 도메인부터 User 도메인의 순서</strong>이다.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">guard</span> <span class="keyword">let</span> documentDirectory = fileManager.urls(<span class="keyword">for</span>: .documentDirectory, <span class="keyword">in</span>: .userDomainMask).first <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line"><span class="keyword">let</span> directoryPath = documentDirectory.appendingPathComponent(<span class="string">"AlpacaDirectory"</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="쓰기"><a href="#쓰기" class="headerlink" title="쓰기"></a>쓰기</h3><h4 id="디렉토리"><a href="#디렉토리" class="headerlink" title="디렉토리"></a>디렉토리</h4><p><code>FileManager</code>의 인스턴스 메서드인 <a href="https://developer.apple.com/documentation/foundation/filemanager/1415371-createdirectory" target="_blank" rel="noopener">createDirectory(at:withIntermediateDirectories:attributes:)</a>로 특정 URL에 새로운 디렉토리를 생성할 수 있다. <code>createIntermediates</code>와 <code>attributes</code> 인자는 디렉토리의 생성과 관련된 설정을 하는 것이다.</p>
+<p>물론 I/O 작업이기 때문에 실패할 경우 에러를 반환하는 메서드이다. <code>try-catch</code> 문으로 에러에 대한 처리를 해주거나 아래와 같이 옵셔널하게 처리한다.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>? fileManager.createDirectory(at: directoryPath, withIntermediateDirectories: <span class="literal">false</span>, attributes: <span class="literal">nil</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="파일"><a href="#파일" class="headerlink" title="파일"></a>파일</h4><p>파일의 생성은 <a href="https://developer.apple.com/documentation/foundation/filemanager/1410695-createfile" target="_blank" rel="noopener"><code>createFile(atPath:contents:attributes:)</code></a>로 할 수 있지만 지금은 <code>String</code> 파일로 <code>txt</code> 파일을 만들어보려고 한다.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> textFilePath = directoryPath.appendingPathComponent(<span class="string">"Alpaca.text"</span>)</span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> <span class="string">"Alpaca"</span>.write(to: textFilePath, atomically: <span class="literal">true</span>, encoding: .utf8)</span><br><span class="line">&#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(error.localizedDescription)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>위의 에에서는 <code>String Protocol</code>의 <code>write(to:atomically:encoding:)</code> 메서드로 위에서 지정한 <code>textFilePath</code>에 텍스트 파일을 만든다.</p>
+<h3 id="읽기"><a href="#읽기" class="headerlink" title="읽기"></a>읽기</h3><h4 id="디렉토리-1"><a href="#디렉토리-1" class="headerlink" title="디렉토리"></a>디렉토리</h4><p>디렉토리 안에 있는 컨텐츠를 알아보는 메서드는 <a href="https://developer.apple.com/documentation/foundation/filemanager/1413768-contentsofdirectory" target="_blank" rel="noopener"><code>contentsOfDirectory(at:includingPropertiesForKeys:options:)</code></a>로 컨텐츠들의 <code>URL</code> 배열을 반환한다.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> documentsURL = <span class="keyword">try</span>? fileManager.contentsOfDirectory(at: documentDirectory, includingPropertiesForKeys: <span class="literal">nil</span>, options: .skipsHiddenFiles) &#123;</span><br><span class="line">    <span class="built_in">print</span>(documentsURL)</span><br><span class="line">    <span class="comment">// [file:///private/var/mobile/Containers/Data/Application/4608E3A0-D298-4177-B7F9-5A6A62ACD130/Documents/AlpacaDirectory/]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="파일-1"><a href="#파일-1" class="headerlink" title="파일"></a>파일</h4><p>파일은 파일 경로인 <code>URL</code>을 인자값으로 갖는 <code>Data</code> 타입의 초기화 메서드 <code>init(contentsOf:options:)</code>로 받을 수 있다.</p>
+<p>다음 예제에서는 <code>String</code> 타입의 초기화 메서드 <code>init(contentsOf:)</code>로 파일 경로로부터 문자열을 읽어올 것이다.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">guard</span> <span class="keyword">let</span> alpacaText = <span class="keyword">try</span>? <span class="type">String</span>(contentsOf: textFilePath) <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line">    <span class="built_in">print</span>(alpacaText)</span><br><span class="line">    <span class="comment">// Alpaca</span></span><br></pre></td></tr></table></figure>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="[FileManager](https://developer.apple.com/documentation/foundation/filemanager">FileManager - Apple Developer Documentation</a>)</li>
+<li><a href="https://hcn1519.github.io/articles/2017-07/swift_file_manager" target="_blank" rel="noopener">Swift로 파일 다루기</a></li>
+</ul>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#FileManager란"><span class="toc-number">1.</span> <span class="toc-text">FileManager란?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FileManagerDelegate에-대해"><span class="toc-number">2.</span> <span class="toc-text">FileManagerDelegate에 대해</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#How-to-use"><span class="toc-number">3.</span> <span class="toc-text">How to use</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#위치-지정"><span class="toc-number">3.1.</span> <span class="toc-text">위치 지정</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#쓰기"><span class="toc-number">3.2.</span> <span class="toc-text">쓰기</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#디렉토리"><span class="toc-number">3.2.1.</span> <span class="toc-text">디렉토리</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#파일"><span class="toc-number">3.2.2.</span> <span class="toc-text">파일</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#읽기"><span class="toc-number">3.3.</span> <span class="toc-text">읽기</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#디렉토리-1"><span class="toc-number">3.3.1.</span> <span class="toc-text">디렉토리</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#파일-1"><span class="toc-number">3.3.2.</span> <span class="toc-text">파일</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/03/30/filemanager/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/03/30/filemanager/&text=FileManager 공부"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/03/30/filemanager/&title=FileManager 공부"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/03/30/filemanager/&is_video=false&description=FileManager 공부"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=FileManager 공부&body=Check out this article: https://wnstkdyu.github.io/2018/03/30/filemanager/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/03/30/filemanager/&title=FileManager 공부"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/03/30/filemanager/&title=FileManager 공부"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/03/30/filemanager/&title=FileManager 공부"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/03/30/filemanager/&title=FileManager 공부"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/03/30/filemanager/&name=FileManager 공부&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Alpaca
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-116302583-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'alpacablog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
