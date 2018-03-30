@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Android와 다르게 iOS는 그 내부가 잘 보이지 않는 듯하다. 예전 iPod touch를 쓸 때도 문서를 iPod touch에 보관해 마치 저장 장치처럼 쓰려고 했지만 특수한 소프트웨어를 써야지만 할 수 있었던 기억이 난다. 지금은 그것이 애플이 보안을 위해서 그렇게 한다고 알고 있지만 굉장히 아쉬웠던 기억이었다. iOS를 공부하면서 내부의 폴더명이">
+<meta name="keywords" content="iOS,File System">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS 파일 시스템">
+<meta property="og:url" content="https://wnstkdyu.github.io/2018/03/17/iOSfilesystem/index.html">
+<meta property="og:site_name" content="PacaLog">
+<meta property="og:description" content="Android와 다르게 iOS는 그 내부가 잘 보이지 않는 듯하다. 예전 iPod touch를 쓸 때도 문서를 iPod touch에 보관해 마치 저장 장치처럼 쓰려고 했지만 특수한 소프트웨어를 써야지만 할 수 있었던 기억이 난다. 지금은 그것이 애플이 보안을 위해서 그렇게 한다고 알고 있지만 굉장히 아쉬웠던 기억이었다. iOS를 공부하면서 내부의 폴더명이">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://wnstkdyu.github.io/2018/03/17/iOSfilesystem/sandbox.png">
+<meta property="og:image" content="https://wnstkdyu.github.io/2018/03/17/iOSfilesystem/filesharing.png">
+<meta property="og:updated_time" content="2018-03-30T08:44:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS 파일 시스템">
+<meta name="twitter:description" content="Android와 다르게 iOS는 그 내부가 잘 보이지 않는 듯하다. 예전 iPod touch를 쓸 때도 문서를 iPod touch에 보관해 마치 저장 장치처럼 쓰려고 했지만 특수한 소프트웨어를 써야지만 할 수 있었던 기억이 난다. 지금은 그것이 애플이 보안을 위해서 그렇게 한다고 알고 있지만 굉장히 아쉬웠던 기억이었다. iOS를 공부하면서 내부의 폴더명이">
+<meta name="twitter:image" content="https://wnstkdyu.github.io/2018/03/17/iOSfilesystem/sandbox.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>iOS 파일 시스템</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2018/03/01/reactive-programming/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/03/17/iOSfilesystem/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/03/17/iOSfilesystem/&text=iOS 파일 시스템"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/03/17/iOSfilesystem/&title=iOS 파일 시스템"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/03/17/iOSfilesystem/&is_video=false&description=iOS 파일 시스템"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=iOS 파일 시스템&body=Check out this article: https://wnstkdyu.github.io/2018/03/17/iOSfilesystem/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/03/17/iOSfilesystem/&title=iOS 파일 시스템"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/03/17/iOSfilesystem/&title=iOS 파일 시스템"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/03/17/iOSfilesystem/&title=iOS 파일 시스템"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/03/17/iOSfilesystem/&title=iOS 파일 시스템"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/03/17/iOSfilesystem/&name=iOS 파일 시스템&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#APFS-Apple-File-System"><span class="toc-number">1.</span> <span class="toc-text">APFS(Apple File System)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#About-the-iOS-File-System"><span class="toc-number">2.</span> <span class="toc-text">About the iOS File System</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#iOS-Standard-Directories"><span class="toc-number">2.1.</span> <span class="toc-text">iOS Standard Directories</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AppName-app"><span class="toc-number">2.2.</span> <span class="toc-text">AppName.app</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Documents"><span class="toc-number">2.3.</span> <span class="toc-text">Documents</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Library"><span class="toc-number">2.4.</span> <span class="toc-text">Library</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Application-Support"><span class="toc-number">2.4.1.</span> <span class="toc-text">Application Support</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Caches"><span class="toc-number">2.4.2.</span> <span class="toc-text">Caches</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Preferences"><span class="toc-number">2.4.3.</span> <span class="toc-text">Preferences</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tmp"><span class="toc-number">2.5.</span> <span class="toc-text">tmp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#어디에-앱의-파일을-넣어야-할까"><span class="toc-number">2.6.</span> <span class="toc-text">어디에 앱의 파일을 넣어야 할까?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">3.</span> <span class="toc-text">Reference</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        iOS 파일 시스템
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">PacaLog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-03-16T15:00:00.000Z" itemprop="datePublished">2018-03-17</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/File-System/">File System</a>, <a class="tag-link" href="/tags/iOS/">iOS</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>Android와 다르게 iOS는 그 내부가 잘 보이지 않는 듯하다. 예전 iPod touch를 쓸 때도 문서를 iPod touch에 보관해 마치 저장 장치처럼 쓰려고 했지만 특수한 소프트웨어를 써야지만 할 수 있었던 기억이 난다. 지금은 그것이 애플이 보안을 위해서 그렇게 한다고 알고 있지만 굉장히 아쉬웠던 기억이었다.</p>
+<p>iOS를 공부하면서 내부의 폴더명이 가끔 나오는데 정확히 어떤 역할을 하는지 궁금했고 최근 <strong>let us: Go! 2018 Spring</strong>에서 <strong>giftbot</strong> 님의 세션을 복습할 겸 공부하려 한다.</p>
+<h2 id="APFS-Apple-File-System"><a href="#APFS-Apple-File-System" class="headerlink" title="APFS(Apple File System)"></a>APFS(Apple File System)</h2><p>iOS 파일 시스템 전에 애플의 현재 파일 시스템인 <code>APFS</code>에 대해 조사해 보았다.</p>
+<p>먼저 <code>파일 시스템(File System)</code>이란 <strong>컴퓨터에서 파일이나 자료를 쉽게 발견 및 접근할 수 있도록 보관 또는 조직하는 체제</strong>를 가리키는 말이다. 보통 보조 기억 장치에 파일들을 보관하는 데 이 <strong>파일들을 효율적으로 관리하고 저장 및 접근</strong>하기 위한 일련의 체계를 일컫는다.</p>
+<p>애플의 최신 파일 시스템인 APFS는 그 중 파일 시스템의 다양한 종류 중 <strong>디스크 파일 시스템</strong> 에 분류되며 이는 디스크 드라이브를 다룬다. 애플은 2016년 <code>APFS</code>가 나오기 전까지 <code>HFS+</code> 라는 파일 시스템을 사용하고 있었다. 그러나 최근의 환경에 맞춰 <code>APFS</code>로 교체하게 된다. 개선점을 몇 가지 적어보면,</p>
+<ul>
+<li>하드 디스크에 최적화 =&gt; 플래시 메모리에 최적화</li>
+<li><code>Copy-On-Write</code> 방식으로 낸드 플래시 기반 저장장치에 가해지는 부담 최소화</li>
+<li>암호화를 전반적으로 지원해 보안을 강화</li>
+</ul>
+<p>이러한 장점을 가진 APFS를 <code>iOS 10.3</code>부터 기본 파일 시스템으로 채택했다.</p>
+<h2 id="About-the-iOS-File-System"><a href="#About-the-iOS-File-System" class="headerlink" title="About the iOS File System"></a>About the iOS File System</h2><p>iOS 파일 시스템은 동작하는 그 앱에 맞춰져 있다. iOS에서는 <strong>시스템의 간결성</strong>을 위해 기기의 유저가 바로 파일 시스템에 접근하지 못하고 앱들은 이 규칙에 따르도록 한다.</p>
+<h3 id="iOS-Standard-Directories"><a href="#iOS-Standard-Directories" class="headerlink" title="iOS Standard Directories"></a>iOS Standard Directories</h3><p>iOS의 앱은 보안을 이유로 그 앱의 <code>SandBox(샌드박스)</code> 디렉토리 안에서 파일 시스템과 상호 작용할 수 있도록 제한한다. 설치 시, 인스톨러는 각각의 역할을 가진 컨테이너 디렉토리들을 샌드박스 디렉토리 안에 설치한다.</p>
+<img src="/2018/03/17/iOSfilesystem/sandbox.png" title="image">
+<ul>
+<li><strong>Bundle</strong> Container — 앱의 번들을 담는다.</li>
+<li><strong>Data</strong> Container — 앱과 유저의 데이터를 담는다. 이 데이터 컨테이너는 다시 서브 디렉토리로 나뉘어져 많은 데이터들을 나눠 관리한다.</li>
+<li><strong>iCloud</strong> Container — 실행 시에 iCloud와 관련된 것을 담는다.</li>
+</ul>
+<p>앱은 보통 <strong>컨테이너 디렉토리 바깥을 접근하고 파일을 만드는 것이 금지</strong>되어 있다. 특별히 유저의 전화부나 음악 같은 시스템 인터페이스를 이용할 때는 시스템 프레임워크가 원하는 동작을 수행할 수 있게 도와준다.</p>
+<p>다음은 iOS 앱에서 자주 쓰는 디렉토리들이다.</p>
+<h3 id="AppName-app"><a href="#AppName-app" class="headerlink" title="AppName.app"></a>AppName.app</h3><p>앱의 <code>Bundle(번들)</code>파일이다. 이 디렉토리에 쓸 수 없으며 읽기만 가능하다. <strong>변조를 막기 위해</strong> 설치 시 <code>CodeSignature</code> 를 넣는다. 이 디렉토리는 iTunes나 iCloud에 백업되지 않는다.</p>
+<blockquote>
+<p>여기서 번들이란 실행 코드와 이미지, 사운드 같은 리소스들을 한데 묶은 디렉토리이다. 번들은 어플리케이션이나 다른 소프트웨어를 설치하거나 이동시킬 때 편리하다. 또 <code>로컬라이징</code> 파일을 번들의 서브 디렉토리로 넣음으로써 유저의 언어 설정에 따라 자동적으로 변환된다. 번들은 Xcode가 자동으로 만들어 준다.</p>
+</blockquote>
+<h3 id="Documents"><a href="#Documents" class="headerlink" title="Documents"></a>Documents</h3><p>Data Container의 서브 디렉토리로 <strong>유저가 앱을 통해 생성한 문서나 데이터, 또는 외부 앱에서 받은 파일을 저장</strong>한다. 유저에게 노출되는 파일만 저장해야 하며 디렉토리의 파일들은 iTunes와 iCloud로 백업이 된다.</p>
+<p>이 디렉토리의 파일들은 iTunes을 통해 옮길 수 있는 <code>File Sharing(파일 공유)</code>을 지원하는 데, 이것은 Info.plist의 <code>UIFileSharingEnabled</code> 키를 <code>YES(true)</code>로 하면 사용이 가능하다.</p>
+<img src="/2018/03/17/iOSfilesystem/filesharing.png" title="image">
+<blockquote>
+<p><code>LSSupportsOpeningDocumentsInPlace</code> 키를 YES로 하면 파일의 원본을 열 수 있다. 이 키와 <code>UIFileSharingEnabled</code> 키를 둘 다 YES로 할 경우에는 Documents 디렉토리의 모든 파일에 접근이 가능해 Files 앱에서 확인 및 수정이 가능하다.</p>
+</blockquote>
+<h3 id="Library"><a href="#Library" class="headerlink" title="Library"></a>Library</h3><p><strong>유저 데이터가 아닌 파일들이 저장</strong>되는 가장 최상단 디렉토리로 <code>Application Support</code> 와 <code>Caches</code> 서브 디렉토리를 주로 사용한다.</p>
+<p>유저에게 노출되고 싶지 않은 파일들을 서브 디렉토리에 저장하면 되며 <code>Caches</code>를 제외한 디렉토리들은 iTunes와 iCloud에 백업이 된다.</p>
+<p>Library의 주요한 서브 디렉토리에는 다음과 같은 것들이 있다.</p>
+<h4 id="Application-Support"><a href="#Application-Support" class="headerlink" title="Application Support"></a>Application Support</h4><p>사용자의 documents를 제외한 나머지 앱의 데이터 파일들을 저장하는데 사용한다. <strong>앱이 생성하고 관리하는 데이터, 설정, 리소스 등이 저장</strong>되며 이 디렉토리의 모든 컨텐트들은 앱의 <code>bundle identifier</code> 나 회사 이름의 서브 디렉토리에 위치한다. iTunes와 iCloud에 백업이 가능하다.</p>
+<h4 id="Caches"><a href="#Caches" class="headerlink" title="Caches"></a>Caches</h4><p><strong>앱이 쉽게 재생성 할 수 있는 파일, 쉽게 다운로드 받을 수 있는 파일들이 저장</strong>된다. 앱의 <strong>성능을 위한 목적으로 존재</strong>하며 캐시로는 데이터 베이스 파일이나 다운로드 파일 등이 고려된다. <strong>앱이 실행 중에는 삭제되지 않는 것이 보장되며 백업은 되지 않는다</strong>. <code>Caches/Snapshots</code> 디렉토리에는 앱이 백그라운드로 넘어갈 때 저장되는 앱의 스냅샷이 저장된다.</p>
+<h4 id="Preferences"><a href="#Preferences" class="headerlink" title="Preferences"></a>Preferences</h4><p><strong>앱의 중요 설정이 담겨 있는 디렉토리</strong>로 <code>NSUserDefaults</code> 클래스를 사용해 파일을 만들어 저장할 수 있다. 이 유저디폴트 파일은 iTunes와 iCloud에 저장이 된다.</p>
+<h3 id="tmp"><a href="#tmp" class="headerlink" title="tmp"></a>tmp</h3><p><strong>다음 앱을 실행하는 데 필요가 없는</strong>, 말 그대로 <strong>임시 파일</strong>들을 담는다. 백업은 되지 않으며 시스템은 앱이 실행중이지 않을 때 이 디렉토리를 비운다.</p>
+<h3 id="어디에-앱의-파일을-넣어야-할까"><a href="#어디에-앱의-파일을-넣어야-할까" class="headerlink" title="어디에 앱의 파일을 넣어야 할까?"></a>어디에 앱의 파일을 넣어야 할까?</h3><ul>
+<li>유저 데이터는 <code>Documents</code> 에 저장.</li>
+<li>앱 생성 데이터는 <code>Library/Application support</code> 에 저장.</li>
+<li>용량이 큰 파일(예: 미디어 파일) 같은 경우 <code>NSURLIsExcludedFromBackupKey</code> 를 <code>NSURL</code> 인스턴스의 메소드인 <code>setResourceValue(_:forKey:)</code> 에 전달해 백업이 되지 않도록 한다.</li>
+<li>임시 파일은 <code>tmp</code> 에 저장.</li>
+<li>데이터 캐시 파일은 <code>Library/Caches</code> 에 저장</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://medium.com/r/?url=https%3A%2F%2Fdeveloper.apple.com%2Flibrary%2Fcontent%2Fdocumentation%2FFileManagement%2FConceptual%2FFileSystemProgrammingGuide%2FFileSystemOverview%2FFileSystemOverview.html%23%2F%2Fapple_ref%2Fdoc%2Fuid%2FTP40010672-CH2-SW13" target="_blank" rel="noopener">File System Basics - File System Programming Guide
+</a></li>
+<li><a href="https://medium.com/r/?url=http%3A%2F%2Fmacnews.tistory.com%2F4603" target="_blank" rel="noopener">애플의 새로운 파일 시스템, APFS의 모든 것 - Back to the Mac</a></li>
+<li><a href="https://developer.apple.com/library/content/documentation/General/Reference/InfoPlistKeyReference/Articles/LaunchServicesKeys.html#//apple_ref/doc/uid/TP40009250-SW13" target="_blank" rel="noopener">Launch Services Keys - Information Property List Key Reference
+</a></li>
+</ul>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#APFS-Apple-File-System"><span class="toc-number">1.</span> <span class="toc-text">APFS(Apple File System)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#About-the-iOS-File-System"><span class="toc-number">2.</span> <span class="toc-text">About the iOS File System</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#iOS-Standard-Directories"><span class="toc-number">2.1.</span> <span class="toc-text">iOS Standard Directories</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AppName-app"><span class="toc-number">2.2.</span> <span class="toc-text">AppName.app</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Documents"><span class="toc-number">2.3.</span> <span class="toc-text">Documents</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Library"><span class="toc-number">2.4.</span> <span class="toc-text">Library</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Application-Support"><span class="toc-number">2.4.1.</span> <span class="toc-text">Application Support</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Caches"><span class="toc-number">2.4.2.</span> <span class="toc-text">Caches</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Preferences"><span class="toc-number">2.4.3.</span> <span class="toc-text">Preferences</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tmp"><span class="toc-number">2.5.</span> <span class="toc-text">tmp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#어디에-앱의-파일을-넣어야-할까"><span class="toc-number">2.6.</span> <span class="toc-text">어디에 앱의 파일을 넣어야 할까?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">3.</span> <span class="toc-text">Reference</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/03/17/iOSfilesystem/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/03/17/iOSfilesystem/&text=iOS 파일 시스템"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/03/17/iOSfilesystem/&title=iOS 파일 시스템"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/03/17/iOSfilesystem/&is_video=false&description=iOS 파일 시스템"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=iOS 파일 시스템&body=Check out this article: https://wnstkdyu.github.io/2018/03/17/iOSfilesystem/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/03/17/iOSfilesystem/&title=iOS 파일 시스템"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/03/17/iOSfilesystem/&title=iOS 파일 시스템"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/03/17/iOSfilesystem/&title=iOS 파일 시스템"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/03/17/iOSfilesystem/&title=iOS 파일 시스템"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/03/17/iOSfilesystem/&name=iOS 파일 시스템&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Alpaca
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-116302583-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'alpacablog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
