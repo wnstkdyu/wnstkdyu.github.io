@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="PacaLog">
 <meta property="og:description" content="Swift는 프로토콜 지향 언어라고 한다. 아직도 대부분 클래스를 사용하고 구조체, 열거형 등은 특별한 경우에만 쓰는 나로서는 Swift의 특징적인 면을 제대로 이해하지 못 하고 사용하고 있다는 느낌을 받았다. 그래서 이번 주제로 잡고 조사하게 되었다. POP가 나오게 된 배경기존의 객체 지향 프로그래밍에서는 공통된 기능을 Class의 상속을 통해 구현한다">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-03-24T20:21:49.000Z">
+<meta property="og:updated_time" content="2018-04-06T02:20:17.758Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Protocol Oriented Programming에 대한 얕은 공부">
 <meta name="twitter:description" content="Swift는 프로토콜 지향 언어라고 한다. 아직도 대부분 클래스를 사용하고 구조체, 열거형 등은 특별한 경우에만 쓰는 나로서는 Swift의 특징적인 면을 제대로 이해하지 못 하고 사용하고 있다는 느낌을 받았다. 그래서 이번 주제로 잡고 조사하게 되었다. POP가 나오게 된 배경기존의 객체 지향 프로그래밍에서는 공통된 기능을 Class의 상속을 통해 구현한다">
@@ -154,17 +154,13 @@
 </ul>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">Car</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">drive</span><span class="params">()</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Sedan</span>: <span class="title">Car</span> </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> brand: <span class="type">String</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">drive</span><span class="params">()</span></span> &#123;</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"drive"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Struct로</span></span><br><span class="line"><span class="keyword">let</span> sedan1: <span class="type">Sedan</span> = <span class="type">Sedan</span>(brand: <span class="string">"BMW"</span>)</span><br><span class="line">sedan1.brand <span class="comment">// 접근 가능</span></span><br><span class="line"><span class="comment">// Protocol로</span></span><br><span class="line"><span class="keyword">let</span> sedan2: <span class="type">Car</span> = <span class="type">Sedan</span>(brand: <span class="string">"Audi"</span>)</span><br><span class="line"><span class="comment">// sedan2.brand // 접근 불가</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li>값 타입의 상속 효과</li>
+<li><p>값 타입의 상속 효과<br>위에서 보듯이 값 타입도 공통된 기능을 쉽게 구현할 수 있다.</p>
+</li>
+<li><p>수평적인 기능 확장<br>Class는 하나의 상속만 가능하고 수직적인 구조를 고려하여야 하지만 Protocol은 마치 블럭처럼 기능을 추가할 수 있다.</p>
+</li>
+<li><p>제네릭의 활용<br>자료형의 구애를 받지 않는 제네릭을 활용하였을 때 POP의 힘은 훨씬 강력해진다고 한다. Swift의 <code>Array</code> 타입을 예로 들 수 있겠다. 수많은 프로토콜을 준수하는 <code>Array</code> 타입은 타입에 관계없이 만들 수 있으며 그에 따른 메서드들도 다양하게 지원이 된다.</p>
+</li>
 </ul>
-<p>위에서 보듯이 값 타입도 공통된 기능을 쉽게 구현할 수 있다.</p>
-<ul>
-<li>수평적인 기능 확장</li>
-</ul>
-<p>Class는 하나의 상속만 가능하고 수직적인 구조를 고려하여야 하지만 Protocol은 마치 블럭처럼 기능을 추가할 수 있다.</p>
-<ul>
-<li>제네릭의 활용</li>
-</ul>
-<p>자료형의 구애를 받지 않는 제네릭을 활용하였을 때 POP의 힘은 훨씬 강력해진다고 한다. Swift의 <code>Array</code> 타입을 예로 들 수 있겠다. 수많은 프로토콜을 준수하는 <code>Array</code> 타입은 타입에 관계없이 만들 수 있으며 그에 따른 메서드들도 다양하게 지원이 된다.</p>
 <hr>
 <p>이번 공부를 하면서 느낀 것은 Swift 언어가 깊이 들어갈수록 배울 것이 많아지고 그만큼 활용성이 커진다는 것이다. POP를 당장 활용할 수는 없겠지만 좀 더 유연한 사고를 가지고 이것을 직접 적용해보는 시간을 점차 늘려야겠다.</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
