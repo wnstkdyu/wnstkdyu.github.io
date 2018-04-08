@@ -6,20 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="UIWindow 객체에 대해 가장 최상단에 위치한 화면을 표시하는 객체 정도로만 어렴풋이 알고 있었다. 최근 스터디를 통해 더 자세히 알고 싶어 Apple Developer Documentation와 View Programming Guide for iOS를 조사해보았다. 역할 앱의 시각적 콘텐츠를 담는다. 뷰들과 다른 어플리케이션 객체들에게 터치 이벤트를">
+    <meta name="description" content="UIWindow 객체에 대해 가장 최상단에 위치한 화면을 표시하는 객체 정도로만 어렴풋이 알고 있었다. 최근 스터디를 통해 더 자세히 알고 싶어 Apple Developer Documentation와 View Programming Guide for iOS를 조사해보았다. 역할UIWindow의 역할은 다음과 같다.  앱의 시각적 콘텐츠를 담는다. 뷰들과 다른">
 <meta name="keywords" content="Swift,iOS,UIWindow">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UIWindow 공부">
 <meta property="og:url" content="https://wnstkdyu.github.io/2017/12/29/uiwindow/index.html">
 <meta property="og:site_name" content="PacaLog">
-<meta property="og:description" content="UIWindow 객체에 대해 가장 최상단에 위치한 화면을 표시하는 객체 정도로만 어렴풋이 알고 있었다. 최근 스터디를 통해 더 자세히 알고 싶어 Apple Developer Documentation와 View Programming Guide for iOS를 조사해보았다. 역할 앱의 시각적 콘텐츠를 담는다. 뷰들과 다른 어플리케이션 객체들에게 터치 이벤트를">
+<meta property="og:description" content="UIWindow 객체에 대해 가장 최상단에 위치한 화면을 표시하는 객체 정도로만 어렴풋이 알고 있었다. 최근 스터디를 통해 더 자세히 알고 싶어 Apple Developer Documentation와 View Programming Guide for iOS를 조사해보았다. 역할UIWindow의 역할은 다음과 같다.  앱의 시각적 콘텐츠를 담는다. 뷰들과 다른">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://wnstkdyu.github.io/2017/12/29/uiwindow/deletePlist.png">
 <meta property="og:image" content="https://wnstkdyu.github.io/2017/12/29/uiwindow/error.png">
-<meta property="og:updated_time" content="2018-03-24T12:03:49.000Z">
+<meta property="og:updated_time" content="2018-04-08T14:07:41.650Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UIWindow 공부">
-<meta name="twitter:description" content="UIWindow 객체에 대해 가장 최상단에 위치한 화면을 표시하는 객체 정도로만 어렴풋이 알고 있었다. 최근 스터디를 통해 더 자세히 알고 싶어 Apple Developer Documentation와 View Programming Guide for iOS를 조사해보았다. 역할 앱의 시각적 콘텐츠를 담는다. 뷰들과 다른 어플리케이션 객체들에게 터치 이벤트를">
+<meta name="twitter:description" content="UIWindow 객체에 대해 가장 최상단에 위치한 화면을 표시하는 객체 정도로만 어렴풋이 알고 있었다. 최근 스터디를 통해 더 자세히 알고 싶어 Apple Developer Documentation와 View Programming Guide for iOS를 조사해보았다. 역할UIWindow의 역할은 다음과 같다.  앱의 시각적 콘텐츠를 담는다. 뷰들과 다른">
 <meta name="twitter:image" content="https://wnstkdyu.github.io/2017/12/29/uiwindow/deletePlist.png">
     
     
@@ -140,7 +140,8 @@
 
   <div class="content" itemprop="articleBody">
     <p><code>UIWindow</code> 객체에 대해 가장 최상단에 위치한 화면을 표시하는 객체 정도로만 어렴풋이 알고 있었다. 최근 스터디를 통해 더 자세히 알고 싶어 <a href="https://developer.apple.com/documentation/uikit/uiwindow" target="_blank" rel="noopener">Apple Developer Documentation</a>와 <a href="https://developer.apple.com/library/content/documentation/WindowsViews/Conceptual/ViewPG_iPhoneOS/CreatingWindows/CreatingWindows.html" target="_blank" rel="noopener">View Programming Guide for iOS</a>를 조사해보았다.</p>
-<h2 id="역할"><a href="#역할" class="headerlink" title="역할"></a>역할</h2><ul>
+<h2 id="역할"><a href="#역할" class="headerlink" title="역할"></a>역할</h2><p><code>UIWindow</code>의 역할은 다음과 같다.</p>
+<ul>
 <li>앱의 시각적 콘텐츠를 담는다.</li>
 <li>뷰들과 다른 어플리케이션 객체들에게 터치 이벤트를 전달하는 중요한 역할을 한다.</li>
 <li>오리엔테이션 변화를 쉽게 하기 위해 앱의 뷰 컨트롤러들과 협력한다.</li>
