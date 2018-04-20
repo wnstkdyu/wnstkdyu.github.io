@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="기린님HTTP 관련 앱 설정 Starting in iOS 9.0 and OS X 10.11, a new security feature called App Transport Security (ATS) is enabled by default for all HTTP connections made with URLSession. ATS requires that HT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="18.02.03 스터디">
+<meta property="og:url" content="https://wnstkdyu.github.io/2018/02/03/18-02-03study/index.html">
+<meta property="og:site_name" content="PacaLog">
+<meta property="og:description" content="기린님HTTP 관련 앱 설정 Starting in iOS 9.0 and OS X 10.11, a new security feature called App Transport Security (ATS) is enabled by default for all HTTP connections made with URLSession. ATS requires that HT">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-04-20T05:59:43.282Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="18.02.03 스터디">
+<meta name="twitter:description" content="기린님HTTP 관련 앱 설정 Starting in iOS 9.0 and OS X 10.11, a new security feature called App Transport Security (ATS) is enabled by default for all HTTP connections made with URLSession. ATS requires that HT">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>18.02.03 스터디</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/02/10/vc-view-lifecycle/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/02/01/errorhandling/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/02/03/18-02-03study/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/02/03/18-02-03study/&text=18.02.03 스터디"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/02/03/18-02-03study/&title=18.02.03 스터디"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/02/03/18-02-03study/&is_video=false&description=18.02.03 스터디"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=18.02.03 스터디&body=Check out this article: https://wnstkdyu.github.io/2018/02/03/18-02-03study/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/02/03/18-02-03study/&title=18.02.03 스터디"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/02/03/18-02-03study/&title=18.02.03 스터디"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/02/03/18-02-03study/&title=18.02.03 스터디"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/02/03/18-02-03study/&title=18.02.03 스터디"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/02/03/18-02-03study/&name=18.02.03 스터디&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#기린님"><span class="toc-number">1.</span> <span class="toc-text">기린님</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP-관련-앱-설정"><span class="toc-number">1.1.</span> <span class="toc-text">HTTP 관련 앱 설정</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP의-특성"><span class="toc-number">1.2.</span> <span class="toc-text">HTTP의 특성</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#대칭키-비대칭키"><span class="toc-number">1.3.</span> <span class="toc-text">대칭키 / 비대칭키</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#URI-vs-URL"><span class="toc-number">1.4.</span> <span class="toc-text">URI vs. URL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#쿠키-vs-세션"><span class="toc-number">1.5.</span> <span class="toc-text">쿠키 vs 세션</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#쿠키"><span class="toc-number">1.5.1.</span> <span class="toc-text">쿠키</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#세션"><span class="toc-number">1.5.2.</span> <span class="toc-text">세션</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#지은님"><span class="toc-number">2.</span> <span class="toc-text">지은님</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#애플의-MVC"><span class="toc-number">2.1.</span> <span class="toc-text">애플의 MVC</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#MVVM-기린님"><span class="toc-number">2.1.1.</span> <span class="toc-text">MVVM(기린님)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#도우님"><span class="toc-number">3.</span> <span class="toc-text">도우님</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ViewController-Life-Cycle"><span class="toc-number">3.1.</span> <span class="toc-text">ViewController Life Cycle</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        18.02.03 스터디
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">PacaLog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-02-03T05:48:00.000Z" itemprop="datePublished">2018-02-03</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="기린님"><a href="#기린님" class="headerlink" title="기린님"></a>기린님</h2><h3 id="HTTP-관련-앱-설정"><a href="#HTTP-관련-앱-설정" class="headerlink" title="HTTP 관련 앱 설정"></a>HTTP 관련 앱 설정</h3><blockquote>
+<p>Starting in iOS 9.0 and OS X 10.11, a new security feature called App Transport Security (ATS) is enabled by default for all HTTP connections made with URLSession. ATS requires that HTTP connections use HTTPS (RFC 2818).</p>
+</blockquote>
+<p>third party가 아직 HTTP만 지원하는 경우 등 예외적인 상황에 대해서는 HTTP 통신을 해야할 때는 App Transport Security Settings을 바꾸어 주어야 함.</p>
+<p>Allow Arbitrary Loads 키 값을 YES로 바꿔주는 방법이 있지만 이것은 추천되지 않는다. iOS 9의 경우 이 값만 참조하여 YES일 경우 HTTP 통신을 허용한다.</p>
+<p>그러나 iOS 10부터는 AllowsArbitraryLoadsInWebContent(WebView 로딩을 http로 허용, AVFoundation으로 스트리밍 데이터도…?)값을 참조한다. 이 값이 NO거나 설정되지 않을 경우(default가 NO) iOS 9의 경우와 같다. 그러나 이 값이 YES일 경우 UIWebView, URLSession 대신 WKWebView만 HTTP 통신을 할 수 있다. 이것을 통해 웹뷰를 띄워주는 것은 가능하지만 앱의 다른 경우에는 https를 사용하도록 하여 보안성이 강화된다.</p>
+<p>또는 Exception Domains를 지정해 제외하고 싶은 도메인을 설정하는 방법이 추천된다.</p>
+<p>참고 링크: <a href="https://swifter.kr/2016/06/17/ios10-atsapp-transport-security-2016%EB%85%84%EB%A7%90%EB%B6%80%ED%84%B0-%ED%95%84%EC%88%98-%EC%A1%B0%EA%B1%B4/" target="_blank" rel="noopener">iOS10 AppTransport Security - Swifter.kr</a></p>
+<h3 id="HTTP의-특성"><a href="#HTTP의-특성" class="headerlink" title="HTTP의 특성"></a>HTTP의 특성</h3><p>앱에서 HTTP를 사용하는 이유는 <strong>Connectionless/Stateless</strong> 하게 서버랑 통신하기 위해서이다. 만약 포트를 열어두어 계속 통신하면 그에 따르는 비용이 발생하기 때문이다.</p>
+<ul>
+<li>Connectionless: 클라이언트가 request를 보내고 서버가 response를 보내면 서로 통신이 끊기는 것.</li>
+<li>Stateless: 서로 통신이 끊기면 상태 정보를 유지하지 않음.</li>
+</ul>
+<h3 id="대칭키-비대칭키"><a href="#대칭키-비대칭키" class="headerlink" title="대칭키 / 비대칭키"></a>대칭키 / 비대칭키</h3><ul>
+<li>대칭키(예: DES(56비트) / AES(128비트))<br>서로 같은 키로 암호화, 복호화를 하는 것. 속도가 빠르지만 키 관리가 어렵고 서로 키를 주고 받는 것 자체가 어려울 수 있음.</li>
+<li>비대칭키 (예: RSA)<br>공개 키를 통해 암호화하고 권한을 가진 사용자가 가진 비공개 키로 복호화해서 보는 것. RSA 같은 경우 큰 소수의 곱으로 공개키를 만들며 이것은 힌트가 없을 경우 복호화하기 힘들다는 점을 사용해 이 힌트가 바로 비공개 키가 된다. 공개키 방식을 사용하면 굳이 주고 받지 않아도 되기 때문에 사용자끼리 만날 필요도 없다.</li>
+</ul>
+<h3 id="URI-vs-URL"><a href="#URI-vs-URL" class="headerlink" title="URI vs. URL"></a>URI vs. URL</h3><p>URI가 URL을 포함하는 큰 캐념이다.</p>
+<ul>
+<li>URI: <em>통합 자원 식별자(Uniform Resource Identifier, URI)</em>는 인터넷에 있는 자원을 나타내는 유일한 주소</li>
+<li>URL(Uniform Resource Locator, 문화어: 파일식별자, 유일자원지시기)은 네트워크 상에서 자원이 어디 있는지를 알려주기 위한 규약</li>
+</ul>
+<h3 id="쿠키-vs-세션"><a href="#쿠키-vs-세션" class="headerlink" title="쿠키 vs 세션"></a>쿠키 vs 세션</h3><p>HTTP의 Connectionless, Stateless의 단점을 보완하기 위해 사용.</p>
+<h4 id="쿠키"><a href="#쿠키" class="headerlink" title="쿠키"></a>쿠키</h4><ul>
+<li>하이퍼 텍스트의 기록서(HTTP)의 일종으로서 인터넷 사용자가 어떠한 웹사이트를 방문할 경우 그 사이트가 사용하고 있는 서버를통해 인터넷 사용자의 컴퓨터에 설치되는 작은 기록 정보 파일을 일컬음.</li>
+<li>이름, 값, 만료 날짜, 경로 정보가 저장될 수 있음.</li>
+<li>사용자의 하드에 저장되어 필요할 때 사용할 수 있음.</li>
+<li>클라이언트에 총 300개까지 저장할 수 있으며 한 도메인 당 20개까지 저장 가능.</li>
+</ul>
+<h4 id="세션"><a href="#세션" class="headerlink" title="세션"></a>세션</h4><ul>
+<li>클라이언트와 웹 서버간의 <strong>연결이 지속</strong>되고 있는 상태.</li>
+<li>HTTP는 매 접속 시 새로운 네트워크 연결을 하는데 이 때 세션이 연결 유지를 담당.</li>
+<li><strong>세션 ID를 쿠키에 저장</strong>해서 보관.</li>
+<li>서버에 관리하기 때문에 보안에 우수하지만 리소스를 필요로 하는 단점이 존재.</li>
+<li>정보를 저장할 때 쿠키(접속했는지, 만료 기간)는 클라이언트가, 세션은 서버가 관리. 그래서 속도는 쿠키가 더 빠르다.</li>
+</ul>
+<h2 id="지은님"><a href="#지은님" class="headerlink" title="지은님"></a>지은님</h2><h3 id="애플의-MVC"><a href="#애플의-MVC" class="headerlink" title="애플의 MVC"></a>애플의 MVC</h3><p>기존의 MVC(보통 웹)와 다른점은 Model과 View가 완전히 독립적이어야 한다는 것이다. 단점으로는 모든 로직이 VC에 집중되어 VC가 비대해지는 단점이 있다.</p>
+<h4 id="MVVM-기린님"><a href="#MVVM-기린님" class="headerlink" title="MVVM(기린님)"></a>MVVM(기린님)</h4><p>MVC의 Massive ViewController 문제점을 타파하기 위해 나온 패턴.<br>ViewModel을 만들어 좀 더 나누어 보자. ViewModel이 로직을 가지고 Model을 가공하여 VC에 알려주게 된다. VC는 그것을 가지고 View를 구성한다.</p>
+<h2 id="도우님"><a href="#도우님" class="headerlink" title="도우님"></a>도우님</h2><h3 id="ViewController-Life-Cycle"><a href="#ViewController-Life-Cycle" class="headerlink" title="ViewController Life Cycle"></a>ViewController Life Cycle</h3><p>네비게이션 컨트롤러에서 푸시를 할 경우 첫 번째 뷰에서 <code>viewDidDisappear</code>가 불리는 때는 두 번째 뷰가 Appear할 준비가 다 된 <code>viewWillAppear</code>가 불린 후이다.</p>
+<p><a href="https://oaksong.github.io/2018/02/12/view-controller-life-cycle/" target="_blank" rel="noopener">ViewController Life Cycle - Oaksong’s Pluto I</a></p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#기린님"><span class="toc-number">1.</span> <span class="toc-text">기린님</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP-관련-앱-설정"><span class="toc-number">1.1.</span> <span class="toc-text">HTTP 관련 앱 설정</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP의-특성"><span class="toc-number">1.2.</span> <span class="toc-text">HTTP의 특성</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#대칭키-비대칭키"><span class="toc-number">1.3.</span> <span class="toc-text">대칭키 / 비대칭키</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#URI-vs-URL"><span class="toc-number">1.4.</span> <span class="toc-text">URI vs. URL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#쿠키-vs-세션"><span class="toc-number">1.5.</span> <span class="toc-text">쿠키 vs 세션</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#쿠키"><span class="toc-number">1.5.1.</span> <span class="toc-text">쿠키</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#세션"><span class="toc-number">1.5.2.</span> <span class="toc-text">세션</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#지은님"><span class="toc-number">2.</span> <span class="toc-text">지은님</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#애플의-MVC"><span class="toc-number">2.1.</span> <span class="toc-text">애플의 MVC</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#MVVM-기린님"><span class="toc-number">2.1.1.</span> <span class="toc-text">MVVM(기린님)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#도우님"><span class="toc-number">3.</span> <span class="toc-text">도우님</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ViewController-Life-Cycle"><span class="toc-number">3.1.</span> <span class="toc-text">ViewController Life Cycle</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/02/03/18-02-03study/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/02/03/18-02-03study/&text=18.02.03 스터디"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/02/03/18-02-03study/&title=18.02.03 스터디"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/02/03/18-02-03study/&is_video=false&description=18.02.03 스터디"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=18.02.03 스터디&body=Check out this article: https://wnstkdyu.github.io/2018/02/03/18-02-03study/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/02/03/18-02-03study/&title=18.02.03 스터디"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/02/03/18-02-03study/&title=18.02.03 스터디"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/02/03/18-02-03study/&title=18.02.03 스터디"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/02/03/18-02-03study/&title=18.02.03 스터디"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/02/03/18-02-03study/&name=18.02.03 스터디&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Alpaca
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-116302583-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'alpacablog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+

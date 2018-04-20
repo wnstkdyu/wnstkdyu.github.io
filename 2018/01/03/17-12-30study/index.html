@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="기린님커스텀 컬렉션 뷰UICollectionViewDelegateFlowLayout - UIKit | Apple Developer Documentation  UICollectionViewDelegateFlowLayout의 CGSize를 리턴하는 메소드로 동적으로 콜렉션뷰의 셀의 사이즈를 정할 수 있다. 다만 2차원적으로 달라지는 Pinterest 같은 UI">
+<meta name="keywords" content="UICollectionView,CoW,Value Semantics">
+<meta property="og:type" content="article">
+<meta property="og:title" content="17.12.30 스터디">
+<meta property="og:url" content="https://wnstkdyu.github.io/2018/01/03/17-12-30study/index.html">
+<meta property="og:site_name" content="PacaLog">
+<meta property="og:description" content="기린님커스텀 컬렉션 뷰UICollectionViewDelegateFlowLayout - UIKit | Apple Developer Documentation  UICollectionViewDelegateFlowLayout의 CGSize를 리턴하는 메소드로 동적으로 콜렉션뷰의 셀의 사이즈를 정할 수 있다. 다만 2차원적으로 달라지는 Pinterest 같은 UI">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-04-20T05:47:25.094Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="17.12.30 스터디">
+<meta name="twitter:description" content="기린님커스텀 컬렉션 뷰UICollectionViewDelegateFlowLayout - UIKit | Apple Developer Documentation  UICollectionViewDelegateFlowLayout의 CGSize를 리턴하는 메소드로 동적으로 콜렉션뷰의 셀의 사이즈를 정할 수 있다. 다만 2차원적으로 달라지는 Pinterest 같은 UI">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>17.12.30 스터디</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/01/06/uitraitcollection/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/12/29/uiwindow/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/01/03/17-12-30study/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/01/03/17-12-30study/&text=17.12.30 스터디"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/01/03/17-12-30study/&title=17.12.30 스터디"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/01/03/17-12-30study/&is_video=false&description=17.12.30 스터디"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=17.12.30 스터디&body=Check out this article: https://wnstkdyu.github.io/2018/01/03/17-12-30study/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/01/03/17-12-30study/&title=17.12.30 스터디"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/01/03/17-12-30study/&title=17.12.30 스터디"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/01/03/17-12-30study/&title=17.12.30 스터디"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/01/03/17-12-30study/&title=17.12.30 스터디"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/01/03/17-12-30study/&name=17.12.30 스터디&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#기린님"><span class="toc-number">1.</span> <span class="toc-text">기린님</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#커스텀-컬렉션-뷰"><span class="toc-number">1.1.</span> <span class="toc-text">커스텀 컬렉션 뷰</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Modal-Presentation-Style"><span class="toc-number">1.2.</span> <span class="toc-text">Modal Presentation Style</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#도우님"><span class="toc-number">2.</span> <span class="toc-text">도우님</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        17.12.30 스터디
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">PacaLog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-01-03T05:23:54.000Z" itemprop="datePublished">2018-01-03</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/CoW/">CoW</a>, <a class="tag-link" href="/tags/UICollectionView/">UICollectionView</a>, <a class="tag-link" href="/tags/Value-Semantics/">Value Semantics</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="기린님"><a href="#기린님" class="headerlink" title="기린님"></a>기린님</h2><h3 id="커스텀-컬렉션-뷰"><a href="#커스텀-컬렉션-뷰" class="headerlink" title="커스텀 컬렉션 뷰"></a>커스텀 컬렉션 뷰</h3><p><a href="https://developer.apple.com/documentation/uikit/uicollectionviewdelegateflowlayout" target="_blank" rel="noopener">UICollectionViewDelegateFlowLayout - UIKit | Apple Developer Documentation</a></p>
+<ul>
+<li>UICollectionViewDelegateFlowLayout의 CGSize를 리턴하는 메소드로 동적으로 콜렉션뷰의 셀의 사이즈를 정할 수 있다.</li>
+<li>다만 2차원적으로 달라지는 Pinterest 같은 UI를 원한다면 UIColletionViewLayout를 상속해서 메소드를 사용한다.</li>
+<li>만약 테이블뷰 셀마다 안의 뷰들의 크기에 따라 유동적으로 바뀌려면 UITableView의 <code>rowHeight</code> 프로퍼티에 <code>UITableViewAutomaticDimension</code>을 넣어준다.</li>
+</ul>
+<h3 id="Modal-Presentation-Style"><a href="#Modal-Presentation-Style" class="headerlink" title="Modal Presentation Style"></a>Modal Presentation Style</h3><p>currentContext 공부하기</p>
+<h2 id="도우님"><a href="#도우님" class="headerlink" title="도우님"></a>도우님</h2><ul>
+<li>Value Semantics를 좀 더 지향하는 Swift가 어떻게 값을 변화시키는지 설명.</li>
+<li>Value 타입은 <strong>Copy-on-Write(CoW)</strong>를 통해 값이 변화한다. 이는 값이 바뀌기 전 복사를 한 뒤 복사본의 값을 바꿔준 뒤 레퍼런스 포인팅을 이동시키는 방식이다. 그래서 도우님이 가져온 예제에서 Global Queue로 Value 타입의 Array에 값을 넣어줄 경우 어떤 복사본을 레퍼런스 포인팅으로 잡을지 몰라 다양한 오류가 난다.</li>
+</ul>
+<p><a href="https://oaksong.github.io/2018/01/06/copy-on-write/" target="_blank" rel="noopener">Swift의 Copy-on-Write(CoW) - oaksong’s Pluto I</a></p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#기린님"><span class="toc-number">1.</span> <span class="toc-text">기린님</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#커스텀-컬렉션-뷰"><span class="toc-number">1.1.</span> <span class="toc-text">커스텀 컬렉션 뷰</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Modal-Presentation-Style"><span class="toc-number">1.2.</span> <span class="toc-text">Modal Presentation Style</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#도우님"><span class="toc-number">2.</span> <span class="toc-text">도우님</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/01/03/17-12-30study/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/01/03/17-12-30study/&text=17.12.30 스터디"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/01/03/17-12-30study/&title=17.12.30 스터디"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/01/03/17-12-30study/&is_video=false&description=17.12.30 스터디"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=17.12.30 스터디&body=Check out this article: https://wnstkdyu.github.io/2018/01/03/17-12-30study/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/01/03/17-12-30study/&title=17.12.30 스터디"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/01/03/17-12-30study/&title=17.12.30 스터디"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/01/03/17-12-30study/&title=17.12.30 스터디"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/01/03/17-12-30study/&title=17.12.30 스터디"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/01/03/17-12-30study/&name=17.12.30 스터디&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Alpaca
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-116302583-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'alpacablog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
