@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="지난 주 MVP 패턴을 공부하고 난 후 생각이 든 것은 MVVM과의 차이점이었다. Presenter와 ViewModel, 이 둘의 용어적 차이는 그 차이가 무엇인지 뚜렷하게 말해주지 않는다. MVVM 패턴에 대해서 알아보겠다. MVVM가 나온 배경MVVM 패턴은 Microsoft의 엔지니어인 Ken Cooper와 Ted Peters에 의해 만들어졌다. 이">
+<meta name="keywords" content="Swift,iOS,Design Pattern">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MVVM 디자인 패턴">
+<meta property="og:url" content="https://wnstkdyu.github.io/2018/04/20/mvvmdesignpattern/index.html">
+<meta property="og:site_name" content="PacaLog">
+<meta property="og:description" content="지난 주 MVP 패턴을 공부하고 난 후 생각이 든 것은 MVVM과의 차이점이었다. Presenter와 ViewModel, 이 둘의 용어적 차이는 그 차이가 무엇인지 뚜렷하게 말해주지 않는다. MVVM 패턴에 대해서 알아보겠다. MVVM가 나온 배경MVVM 패턴은 Microsoft의 엔지니어인 Ken Cooper와 Ted Peters에 의해 만들어졌다. 이">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://wnstkdyu.github.io/2018/04/20/mvvmdesignpattern/mvvm.png">
+<meta property="og:updated_time" content="2018-04-21T14:41:52.094Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MVVM 디자인 패턴">
+<meta name="twitter:description" content="지난 주 MVP 패턴을 공부하고 난 후 생각이 든 것은 MVVM과의 차이점이었다. Presenter와 ViewModel, 이 둘의 용어적 차이는 그 차이가 무엇인지 뚜렷하게 말해주지 않는다. MVVM 패턴에 대해서 알아보겠다. MVVM가 나온 배경MVVM 패턴은 Microsoft의 엔지니어인 Ken Cooper와 Ted Peters에 의해 만들어졌다. 이">
+<meta name="twitter:image" content="https://wnstkdyu.github.io/2018/04/20/mvvmdesignpattern/mvvm.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>MVVM 디자인 패턴</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2018/04/13/mvpdesignpattern/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/04/20/mvvmdesignpattern/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/04/20/mvvmdesignpattern/&text=MVVM 디자인 패턴"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/04/20/mvvmdesignpattern/&title=MVVM 디자인 패턴"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/04/20/mvvmdesignpattern/&is_video=false&description=MVVM 디자인 패턴"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=MVVM 디자인 패턴&body=Check out this article: https://wnstkdyu.github.io/2018/04/20/mvvmdesignpattern/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/04/20/mvvmdesignpattern/&title=MVVM 디자인 패턴"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/04/20/mvvmdesignpattern/&title=MVVM 디자인 패턴"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/04/20/mvvmdesignpattern/&title=MVVM 디자인 패턴"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/04/20/mvvmdesignpattern/&title=MVVM 디자인 패턴"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/04/20/mvvmdesignpattern/&name=MVVM 디자인 패턴&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MVVM가-나온-배경"><span class="toc-number">1.</span> <span class="toc-text">MVVM가 나온 배경</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVVM-Model-View-ViewModel"><span class="toc-number">2.</span> <span class="toc-text">MVVM: Model-View-ViewModel</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#장점"><span class="toc-number">2.1.</span> <span class="toc-text">장점</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#단점"><span class="toc-number">2.2.</span> <span class="toc-text">단점</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MVP와의-차이"><span class="toc-number">2.3.</span> <span class="toc-text">MVP와의 차이</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Data-Binding"><span class="toc-number">3.</span> <span class="toc-text">Data Binding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        MVVM 디자인 패턴
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">PacaLog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-04-20T12:35:19.000Z" itemprop="datePublished">2018-04-20</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Design-Pattern/">Design Pattern</a>, <a class="tag-link" href="/tags/Swift/">Swift</a>, <a class="tag-link" href="/tags/iOS/">iOS</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>지난 주 MVP 패턴을 공부하고 난 후 생각이 든 것은 MVVM과의 차이점이었다. <em>Presenter</em>와 <em>ViewModel</em>, 이 둘의 용어적 차이는 그 차이가 무엇인지 뚜렷하게 말해주지 않는다.</p>
+<p>MVVM 패턴에 대해서 알아보겠다.</p>
+<h2 id="MVVM가-나온-배경"><a href="#MVVM가-나온-배경" class="headerlink" title="MVVM가 나온 배경"></a>MVVM가 나온 배경</h2><p>MVVM 패턴은 Microsoft의 엔지니어인 Ken Cooper와 Ted Peters에 의해 만들어졌다. 이 패턴은 Windows의 그래픽 프레임워크인 WPF와 Silverlight에서 처음 적용되었다. 이 패턴의 주요 목적은 <strong>To simplify event-driven programming user interfaces</strong>인데, 이것을 위해 View에 관한 로직과 비즈니스 로직을 철저히 구분한다. 여기서 사용되는 주요한 개념이 <em>Data binding</em>이다.</p>
+<h2 id="MVVM-Model-View-ViewModel"><a href="#MVVM-Model-View-ViewModel" class="headerlink" title="MVVM: Model-View-ViewModel"></a>MVVM: Model-View-ViewModel</h2><p>MVVM 패턴은 MVC 패턴과 마찬가지로 Model과 View를 가지고 Controller 대신 <em>ViewModel</em>이라는 개념을 도입했다.</p>
+<img src="/2018/04/20/mvvmdesignpattern/mvvm.png" title="image">
+<p>각각의 개념들을 살펴보면 다음과 같다.</p>
+<ul>
+<li>Model: 기존 패턴들의 Model과 같이 실제적 데이터를 가지며 View와는 독립되어 있다. ViewModel이 소유하고 갱신하며 가공하여 View에 표시한다.</li>
+<li>View: UIView와 UIViewController가 여기에 속하며 말 그대로 보여주는 작업과 유저 인터랙션을 받는 역할을 한다. 유저 인터랙션을 받아 ViewModel에게 명령(Command)를 내린다.</li>
+<li>ViewModel: Model을 가공해 View에 전달하거나 유저 인터랙션이 올 경우 그에 따른 작업을 수행한다. 작업이 끝난 후 View를 이에 맞춰 바꿔줘야 하는데 데이터 바인딩을 통해서 이를 달성한다.</li>
+</ul>
+<h3 id="장점"><a href="#장점" class="headerlink" title="장점"></a>장점</h3><p>MVC 패턴의 View와 Model의 독립성을 유지하고 MVP 패턴과 같이 보여주는 로직과 비즈니스 로직을 나누었다. 물론 테스트 또한 나누어 실행할 수 있어 효율적인 유닛 테스트가 가능하다.</p>
+<h3 id="단점"><a href="#단점" class="headerlink" title="단점"></a>단점</h3><p>데이터 바인딩이 필수적으로 요구된다. 다양한 방법을 통해 바인딩이 가능하지만 그 작업을 위해 <em>Boilerplate code</em>를 짜야 한다. 그래서 간단한 View나 로직을 만들 때는 배보다 배꼽이 더 큰 경우를 볼 수도 있다.</p>
+<blockquote>
+<p>Boilerplate code: 작지만 대체할 수 없고, 여러 곳에 포함되어야 하는 코드 섹션. 프로그래머가 매우 작은 일을 하기 위해서 많은 코드를 작성해야 하는 경우를 말한다.</p>
+</blockquote>
+<h3 id="MVP와의-차이"><a href="#MVP와의-차이" class="headerlink" title="MVP와의 차이"></a>MVP와의 차이</h3><p>MVP 패턴에서는 Presenter를 통해서 MVVM의 ViewModel과 거의 같은 역할을 한다. 그러나 <strong>MVP 패턴은 Presenter가 View와 ‘1 대 1’ 관계를 맺어야 한다는 점에서 한계</strong>를 가진다. 특정 View의 Presenter는 그 View에 특정되어진 로직을 가지고 있기 때문에 비슷한 역할을 하는 View의 경우 그 Presenter들은 중복되는 로직을 가지는 한계를 갖는다.</p>
+<p>반면, MVVM 패턴에서 ViewModel은 View를 전혀 모른다. View만 ViewModel을 인스턴스로 갖고 있고 데이터 바인딩을 통해 ViewModel의 데이터를 View에 표시한다. 때문에 <strong>굳이 ‘1 대 1’ 관계로 묶여 있지 않고 필요에 따라 ‘多 대 多’ 관게도 가능</strong>하다. 그렇기 때문에 중복 로직을 줄일 수 있고 결합도를 낮출 수 있다.</p>
+<h2 id="Data-Binding"><a href="#Data-Binding" class="headerlink" title="Data Binding"></a>Data Binding</h2><p>데이터 바인딩의 개념은 쉽게 말해 <strong>Model과 UI 요소 간의 싱크를 맞춰주는 것</strong>이라 할 수 있다(정확히 말하면 UI 데이터 바인딩이지만 iOS를 다루기 때문에 이것을 다룬다). 이 패턴을 통해 View와 로직이 분리되어 있어도 한 쪽이 바뀌면 다른 쪽도 업데이트가 이루어져 데이터의 일관성을 유지할 수 있다.</p>
+<p>iOS에서 데이터 바인딩을 하는 방법은 다음과 같다.</p>
+<ul>
+<li>KVO</li>
+<li>Delegation</li>
+<li>Functional Reactive Programming</li>
+<li>Property Observer</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://blog.kulman.sk/using-data-binding-in-ios/" target="_blank" rel="noopener">Using data binding in iOS - Igor Kulman</a></li>
+<li><a href="https://magi82.github.io/android-mvc-mvp-mvvm/" target="_blank" rel="noopener">MVC, MVP, MVVM 비교 - 마기의 개발 블로그</a></li>
+<li><a href="https://www.youtube.com/watch?v=sWx8TtRBOfk" target="_blank" rel="noopener">MVVM in Practice - RWDevCon Session</a></li>
+</ul>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MVVM가-나온-배경"><span class="toc-number">1.</span> <span class="toc-text">MVVM가 나온 배경</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MVVM-Model-View-ViewModel"><span class="toc-number">2.</span> <span class="toc-text">MVVM: Model-View-ViewModel</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#장점"><span class="toc-number">2.1.</span> <span class="toc-text">장점</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#단점"><span class="toc-number">2.2.</span> <span class="toc-text">단점</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MVP와의-차이"><span class="toc-number">2.3.</span> <span class="toc-text">MVP와의 차이</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Data-Binding"><span class="toc-number">3.</span> <span class="toc-text">Data Binding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/04/20/mvvmdesignpattern/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/04/20/mvvmdesignpattern/&text=MVVM 디자인 패턴"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/04/20/mvvmdesignpattern/&title=MVVM 디자인 패턴"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/04/20/mvvmdesignpattern/&is_video=false&description=MVVM 디자인 패턴"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=MVVM 디자인 패턴&body=Check out this article: https://wnstkdyu.github.io/2018/04/20/mvvmdesignpattern/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/04/20/mvvmdesignpattern/&title=MVVM 디자인 패턴"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/04/20/mvvmdesignpattern/&title=MVVM 디자인 패턴"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/04/20/mvvmdesignpattern/&title=MVVM 디자인 패턴"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/04/20/mvvmdesignpattern/&title=MVVM 디자인 패턴"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/04/20/mvvmdesignpattern/&name=MVVM 디자인 패턴&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Alpaca
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-116302583-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'alpacablog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
