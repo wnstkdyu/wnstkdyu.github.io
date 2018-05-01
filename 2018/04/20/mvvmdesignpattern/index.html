@@ -15,7 +15,7 @@
 <meta property="og:description" content="지난 주 MVP 패턴을 공부하고 난 후 생각이 든 것은 MVVM과의 차이점이었다. Presenter와 ViewModel, 이 둘의 용어적 차이는 그 차이가 무엇인지 뚜렷하게 말해주지 않는다. MVVM 패턴에 대해서 알아보겠다. MVVM가 나온 배경MVVM 패턴은 Microsoft의 엔지니어인 Ken Cooper와 Ted Peters에 의해 만들어졌다. 이">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://wnstkdyu.github.io/2018/04/20/mvvmdesignpattern/mvvm.png">
-<meta property="og:updated_time" content="2018-04-29T15:46:16.806Z">
+<meta property="og:updated_time" content="2018-05-01T07:28:28.015Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MVVM 디자인 패턴">
 <meta name="twitter:description" content="지난 주 MVP 패턴을 공부하고 난 후 생각이 든 것은 MVVM과의 차이점이었다. Presenter와 ViewModel, 이 둘의 용어적 차이는 그 차이가 무엇인지 뚜렷하게 말해주지 않는다. MVVM 패턴에 대해서 알아보겠다. MVVM가 나온 배경MVVM 패턴은 Microsoft의 엔지니어인 Ken Cooper와 Ted Peters에 의해 만들어졌다. 이">
@@ -68,6 +68,8 @@
     <br/>
     <span id="actions">
       <ul>
+        
+        <li><a class="icon" href="/2018/05/01/avfoundationprogrammingguide/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
         
         <li><a class="icon" href="/2018/04/13/mvpdesignpattern/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
@@ -153,7 +155,7 @@
 <p>Boilerplate code: 작지만 대체할 수 없고, 여러 곳에 포함되어야 하는 코드 섹션. 프로그래머가 매우 작은 일을 하기 위해서 많은 코드를 작성해야 하는 경우를 말한다.</p>
 </blockquote>
 <h3 id="MVP와의-차이"><a href="#MVP와의-차이" class="headerlink" title="MVP와의 차이"></a>MVP와의 차이</h3><p>MVP 패턴에서는 Presenter를 통해서 MVVM의 ViewModel과 거의 같은 역할을 한다. 그러나 <strong>MVP 패턴은 Presenter가 View와 ‘1 대 1’ 관계를 맺어야 한다는 점에서 한계</strong>를 가진다. 특정 View의 Presenter는 그 View에 특정되어진 로직을 가지고 있기 때문에 비슷한 역할을 하는 View의 경우 그 Presenter들은 중복되는 로직을 가지는 한계를 갖는다.</p>
-<p>반면, MVVM 패턴에서 ViewModel은 View를 전혀 모른다. View만 ViewModel을 인스턴스로 갖고 있고 데이터 바인딩을 통해 ViewModel의 데이터를 View에 표시한다. 때문에 <strong>굳이 ‘1 대 1’ 관계로 묶여 있지 않고 필요에 따라 ‘多 대 多’ 관게도 가능</strong>하다. 그렇기 때문에 중복 로직을 줄일 수 있고 결합도를 낮출 수 있다.</p>
+<p>반면, MVVM 패턴에서 ViewModel은 View를 전혀 모른다. View만 ViewModel을 인스턴스로 갖고 있고 데이터 바인딩을 통해 ViewModel의 데이터를 View에 표시한다. 때문에 <strong>굳이 ‘1 대 1’ 관계로 묶여 있지 않고 필요에 따라 ‘多 대 多’ 관계도 가능</strong>하다. 그렇기 때문에 중복 로직을 줄일 수 있고 결합도를 낮출 수 있다.</p>
 <h2 id="Data-Binding"><a href="#Data-Binding" class="headerlink" title="Data Binding"></a>Data Binding</h2><p>데이터 바인딩의 개념은 쉽게 말해 <strong>Model과 UI 요소 간의 싱크를 맞춰주는 것</strong>이라 할 수 있다(정확히 말하면 UI 데이터 바인딩이지만 iOS를 다루기 때문에 이것을 다룬다). 이 패턴을 통해 View와 로직이 분리되어 있어도 한 쪽이 바뀌면 다른 쪽도 업데이트가 이루어져 데이터의 일관성을 유지할 수 있다.</p>
 <p>iOS에서 데이터 바인딩을 하는 방법은 다음과 같다.</p>
 <ul>
