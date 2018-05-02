@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="PacaLog">
 <meta property="og:description" content="Key-Value Observing에 대해서 알아보려고 한다. 애플의 Key-Value Observing Programming Guide를 토대로 정리하였다. Key-Value Observing이란?Key-Value Observing, 줄여서 KVO 패턴은 프로퍼티의 변화를 감지하는 기법이다. 애플의 기본적인 디자인 패턴인 MVC를 보면 Model은 독립적">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-05-02T05:31:34.968Z">
+<meta property="og:updated_time" content="2018-05-02T05:33:48.905Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Key-Value Observing">
 <meta name="twitter:description" content="Key-Value Observing에 대해서 알아보려고 한다. 애플의 Key-Value Observing Programming Guide를 토대로 정리하였다. Key-Value Observing이란?Key-Value Observing, 줄여서 KVO 패턴은 프로퍼티의 변화를 감지하는 기법이다. 애플의 기본적인 디자인 패턴인 MVC를 보면 Model은 독립적">
@@ -146,11 +146,12 @@
 <li>Core Data</li>
 <li>AppleScript</li>
 </ul>
-<h4 id="NSKeyValueCoding"><a href="#NSKeyValueCoding" class="headerlink" title="NSKeyValueCoding"></a>NSKeyValueCoding</h4><p>NSKeyValueCoding 프로토콜을 따르게 하려면 대표적으로 두 메소드를 구현해주어야 한다.</p>
+<h4 id="NSKeyValueCoding"><a href="#NSKeyValueCoding" class="headerlink" title="NSKeyValueCoding"></a>NSKeyValueCoding</h4><p>NSKeyValueCoding 프로토콜을 따르게 하려면 대표적으로 두 메서드를 구현해주어야 한다.</p>
 <ul>
 <li>value(forKey:): 키 값에 해당하는 값을 가져오는 getter 메서드</li>
-<li>setValue(_:forKey:): 키 값에 해당하는 값을 변경하는 setter 메서드<br>문자열 타입의 키 값을 알면 손쉽게 해당하는 객체에 접근을 하고 쓰기가 가능하다.</li>
+<li>setValue(_:forKey:): 키 값에 해당하는 값을 변경하는 setter 메서드</li>
 </ul>
+<p>이 두 메서드로 인해 문자열 타입의 키 값을 알면 손쉽게 해당하는 객체에 접근을 하고 쓰기가 가능하다.</p>
 <p>예를 들어, BankAccount라는 객체가 있다고 가정하자.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@interface BankAccount : NSObject</span><br><span class="line"> </span><br><span class="line">@property (nonatomic) NSNumber* currentBalance;             </span><br><span class="line">@property (nonatomic) Person* owner;                     </span><br><span class="line">@property (nonatomic) NSArray&lt; Transaction* &gt;* transactions;</span><br><span class="line"> </span><br><span class="line">@end</span><br></pre></td></tr></table></figure></p>
 <p>그러면 다음과 같이 myAccount 안의 프로퍼티인 currentBalance를 받고 읽을 수 있다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NSNumber *myCurrentBalance = [_myAccount valueForKey:@&quot;currentBalance&quot;];</span><br><span class="line">[_myAccount setValue:@(100.0) forKey:@&quot;currentBalance&quot;];</span><br></pre></td></tr></table></figure></p>
 <p>또 다음과 같이 Swift에서 iOS 시스템의 설정을 바로 바꾸고 싶을 때 쓰이기도 한다.<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> orientationValue = <span class="type">UIDeviceOrientation</span>.landscapeRight.rawValue</span><br><span class="line"><span class="type">UIDevice</span>.current.setValue(orientationValue, forKey: <span class="string">"orientation"</span>)</span><br></pre></td></tr></table></figure></p>
