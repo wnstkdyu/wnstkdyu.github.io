@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="PacaLog">
 <meta property="og:description" content="Key-Value Observing에 대해서 알아보려고 한다. 애플의 Key-Value Observing Programming Guide를 토대로 정리하였다. Key-Value Observing이란?Key-Value Observing, 줄여서 KVO 패턴은 프로퍼티의 변화를 감지하는 기법이다. 애플의 기본적인 디자인 패턴인 MVC를 보면 Model은 독립적">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-05-02T05:33:48.905Z">
+<meta property="og:updated_time" content="2018-05-03T09:45:29.966Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Key-Value Observing">
 <meta name="twitter:description" content="Key-Value Observing에 대해서 알아보려고 한다. 애플의 Key-Value Observing Programming Guide를 토대로 정리하였다. Key-Value Observing이란?Key-Value Observing, 줄여서 KVO 패턴은 프로퍼티의 변화를 감지하는 기법이다. 애플의 기본적인 디자인 패턴인 MVC를 보면 Model은 독립적">
@@ -138,7 +138,7 @@
 <h2 id="Key-Value-Observing이란"><a href="#Key-Value-Observing이란" class="headerlink" title="Key-Value Observing이란?"></a>Key-Value Observing이란?</h2><p>Key-Value Observing, 줄여서 KVO 패턴은 프로퍼티의 변화를 감지하는 기법이다. 애플의 기본적인 디자인 패턴인 MVC를 보면 Model은 독립적으로 따로 떨어져 있는데 Model에 어떠한 변화가 일어날 경우 Controller에서 이를 감지하고 적절한 처리를 거쳐 View를 갱신해야한다. 이러한 상황에서 유용하게 쓰이는 것이 Key-Value Observing이다.</p>
 <p>먼저 KVO 패턴의 기반이 되는 Key-Value Coding에 대해 알아보자.</p>
 <h3 id="Key-Value-Coding"><a href="#Key-Value-Coding" class="headerlink" title="Key-Value Coding"></a>Key-Value Coding</h3><p>Key-Value Coding은 <code>NSKeyValueCoding</code> 프로토콜을 따르는 객체에 간접적으로 접근할 수 있게 하는 기법이다. 이러한 객체는 <strong>문자열을 파라미터로 손쉽게 어디서든 접근이 가능한 특징</strong>을 보인다. 일반적으로 <code>NSObject</code>를 직접적, 간접적으로 상속하는 객체들은 자동적으로 NSKeyValueCoding 프로토콜을 따르게 된다.</p>
-<p>Swift에서 KVC 패턴은 Objective-C보다 많이 쓰이지는 않는다. NSKeyValueCoding의 많은 메서드들이 Swift와 맞지 않는 경우가 있고 또한 Swift에서 더 효과적인 기법들이 존재하기 때문이다. 하지만 <em>AVFoudation</em> 같은 저수준의 프레임워크를 다룰 때에는 아직까지 꼭 필요한 기법이다.</p>
+<p>Swift에서 KVC 패턴은 Objective-C보다 많이 쓰이지는 않는다. NSKeyValueCoding의 많은 메서드들이 Swift와 맞지 않는 경우가 있고 또한 Swift에서 더 효과적인 기법들이 존재하기 때문이다. 하지만 <em>AVFoudation</em> 같은 프레임워크를 다룰 때에 효과적인 기법이다.</p>
 <p>Key-Value Coding이 기반이 되어 파생된 기술들은 다음과 같다.</p>
 <ul>
 <li>Key-Value observing</li>
