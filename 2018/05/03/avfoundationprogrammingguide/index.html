@@ -10,17 +10,17 @@
 <meta name="keywords" content="AVFoundation,AVAsset,Media">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AVFoundation 공부">
-<meta property="og:url" content="https://wnstkdyu.github.io/2018/05/01/avfoundationprogrammingguide/index.html">
+<meta property="og:url" content="https://wnstkdyu.github.io/2018/05/03/avfoundationprogrammingguide/index.html">
 <meta property="og:site_name" content="PacaLog">
 <meta property="og:description" content="애플의 AVFoundation Programming Guide와 Media Playback Programming Guide을 통해 AVFoundation에 대해 알아보았다. AVFoundation이란?AVFoundation은 시간 기반 시청각 미디어 자료를 플레이하고 생성할 수 있는 프레임워크 중 하나이다. 이 프레임워크를 통해 미디어 파일을 조사하고 조작">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://wnstkdyu.github.io/2018/05/01/avfoundationprogrammingguide/AVFoundationIniOS.png">
-<meta property="og:image" content="https://wnstkdyu.github.io/2018/05/01/avfoundationprogrammingguide/primaryPlaybackObjects.png">
-<meta property="og:updated_time" content="2018-05-03T10:43:15.873Z">
+<meta property="og:image" content="https://wnstkdyu.github.io/2018/05/03/avfoundationprogrammingguide/AVFoundationIniOS.png">
+<meta property="og:image" content="https://wnstkdyu.github.io/2018/05/03/avfoundationprogrammingguide/primaryPlaybackObjects.png">
+<meta property="og:updated_time" content="2018-05-03T10:44:19.278Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AVFoundation 공부">
 <meta name="twitter:description" content="애플의 AVFoundation Programming Guide와 Media Playback Programming Guide을 통해 AVFoundation에 대해 알아보았다. AVFoundation이란?AVFoundation은 시간 기반 시청각 미디어 자료를 플레이하고 생성할 수 있는 프레임워크 중 하나이다. 이 프레임워크를 통해 미디어 파일을 조사하고 조작">
-<meta name="twitter:image" content="https://wnstkdyu.github.io/2018/05/01/avfoundationprogrammingguide/AVFoundationIniOS.png">
+<meta name="twitter:image" content="https://wnstkdyu.github.io/2018/05/03/avfoundationprogrammingguide/AVFoundationIniOS.png">
     
     
         
@@ -70,10 +70,8 @@
     <span id="actions">
       <ul>
         
-        <li><a class="icon" href="/2018/05/01/kvoprogrammingguide/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
         
-        
-        <li><a class="icon" href="/2018/04/20/mvvmdesignpattern/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        <li><a class="icon" href="/2018/05/01/kvoprogrammingguide/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
         <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
         <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
@@ -86,16 +84,16 @@
     <br/>
     <div id="share" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/05/01/avfoundationprogrammingguide/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/05/01/avfoundationprogrammingguide/&text=AVFoundation 공부"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/05/01/avfoundationprogrammingguide/&title=AVFoundation 공부"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/05/01/avfoundationprogrammingguide/&is_video=false&description=AVFoundation 공부"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=AVFoundation 공부&body=Check out this article: https://wnstkdyu.github.io/2018/05/01/avfoundationprogrammingguide/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/05/01/avfoundationprogrammingguide/&title=AVFoundation 공부"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/05/01/avfoundationprogrammingguide/&title=AVFoundation 공부"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/05/01/avfoundationprogrammingguide/&title=AVFoundation 공부"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/05/01/avfoundationprogrammingguide/&title=AVFoundation 공부"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/05/01/avfoundationprogrammingguide/&name=AVFoundation 공부&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/05/03/avfoundationprogrammingguide/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/05/03/avfoundationprogrammingguide/&text=AVFoundation 공부"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/05/03/avfoundationprogrammingguide/&title=AVFoundation 공부"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/05/03/avfoundationprogrammingguide/&is_video=false&description=AVFoundation 공부"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=AVFoundation 공부&body=Check out this article: https://wnstkdyu.github.io/2018/05/03/avfoundationprogrammingguide/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/05/03/avfoundationprogrammingguide/&title=AVFoundation 공부"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/05/03/avfoundationprogrammingguide/&title=AVFoundation 공부"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/05/03/avfoundationprogrammingguide/&title=AVFoundation 공부"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/05/03/avfoundationprogrammingguide/&title=AVFoundation 공부"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/05/03/avfoundationprogrammingguide/&name=AVFoundation 공부&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -123,7 +121,7 @@
       </span>
       
     <div class="postdate">
-        <time datetime="2018-05-01T06:32:24.000Z" itemprop="datePublished">2018-05-01</time>
+        <time datetime="2018-05-03T06:32:24.000Z" itemprop="datePublished">2018-05-03</time>
     </div>
 
 
@@ -141,7 +139,7 @@
   <div class="content" itemprop="articleBody">
     <p>애플의 <a href="https://developer.apple.com/library/content/documentation/AudioVideo/Conceptual/AVFoundationPG/Articles/00_Introduction.html#//apple_ref/doc/uid/TP40010188-CH1-SW3" target="_blank" rel="noopener">AVFoundation Programming Guide</a>와 <a href="https://developer.apple.com/library/content/documentation/AudioVideo/Conceptual/MediaPlaybackGuide/Contents/Resources/en.lproj/ExploringAVFoundation/ExploringAVFoundation.html#//apple_ref/doc/uid/TP40016757-CH4-SW1" target="_blank" rel="noopener">Media Playback Programming Guide</a>을 통해 AVFoundation에 대해 알아보았다.</p>
 <h2 id="AVFoundation이란"><a href="#AVFoundation이란" class="headerlink" title="AVFoundation이란?"></a>AVFoundation이란?</h2><p>AVFoundation은 시간 기반 시청각 미디어 자료를 플레이하고 생성할 수 있는 프레임워크 중 하나이다. 이 프레임워크를 통해 미디어 파일을 조사하고 조작하는 것이 가능하다.</p>
-<img src="/2018/05/01/avfoundationprogrammingguide/AVFoundationIniOS.png" title="image">
+<img src="/2018/05/03/avfoundationprogrammingguide/AVFoundationIniOS.png" title="image">
 <p>AVFoudation에서 미디어 자료를 표현하는 가장 대표적인 타입인 AVAsset부터 보자.</p>
 <h3 id="Understanding-the-Asset-Model"><a href="#Understanding-the-Asset-Model" class="headerlink" title="Understanding the Asset Model"></a>Understanding the Asset Model</h3><p>AVFoudation에서 가장 중요한 타입은 <em>AVAsset</em>이다. AVAsset은 오디오와 비디오 트랙, 제목, 길이, 자연스러운 영상 사이즈 등 다양한 데이터의 집합체이다. 또한 대부분의 미디어 파일 포맷을 지원하고 HTTP Live Streaming(HLS)도 지원한다. 이를 통해 개발자로 하여금 미디어 포맷으로부터의 독립성과 미디어 자료의 위치에 대한 독립성을 주어 좀 더 개발에 집중할 수 있도록 한다.</p>
 <p>AVAsset은 <code>AVAssetTrack</code> 타입의 다양한 트랙이 모여 만들어진다. 즉, 비디오 트랙과 오디오 트랙, 자막 트랙 등으로 나뉘어지고 이것이 합쳐져 하나의 AVAsset을 이루는 구조이다.</p>
@@ -176,7 +174,7 @@
 <p>메타데이터를 받은 다음에는 그 안에 들어있는 실제적 데이터를 <code>value</code> 프로퍼티를 통해 받아온다. 반환되는 값은 NSObject를 상속하고 NSCopying 프로토콜을 준수하는 데 이를 타입 캐스팅하여 사용할 때는 <code>stringValue</code>, <code>numberValue</code>, <code>dateValue</code>, <code>dataValue</code> 프로퍼티를 사용해 안전하고 쉽게 변환하는 것이 권장된다.</p>
 <p>다음은 애플의 예제 코드이다.<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Collection of "common" metadata</span></span><br><span class="line"><span class="keyword">let</span> metadata = asset.commonMetadata</span><br><span class="line"><span class="comment">// Filter metadata to find the asset's artwork</span></span><br><span class="line"><span class="keyword">let</span> artworkItems =</span><br><span class="line">    <span class="type">AVMetadataItem</span>.metadataItems(from: metadata,</span><br><span class="line">                                 filteredByIdentifier: commonIdentifierArtwork)</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> artworkItem = artworkItems.first &#123;</span><br><span class="line">    <span class="comment">// Coerce the value to an NSData using its dataValue property</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> imageData = artworkItem.dataValue &#123;</span><br><span class="line">        <span class="keyword">let</span> image = <span class="type">UIImage</span>(data: imageData)</span><br><span class="line">        <span class="comment">// process image</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// No image data found</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h3 id="Playing-Media"><a href="#Playing-Media" class="headerlink" title="Playing Media"></a>Playing Media</h3><p>AVAsset이 미디어 자료를 표현하는 중요한 클래스지만 미디어를 재생하는 데에 추가적인 클래스들이 이용된다.</p>
-<img src="/2018/05/01/avfoundationprogrammingguide/primaryPlaybackObjects.png" title="image">
+<img src="/2018/05/03/avfoundationprogrammingguide/primaryPlaybackObjects.png" title="image">
 <h4 id="AVPlayer"><a href="#AVPlayer" class="headerlink" title="AVPlayer"></a>AVPlayer</h4><p><code>AVPlayer</code>는 미디어 에셋을 재생하고 시간을 조절하는 중심 컨트롤러 클래스이다. 로컬로, 다운로드하면서 또는 스트리밍 데이터를 재생하는 데 모두 사용된다.</p>
 <blockquote>
 <p>AVPlayer는 하나의 미디어 자료를 재생하는 클래스이다. 연속적으로 미디어를 재생하려면 AVPlayer를 상속하는 <code>AVQueuePlayer</code>를 사용하면 된다.</p>
@@ -247,16 +245,16 @@
 
     <div id="share-footer" style="display: none">
       <ul>
-  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/05/01/avfoundationprogrammingguide/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/05/01/avfoundationprogrammingguide/&text=AVFoundation 공부"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/05/01/avfoundationprogrammingguide/&title=AVFoundation 공부"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/05/01/avfoundationprogrammingguide/&is_video=false&description=AVFoundation 공부"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=AVFoundation 공부&body=Check out this article: https://wnstkdyu.github.io/2018/05/01/avfoundationprogrammingguide/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/05/01/avfoundationprogrammingguide/&title=AVFoundation 공부"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/05/01/avfoundationprogrammingguide/&title=AVFoundation 공부"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/05/01/avfoundationprogrammingguide/&title=AVFoundation 공부"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/05/01/avfoundationprogrammingguide/&title=AVFoundation 공부"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/05/01/avfoundationprogrammingguide/&name=AVFoundation 공부&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/05/03/avfoundationprogrammingguide/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/05/03/avfoundationprogrammingguide/&text=AVFoundation 공부"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/05/03/avfoundationprogrammingguide/&title=AVFoundation 공부"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/05/03/avfoundationprogrammingguide/&is_video=false&description=AVFoundation 공부"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=AVFoundation 공부&body=Check out this article: https://wnstkdyu.github.io/2018/05/03/avfoundationprogrammingguide/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/05/03/avfoundationprogrammingguide/&title=AVFoundation 공부"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/05/03/avfoundationprogrammingguide/&title=AVFoundation 공부"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/05/03/avfoundationprogrammingguide/&title=AVFoundation 공부"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/05/03/avfoundationprogrammingguide/&title=AVFoundation 공부"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/05/03/avfoundationprogrammingguide/&name=AVFoundation 공부&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
