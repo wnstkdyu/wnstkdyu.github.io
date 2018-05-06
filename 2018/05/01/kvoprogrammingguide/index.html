@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="PacaLog">
 <meta property="og:description" content="Key-Value Observing에 대해서 알아보려고 한다. 애플의 Key-Value Observing Programming Guide를 토대로 정리하였다. Key-Value Observing이란?Key-Value Observing, 줄여서 KVO 패턴은 프로퍼티의 변화를 감지하는 기법이다. 애플의 기본적인 디자인 패턴인 MVC를 보면 Model은 독립적">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-05-03T09:45:29.966Z">
+<meta property="og:updated_time" content="2018-05-06T11:29:50.409Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Key-Value Observing">
 <meta name="twitter:description" content="Key-Value Observing에 대해서 알아보려고 한다. 애플의 Key-Value Observing Programming Guide를 토대로 정리하였다. Key-Value Observing이란?Key-Value Observing, 줄여서 KVO 패턴은 프로퍼티의 변화를 감지하는 기법이다. 애플의 기본적인 디자인 패턴인 MVC를 보면 Model은 독립적">
@@ -162,7 +162,7 @@
 <ul>
 <li>observer: KVO 이벤트를 감지하는 객체를 의미하며 이 객체는 <code>observeValue(forKeyPath:of:change:context:)</code>를 구현해 이벤트를 받는다.</li>
 <li>keyPath: 감지하려는 프로퍼티의 keyPath를 String 타입으로 전달한다.</li>
-<li>options: <code>NSKeyValudObservingOptions</code>enum 값의 배열이며 new, old, initial, prior의 네 가지로 이루어져 있다. 이 값들을 조합해 언제 이벤트 알림을 보낼지 결정한다.</li>
+<li>options: <code>NSKeyValueObservingOptions</code>enum 값의 배열이며 new, old, initial, prior의 네 가지로 이루어져 있다. 이 값들을 조합해 언제 이벤트 알림을 보낼지 결정한다.</li>
 <li>context: 외부 변수의 포인터 값을 전달하며 알림이 온 정확한 위치를 알려주는 역할을 한다. nil 값을 전달하면 오로지 keyPath로 알림이 온 위치를 식별한다. 그러나 상위 클래스와 하위 클래스가 같은 프로퍼티를 감지할 경우 문제가 발생할 수 있다.</li>
 </ul>
 <blockquote>
