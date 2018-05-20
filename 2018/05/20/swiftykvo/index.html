@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="PacaLog">
 <meta property="og:description" content="이번 ‘네이버 핵데이 2018’에서 멘토님께 배우게 된 Swift스럽게 KVO를 사용하는 방법을 정리하려 한다. 기존의 방법기존의 방법은 감지하고 싶은 객체에 addObserver(_:forKeyPath:options:context:) 메서드를 통해 옵저버를 달고 변경될 때 이벤트를 받는 객체에 observeValueForKeyPath:ofObject:ch">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-05-20T11:57:21.801Z">
+<meta property="og:updated_time" content="2018-05-20T12:00:12.030Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swifty하게 KVO 사용하기">
 <meta name="twitter:description" content="이번 ‘네이버 핵데이 2018’에서 멘토님께 배우게 된 Swift스럽게 KVO를 사용하는 방법을 정리하려 한다. 기존의 방법기존의 방법은 감지하고 싶은 객체에 addObserver(_:forKeyPath:options:context:) 메서드를 통해 옵저버를 달고 변경될 때 이벤트를 받는 객체에 observeValueForKeyPath:ofObject:ch">
@@ -147,7 +147,9 @@
 <h4 id="2-감지할-객체에-옵저버를-달아둔다"><a href="#2-감지할-객체에-옵저버를-달아둔다" class="headerlink" title="2. 감지할 객체에 옵저버를 달아둔다."></a>2. 감지할 객체에 옵저버를 달아둔다.</h4><p>감지할 프로퍼티의 keyPath는 아래와 같은 방식으로 특정한다.<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\.propertyName</span><br></pre></td></tr></table></figure></p>
 <p>감지할 시에 <code>options</code> 인자는 <code>NSKeyValueObservingOptions</code> 구조체 타입으로 <code>new</code>, <code>old</code>, <code>initial</code>, <code>prior</code>을 프로퍼티로 갖고 있다. <code>OptionSet</code> 프로토콜을 준수하기 때문에 언제 이벤트를 받을지 여러 개를 기입하면 된다.</p>
 <h4 id="3-이벤트를-받을-시의-처리를-클로저를-통해-한다"><a href="#3-이벤트를-받을-시의-처리를-클로저를-통해-한다" class="headerlink" title="3. 이벤트를 받을 시의 처리를 클로저를 통해 한다."></a>3. 이벤트를 받을 시의 처리를 클로저를 통해 한다.</h4><p>감지한 값에 따라 적절한 처리를 해준다.</p>
-<h4 id="4-옵저버를-전에-선언한-배열에-넣어준다"><a href="#4-옵저버를-전에-선언한-배열에-넣어준다" class="headerlink" title="4. 옵저버를 전에 선언한 배열에 넣어준다."></a>4. 옵저버를 전에 선언한 배열에 넣어준다.</h4><h4 id="5-옵저버를-deinit-시에-제거해준다"><a href="#5-옵저버를-deinit-시에-제거해준다" class="headerlink" title="5. 옵저버를 deinit 시에 제거해준다."></a>5. 옵저버를 deinit 시에 제거해준다.</h4><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<h4 id="4-옵저버를-전에-선언한-배열에-넣어준다"><a href="#4-옵저버를-전에-선언한-배열에-넣어준다" class="headerlink" title="4. 옵저버를 전에 선언한 배열에 넣어준다."></a>4. 옵저버를 전에 선언한 배열에 넣어준다.</h4><p>옵저버를 유지하는 역할을 한다.</p>
+<h4 id="5-옵저버를-deinit-시에-제거해준다"><a href="#5-옵저버를-deinit-시에-제거해준다" class="headerlink" title="5. 옵저버를 deinit 시에 제거해준다."></a>5. 옵저버를 deinit 시에 제거해준다.</h4><p>메모리 낭비 방지를 위해 deinit 시에 옵저버를 제거한다.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
 <li><a href="http://seorenn.blogspot.kr/2017/07/swift-4-kvo.html" target="_blank" rel="noopener">Swift 4 에서 KVO ​사용해보기</a></li>
 </ul>
 
