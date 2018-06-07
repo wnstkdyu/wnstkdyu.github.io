@@ -6,18 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Reference">
+    <meta name="description" content="The App Life Cycle앱은 사용자 정의 코드와 시스템 프레임워크 간의 정교한 상호 작용이다. 시스템 프레임워크는 모든 앱이 필요한 기본 기반 구조를 제공하고 당신은 해당 인프라를 사용자 정의하고 앱을 당신이 원하는 대로 꾸며주는 코드를 제공한다. 이를 효과적으로 하기 위해, iOS 인프라와 어떻게 이것이 동작하는 지에 관해 이해하는 것이 도움이">
 <meta name="keywords" content="App Life Cycle,The Main Run Loop">
 <meta property="og:type" content="article">
-<meta property="og:title" content="The App Programming Guide for iOS - The App Life Cycle">
+<meta property="og:title" content="The App Programming Guide for iOS - The App Life Cycle (2)">
 <meta property="og:url" content="https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/index.html">
 <meta property="og:site_name" content="PacaLog">
-<meta property="og:description" content="Reference">
+<meta property="og:description" content="The App Life Cycle앱은 사용자 정의 코드와 시스템 프레임워크 간의 정교한 상호 작용이다. 시스템 프레임워크는 모든 앱이 필요한 기본 기반 구조를 제공하고 당신은 해당 인프라를 사용자 정의하고 앱을 당신이 원하는 대로 꾸며주는 코드를 제공한다. 이를 효과적으로 하기 위해, iOS 인프라와 어떻게 이것이 동작하는 지에 관해 이해하는 것이 도움이">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-06-07T03:37:21.222Z">
+<meta property="og:image" content="https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/keyObjectsIniOSApp.png">
+<meta property="og:image" content="https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/eventdrawcycle.png">
+<meta property="og:image" content="https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/eventdrawcycle.png">
+<meta property="og:image" content="https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/appStateChange.png">
+<meta property="og:updated_time" content="2018-06-07T13:55:04.315Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="The App Programming Guide for iOS - The App Life Cycle">
-<meta name="twitter:description" content="Reference">
+<meta name="twitter:title" content="The App Programming Guide for iOS - The App Life Cycle (2)">
+<meta name="twitter:description" content="The App Life Cycle앱은 사용자 정의 코드와 시스템 프레임워크 간의 정교한 상호 작용이다. 시스템 프레임워크는 모든 앱이 필요한 기본 기반 구조를 제공하고 당신은 해당 인프라를 사용자 정의하고 앱을 당신이 원하는 대로 꾸며주는 코드를 제공한다. 이를 효과적으로 하기 위해, iOS 인프라와 어떻게 이것이 동작하는 지에 관해 이해하는 것이 도움이">
+<meta name="twitter:image" content="https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/keyObjectsIniOSApp.png">
     
     
         
@@ -37,7 +42,7 @@
         
     
     <!-- title -->
-    <title>The App Programming Guide for iOS - The App Life Cycle</title>
+    <title>The App Programming Guide for iOS - The App Life Cycle (2)</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- rss -->
@@ -82,20 +87,20 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&text=The App Programming Guide for iOS - The App Life Cycle"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=The App Programming Guide for iOS - The App Life Cycle"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&is_video=false&description=The App Programming Guide for iOS - The App Life Cycle"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=The App Programming Guide for iOS - The App Life Cycle&body=Check out this article: https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=The App Programming Guide for iOS - The App Life Cycle"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=The App Programming Guide for iOS - The App Life Cycle"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=The App Programming Guide for iOS - The App Life Cycle"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=The App Programming Guide for iOS - The App Life Cycle"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&name=The App Programming Guide for iOS - The App Life Cycle&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&text=The App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=The App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&is_video=false&description=The App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=The App Programming Guide for iOS - The App Life Cycle (2)&body=Check out this article: https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=The App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=The App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=The App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=The App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&name=The App Programming Guide for iOS - The App Life Cycle (2)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">1.</span> <span class="toc-text">Reference</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#The-App-Life-Cycle"><span class="toc-number">1.</span> <span class="toc-text">The App Life Cycle</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Main-Function"><span class="toc-number">1.1.</span> <span class="toc-text">The Main Function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Structure-of-an-App"><span class="toc-number">1.2.</span> <span class="toc-text">The Structure of an App</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#표-2-1-The-role-of-objects-in-an-iOS-app"><span class="toc-number">1.2.0.0.1.</span> <span class="toc-text">표 2-1 The role of objects in an iOS app</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Main-Run-Loop"><span class="toc-number">1.3.</span> <span class="toc-text">The Main Run Loop</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#표-2-2-Common-types-of-events-for-iOS-apps"><span class="toc-number">1.3.0.0.1.</span> <span class="toc-text">표 2-2 Common types of events for iOS apps</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Execution-States-for-Apps"><span class="toc-number">1.4.</span> <span class="toc-text">Execution States for Apps</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#표-2-3"><span class="toc-number">1.4.0.0.1.</span> <span class="toc-text">표 2-3</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#App-Termination"><span class="toc-number">1.5.</span> <span class="toc-text">App Termination</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Threads-and-Concurrency"><span class="toc-number">1.6.</span> <span class="toc-text">Threads and Concurrency</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">2.</span> <span class="toc-text">Reference</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -107,7 +112,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        The App Programming Guide for iOS - The App Life Cycle
+        The App Programming Guide for iOS - The App Life Cycle (2)
     </h1>
 
 
@@ -134,7 +139,99 @@
   
 
   <div class="content" itemprop="articleBody">
-    <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2>
+    <h2 id="The-App-Life-Cycle"><a href="#The-App-Life-Cycle" class="headerlink" title="The App Life Cycle"></a>The App Life Cycle</h2><p>앱은 사용자 정의 코드와 시스템 프레임워크 간의 정교한 상호 작용이다. 시스템 프레임워크는 모든 앱이 필요한 기본 기반 구조를 제공하고 당신은 해당 인프라를 사용자 정의하고 앱을 당신이 원하는 대로 꾸며주는 코드를 제공한다. 이를 효과적으로 하기 위해, iOS 인프라와 어떻게 이것이 동작하는 지에 관해 이해하는 것이 도움이 된다.</p>
+<p>iOS 프레임워크는 구현에 model-view-controller와 delegation 같은 디자인 패턴에 의존한다. 그러한 디자인 패턴을 이해하는 것은 앱을 성공적으로 만드는 데에 결정적이다. 또한 Objective-C 언어와 그것의 기능에 친숙해질 수 있게 도와준다. 당신이 iOS 프로그래밍이 처음이라면 <a href="https://developer.apple.com/library/archive/referencelibrary/GettingStarted/DevelopiOSAppsSwift/index.html#//apple_ref/doc/uid/TP40015214" target="_blank" rel="noopener"><em>Start Developing iOS Apps (Swift)</em></a>를 읽어 봐라.</p>
+<h3 id="The-Main-Function"><a href="#The-Main-Function" class="headerlink" title="The Main Function"></a>The Main Function</h3><p>C 기반의 모든 앱의 시작점은 <code>main</code> 함수이며 iOS 앱도 다르지 않다. 다른 점이라면 iOS 앱에서는 main 함수를 작성할 필요가 없다. 대신 Xcode가 기본 프로젝트의 일부로 이 함수를 만들어준다. 예외는 거의 없으며, 당신은 Xcode가 제공해주는 main 함수를 바꾸지 말아야 한다.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">&lt;UIKit/UIKit.h&gt;</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"AppDelegate.h"</span></span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> * argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    @autoreleasepool &#123;</span><br><span class="line">        <span class="keyword">return</span> UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>main 함수에 대해 언급할 것은 UIKit 프레임워크에 컨트롤을 넘긴다는 것이다. <code>UIApplicationMain</code> 함수는 앱의 핵심 객체들을 생성하고, 스토리보드 파일을 통해 유저 인터페이스를 로드하고, 초기 설정을 할 수 있도록 사용자 정의 코드를 호출하고, 앱의 런 루프를 실행시켜 이 프로세스를 처리한다. 당신이 제공해야 할 것은 스토리보드 파일과 사용자 정의 초기화 코드뿐이다.</p>
+<h3 id="The-Structure-of-an-App"><a href="#The-Structure-of-an-App" class="headerlink" title="The Structure of an App"></a>The Structure of an App</h3><p>시작하는 동안, <code>UIApplicationMain</code> 함수는 몇 가지 핵심 객체들을 생성하고 앱의 실행을 시작한다. 모든 iOS 앱의 중심은 <code>UIApplication</code> 객체인데 이것의 역할은 시스템과 앱 내의 다른 객체들 간의 상호 작용을 원활히 해주는 것이다. 2-1 그림은 대부분의 앱에서 볼 수 있는 객체들을 보여주며 표 2-1은 각각의 객체들이 하는 역할을 나열한다. 우선 알아야 할 점은 iOS 앱이 model-view-controller 구조를 사용한다는 것이다. 이 패턴은 앱의 데이타와 비지니스 로직을 데이타를 보여주는 부분과 분리한다. 이 구조는 다른 화면 크기를 가진 기기들에서 실행되는 앱을 만들 때 중요하다.</p>
+<img src="/2018/06/07/appprogrammingguidetheapplifecycle/keyObjectsIniOSApp.png" title="image">
+<h6 id="표-2-1-The-role-of-objects-in-an-iOS-app"><a href="#표-2-1-The-role-of-objects-in-an-iOS-app" class="headerlink" title="표 2-1 The role of objects in an iOS app"></a>표 2-1 The role of objects in an iOS app</h6><ul>
+<li><a href="https://developer.apple.com/documentation/uikit/uiapplication" target="_blank" rel="noopener">UIApplcation</a> 객체: <code>UIApplcation</code> 객체는 이벤트 루프와 다른 높은 수준의 앱의 동작을 관리한다. 또한 주요 앱 전환과 일부 특수 이벤트(예: 푸시 알림)들을 그것의 델리게이트에게 보고한다. UIApplcation 객체를 서브 클래싱하지말고 사용하라.</li>
+<li>App delegate 객체: 앱 델리게이트는 사용자 정의 코드의 핵심이다. 이 객체는 UIApplication 객체와 함께 동작하여 앱 초기화, 상태 전이 및 높은 수준의 앱 이벤트를 다룬다. 이 객체는 또한 모든 앱에 존재하는 유일한 객체이기 때문에 앱의 초기 자료 구조를 설정하는데 자주 사용된다.</li>
+<li>Documents and data model 객체: <em>Data model 객체</em>는 앱의 콘텐츠를 저장하며 당신의 앱에 맞춰져 있다. 예를 들어 금융 앱은 금융 거래가 포함된 데이터베이스를 저장할 수 있고 반면에, 페인팅 앱은 이미지 객체와 그리기 명령의 시퀀스를 저장할 수 있다. 앱은 또한 <em>document 객체</em>(<a href="https://developer.apple.com/documentation/uikit/uidocument" target="_blank" rel="noopener"><code>UIDocument</code></a>)의 하위 클래스)를 사용해 데이타 모델을 관리할 수 있다. 이 객체는 필수적이지는 않지만 단일 파일 또는 파일 패키지에 속한 데이터를 그룹화하는 편리한 방법을 제공한다. Documents에 관한 더 자세한 정보는 <a href="https://developer.apple.com/library/archive/documentation/DataManagement/Conceptual/DocumentBasedAppPGiOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011149" target="_blank" rel="noopener">Document-Based App Programming Guide for iOS</a>를 참고하라.</li>
+<li>View controller 객체: <em>View controller 객체</em>는 화면에 앱의 컨텐츠의 표시를 담당한다. 뷰 컨트롤러는 단일 뷰와 그 뷰의 하위 뷰들을 관리한다. 표시될 때, 뷰 컨트롤러는 앱의 윈도우에 뷰들을 설치하여 보이게 한다. <code>UIViewController</code> 클래스는 모든 뷰 컨트롤러 객체의 기본 클래스이다. 뷰를 로드하고 표시하고 기기가 돌아감에 따라 회전시키는 등 많은 여러 시스템 기본 행동들을 제공한다. UIKit은 이 밖에도 추가적인 뷰 컨트롤러 클래스들을 제공한다. 더 자세한 정보는 <a href="https://developer.apple.com/library/archive/featuredarticles/ViewControllerPGforiPhoneOS/index.html#//apple_ref/doc/uid/TP40007457" target="_blank" rel="noopener"><em>View Controller Programming Guide for iOS</em></a>를 찾아보자.</li>
+<li><a href="https://developer.apple.com/documentation/uikit/uiwindow" target="_blank" rel="noopener">UIWindow</a> 객체: <code>UIWindow</code> 객체는 화면의 하나 또는 그 이상의 뷰들을 조정한다. 대부분의 앱들은 하나의 윈도우를 가지고 이를 통해 메인 화면에 컨텐츠를 표시하지만, 외부 디스플레이에 표시될 추가적인 윈도우를 가질 수도 있다. 앱의 컨텐츠를 바꾸려면 뷰 컨트롤러를 사용해 해당 윈도우에 표시된 뷰를 바꿔야 한다. 결코 윈도우를 바꿔서는 안 된다. 뷰를 호스팅하는 역할 외에도 윈도우는 UIApplication 객체와 협력하여 뷰와 뷰 컨트롤러에 이벤트를 전달하는 역할도 가지고 있다.</li>
+<li>View 객체, control 객체 및 layer 객체: View와 controls는 앱 컨텐츠의 시각적 표현을 제공한다. <em>View</em>는 컨텐츠를 지정된 사각형 영역에서 그리고 그 지역 내의 이벤트를 받는 객체이다. <em>Controls</em>는 특별한 형태의 뷰로 버튼, 텍스트 필드, 토글 스위치 등을 구현한다. UIKit은 많은 다른 타입의 컨텐츠를 보여주는 기본 뷰들을 제공한다. 또한 당신은 UIView를 서브 클래싱하여 사용자 정의 뷰를 만들 수도 있다. 뷰와 컨트롤을 통합하는 것 외에도 앱은 Core Animation Layers를 뷰와 컨트롤 계층에 통합할 수 있다. <em>Layer</em> 객체는 보여지는 컨텐츠를 표현하는 데이터 객체이다. 뷰는 집중적으로 레이어 객체를 사용해 컨텐츠를 렌더링하는 데에 사용한다. 당신은 사용자 정의 레이어 객체를 더해 복잡한 애니메이션이나 시각 효과를 줄 수도 있다. </li>
+</ul>
+<p>iOS 앱과 다른 앱을 구별하는 것은 관리하는 데이터(및 해당 비즈니스 로직)와 데이터를 사용자에게 제공하는 방법이다. UIKit 객체와의 상호 작용은 앱을 정의하지는 않지만 당신이 그 동작을 정제하는 데에 도움을 준다. 예를 들어, 앱 델리게이트의 메서드들은 앱의 상태가 바뀔 때 사용자 정의 코드가 올바르게 대응되도록 당신에게 알려 준다.</p>
+<h3 id="The-Main-Run-Loop"><a href="#The-Main-Run-Loop" class="headerlink" title="The Main Run Loop"></a>The Main Run Loop</h3><p>앱의 <em>main run loop</em>는 유저와 관련된 모든 이벤트들을 처리한다. UIApplication 객체는 앱 시작 시, 메인 런 루프를 설정하고 이것을 이벤트 처리와 뷰 기반 인터페이스를 갱신하는 데에 사용한다. 이름에서 알 수 있듯이 메인 런 루프는 앱의 메인 스레드에서 동작한다. 이러한 동작은 사용자 관련 이벤트가 수신된 순서대로 순차적으로 처리되도록 한다.</p>
+<p>그림 2-2는 메인 런 루프의 구조와 앱에서 사용자 관련 이벤트로 인해 앱에서 어떻게 대응하는지를 보여준다. 유저가 기기와 상호 작용하면 그 상호 작용과 관련된 이벤트가 시스템에 의해 만들어지고 UIKit에 의해 설정된 특별한 포트를 통해 앱으로 전달된다. 이벤트들은 앱 안의 대기열에 넣어지고 실행을 위해 메인 런 루프에 넣어 진다. UIApplication 객체는 이벤트를 받고 무엇이 행해져야 하는지 결정을 내리는 첫 객체이다. 터치 이벤트는 대부분 메인 윈도우 객체에게 전달되고 결과적으로 터치가 일어난 뷰에 전달이 된다. 다른 이벤트는 다양한 앱의 객체들을 통해 조금 다른 경로를 거칠 수 있다.</p>
+<img src="/2018/06/07/appprogrammingguidetheapplifecycle/eventdrawcycle.png" title="image">
+<p>많은 타입의 이벤트들이 iOS 앱에서 전달될 수 있다. 가장 일반적인 것들이 표 2-2에 있는 것들이다. 이러한 이벤트 유형의 이벤트들이 앱의 메인 런 루프를 통해 전달되지만, 그렇지 않은 것들도 있다. 어떤 이벤트들은 델리게이트 객체나 당신이 제공한 블록으로 전달되는 경우도 있다. 터치, 원격 제어, 모션, 가속도계 및 자이로 스코프 이벤트를 비롯하여 대부분의 유형의 이벤트를 처리하는 방법에 대한 자세한 내용은 <em>Event Handling Guide for iOS</em>를 참조하라.</p>
+<h6 id="표-2-2-Common-types-of-events-for-iOS-apps"><a href="#표-2-2-Common-types-of-events-for-iOS-apps" class="headerlink" title="표 2-2 Common types of events for iOS apps"></a>표 2-2 Common types of events for iOS apps</h6><img src="/2018/06/07/appprogrammingguidetheapplifecycle/eventdrawcycle.png" title="image">
+<table>
+<thead>
+<tr>
+<th><center>이벤트 유형</center></th>
+<th><center>전달되는 곳</center></th>
+<th><center>설명</center></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Touch</td>
+<td>이벤트가 일어난 뷰 객체</td>
+<td>뷰는 리스폰더 객체이다. 해당 뷰에서 처리되지 않은 모든 터치 이벤트는 처리를 위해 리스폰더 체인에 전달된다.</td>
+</tr>
+<tr>
+<td>Remote control, Shake motion events</td>
+<td>First 리스폰더 객체</td>
+<td>원격 제어 이벤트는 헤드폰이나 다른 액세서리로부터 일어나는 미디어 재생 제어다.</td>
+</tr>
+<tr>
+<td>Accelerometer, Magnetometer, Gyroscope</td>
+<td>프로그래머가 지정한 객체</td>
+<td>가속도계, 자기계, 자이로스코프 연관 이벤트는 프로그래머가 지정한 객체로 전달된다.</td>
+</tr>
+<tr>
+<td>Location</td>
+<td>프로그래머가 지정한 객체</td>
+<td>Core Location 프레임워크를 통해 위치 이벤트 수신을 등록할 수 있다. Core Location에 관한 더 자세한 정보는 <a href="https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/LocationAwarenessPG/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009497" target="_blank" rel="noopener">Location and Maps Programming Guide</a>를 참조하라.</td>
+</tr>
+<tr>
+<td>Redraw</td>
+<td>갱신이 필요한 뷰</td>
+<td>다시 그리기 이벤트는 이벤트 객체를 포함하지는 않지만 해당 뷰에게 다시 그리기를 호출한다. iOS의 Drawing 구조는 <a href="https://developer.apple.com/library/archive/documentation/2DDrawing/Conceptual/DrawingPrintingiOS/Introduction/Introduction.html#//apple_ref/doc/uid/TP40010156" target="_blank" rel="noopener">Drawing and Printing Guide for iOS</a>에 설명되어 있다.</td>
+</tr>
+</tbody>
+</table>
+<p>터치나 원격 제어 이벤트는 앱의 리스폰더 객체에 의해서 다뤄진다. 리스폰더 객체는 앱의 모든 곳에 존재한다.(UIApplication 객체, 뷰 객체 및 뷰 컨트롤러 객체가 모두 리스폰더 객체에 해당된다.) 대부분의 이벤트는 특정 리스폰더 객체를 대상으로 하지만 다른 리스폰더 객체(리스폰더 체인)를 통해 전달될 수 있다. 예를 들어 이벤트를 처리하지 않는 뷰는 슈퍼 뷰나 뷰 컨트롤러에 이벤트를 전달할 수 있다.</p>
+<p>컨트롤(예: 버튼)에서 발생하는 터치 이벤트는 다른 여러 유형의 뷰에서 일어나는 터치 이벤트와 다르게 처리가 된다. 일반적으로 컨트롤에서 가능한 상호 작용은 제한되어 있으므로 이러한 상호 작용은 액션 메시지로 재포장되어 적절한 대상 객체에게 전달된다. 이 ‘타겟-액션’ 디자인 패턴은 앱에서 사용자 정의 코드의 실행을 야기하는 컨트롤을 사용하기 쉽도록 한다.</p>
+<h3 id="Execution-States-for-Apps"><a href="#Execution-States-for-Apps" class="headerlink" title="Execution States for Apps"></a>Execution States for Apps</h3><p>어떤 순간에도 당신의 앱은 표 2-3에 나열된 상태를 벗어나지 않는다. 시스템은 시스템 전체에서 일어나는 작업에 응답하여 앱의 상태를 변화시킨다. 예를 들어 유저가 홈 버튼을 누를 시, 전화가 올 시, 또는 여러 다른 간섭이 발생하면 현재 실행 중인 앱은 이에 대한 반응으로 상태를 변경한다. 그림 2-3은 상태에서 상태로 이동할 때 앱이 수행하는 경로를 보여준다.</p>
+<h6 id="표-2-3"><a href="#표-2-3" class="headerlink" title="표 2-3"></a>표 2-3</h6><ul>
+<li>Not running: 앱이 아직 실행되지 않았거나 실행 중이었지만 시스템에서 종료되었다.</li>
+<li>Inactive: 앱이 포그라운드에서 실행 중이지만 이벤트를 받지 않는 상태.(다른 코드를 실행하고 있을 수도 있다.) 앱은 대개 다른 상태로 넘어가가기 전, 잠깐 동안 이 상태에 머문다.</li>
+<li>Active: 앱이 포그라운드에서 실행중이고 이벤트를 받는 상태. 포 그라운드 앱의 일반적인 상태이다.</li>
+<li>BackGround: 앱이 백그라운드에 있지만 코드를 실행중인 상태. 대부분의 앱들은 일시 중지 상태로 가는 도중 잠시 이 상태가 된다. 하지만 추가적인 실행 시간을 요구하는 앱은 좀 더 이 상태에 머문다. 추가적으로 백그라운드로 시작되는 앱은 inactive 상태가 아닌 이 상태로 진입한다. 백그라운드에서 실행되는 코드에 대한 자세한 정보는 <a href="https://developer.apple.com/library/archive/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/BackgroundExecution/BackgroundExecution.html#//apple_ref/doc/uid/TP40007072-CH4-SW1" target="_blank" rel="noopener">Background Execution</a>를 참조하라.</li>
+<li>Suspended: 앱이 백그라운드에 있지만 실행중인 코드가 없는 상태. 시스템은 앱을 자동으로 이 상태로 옮기고 그렇게 하기 전에 알리지 않는다. 일시 중지된 앱은 메모리에 남아 있지만 어떤 코드도 실행하지 않는다.</li>
+</ul>
+<img src="/2018/06/07/appprogrammingguidetheapplifecycle/appStateChange.png" title="image">
+<p>대부분의 상태 전이는 대응되는 앱 델리게이트 객체의 메서드의 호출을 동반한다. 이 메서드들은 앱의 상태 변화에 적절히 대응할 수 있는 좋은 기회이다. 이러한 메서드와 사용 방법에 대한 요약이 아래에 나와 있다.</p>
+<ul>
+<li><a href="https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623032-application" target="_blank" rel="noopener">application:willFinishLaunchingWithOptions:</a>: 이 메서드는 앱 실행시 코드를 실행할 수 있는 첫 번째 기회이다.</li>
+<li><a href="https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622921-application" target="_blank" rel="noopener">application:didFinishLaunchingWithOptions:</a>: 앱이 사용자에게 보여지기 전 최종 조기화를 할 수 있다.</li>
+<li><a href="https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622956-applicationdidbecomeactive" target="_blank" rel="noopener">applicationDidBecomeActive:</a>: 앱이 포그라운드 앱이 될 것임을 알린다. 마지막 순간의 준비를 하라.</li>
+<li><a href="https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622950-applicationwillresignactive" target="_blank" rel="noopener">applicationWillResignActive:</a>: 앱이 포그라운드 앱에서 벗어날 것임을 알려준다. 이 메서드를 통해 앱을 조용한 상태로 만든다.</li>
+<li><a href="https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622997-applicationdidenterbackground" target="_blank" rel="noopener">applicationDidEnterBackground:</a>: 앱이 백그라운드 상태에서 실행중이고 언제든지 일시 중지될 수 있음을 나타낸다.</li>
+<li><a href="https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623076-applicationwillenterforeground" target="_blank" rel="noopener">applicationWillEnterForeground:</a>: 앱이 백그라운드를 벗어나 포그라운드로 다시 돌아오지만 아직 활성 상태는 아님을 알려준다.</li>
+<li><a href="https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623111-applicationwillterminate" target="_blank" rel="noopener">applicationWillTerminate:</a>: 앱이 종료 중임을 알려 준다. 앱이 일시 중지 상태일 경우 이 메서드는 불리지 않는다.</li>
+</ul>
+<h3 id="App-Termination"><a href="#App-Termination" class="headerlink" title="App Termination"></a>App Termination</h3><p>앱은 언제든지 종료 될 수 있도록 준비되어야 하며 유저 데이터를 저장하거나 중요한 작업을 수행하기 위해 기다리지 않아야 한다. 시스템이 야기하는 종료는 앱 생명 주기에서 일반적인 부분이다. 시스템은 대개 앱을 종료하고 해당 메모리를 회수해 유저에 의해 실행될 다른 앱을 위한 공간을 만들지만 잘못 동작하거나 적시에 이벤트에 응답하지 않는 앱을 종료할 수도 있다.</p>
+<p>정지 상태의 앱은 종료될 때 아무런 알림도 받지 않는다. 시스템은 프로세스를 종료하고 해당 메모리를 회수한다. 만약 앱이 백그라운드에서 실행중이고 정지된 상태가 아니면, 시스템은 앱 델리게이트 메서드인 <code>applicationWillTerminate:</code>를 종료 전 호출해준다. 기기 재부팅 시에는 이 메서드를 부르지 않는다.</p>
+<p>앱을 종료하는 시스템 외에도 사용자는 앱을 멀티태스킹 UI를 통해 종료할 수 있다. 유저에 의한 종료는 정지된 앱을 종료하는 것과 같은 효과를 가진다. 앱 프로세스는 종료되고 앱은 아무런 알림도 받지 않는다.</p>
+<h3 id="Threads-and-Concurrency"><a href="#Threads-and-Concurrency" class="headerlink" title="Threads and Concurrency"></a>Threads and Concurrency</h3><p>시스템은 앱의 메인스레드를 만들고 당신은 다른 작업을 수행할 필요가 있을 때 추가적인 스레드를 만들 수 있다. iOS 앱의 경우 스레드를 직접 만들고 관리하는 대신 Grand Central Dispatch(GCD), Operation 객체 및 기타 비동기 프로그래밍 인터페이스를 사용하는 것이 좋다. GCD와 같은 기술은 어떤 작업을 하고 싶은지와 순서를 정의하지만 사용 가능한 CPU 내에서 해당 작업을 가장 효과적으로 실행하는 방법을 시스템에게 결정하도록 한다. 시스템에게 스레드 관리를 맡기는 것은 작성해야 하는 코드가 단순해지고 코드의 정확성을 보장하는 것이 쉬워지며 전반적인 성능을 향상시킨다.</p>
+<p>스레드와 동시성을 생각할 때, 다음을 고려하시오:</p>
+<ul>
+<li>뷰, Core Animation 및 많은 UIKit 클래스와 관련된 작업은 일반적으로 앱의 메인스레드에서 일어나야 한다. 이 규칙에는 몇 가지 예외가 있다. 예를 들어 이미지 기반 조작은 백그라운드 스레드에서 일어날 수 있지만 의심 스러울 때는 작업이 메인 스레드에서 발생해야 한다고 가정한다.</li>
+<li>시간이 걸리는 작업(또는 잠재적으로 시간이 걸릴 것 같은 작업)은 항상 백그라운드 스레드에서 수행되는 것이 좋다. 네트워크 액세스, 파일 액세스 또는 많은 양의 데이터 프로세싱과 관련된 작업은 모두 GCD와 Operation 객체를 사용해 비동기적으로 수행되어야 한다.</li>
+<li>앱 실행 시, 가능한 작업들을 메인 스레드에서 하지 말아라. 실행 시, 앱은 가능한 한 빠르게 유저 인터페이스를 설정하는 시간을 사용해야 한다. 유저 인터페이스를 설정하는 데 기여하는 작업들이 메인 스레드에서 수행되어야 한다. 다른 모든 작업들은 비동기적으로 수행되어야 하고 결과가 준비되는 즉시 사용자에게 표시된다.</li>
+</ul>
+<p>GCD와 operation 객체를 사용해 작업을 수행하는 것에 대해 더 알고 싶다면, <a href="https://developer.apple.com/library/archive/documentation/General/Conceptual/ConcurrencyProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40008091" target="_blank" rel="noopener">Concurrency Programming Guide</a>를 참고하라.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://developer.apple.com/library/archive/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/TheAppLifeCycle/TheAppLifeCycle.html#//apple_ref/doc/uid/TP40007072-CH2-SW1" target="_blank" rel="noopener">App Programming Guide for iOS - The App Life Cycle</a></li>
+</ul>
+
   </div>
 </article>
 
@@ -164,21 +261,21 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">1.</span> <span class="toc-text">Reference</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#The-App-Life-Cycle"><span class="toc-number">1.</span> <span class="toc-text">The App Life Cycle</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Main-Function"><span class="toc-number">1.1.</span> <span class="toc-text">The Main Function</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Structure-of-an-App"><span class="toc-number">1.2.</span> <span class="toc-text">The Structure of an App</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#표-2-1-The-role-of-objects-in-an-iOS-app"><span class="toc-number">1.2.0.0.1.</span> <span class="toc-text">표 2-1 The role of objects in an iOS app</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Main-Run-Loop"><span class="toc-number">1.3.</span> <span class="toc-text">The Main Run Loop</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#표-2-2-Common-types-of-events-for-iOS-apps"><span class="toc-number">1.3.0.0.1.</span> <span class="toc-text">표 2-2 Common types of events for iOS apps</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Execution-States-for-Apps"><span class="toc-number">1.4.</span> <span class="toc-text">Execution States for Apps</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#표-2-3"><span class="toc-number">1.4.0.0.1.</span> <span class="toc-text">표 2-3</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#App-Termination"><span class="toc-number">1.5.</span> <span class="toc-text">App Termination</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Threads-and-Concurrency"><span class="toc-number">1.6.</span> <span class="toc-text">Threads and Concurrency</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">2.</span> <span class="toc-text">Reference</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&text=The App Programming Guide for iOS - The App Life Cycle"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=The App Programming Guide for iOS - The App Life Cycle"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&is_video=false&description=The App Programming Guide for iOS - The App Life Cycle"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=The App Programming Guide for iOS - The App Life Cycle&body=Check out this article: https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=The App Programming Guide for iOS - The App Life Cycle"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=The App Programming Guide for iOS - The App Life Cycle"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=The App Programming Guide for iOS - The App Life Cycle"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=The App Programming Guide for iOS - The App Life Cycle"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&name=The App Programming Guide for iOS - The App Life Cycle&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&text=The App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=The App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&is_video=false&description=The App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=The App Programming Guide for iOS - The App Life Cycle (2)&body=Check out this article: https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=The App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=The App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=The App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=The App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&name=The App Programming Guide for iOS - The App Life Cycle (2)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
