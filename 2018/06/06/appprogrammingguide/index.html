@@ -7,16 +7,16 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="간단한 번역이며 생략되거나 줄인 부분이 많습니다. 원문도 같이 보시면 좋을 것 같습니다. IntroductionAbout iOS App Architecture앱은 유저에게 훌륭한 경험을 전달하기 위해 iOS와 협력해야 한다. 좋은 디자인과 유저 인터페이스를 넘어서 훌륭한 유저 경험은 다른 많은 요인들을 포함한다. 유저는 iOS 앱이 빠르게 반응하고 가능한">
-<meta name="keywords" content="App Life Cycle">
+<meta name="keywords" content="Bundle,Info.plist,User Privacy">
 <meta property="og:type" content="article">
-<meta property="og:title" content="App Programming Guide - Introduction &amp; Expected App Behaviors (1)">
+<meta property="og:title" content="App Programming Guide for iOS - Introduction &amp; Expected App Behaviors (1)">
 <meta property="og:url" content="https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/index.html">
 <meta property="og:site_name" content="PacaLog">
 <meta property="og:description" content="간단한 번역이며 생략되거나 줄인 부분이 많습니다. 원문도 같이 보시면 좋을 것 같습니다. IntroductionAbout iOS App Architecture앱은 유저에게 훌륭한 경험을 전달하기 위해 iOS와 협력해야 한다. 좋은 디자인과 유저 인터페이스를 넘어서 훌륭한 유저 경험은 다른 많은 요인들을 포함한다. 유저는 iOS 앱이 빠르게 반응하고 가능한">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-06-06T18:10:46.995Z">
+<meta property="og:updated_time" content="2018-06-07T03:36:34.434Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="App Programming Guide - Introduction &amp; Expected App Behaviors (1)">
+<meta name="twitter:title" content="App Programming Guide for iOS - Introduction &amp; Expected App Behaviors (1)">
 <meta name="twitter:description" content="간단한 번역이며 생략되거나 줄인 부분이 많습니다. 원문도 같이 보시면 좋을 것 같습니다. IntroductionAbout iOS App Architecture앱은 유저에게 훌륭한 경험을 전달하기 위해 iOS와 협력해야 한다. 좋은 디자인과 유저 인터페이스를 넘어서 훌륭한 유저 경험은 다른 많은 요인들을 포함한다. 유저는 iOS 앱이 빠르게 반응하고 가능한">
     
     
@@ -37,7 +37,7 @@
         
     
     <!-- title -->
-    <title>App Programming Guide - Introduction &amp; Expected App Behaviors (1)</title>
+    <title>App Programming Guide for iOS - Introduction &amp; Expected App Behaviors (1)</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- rss -->
@@ -67,6 +67,8 @@
     <span id="actions">
       <ul>
         
+        <li><a class="icon" href="/2018/06/07/appprogrammingguidetheapplifecycle/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
         
         <li><a class="icon" href="/2018/05/20/swiftykvo/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
@@ -82,15 +84,15 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/&text=App Programming Guide - Introduction &amp; Expected App Behaviors (1)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/&title=App Programming Guide - Introduction &amp; Expected App Behaviors (1)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/&is_video=false&description=App Programming Guide - Introduction &amp; Expected App Behaviors (1)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=App Programming Guide - Introduction &amp; Expected App Behaviors (1)&body=Check out this article: https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/&title=App Programming Guide - Introduction &amp; Expected App Behaviors (1)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/&title=App Programming Guide - Introduction &amp; Expected App Behaviors (1)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/&title=App Programming Guide - Introduction &amp; Expected App Behaviors (1)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/&title=App Programming Guide - Introduction &amp; Expected App Behaviors (1)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/&name=App Programming Guide - Introduction &amp; Expected App Behaviors (1)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/&text=App Programming Guide for iOS - Introduction &amp; Expected App Behaviors (1)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/&title=App Programming Guide for iOS - Introduction &amp; Expected App Behaviors (1)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/&is_video=false&description=App Programming Guide for iOS - Introduction &amp; Expected App Behaviors (1)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=App Programming Guide for iOS - Introduction &amp; Expected App Behaviors (1)&body=Check out this article: https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/&title=App Programming Guide for iOS - Introduction &amp; Expected App Behaviors (1)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/&title=App Programming Guide for iOS - Introduction &amp; Expected App Behaviors (1)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/&title=App Programming Guide for iOS - Introduction &amp; Expected App Behaviors (1)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/&title=App Programming Guide for iOS - Introduction &amp; Expected App Behaviors (1)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/&name=App Programming Guide for iOS - Introduction &amp; Expected App Behaviors (1)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -107,7 +109,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        App Programming Guide - Introduction &amp; Expected App Behaviors (1)
+        App Programming Guide for iOS - Introduction &amp; Expected App Behaviors (1)
     </h1>
 
 
@@ -125,7 +127,7 @@
       
     <div class="article-tag">
         <i class="fas fa-tag"></i>
-        <a class="tag-link" href="/tags/App-Life-Cycle/">App Life Cycle</a>
+        <a class="tag-link" href="/tags/Bundle/">Bundle</a>, <a class="tag-link" href="/tags/Info-plist/">Info.plist</a>, <a class="tag-link" href="/tags/User-Privacy/">User Privacy</a>
     </div>
 
 
@@ -241,15 +243,15 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/&text=App Programming Guide - Introduction &amp; Expected App Behaviors (1)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/&title=App Programming Guide - Introduction &amp; Expected App Behaviors (1)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/&is_video=false&description=App Programming Guide - Introduction &amp; Expected App Behaviors (1)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=App Programming Guide - Introduction &amp; Expected App Behaviors (1)&body=Check out this article: https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/&title=App Programming Guide - Introduction &amp; Expected App Behaviors (1)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/&title=App Programming Guide - Introduction &amp; Expected App Behaviors (1)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/&title=App Programming Guide - Introduction &amp; Expected App Behaviors (1)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/&title=App Programming Guide - Introduction &amp; Expected App Behaviors (1)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/&name=App Programming Guide - Introduction &amp; Expected App Behaviors (1)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/&text=App Programming Guide for iOS - Introduction &amp; Expected App Behaviors (1)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/&title=App Programming Guide for iOS - Introduction &amp; Expected App Behaviors (1)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/&is_video=false&description=App Programming Guide for iOS - Introduction &amp; Expected App Behaviors (1)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=App Programming Guide for iOS - Introduction &amp; Expected App Behaviors (1)&body=Check out this article: https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/&title=App Programming Guide for iOS - Introduction &amp; Expected App Behaviors (1)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/&title=App Programming Guide for iOS - Introduction &amp; Expected App Behaviors (1)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/&title=App Programming Guide for iOS - Introduction &amp; Expected App Behaviors (1)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/&title=App Programming Guide for iOS - Introduction &amp; Expected App Behaviors (1)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/06/06/appprogrammingguide/&name=App Programming Guide for iOS - Introduction &amp; Expected App Behaviors (1)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
