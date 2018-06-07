@@ -9,7 +9,7 @@
     <meta name="description" content="The App Life Cycle앱은 사용자 정의 코드와 시스템 프레임워크 간의 정교한 상호 작용이다. 시스템 프레임워크는 모든 앱이 필요한 기본 기반 구조를 제공하고 당신은 해당 인프라를 사용자 정의하고 앱을 당신이 원하는 대로 꾸며주는 코드를 제공한다. 이를 효과적으로 하기 위해, iOS 인프라와 어떻게 이것이 동작하는 지에 관해 이해하는 것이 도움이">
 <meta name="keywords" content="App Life Cycle,The Main Run Loop">
 <meta property="og:type" content="article">
-<meta property="og:title" content="The App Programming Guide for iOS - The App Life Cycle (2)">
+<meta property="og:title" content="App Programming Guide for iOS - The App Life Cycle (2)">
 <meta property="og:url" content="https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/index.html">
 <meta property="og:site_name" content="PacaLog">
 <meta property="og:description" content="The App Life Cycle앱은 사용자 정의 코드와 시스템 프레임워크 간의 정교한 상호 작용이다. 시스템 프레임워크는 모든 앱이 필요한 기본 기반 구조를 제공하고 당신은 해당 인프라를 사용자 정의하고 앱을 당신이 원하는 대로 꾸며주는 코드를 제공한다. 이를 효과적으로 하기 위해, iOS 인프라와 어떻게 이것이 동작하는 지에 관해 이해하는 것이 도움이">
@@ -18,9 +18,9 @@
 <meta property="og:image" content="https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/eventdrawcycle.png">
 <meta property="og:image" content="https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/eventdrawcycle.png">
 <meta property="og:image" content="https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/appStateChange.png">
-<meta property="og:updated_time" content="2018-06-07T13:55:04.315Z">
+<meta property="og:updated_time" content="2018-06-07T13:56:30.916Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="The App Programming Guide for iOS - The App Life Cycle (2)">
+<meta name="twitter:title" content="App Programming Guide for iOS - The App Life Cycle (2)">
 <meta name="twitter:description" content="The App Life Cycle앱은 사용자 정의 코드와 시스템 프레임워크 간의 정교한 상호 작용이다. 시스템 프레임워크는 모든 앱이 필요한 기본 기반 구조를 제공하고 당신은 해당 인프라를 사용자 정의하고 앱을 당신이 원하는 대로 꾸며주는 코드를 제공한다. 이를 효과적으로 하기 위해, iOS 인프라와 어떻게 이것이 동작하는 지에 관해 이해하는 것이 도움이">
 <meta name="twitter:image" content="https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/keyObjectsIniOSApp.png">
     
@@ -42,7 +42,7 @@
         
     
     <!-- title -->
-    <title>The App Programming Guide for iOS - The App Life Cycle (2)</title>
+    <title>App Programming Guide for iOS - The App Life Cycle (2)</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- rss -->
@@ -87,15 +87,15 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&text=The App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=The App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&is_video=false&description=The App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=The App Programming Guide for iOS - The App Life Cycle (2)&body=Check out this article: https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=The App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=The App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=The App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=The App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&name=The App Programming Guide for iOS - The App Life Cycle (2)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&text=App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&is_video=false&description=App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=App Programming Guide for iOS - The App Life Cycle (2)&body=Check out this article: https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&name=App Programming Guide for iOS - The App Life Cycle (2)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -112,7 +112,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        The App Programming Guide for iOS - The App Life Cycle (2)
+        App Programming Guide for iOS - The App Life Cycle (2)
     </h1>
 
 
@@ -267,15 +267,15 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&text=The App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=The App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&is_video=false&description=The App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=The App Programming Guide for iOS - The App Life Cycle (2)&body=Check out this article: https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=The App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=The App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=The App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=The App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&name=The App Programming Guide for iOS - The App Life Cycle (2)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&text=App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&is_video=false&description=App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=App Programming Guide for iOS - The App Life Cycle (2)&body=Check out this article: https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&title=App Programming Guide for iOS - The App Life Cycle (2)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/&name=App Programming Guide for iOS - The App Life Cycle (2)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
