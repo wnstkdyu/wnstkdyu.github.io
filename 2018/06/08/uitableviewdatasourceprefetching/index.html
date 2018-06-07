@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="WWDC 2018의 What’s New in Cocoa Touch를 보던 중 스크롤 성능에 관한 주제가 나오게 되었고 iOS 10에서 나왔던 UITableView와 UICollectionView에서 사용할 수 있는 prefetch 관련 메서드 이야기가 나와 공부하게 되었다. Background사용자는 스크롤이 부드럽게 되기를 기대한다. 하지만 셀을 구성하는">
+<meta name="keywords" content="Performance,UITableView">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UITableViewDataSourcePrefetching 프로토콜">
+<meta property="og:url" content="https://wnstkdyu.github.io/2018/06/08/uitableviewdatasourceprefetching/index.html">
+<meta property="og:site_name" content="PacaLog">
+<meta property="og:description" content="WWDC 2018의 What’s New in Cocoa Touch를 보던 중 스크롤 성능에 관한 주제가 나오게 되었고 iOS 10에서 나왔던 UITableView와 UICollectionView에서 사용할 수 있는 prefetch 관련 메서드 이야기가 나와 공부하게 되었다. Background사용자는 스크롤이 부드럽게 되기를 기대한다. 하지만 셀을 구성하는">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://wnstkdyu.github.io/2018/06/08/uitableviewdatasourceprefetching/droppedframe.png">
+<meta property="og:updated_time" content="2018-06-07T17:09:32.012Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="UITableViewDataSourcePrefetching 프로토콜">
+<meta name="twitter:description" content="WWDC 2018의 What’s New in Cocoa Touch를 보던 중 스크롤 성능에 관한 주제가 나오게 되었고 iOS 10에서 나왔던 UITableView와 UICollectionView에서 사용할 수 있는 prefetch 관련 메서드 이야기가 나와 공부하게 되었다. Background사용자는 스크롤이 부드럽게 되기를 기대한다. 하지만 셀을 구성하는">
+<meta name="twitter:image" content="https://wnstkdyu.github.io/2018/06/08/uitableviewdatasourceprefetching/droppedframe.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>UITableViewDataSourcePrefetching 프로토콜</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2018/06/07/appprogrammingguidetheapplifecycle/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/06/08/uitableviewdatasourceprefetching/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/06/08/uitableviewdatasourceprefetching/&text=UITableViewDataSourcePrefetching 프로토콜"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/06/08/uitableviewdatasourceprefetching/&title=UITableViewDataSourcePrefetching 프로토콜"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/06/08/uitableviewdatasourceprefetching/&is_video=false&description=UITableViewDataSourcePrefetching 프로토콜"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=UITableViewDataSourcePrefetching 프로토콜&body=Check out this article: https://wnstkdyu.github.io/2018/06/08/uitableviewdatasourceprefetching/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/06/08/uitableviewdatasourceprefetching/&title=UITableViewDataSourcePrefetching 프로토콜"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/06/08/uitableviewdatasourceprefetching/&title=UITableViewDataSourcePrefetching 프로토콜"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/06/08/uitableviewdatasourceprefetching/&title=UITableViewDataSourcePrefetching 프로토콜"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/06/08/uitableviewdatasourceprefetching/&title=UITableViewDataSourcePrefetching 프로토콜"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/06/08/uitableviewdatasourceprefetching/&name=UITableViewDataSourcePrefetching 프로토콜&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Background"><span class="toc-number">1.</span> <span class="toc-text">Background</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution"><span class="toc-number">2.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UITableViewDataSourcePrefetching"><span class="toc-number"></span> <span class="toc-text">UITableViewDataSourcePrefetching?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#메서드"><span class="toc-number">1.</span> <span class="toc-text">메서드</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number"></span> <span class="toc-text">Reference</span></a>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        UITableViewDataSourcePrefetching 프로토콜
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">PacaLog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-06-07T16:13:40.000Z" itemprop="datePublished">2018-06-08</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Performance/">Performance</a>, <a class="tag-link" href="/tags/UITableView/">UITableView</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>WWDC 2018의 <a href="https://developer.apple.com/videos/play/wwdc2018/202/" target="_blank" rel="noopener">What’s New in Cocoa Touch</a>를 보던 중 스크롤 성능에 관한 주제가 나오게 되었고 iOS 10에서 나왔던 UITableView와 UICollectionView에서 사용할 수 있는 prefetch 관련 메서드 이야기가 나와 공부하게 되었다.</p>
+<h3 id="Background"><a href="#Background" class="headerlink" title="Background"></a>Background</h3><p>사용자는 스크롤이 부드럽게 되기를 기대한다. 하지만 셀을 구성하는 데 무거운 작업이 필요할 경우 스크롤이 늦어지는 데 이를 <em>프레임 드랍</em>이라고 한다. WWDC 2016의 <a href="https://developer.apple.com/videos/play/wwdc2016/219/" target="_blank" rel="noopener">What’s New in UICollectionView in iOS 10</a>에 따르면 부드러운 스크롤링이 되기 위해서는 앱이 초당 60 프레임(60 FPS)을 제공해야 한다. 다시 말하면, 각 프레임이 약 16 ms마다 그려져야 한다는 것이다. 하지만 이것을 제공하지 못하는 경우가 생기는데 이 때, 스크롤링이 버벅이게 된다.</p>
+<img src="/2018/06/08/uitableviewdatasourceprefetching/droppedframe.png" title="image">
+<h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>iOS 10에는 iOS 9과 다른 점이 몇 가지 있다.</p>
+<ol>
+<li>cell이 보이지 않게 되었을 때 바로 재사용 큐에 넣지 않는다: iOS 9까지는 보이지 않게 된 셀을 바로 재사용 큐에 넣었었다. 이렇게 될 경우 사용자가 위로 스크롤을 할 경우 데이터를 불러오는 작업을 다시 수행해야 한다는 단점이 생긴다. 이 작업은 무거운 작업이기 때문에 iOS 10에서는 조금 더 시간을 가진 뒤에 셀을 재사용 큐에 넣는 방식을 택했다. 물론 <code>didEndDisplayingCell</code>은 전과 같이 호출되지만 셀이 보이지 않다가 다시 보일 경우 다시 <code>cellForRowAt</code>이 불리지 않고 <code>willDisplayCell</code>만 불리게 된다.</li>
+<li>멀티 칼럼의 경우 각각의 셀이 독립적으로 보이게 된다.</li>
+</ol>
+<p>iOS 10에서 스크롤링을 할 경우 이러한 것들이 반영이 되어 iOS 9보다 훨씬 나은 스크롤링을 보여준다. 그러나 애플은 한 걸음 더 나아가 Prefetching 기술을 소개했다.</p>
+<h2 id="UITableViewDataSourcePrefetching"><a href="#UITableViewDataSourcePrefetching" class="headerlink" title="UITableViewDataSourcePrefetching?"></a>UITableViewDataSourcePrefetching?</h2><p>iOS 10 이상부터 사용할 수 있으며 셀을 구성하는 데이터를 불러오는 작업을 미리 할 수 있는 프로토콜이다. </p>
+<p>셀을 구성하는 데이터를 불러오는 작업이 무거울 경우, <code>cellForRowAt</code>에서 이것을 다 하면 무리가 갈 것이다. 셀을 구성하는 작업을 메인 스레드에서 다 하고 있는데 <strong>그 작업을 백그라운드로 옮겨와 처리하자는 것이 핵심</strong>이다.</p>
+<p>여기서 중요한 것은 <strong>이것이 기존의 데이터 모델을 구성하는 로직을 대체하는 것이 아니라는 것</strong>이다. 대신 기존의 비동기 로직을 도와주고 테이블 뷰와 컬렉션 뷰가 컨텐츠를 불러올 때 추가적인 힌트를 제공한다고 생각하면 된다.</p>
+<h3 id="메서드"><a href="#메서드" class="headerlink" title="메서드"></a>메서드</h3><p>두 가지 핵심 메서드가 있다.<br>–    <a href="developer.apple.com/documentation/uikit/uitableviewdatasourceprefetching/1771764-tableviewAGENDA-INSERTION-POINT"><code>tableView(_:prefetchRowsAt:)</code></a>: [IndexPath]에 해당되는 셀에 필요한 데이터를 미리 받아온다. 주로 GCD나 Operation으로 비동기 처리 작업을 명시한다. 필수적으로 구현해야 한다.<br>–    <a href="developer.apple.com/documentation/uikit/uitableviewdatasourceprefetching/1771765-tableviewAGENDA-INSERTION-POINT"><code>tableView(_:cancelPrefetchingForRowsAt:)</code></a>: 더 이상 prefetch가 필요치 않은 셀들에 대해 작업을 취소하는 메서드이다. 주로 스크롤의 방향을 반대로 할 때 작업을 취소한다. 옵셔널하게 구현한다.</p>
+<p>이 기술은 <em>보조 기술(Adaptive Technology)</em>이기 때문에 불리지 않을 수도 있다. 그래서 <code>cellForRowAt</code> 메서드에서 다음과 같은 3가지 상황을 모두 처리해줘야 한다.</p>
+<ul>
+<li>prefetch가 끝나 보여줄 준비가 된 상황</li>
+<li>prefetch를 하는 중이라 보여줄 준비가 되지 않은 상황</li>
+<li>요청조차 되지 않은 상황</li>
+</ul>
+<p>즉, 표시할 데이터가 있는지 확인한 뒤 있다면 바로 보여주고 없다면 새로 요청을 하여 셀을 업데이트 해야 한다.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://developer.apple.com/documentation/uikit/uitableviewdatasourceprefetching" target="_blank" rel="noopener">Apple Developer Documentation - UITableViewDataSourcePrefetching</a></li>
+<li><a href="https://andreygordeev.com/2017/02/20/uitableview-prefetching/" target="_blank" rel="noopener">Prefetching for UITableView</a></li>
+<li></li>
+</ul>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Background"><span class="toc-number">1.</span> <span class="toc-text">Background</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Solution"><span class="toc-number">2.</span> <span class="toc-text">Solution</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UITableViewDataSourcePrefetching"><span class="toc-number"></span> <span class="toc-text">UITableViewDataSourcePrefetching?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#메서드"><span class="toc-number">1.</span> <span class="toc-text">메서드</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number"></span> <span class="toc-text">Reference</span></a>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/06/08/uitableviewdatasourceprefetching/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/06/08/uitableviewdatasourceprefetching/&text=UITableViewDataSourcePrefetching 프로토콜"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/06/08/uitableviewdatasourceprefetching/&title=UITableViewDataSourcePrefetching 프로토콜"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/06/08/uitableviewdatasourceprefetching/&is_video=false&description=UITableViewDataSourcePrefetching 프로토콜"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=UITableViewDataSourcePrefetching 프로토콜&body=Check out this article: https://wnstkdyu.github.io/2018/06/08/uitableviewdatasourceprefetching/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/06/08/uitableviewdatasourceprefetching/&title=UITableViewDataSourcePrefetching 프로토콜"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/06/08/uitableviewdatasourceprefetching/&title=UITableViewDataSourcePrefetching 프로토콜"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/06/08/uitableviewdatasourceprefetching/&title=UITableViewDataSourcePrefetching 프로토콜"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/06/08/uitableviewdatasourceprefetching/&title=UITableViewDataSourcePrefetching 프로토콜"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/06/08/uitableviewdatasourceprefetching/&name=UITableViewDataSourcePrefetching 프로토콜&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Alpaca
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-116302583-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'alpacablog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
