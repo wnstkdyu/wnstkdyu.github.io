@@ -16,9 +16,8 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/keyObjectsIniOSApp.png">
 <meta property="og:image" content="https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/eventdrawcycle.png">
-<meta property="og:image" content="https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/eventdrawcycle.png">
 <meta property="og:image" content="https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/appStateChange.png">
-<meta property="og:updated_time" content="2018-06-07T13:56:30.916Z">
+<meta property="og:updated_time" content="2018-06-08T08:28:44.828Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="App Programming Guide for iOS - The App Life Cycle (2)">
 <meta name="twitter:description" content="The App Life Cycle앱은 사용자 정의 코드와 시스템 프레임워크 간의 정교한 상호 작용이다. 시스템 프레임워크는 모든 앱이 필요한 기본 기반 구조를 제공하고 당신은 해당 인프라를 사용자 정의하고 앱을 당신이 원하는 대로 꾸며주는 코드를 제공한다. 이를 효과적으로 하기 위해, iOS 인프라와 어떻게 이것이 동작하는 지에 관해 이해하는 것이 도움이">
@@ -161,8 +160,7 @@
 <p>그림 2-2는 메인 런 루프의 구조와 앱에서 사용자 관련 이벤트로 인해 앱에서 어떻게 대응하는지를 보여준다. 유저가 기기와 상호 작용하면 그 상호 작용과 관련된 이벤트가 시스템에 의해 만들어지고 UIKit에 의해 설정된 특별한 포트를 통해 앱으로 전달된다. 이벤트들은 앱 안의 대기열에 넣어지고 실행을 위해 메인 런 루프에 넣어 진다. UIApplication 객체는 이벤트를 받고 무엇이 행해져야 하는지 결정을 내리는 첫 객체이다. 터치 이벤트는 대부분 메인 윈도우 객체에게 전달되고 결과적으로 터치가 일어난 뷰에 전달이 된다. 다른 이벤트는 다양한 앱의 객체들을 통해 조금 다른 경로를 거칠 수 있다.</p>
 <img src="/2018/06/07/appprogrammingguidetheapplifecycle/eventdrawcycle.png" title="image">
 <p>많은 타입의 이벤트들이 iOS 앱에서 전달될 수 있다. 가장 일반적인 것들이 표 2-2에 있는 것들이다. 이러한 이벤트 유형의 이벤트들이 앱의 메인 런 루프를 통해 전달되지만, 그렇지 않은 것들도 있다. 어떤 이벤트들은 델리게이트 객체나 당신이 제공한 블록으로 전달되는 경우도 있다. 터치, 원격 제어, 모션, 가속도계 및 자이로 스코프 이벤트를 비롯하여 대부분의 유형의 이벤트를 처리하는 방법에 대한 자세한 내용은 <em>Event Handling Guide for iOS</em>를 참조하라.</p>
-<h6 id="표-2-2-Common-types-of-events-for-iOS-apps"><a href="#표-2-2-Common-types-of-events-for-iOS-apps" class="headerlink" title="표 2-2 Common types of events for iOS apps"></a>표 2-2 Common types of events for iOS apps</h6><img src="/2018/06/07/appprogrammingguidetheapplifecycle/eventdrawcycle.png" title="image">
-<table>
+<h6 id="표-2-2-Common-types-of-events-for-iOS-apps"><a href="#표-2-2-Common-types-of-events-for-iOS-apps" class="headerlink" title="표 2-2 Common types of events for iOS apps"></a>표 2-2 Common types of events for iOS apps</h6><table>
 <thead>
 <tr>
 <th><center>이벤트 유형</center></th>

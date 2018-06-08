@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="PacaLog">
 <meta property="og:description" content="간단한 번역이며 생략되거나 줄인 부분이 많습니다. 원문도 같이 보시면 좋을 것 같습니다. IntroductionAbout iOS App Architecture앱은 유저에게 훌륭한 경험을 전달하기 위해 iOS와 협력해야 한다. 좋은 디자인과 유저 인터페이스를 넘어서 훌륭한 유저 경험은 다른 많은 요인들을 포함한다. 유저는 iOS 앱이 빠르게 반응하고 가능한">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-06-07T13:55:04.315Z">
+<meta property="og:updated_time" content="2018-06-08T08:07:07.439Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="App Programming Guide for iOS - Introduction &amp; Expected App Behaviors (1)">
 <meta name="twitter:description" content="간단한 번역이며 생략되거나 줄인 부분이 많습니다. 원문도 같이 보시면 좋을 것 같습니다. IntroductionAbout iOS App Architecture앱은 유저에게 훌륭한 경험을 전달하기 위해 iOS와 협력해야 한다. 좋은 디자인과 유저 인터페이스를 넘어서 훌륭한 유저 경험은 다른 많은 요인들을 포함한다. 유저는 iOS 앱이 빠르게 반응하고 가능한">
@@ -145,7 +145,7 @@
 <li>An information property-list file: 이 <code>Info.plist</code>파일에는 시스템이 앱과 상호 작용하는데 사용하는 앱에 대한 메타 데이터가 포함된다. 프로젝트의 Info 탭에서 이 파일을 보거나 내용을 수정할 수 있다.</li>
 <li>A declaration of the app’s required capabilities: 모든 앱은 실행에 필요한 하드웨어 기능 또는 기술을 명시해야 한다. 앱 스토어는 이 정보를 가지고 특정 기기에서 돌릴 수 있는지 없는지를 결정한다. 프로젝트의 Info 탭에서 수정할 수 있다.</li>
 <li>One or more icons: 시스템은 앱 아이콘을 유저 기기의 홈 화면에 표시한다. 또한 설정 앱이나 검색의 결과로 표시하는 다른 버전의 아이콘도 표시한다.</li>
-<li>One or more launch images: 앱이 실행될 떄, 시스템은 유저 인터페이스를 보여줄 수 있을 때까지 임시 이미지를 보여준다. 이 런치 이미지는 사용자에게 앱이 실행 중이며 곧 준비될 것이라는 즉각적인 피드백을 제공한다.</li>
+<li>One or more launch images: 앱이 실행될 때, 시스템은 유저 인터페이스를 보여줄 수 있을 때까지 임시 이미지를 보여준다. 이 런치 이미지는 사용자에게 앱이 실행 중이며 곧 준비될 것이라는 즉각적인 피드백을 제공한다.</li>
 </ul>
 <h4 id="The-App-Bundle"><a href="#The-App-Bundle" class="headerlink" title="The App Bundle"></a>The App Bundle</h4><p>당신의 iOS 앱을 빌드하면, Xcode는 <code>번들(bundle)</code>의 형태로 포장한다. 번들 관련 있는 리소스들을 한 곳에 묶은 파일 시스템의 디렉토리이다. iOS 앱 번들은 앱의 실행 파일과 앱 아이콘, 이미지 파일, 현지화 파일 등을 포함한 지원 리소스를 담고 있다. 다음은 전형적인 iOS 앱 번들의 컨텐츠들이며 당신의 앱 번들에는 포함되지 않을 수 있다.</p>
 <ul>
@@ -169,14 +169,14 @@
 <ul>
 <li>앱에서 요구하는 기능을 Info 탭에서 선언하라: The Required device capabilities 섹션은 앱이 실행되는 데 필요한 기기 수준의 요구 사항 정보를 담는다. 앱 스토어는 이 정보를 활용해 필요한 기능을 지원하지 않는 장치에 해당 앱이 설치되지 않도록 한다.</li>
 <li>지속적인 Wi-Fi 연결이 필요한 경우 그것을 명시하라: 당신의 앱이 네트워크를 통해 서버와 통신하는 경우 ‘Application uses Wi-Fi entry’를 Info 탭에 더하라. 이 키를 YES로 하는 것은 장시간 비활성 상태일 때 iOS가 활성 Wi-Fi 연결을 닫는 것을 방지한다. 이 키는 네트워크를 사용하여 서버와 통신하는 모든 앱에 권장된다.</li>
-<li>뉴스스탠드 앱은 그것을 나타내야 한다</li>
+<li>뉴스 스탠드 앱은 그 자신이 뉴스 스탠드 앱임을 나타내야 한다</li>
 <li>커스텀 문서 타입을 정의하는 앱은 그 타입을 명시해야 한다: Info 탭의 Document Types 섹션을 이용해 아이콘과 문서 포맷에 맞는 UTI 정보를 특정하라. 시스템은 이 정보를 사용하여 특정 파일 형식을 처리할 수 있는 응용 프로그램을 식별한다.</li>
 <li>앱은 앱이 지원하는 맞춤 URL 스키마를 선언할 수 있다</li>
 <li>앱은 사용자 데이터 및 특정 앱 기능에 접근하기 위한 문자열(“usage description”)을 제공해야 한다: 사용자 데이터 또는 기기 기능에 접근하는 앱에 관해 프라이버시 이슈가 있을 경우 iOS는 사용자에게 앱 대신 이를 알리고 허가를 요청한다. 앱은 유저에게 Info.plist 파일에 정의된 <em>purpose string</em>을 제공하여 그 이유를 설명해야 한다. 만약 앱이 해당 문자열을 제공하지 않고 접근하려 할 경우 앱은 곧바로 꺼진다.</li>
 </ul>
 <h4 id="Declaring-the-Required-Device-Capabilities"><a href="#Declaring-the-Required-Device-Capabilities" class="headerlink" title="Declaring the Required Device Capabilities"></a>Declaring the Required Device Capabilities</h4><p>모든 앱은 앱이 실행되기 위해 기기가 어떤 기능을 제공해야 하는지 선언해야 한다. 이는 Info.plist 파일의 <code>UIRequiredDeviceCapabilities</code> 키에 대응하며 배열 또는 사전의 형태의 값으로 제공한다. 만약 배열일 경우 키의 존재함이 그 기능이 요구됨을 의미하며, 사전의 경우 기능 키에 해당하는 값으로 불린 값을 제공하는데 이 때 true의 경우 기능이 요구됨을, false의 경우 기능이 없어야 함을 의미한다. 만약 기능이 선택적인 경우, 사전에 그 키를 포함하지 말아야 한다.</p>
 <h4 id="App-Icons"><a href="#App-Icons" class="headerlink" title="App Icons"></a>App Icons</h4><p>모든 앱은 기기의 홈 화면과 앱 스토어에 보여줄 아이콘을 제공하여야 한다. 앱은 상황에 맞는 몇몇 다른 아이콘을 제공할 수도 있다. 새로운 Xcode 프로젝트는 앱 아이콘 이미지를 위한 asset entries를 포함하고 있으며 여기에 해당 아이콘 이미지 파일을 넣어주면 된다. 빌드 시, Xcode는 Info.plist에 적절한 키를 추가하고 이미지를 앱 번들에 저장한다.</p>
-<h4 id="App-Launch-Default-Images"><a href="#App-Launch-Default-Images" class="headerlink" title="App Launch (Default) Images"></a>App Launch (Default) Images</h4><p>앱의 시작 이미지는 앱이 초기 사용자 인터페이스를 준비하는 동안 유저에게 즉각적인 피드백을 제공한다. 앱이 유저 인터페이스의 최근 스냅 샷을 사용할 수 있는 경우 시작 이미지 대신 이 이미지를 사용한다. 앱이 포 그라운드에서 백그라운드로 전환될 때 이 스냅 샷이 생성된다. 이 스냅 샷은 포 그라운드로 돌아올 때 가능하다면 사용이 되며 앱이 삭제되거나 오랫동안 실행되지 않은 경우 시스템이 스냅 샷을 삭제한다.</p>
+<h4 id="App-Launch-Default-Images"><a href="#App-Launch-Default-Images" class="headerlink" title="App Launch (Default) Images"></a>App Launch (Default) Images</h4><p>앱의 시작 이미지는 앱이 초기 사용자 인터페이스를 준비하는 동안 유저에게 즉각적인 피드백을 제공한다. 앱이 유저 인터페이스의 최근 스냅 샷을 사용할 수 있는 경우 시작 이미지 대신 이것을 사용한다. 앱이 포그라운드에서 백그라운드로 전환될 때 이 스냅 샷이 생성된다. 이 스냅 샷은 포그라운드로 돌아올 때 가능하다면 사용이 되며 앱이 삭제되거나 오랫동안 실행되지 않은 경우 시스템이 스냅 샷을 삭제한다.</p>
 <h3 id="Supporting-User-Privacy"><a href="#Supporting-User-Privacy" class="headerlink" title="Supporting User Privacy"></a>Supporting User Privacy</h3><p>대부분의 iOS 기기에는 사용자가 앱이나 외부에 공개하고 싶지 않는 정보가 들어있다. 이 정보에 함부로 접근하거나 사용하는 경우 사용자는 앱을 삭제할 것이다.</p>
 <ul>
 <li>앱은 iOS 시스템 인증 설정에 의해 보호되는 데이터가 필요할 때 요청을 해야 한다. 당신은 앱이 그 데이터가 왜 필요한지 설명하는 문자열을 Info.plist에 제공해야 한다. iOS 시스템 인증 설정으로부터 보호되는 데이터에는 위치, 연락처, 달력 일정, 미리 알림, 사진, 미디어 및 기타 여러 유형이 포함된다.</li>
