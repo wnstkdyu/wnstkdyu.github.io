@@ -17,7 +17,7 @@
 <meta property="og:image" content="https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/keyObjectsIniOSApp.png">
 <meta property="og:image" content="https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/eventdrawcycle.png">
 <meta property="og:image" content="https://wnstkdyu.github.io/2018/06/07/appprogrammingguidetheapplifecycle/appStateChange.png">
-<meta property="og:updated_time" content="2018-06-08T08:28:44.828Z">
+<meta property="og:updated_time" content="2018-06-08T08:32:07.529Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="App Programming Guide for iOS - The App Life Cycle (2)">
 <meta name="twitter:description" content="The App Life Cycle앱은 사용자 정의 코드와 시스템 프레임워크 간의 정교한 상호 작용이다. 시스템 프레임워크는 모든 앱이 필요한 기본 기반 구조를 제공하고 당신은 해당 인프라를 사용자 정의하고 앱을 당신이 원하는 대로 꾸며주는 코드를 제공한다. 이를 효과적으로 하기 위해, iOS 인프라와 어떻게 이것이 동작하는 지에 관해 이해하는 것이 도움이">
@@ -210,7 +210,7 @@
 <p>대부분의 상태 전이는 대응되는 앱 델리게이트 객체의 메서드의 호출을 동반한다. 이 메서드들은 앱의 상태 변화에 적절히 대응할 수 있는 좋은 기회이다. 이러한 메서드와 사용 방법에 대한 요약이 아래에 나와 있다.</p>
 <ul>
 <li><a href="https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623032-application" target="_blank" rel="noopener">application:willFinishLaunchingWithOptions:</a>: 이 메서드는 앱 실행시 코드를 실행할 수 있는 첫 번째 기회이다.</li>
-<li><a href="https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622921-application" target="_blank" rel="noopener">application:didFinishLaunchingWithOptions:</a>: 앱이 사용자에게 보여지기 전 최종 조기화를 할 수 있다.</li>
+<li><a href="https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622921-application" target="_blank" rel="noopener">application:didFinishLaunchingWithOptions:</a>: 앱이 사용자에게 보여지기 전 최종 초기화를 할 수 있다.</li>
 <li><a href="https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622956-applicationdidbecomeactive" target="_blank" rel="noopener">applicationDidBecomeActive:</a>: 앱이 포그라운드 앱이 될 것임을 알린다. 마지막 순간의 준비를 하라.</li>
 <li><a href="https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622950-applicationwillresignactive" target="_blank" rel="noopener">applicationWillResignActive:</a>: 앱이 포그라운드 앱에서 벗어날 것임을 알려준다. 이 메서드를 통해 앱을 조용한 상태로 만든다.</li>
 <li><a href="https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622997-applicationdidenterbackground" target="_blank" rel="noopener">applicationDidEnterBackground:</a>: 앱이 백그라운드 상태에서 실행중이고 언제든지 일시 중지될 수 있음을 나타낸다.</li>
