@@ -16,7 +16,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://wnstkdyu.github.io/2018/05/03/avfoundationprogrammingguide/AVFoundationIniOS.png">
 <meta property="og:image" content="https://wnstkdyu.github.io/2018/05/03/avfoundationprogrammingguide/primaryPlaybackObjects.png">
-<meta property="og:updated_time" content="2018-06-06T10:24:48.971Z">
+<meta property="og:updated_time" content="2018-06-10T12:06:40.687Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AVFoundation 공부">
 <meta name="twitter:description" content="애플의 AVFoundation Programming Guide와 Media Playback Programming Guide을 통해 AVFoundation에 대해 알아보았다. AVFoundation?AVFoundation은 시간 기반 시청각 미디어 자료를 플레이하고 생성할 수 있는 프레임워크 중 하나이다. 이 프레임워크를 통해 미디어 파일을 조사하고 조작하는">
@@ -153,7 +153,7 @@
 <li><code>AVURLAssetHTTPCookiesKey</code>: HTTP 리퀘스트 시 보내는 쿠키를 값으로 가진다.</li>
 <li><code>AVURLAssetAllowsCellularAccessKey</code>: 미디어 자료를 볼 때 셀룰러 네트워크를 사용할 것인가를 boolean 값으로 가지는 key로 기본값은 true이다.</li>
 </ul>
-<h3 id="Preparing-Assets-for-Use"><a href="#Preparing-Assets-for-Use" class="headerlink" title="Preparing Assets for Use"></a>Preparing Assets for Use</h3><p>AVAsset는 지금 재생이 가능한지 여부, 총 길이, 생성 날짜 등 다양한 정보들을 담고 있다. 이러한 정보들은 플레이어를 만들 때 유용하게 쓰일 것이다. 그런데 이러한 프로퍼티들은 AVAsset이 생성될 때 자동으로 같이 나오지 않고 요청이 오면 그제서야 불러오기 시작한다. <strong>원활한 UI 작업을 위해 요청은 비동기적으로 처리</strong>된다.</p>
+<h3 id="Preparing-Assets-for-Use"><a href="#Preparing-Assets-for-Use" class="headerlink" title="Preparing Assets for Use"></a>Preparing Assets for Use</h3><p>AVAsset는 지금 재생이 가능한지 여부, 총 길이, 생성 날짜 등 다양한 정보들을 담고 있다. 이러한 정보들은 플레이어를 만들 때 유용하게 쓰일 것이다. 그런데 이러한 프로퍼티들은 AVAsset이 생성될 때 자동으로 같이 나오지 않고 요청이 오면 그제서야 불러오기 시작한다. <strong>원활한 UI 작업을 위해 요청은 비동기적으로 처리</strong>하라.</p>
 <p>AVAsset과 AVAssetTrack은 <code>AVAsynchronousKeyValueLoading</code> 프로토콜을 준수하며 이를 여기에 정의된 두 메서드로 프로퍼티가 사용 가능 여부 확인과 불러오기 요청을 할 수 있다.</p>
 <ul>
 <li><code>loadValuesAsynchronously(forKeys:completionHandler:)</code>: AVAsset의 인스턴스에 key의 배열에 전달된 값에 해당하는 프로퍼티들을 비동기적으로 요청하는 메서드이다.</li>
