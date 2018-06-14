@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="PacaLog">
 <meta property="og:description" content="간단한 번역이며 생략되거나 줄인 부분이 많습니다. 원문도 같이 보시면 좋을 것 같습니다. IntroductionAbout iOS App Architecture앱은 유저에게 훌륭한 경험을 전달하기 위해 iOS와 협력해야 한다. 좋은 디자인과 유저 인터페이스를 넘어서 훌륭한 유저 경험은 다른 많은 요인들을 포함한다. 유저는 iOS 앱이 빠르게 반응하고 가능한">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-06-08T08:07:07.439Z">
+<meta property="og:updated_time" content="2018-06-10T12:30:16.232Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="App Programming Guide for iOS - Introduction &amp; Expected App Behaviors (1)">
 <meta name="twitter:description" content="간단한 번역이며 생략되거나 줄인 부분이 많습니다. 원문도 같이 보시면 좋을 것 같습니다. IntroductionAbout iOS App Architecture앱은 유저에게 훌륭한 경험을 전달하기 위해 iOS와 협력해야 한다. 좋은 디자인과 유저 인터페이스를 넘어서 훌륭한 유저 경험은 다른 많은 요인들을 포함한다. 유저는 iOS 앱이 빠르게 반응하고 가능한">
@@ -147,7 +147,7 @@
 <li>One or more icons: 시스템은 앱 아이콘을 유저 기기의 홈 화면에 표시한다. 또한 설정 앱이나 검색의 결과로 표시하는 다른 버전의 아이콘도 표시한다.</li>
 <li>One or more launch images: 앱이 실행될 때, 시스템은 유저 인터페이스를 보여줄 수 있을 때까지 임시 이미지를 보여준다. 이 런치 이미지는 사용자에게 앱이 실행 중이며 곧 준비될 것이라는 즉각적인 피드백을 제공한다.</li>
 </ul>
-<h4 id="The-App-Bundle"><a href="#The-App-Bundle" class="headerlink" title="The App Bundle"></a>The App Bundle</h4><p>당신의 iOS 앱을 빌드하면, Xcode는 <code>번들(bundle)</code>의 형태로 포장한다. 번들 관련 있는 리소스들을 한 곳에 묶은 파일 시스템의 디렉토리이다. iOS 앱 번들은 앱의 실행 파일과 앱 아이콘, 이미지 파일, 현지화 파일 등을 포함한 지원 리소스를 담고 있다. 다음은 전형적인 iOS 앱 번들의 컨텐츠들이며 당신의 앱 번들에는 포함되지 않을 수 있다.</p>
+<h4 id="The-App-Bundle"><a href="#The-App-Bundle" class="headerlink" title="The App Bundle"></a>The App Bundle</h4><p>당신의 iOS 앱을 빌드하면, Xcode는 <code>번들(bundle)</code>의 형태로 포장한다. 번들은 관련 있는 리소스들을 한 곳에 묶은 파일 시스템의 디렉토리이다. iOS 앱 번들은 앱의 실행 파일과 앱 아이콘, 이미지 파일, 현지화 파일 등을 포함한 지원 리소스를 담고 있다. 다음은 전형적인 iOS 앱 번들의 컨텐츠들이며 당신의 앱 번들에는 포함되지 않을 수 있다.</p>
 <ul>
 <li>App excutable: 앱의 컴파일된 코드를 담고 있는 실행 파일. 앱의 실행 파일 이름은 당신의 앱의 이름에서 .app 확장자를 뗀 것이다. 이 파일은 필수적이다.</li>
 <li>The information property list file: <code>Info.plist</code> 파일은 앱의 설정 데이터를 담고 있다. 시스템은 이 데이터를 이용해 앱과 상호 작용한다. 이 파일은 필수적이며 Info.plist로 불려야 한다.</li>
