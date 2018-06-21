@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="이번 하계 인턴을 하기 위한 총 4번의 면접에서 3번이나 물어봤지만 뚜렷하게 대답을 하지 못한 질문이 Merge와 Rebase의 차이였다. 브랜치를 합칠 때 항상 Merge를 써 왔는데 명확히 이 둘의 차이를 알아보고 싶었다. Merging vs. Rebasing를 참고하였다.  위와 같은 그림이 있을 때, master 브랜치에서 한 커밋이 지금 작업하고">
+<meta name="keywords" content="git,Merge,Rebase">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Merge vs. Rebase">
+<meta property="og:url" content="https://wnstkdyu.github.io/2018/06/21/aboutgit/index.html">
+<meta property="og:site_name" content="PacaLog">
+<meta property="og:description" content="이번 하계 인턴을 하기 위한 총 4번의 면접에서 3번이나 물어봤지만 뚜렷하게 대답을 하지 못한 질문이 Merge와 Rebase의 차이였다. 브랜치를 합칠 때 항상 Merge를 써 왔는데 명확히 이 둘의 차이를 알아보고 싶었다. Merging vs. Rebasing를 참고하였다.  위와 같은 그림이 있을 때, master 브랜치에서 한 커밋이 지금 작업하고">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://wnstkdyu.github.io/2018/06/21/aboutgit/01.svg">
+<meta property="og:image" content="https://wnstkdyu.github.io/2018/06/21/aboutgit/02.svg">
+<meta property="og:image" content="https://wnstkdyu.github.io/2018/06/21/aboutgit/03.svg">
+<meta property="og:image" content="https://wnstkdyu.github.io/2018/06/21/aboutgit/05.svg">
+<meta property="og:updated_time" content="2018-06-22T16:40:07.949Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Merge vs. Rebase">
+<meta name="twitter:description" content="이번 하계 인턴을 하기 위한 총 4번의 면접에서 3번이나 물어봤지만 뚜렷하게 대답을 하지 못한 질문이 Merge와 Rebase의 차이였다. 브랜치를 합칠 때 항상 Merge를 써 왔는데 명확히 이 둘의 차이를 알아보고 싶었다. Merging vs. Rebasing를 참고하였다.  위와 같은 그림이 있을 때, master 브랜치에서 한 커밋이 지금 작업하고">
+<meta name="twitter:image" content="https://wnstkdyu.github.io/2018/06/21/aboutgit/01.svg">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Merge vs. Rebase</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2018/06/09/appprogrammingguidebackgroundexecution/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/06/21/aboutgit/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/06/21/aboutgit/&text=Merge vs. Rebase"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/06/21/aboutgit/&title=Merge vs. Rebase"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/06/21/aboutgit/&is_video=false&description=Merge vs. Rebase"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Merge vs. Rebase&body=Check out this article: https://wnstkdyu.github.io/2018/06/21/aboutgit/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/06/21/aboutgit/&title=Merge vs. Rebase"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/06/21/aboutgit/&title=Merge vs. Rebase"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/06/21/aboutgit/&title=Merge vs. Rebase"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/06/21/aboutgit/&title=Merge vs. Rebase"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/06/21/aboutgit/&name=Merge vs. Rebase&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Merge"><span class="toc-number">1.</span> <span class="toc-text">Merge</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rebase"><span class="toc-number">2.</span> <span class="toc-text">Rebase</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Golden-Rule-of-Rebasing"><span class="toc-number">2.1.</span> <span class="toc-text">The Golden Rule of Rebasing</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">3.</span> <span class="toc-text">Reference</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Merge vs. Rebase
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">PacaLog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-06-21T12:29:47.000Z" itemprop="datePublished">2018-06-21</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Merge/">Merge</a>, <a class="tag-link" href="/tags/Rebase/">Rebase</a>, <a class="tag-link" href="/tags/git/">git</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>이번 하계 인턴을 하기 위한 총 4번의 면접에서 3번이나 물어봤지만 뚜렷하게 대답을 하지 못한 질문이 Merge와 Rebase의 차이였다. 브랜치를 합칠 때 항상 Merge를 써 왔는데 명확히 이 둘의 차이를 알아보고 싶었다. <a href="https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing" target="_blank" rel="noopener">Merging vs. Rebasing</a>를 참고하였다.</p>
+<img src="/2018/06/21/aboutgit/01.svg" title="image">
+<p>위와 같은 그림이 있을 때, master 브랜치에서 한 커밋이 지금 작업하고 있는 feature 브랜치와 관련이 있어 포함시켜야 할 상황을 가정해보자. 이 때 우리가 생각할 수 있는 방안은 merge와 rebase가 있다.</p>
+<h2 id="Merge"><a href="#Merge" class="headerlink" title="Merge"></a>Merge</h2><p>소스 트리 같은 도구를 이용해 쉽게 할 수 있지만 터미널에서 merge를 하는 방법은 이렇다.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git checkout feature</span><br><span class="line">git merge master</span><br><span class="line"></span><br><span class="line">// 또는</span><br><span class="line">git merge master feature</span><br></pre></td></tr></table></figure></p>
+<p>이 작업은 두 브랜치의 최신본을 합치는 <strong>merge 커밋</strong>을 feature 브랜치에 생성한다. 다음과 같은 그림처럼 흐름이 합쳐진다.</p>
+<img src="/2018/06/21/aboutgit/02.svg" title="image">
+<p>merge가 좋은 이유는 <em>비파괴적</em>(<em>non-destructive</em>)이란 것이다. 각각의 브랜치에서 이루어진 커밋들이 흐름이 합쳐진 후에도 그대로 유지됨으로써 나중에 코드가 변경된 브랜치를 좀 더 쉽게 찾아갈 수 있다.</p>
+<p>하지만 merge 커밋이라는 불필요한 커밋을 만든다는 점에서 단점이 있다. 명확한 코드의 변경에 대한 커밋 히스토리를 만들고 싶은데 불필요한 기록이 남게되는 것이다.</p>
+<h2 id="Rebase"><a href="#Rebase" class="headerlink" title="Rebase"></a>Rebase</h2><p>마찬가지로 git 툴을 이용할 수 있고 터미널에서는 다음과 같이 rebase를 한다. rebase 작업을<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout feature</span><br><span class="line">git rebase master</span><br></pre></td></tr></table></figure></p>
+<p>이 작업은 master 브랜치의 변경점들을 모두 반영시키면서 feature 브랜치를 master 브랜치의 끝부분에서 시작하도록 이동시킨다. 하지만 merge 커밋처럼 새로운 커밋을 생성하여 합치는 것이 아니라 원래 브랜치의 커밋마다 변경점이 반영된 새 커밋으로 변경함으로써 이루어진다. </p>
+<img src="/2018/06/21/aboutgit/03.svg" title="image">
+<p>rebase의 가장 큰 장점은 보다 깨끗한 커밋 히스토리를 만들 수 있다는 것이다. 불필요한 merge 커밋을 만들지 않으면서 위 그림과 같이 선형의 프로젝트 히스토리를 가질 수 있다.</p>
+<p>하지만 rebase는 프로젝트 히스토리를 다시 쓰는 것이기 때문에 협업 시 주의를 해야 한다.</p>
+<h3 id="The-Golden-Rule-of-Rebasing"><a href="#The-Golden-Rule-of-Rebasing" class="headerlink" title="The Golden Rule of Rebasing"></a>The Golden Rule of Rebasing</h3><p>rebase를 하는 데 가장 중요한 규칙은 <em>public</em> 브랜치에서 하지 말아야 한다는 것이다. 예를 들어 master 브랜치를 feature 브랜치 위에 rebase 하는 상황을 가정해 보자.</p>
+<img src="/2018/06/21/aboutgit/05.svg" title="image">
+<p>이렇게 rebase를 할 경우 master의 모든 커밋이 feature 브랜치의 끝점으로 올라가게 된다. 여기서의 문제점은 다른 팀원들은 아직 master 브랜치를 사용하고 있다는 것이다. rebase는 새로운 커밋들로 바꾸기 때문에 master 브랜치가 팀원마다 다른 상황이 생기는 것이다.</p>
+<p>다른 두 브랜치를 동기화시켜주는 방법은 merge를 하는 방법인데 역시 불필요한 merge 커밋이 생기고 같은 변경 사항을 담은 두 세트의 커밋이 남아있게 된다. 프로젝트의 히스토리가 더려워진다. </p>
+<p>이러한 상황을 방지하기 위해 <em>public</em> 브랜치를 rebase하는 것은 신중하게 선택해야 한다.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing" target="_blank" rel="noopener">Merging vs. Rebasing</a></li>
+</ul>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Merge"><span class="toc-number">1.</span> <span class="toc-text">Merge</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Rebase"><span class="toc-number">2.</span> <span class="toc-text">Rebase</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Golden-Rule-of-Rebasing"><span class="toc-number">2.1.</span> <span class="toc-text">The Golden Rule of Rebasing</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">3.</span> <span class="toc-text">Reference</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/06/21/aboutgit/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/06/21/aboutgit/&text=Merge vs. Rebase"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/06/21/aboutgit/&title=Merge vs. Rebase"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/06/21/aboutgit/&is_video=false&description=Merge vs. Rebase"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Merge vs. Rebase&body=Check out this article: https://wnstkdyu.github.io/2018/06/21/aboutgit/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/06/21/aboutgit/&title=Merge vs. Rebase"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/06/21/aboutgit/&title=Merge vs. Rebase"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/06/21/aboutgit/&title=Merge vs. Rebase"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/06/21/aboutgit/&title=Merge vs. Rebase"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/06/21/aboutgit/&name=Merge vs. Rebase&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Alpaca
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-116302583-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'alpacablog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
