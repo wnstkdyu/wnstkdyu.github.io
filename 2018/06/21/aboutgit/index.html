@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://wnstkdyu.github.io/2018/06/21/aboutgit/02.svg">
 <meta property="og:image" content="https://wnstkdyu.github.io/2018/06/21/aboutgit/03.svg">
 <meta property="og:image" content="https://wnstkdyu.github.io/2018/06/21/aboutgit/05.svg">
-<meta property="og:updated_time" content="2018-06-22T16:40:07.949Z">
+<meta property="og:updated_time" content="2018-06-22T17:08:45.225Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Merge vs. Rebase">
 <meta name="twitter:description" content="이번 하계 인턴을 하기 위한 총 4번의 면접에서 3번이나 물어봤지만 뚜렷하게 대답을 하지 못한 질문이 Merge와 Rebase의 차이였다. 브랜치를 합칠 때 항상 Merge를 써 왔는데 명확히 이 둘의 차이를 알아보고 싶었다. Merging vs. Rebasing를 참고하였다.  위와 같은 그림이 있을 때, master 브랜치에서 한 커밋이 지금 작업하고">
@@ -156,7 +156,7 @@
 <img src="/2018/06/21/aboutgit/05.svg" title="image">
 <p>이렇게 rebase를 할 경우 master의 모든 커밋이 feature 브랜치의 끝점으로 올라가게 된다. 여기서의 문제점은 다른 팀원들은 아직 master 브랜치를 사용하고 있다는 것이다. rebase는 새로운 커밋들로 바꾸기 때문에 master 브랜치가 팀원마다 다른 상황이 생기는 것이다.</p>
 <p>다른 두 브랜치를 동기화시켜주는 방법은 merge를 하는 방법인데 역시 불필요한 merge 커밋이 생기고 같은 변경 사항을 담은 두 세트의 커밋이 남아있게 된다. 프로젝트의 히스토리가 더려워진다. </p>
-<p>이러한 상황을 방지하기 위해 <em>public</em> 브랜치를 rebase하는 것은 신중하게 선택해야 한다.</p>
+<p>이러한 상황을 방지하기 위해 협업 시에 <em>public</em> 브랜치를 rebase하는 것은 신중하게 선택해야 한다.</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
 <li><a href="https://www.atlassian.com/git/tutorials/merging-vs-rebasing#the-golden-rule-of-rebasing" target="_blank" rel="noopener">Merging vs. Rebasing</a></li>
 </ul>
