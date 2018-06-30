@@ -15,7 +15,7 @@
 <meta property="og:description" content="최근 프로젝트 도중 화면 회전에 관련된 코드를 사용해 보았다. 비교적 간단한 내용이지만 나에게 다시 상기시키고자 정리해본다. 프로젝트 앱은 기본적으로 아이폰의 세로모드만 지원했지만 영상을 관리하는 뷰 컨트롤러를 새로 만들면서 비디오가 재생되는 곳은 가로모드를 지원하게 하고 싶었다. 전체적인 방향 설정먼저 앱의 전체적인 방향 설정부터 알아보자. Support">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://wnstkdyu.github.io/2017/12/15/orientations/supportedInterfaceOrientations.png">
-<meta property="og:updated_time" content="2018-03-25T07:14:58.000Z">
+<meta property="og:updated_time" content="2018-06-30T10:36:36.918Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS 화면 회전 처리">
 <meta name="twitter:description" content="최근 프로젝트 도중 화면 회전에 관련된 코드를 사용해 보았다. 비교적 간단한 내용이지만 나에게 다시 상기시키고자 정리해본다. 프로젝트 앱은 기본적으로 아이폰의 세로모드만 지원했지만 영상을 관리하는 뷰 컨트롤러를 새로 만들면서 비디오가 재생되는 곳은 가로모드를 지원하게 하고 싶었다. 전체적인 방향 설정먼저 앱의 전체적인 방향 설정부터 알아보자. Support">
@@ -159,7 +159,7 @@
 <p><code>Info.plist</code>에서 이 값들을 지우거나 더함으로써 앱의 기본적인 방향을 정해줄 수 있다.</p>
 </li>
 </ul>
-<h3 id="supportedInterfaceOrientations-for"><a href="#supportedInterfaceOrientations-for" class="headerlink" title="supportedInterfaceOrientations(for:)"></a>supportedInterfaceOrientations(for:)</h3><p>두번째는 <code>AppDelegate</code>의 <a href="https://developer.apple.com/documentation/uikit/uiapplication/1623091-supportedinterfaceorientations" target="_blank" rel="noopener"><code>supportedInterfaceOrientations(for:)</code></a> 함수를 사용하는 것이다.</p>
+<h3 id="supportedInterfaceOrientations-for"><a href="#supportedInterfaceOrientations-for" class="headerlink" title="supportedInterfaceOrientations(for:)"></a>supportedInterfaceOrientations(for:)</h3><p>두번째는 <code>AppDelegate</code>의 <a href="https://developer.apple.com/documentation/uikit/uiapplication/1623091-supportedinterfaceorientations" target="_blank" rel="noopener"><code>application(_:supportedInterfaceOrientationsFor:)</code></a> 함수를 사용하는 것이다.</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">application</span><span class="params">(<span class="number">_</span> application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?)</span></span></span><br><span class="line">-&gt; <span class="type">UIInterfaceOrientationMask</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> [.portrait, .portraitUpsideDown, .landscapeLeft]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>앱이 지원하는 방향을 설정할 수 있으며 <code>옵셔널</code>한 메소드이기 때문에 구현을 하지 않을시 <code>Info.plist</code>의 지원 방향을 참조한다. 이 메소드는 OptionSet을 준수하는 <code>UIInterfaceOrientationMask</code> 구조체를 리턴하며 iOS 기기의 모든 방향이 정리되어 있다.</p>
 <p>공식 문서에는 이 메소드에 대해 이렇게 나와 있다.</p>
