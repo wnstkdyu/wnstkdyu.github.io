@@ -6,18 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="iOS에서 시간이 오래 걸리는 작업은 비동기적으로, 그리고 메인 스레드가 아닌 다른 스레드에서 작업을 하는 것이 좋다. 보통 Dispatch Queue에 집어 넣어서 작업을 하게 된다. 그런데 만약 여러 비동기 작업을 수행하고 이 작업들이 모두 끝나고 난 후에 그 다음 작업을 해야하는 상황이라면 어떻게 해야 할까? 그 작업을 가능하게 해주는 것이 Dispa">
+    <meta name="description" content="iOS에서 시간이 오래 걸리는 작업은 비동기적으로, 그리고 메인 스레드가 아닌 다른 스레드에서 작업을 하는 것이 좋다. 보통 Dispatch Queue에 집어 넣어서 작업을 하게 된다. 그런데 만약 여러 비동기 작업들이 완료가 되야만 그 다음 작업을 진행할 수 있는 상황이라면 어떻게 해야 할까? 그 작업을 가능하게 해주는 것이 Dispatch Group이다">
 <meta name="keywords" content="Dispatch,Async">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Dispatch Group">
 <meta property="og:url" content="https://wnstkdyu.github.io/2018/07/13/dispatchgroup/index.html">
 <meta property="og:site_name" content="PacaLog">
-<meta property="og:description" content="iOS에서 시간이 오래 걸리는 작업은 비동기적으로, 그리고 메인 스레드가 아닌 다른 스레드에서 작업을 하는 것이 좋다. 보통 Dispatch Queue에 집어 넣어서 작업을 하게 된다. 그런데 만약 여러 비동기 작업을 수행하고 이 작업들이 모두 끝나고 난 후에 그 다음 작업을 해야하는 상황이라면 어떻게 해야 할까? 그 작업을 가능하게 해주는 것이 Dispa">
+<meta property="og:description" content="iOS에서 시간이 오래 걸리는 작업은 비동기적으로, 그리고 메인 스레드가 아닌 다른 스레드에서 작업을 하는 것이 좋다. 보통 Dispatch Queue에 집어 넣어서 작업을 하게 된다. 그런데 만약 여러 비동기 작업들이 완료가 되야만 그 다음 작업을 진행할 수 있는 상황이라면 어떻게 해야 할까? 그 작업을 가능하게 해주는 것이 Dispatch Group이다">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-07-13T09:31:55.993Z">
+<meta property="og:updated_time" content="2018-07-13T09:34:51.700Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dispatch Group">
-<meta name="twitter:description" content="iOS에서 시간이 오래 걸리는 작업은 비동기적으로, 그리고 메인 스레드가 아닌 다른 스레드에서 작업을 하는 것이 좋다. 보통 Dispatch Queue에 집어 넣어서 작업을 하게 된다. 그런데 만약 여러 비동기 작업을 수행하고 이 작업들이 모두 끝나고 난 후에 그 다음 작업을 해야하는 상황이라면 어떻게 해야 할까? 그 작업을 가능하게 해주는 것이 Dispa">
+<meta name="twitter:description" content="iOS에서 시간이 오래 걸리는 작업은 비동기적으로, 그리고 메인 스레드가 아닌 다른 스레드에서 작업을 하는 것이 좋다. 보통 Dispatch Queue에 집어 넣어서 작업을 하게 된다. 그런데 만약 여러 비동기 작업들이 완료가 되야만 그 다음 작업을 진행할 수 있는 상황이라면 어떻게 해야 할까? 그 작업을 가능하게 해주는 것이 Dispatch Group이다">
     
     
         
@@ -134,7 +134,7 @@
   
 
   <div class="content" itemprop="articleBody">
-    <p>iOS에서 시간이 오래 걸리는 작업은 비동기적으로, 그리고 메인 스레드가 아닌 다른 스레드에서 작업을 하는 것이 좋다. 보통 Dispatch Queue에 집어 넣어서 작업을 하게 된다. 그런데 만약 여러 비동기 작업을 수행하고 이 작업들이 모두 끝나고 난 후에 그 다음 작업을 해야하는 상황이라면 어떻게 해야 할까?</p>
+    <p>iOS에서 시간이 오래 걸리는 작업은 비동기적으로, 그리고 메인 스레드가 아닌 다른 스레드에서 작업을 하는 것이 좋다. 보통 Dispatch Queue에 집어 넣어서 작업을 하게 된다. 그런데 만약 여러 비동기 작업들이 완료가 되야만 그 다음 작업을 진행할 수 있는 상황이라면 어떻게 해야 할까?</p>
 <p>그 작업을 가능하게 해주는 것이 Dispatch Group이다.</p>
 <h2 id="Dispatch-Group"><a href="#Dispatch-Group" class="headerlink" title="Dispatch Group"></a><a href="https://developer.apple.com/documentation/dispatch/dispatchgroup" target="_blank" rel="noopener">Dispatch Group</a></h2><p>애플의 공식 문서에 따르면, 다음과 같이 되어 있다.</p>
 <blockquote>
@@ -181,7 +181,11 @@
 <blockquote>
 <p>물론 동기적이나 비동기적인 처리 모두 1, 2가 출력되는 순서는 달라질 수 있다.</p>
 </blockquote>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://developer.apple.com/documentation/dispatch/dispatchgroup" target="_blank" rel="noopener">DispatchGroup - Apple Developer Documentation</a></li>
+<li><a href="http://seorenn.blogspot.com/2015/08/swift-dispatch-group.html" target="_blank" rel="noopener">Swift - Dispatch Group</a></li>
+</ul>
+
   </div>
 </article>
 
