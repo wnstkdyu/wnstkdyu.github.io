@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="PacaLog">
 <meta property="og:description" content="간단한 번역이며 생략되거나 줄인 부분이 많습니다. 원문도 같이 보시면 좋을 것 같습니다. IntroductionAbout iOS App Architecture앱은 유저에게 훌륭한 경험을 전달하기 위해 iOS와 협력해야 한다. 좋은 디자인과 유저 인터페이스를 넘어서 훌륭한 유저 경험은 다른 많은 요인들을 포함한다. 유저는 iOS 앱이 빠르게 반응하고 가능한">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-06-10T12:30:16.232Z">
+<meta property="og:updated_time" content="2018-07-13T04:46:45.351Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="App Programming Guide for iOS - Introduction &amp; Expected App Behaviors (1)">
 <meta name="twitter:description" content="간단한 번역이며 생략되거나 줄인 부분이 많습니다. 원문도 같이 보시면 좋을 것 같습니다. IntroductionAbout iOS App Architecture앱은 유저에게 훌륭한 경험을 전달하기 위해 iOS와 협력해야 한다. 좋은 디자인과 유저 인터페이스를 넘어서 훌륭한 유저 경험은 다른 많은 요인들을 포함한다. 유저는 iOS 앱이 빠르게 반응하고 가능한">
@@ -186,6 +186,9 @@
 <li>합리적인 조치를 취하여 앱에서 수집한 사용자 및 기기 데이터를 보호하라. 로컬에 저장할 때는 디스크 암호화를 통해서, 네트워크로 보낼 때는 App Transport Security를 사용하라.</li>
 <li>앱이 오디오 입력을 지원하는 경우 실제로 녹음을 시작할 시점에서 녹음을 위한 오디오 세션을 구성하라. 녹음을 시작할 때 사용자에게 경고하고 녹음을 중지할 수 있는 옵션도 제공하라.</li>
 </ul>
+<blockquote>
+<p>Important: 보호되는 아이템에 접근하는 경우 시스템은 접근 허가에 대한 경고를 띄운다. iOS 10부터는 info.plist에서 이 경고창에 띄울 각 아이템에 대한 목적 문자열을 반드시 포함해야 한다. 그렇지 않았을 때 보호되는 아이템에 접근할 경우 앱이 나가진다.</p>
+</blockquote>
 <h4 id="Data-and-resources-by-system-authorization-settings"><a href="#Data-and-resources-by-system-authorization-settings" class="headerlink" title="Data and resources by system authorization settings"></a>Data and resources by system authorization settings</h4><ul>
 <li>블루투스 주변기기: NSBluetoothPeripheralUsageDescription</li>
 <li>캘린더 데이터: NSCalendarUsageDescription</li>
