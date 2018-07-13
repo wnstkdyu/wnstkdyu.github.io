@@ -6,17 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Reference">
+    <meta name="description" content="iOS에서 시간이 오래 걸리는 작업은 비동기적으로, 그리고 메인 스레드가 아닌 다른 스레드에서 작업을 하는 것이 좋다. 보통 Dispatch Queue에 집어 넣어서 작업을 하게 된다. 그런데 만약 여러 비동기 작업을 수행하고 이 작업들이 모두 끝나고 난 후에 그 다음 작업을 해야하는 상황이라면 어떻게 해야 할까? 그 작업을 가능하게 해주는 것이 Dispa">
+<meta name="keywords" content="Dispatch,Async">
 <meta property="og:type" content="article">
-<meta property="og:title" content="dispatchgroup">
+<meta property="og:title" content="Dispatch Group">
 <meta property="og:url" content="https://wnstkdyu.github.io/2018/07/13/dispatchgroup/index.html">
 <meta property="og:site_name" content="PacaLog">
-<meta property="og:description" content="Reference">
+<meta property="og:description" content="iOS에서 시간이 오래 걸리는 작업은 비동기적으로, 그리고 메인 스레드가 아닌 다른 스레드에서 작업을 하는 것이 좋다. 보통 Dispatch Queue에 집어 넣어서 작업을 하게 된다. 그런데 만약 여러 비동기 작업을 수행하고 이 작업들이 모두 끝나고 난 후에 그 다음 작업을 해야하는 상황이라면 어떻게 해야 할까? 그 작업을 가능하게 해주는 것이 Dispa">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-07-13T01:29:16.481Z">
+<meta property="og:updated_time" content="2018-07-13T09:31:55.993Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="dispatchgroup">
-<meta name="twitter:description" content="Reference">
+<meta name="twitter:title" content="Dispatch Group">
+<meta name="twitter:description" content="iOS에서 시간이 오래 걸리는 작업은 비동기적으로, 그리고 메인 스레드가 아닌 다른 스레드에서 작업을 하는 것이 좋다. 보통 Dispatch Queue에 집어 넣어서 작업을 하게 된다. 그런데 만약 여러 비동기 작업을 수행하고 이 작업들이 모두 끝나고 난 후에 그 다음 작업을 해야하는 상황이라면 어떻게 해야 할까? 그 작업을 가능하게 해주는 것이 Dispa">
     
     
         
@@ -36,7 +37,7 @@
         
     
     <!-- title -->
-    <title>dispatchgroup</title>
+    <title>Dispatch Group</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- rss -->
@@ -81,20 +82,20 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/&text=dispatchgroup"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/&title=dispatchgroup"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/&is_video=false&description=dispatchgroup"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=dispatchgroup&body=Check out this article: https://wnstkdyu.github.io/2018/07/13/dispatchgroup/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/&title=dispatchgroup"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/&title=dispatchgroup"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/&title=dispatchgroup"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/&title=dispatchgroup"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/&name=dispatchgroup&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/&text=Dispatch Group"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/&title=Dispatch Group"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/&is_video=false&description=Dispatch Group"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Dispatch Group&body=Check out this article: https://wnstkdyu.github.io/2018/07/13/dispatchgroup/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/&title=Dispatch Group"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/&title=Dispatch Group"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/&title=Dispatch Group"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/&title=Dispatch Group"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/&name=Dispatch Group&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">1.</span> <span class="toc-text">Reference</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dispatch-Group"><span class="toc-number">1.</span> <span class="toc-text">Dispatch Group</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#사용-방법"><span class="toc-number">1.1.</span> <span class="toc-text">사용 방법</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#초기화"><span class="toc-number">1.1.1.</span> <span class="toc-text">초기화</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#작업-넣기-완료-시점-정하기"><span class="toc-number">1.1.2.</span> <span class="toc-text">작업 넣기, 완료 시점 정하기</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#완료-시점-캐치하기"><span class="toc-number">1.1.3.</span> <span class="toc-text">완료 시점 캐치하기</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#동기적-Synchronous"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">동기적(Synchronous)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#비동기적-Asynchronous"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">비동기적(Asynchronous)</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sync-vs-Async"><span class="toc-number">1.1.4.</span> <span class="toc-text">Sync vs. Async</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">2.</span> <span class="toc-text">Reference</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -106,7 +107,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        dispatchgroup
+        Dispatch Group
     </h1>
 
 
@@ -122,13 +123,65 @@
 
 
       
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Async/">Async</a>, <a class="tag-link" href="/tags/Dispatch/">Dispatch</a>
+    </div>
+
 
     </div>
   </header>
   
 
   <div class="content" itemprop="articleBody">
-    <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2>
+    <p>iOS에서 시간이 오래 걸리는 작업은 비동기적으로, 그리고 메인 스레드가 아닌 다른 스레드에서 작업을 하는 것이 좋다. 보통 Dispatch Queue에 집어 넣어서 작업을 하게 된다. 그런데 만약 여러 비동기 작업을 수행하고 이 작업들이 모두 끝나고 난 후에 그 다음 작업을 해야하는 상황이라면 어떻게 해야 할까?</p>
+<p>그 작업을 가능하게 해주는 것이 Dispatch Group이다.</p>
+<h2 id="Dispatch-Group"><a href="#Dispatch-Group" class="headerlink" title="Dispatch Group"></a><a href="https://developer.apple.com/documentation/dispatch/dispatchgroup" target="_blank" rel="noopener">Dispatch Group</a></h2><p>애플의 공식 문서에 따르면, 다음과 같이 되어 있다.</p>
+<blockquote>
+<p>DispatchGroup allows for aggregate synchronization of work. You can use them to submit multiple different work items and track when they all complete, even though they might run on different queues. This behavior can be helpful when progress can’t be made until all of the specified tasks are complete.</p>
+</blockquote>
+<p>번역을 해보자면,</p>
+<blockquote>
+<p><code>DispatchGroup</code>은 작업의 <strong>집합된 동기화</strong>를 가능하게 해준다. 여러 개의 다른 작업을 제출하고 작업들이 모두 완료되었을 때를 추적할 때 사용할 수 있는데, 심지어 작업들이 다른 큐에서 동작하는 경우에도 가능하다. 이러한 동작은 특정한 모든 작업들이 완료될 때까지 다음 진행을 못하는 경우에 유용하다.</p>
+</blockquote>
+<p>쉽게 말하면, 여러 작업들을 큐에 넣고 실행한 뒤에 이것들이 모두 끝나는 타이밍을 캐치할 수 있다는 뜻이다.</p>
+<p>이러한 기능은 예전 프로젝트를 할 때 사용했던 Rx의 <code>zip</code>이라는 메서드와 유사하다고 느꼈다. 여러 <code>Observable</code>에서 작업을 비동기적으로 서버에 요청하고 이것을 다 받아온 뒤에 UI를 바꿔야 하는 작업이었는데 비동기적인 작업을 묶는 방법을 몰라서 사용했던 기억이 있다. Swift의 기본 클래스에서 이미 제공하는 기능인데 몰랐기 때문에 불필요하게 외부 라이브러리를 사용했던 것이다.</p>
+<h3 id="사용-방법"><a href="#사용-방법" class="headerlink" title="사용 방법"></a>사용 방법</h3><h4 id="초기화"><a href="#초기화" class="headerlink" title="초기화"></a>초기화</h4><p>먼저 초기화를 한다. 아무 인자도 가지지 않는다.<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dispatchGroup: <span class="type">DispatchGroup</span> = <span class="type">DispatchGroup</span>()</span><br></pre></td></tr></table></figure></p>
+<h4 id="작업-넣기-완료-시점-정하기"><a href="#작업-넣기-완료-시점-정하기" class="headerlink" title="작업 넣기, 완료 시점 정하기"></a>작업 넣기, 완료 시점 정하기</h4><p>이제 이 <code>distpatchGroup</code>에 작업들을 넣고 완료되는 시점을 정해주는데, 여기에는 두 가지 방법이 있다.</p>
+<p>먼저, <code>DispatchGroup</code>의 인스턴스 메서드인 <code>enter()</code>와 <code>leave()</code>를 사용하는 것이다.</p>
+<ul>
+<li><code>enter()</code>: 해당 블록이 그룹에 들어간 것을 명시적으로 가리킨다.</li>
+<li><code>leave()</code>: 그룹 안의 해당 블록이 완료되었다는 것을 가리킨다.</li>
+</ul>
+<p>이 두 메서드를 통해 작업을 넣고 완료 시점을 알린다. 목적과 활용 방법은 다르지만 마치 운영체제 시간에 배운 <em>임계 영역(Critical Section)</em>에 접근할 때 Lock이나 Semaphore를 잡고 끝나면 푸는 것과 유사하다.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dispatchGroup.enter()</span><br><span class="line"><span class="type">DispatchQueue</span>.global().async &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">1</span>)</span><br><span class="line">    dispatchGroup.leave()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>두번째 방법은, <code>DispatchQueue</code>의 인스턴스 메서드인 <code>async(group:execute:)</code> 또는 <code>async(group:qos:flags:execute:)</code>를 사용하는 방법이다. 큐가 어느 그룹에 속할지 바로 정해준다는 점에서 조금 더 명시적인 것 같다.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">DispatchQueue</span>.global().async(group: dispatchGroup) &#123;</span><br><span class="line">     <span class="built_in">print</span>(<span class="number">2</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>여기서 excute에 인자로 오는 것은 한 작업의 단위를 나타내는 <code>DispatchWorkItem</code>인데 <em>후행 클로저(Trailing Closure)</em>로 생략을 했다.</p>
+<h4 id="완료-시점-캐치하기"><a href="#완료-시점-캐치하기" class="headerlink" title="완료 시점 캐치하기"></a>완료 시점 캐치하기</h4><p>모든 작업들이 완료되는 시점을 캐치하고 처리하기 위해 <code>DispatchGroup</code>는 여러 인스턴스 메서드를 제공하고 있는데 크게 나누어보면 <strong>동기적(Synchronous)</strong>와 <strong>비동기적(Asynchronous)</strong> 처리로 나눌 수 있다.</p>
+<h5 id="동기적-Synchronous"><a href="#동기적-Synchronous" class="headerlink" title="동기적(Synchronous)"></a>동기적(Synchronous)</h5><p>동기적인 처리는 그룹에 제출된 모든 작업들이 완료되기를 기다린 다음, 그 다음 코드를 실행한다. 다음과 같은 세 가지 메서드가 있다.</p>
+<ul>
+<li><code>wait()</code></li>
+<li><code>wait(timeout:)</code>: <code>DispatchTime</code> 타입의 만료 시간을 줘서 해당 시간이 되면 진행하도록 한다.</li>
+<li><code>wait(wallTimeout:)</code>: 위의 메서드와 비슷하지만 <code>DisptachWallTime</code> 타입의 만료 시간을 제공한다.</li>
+</ul>
+<blockquote>
+<p><code>DispatchTime</code>은 나노 세컨드, <code>DispatchWallTime</code>은 마이크로 세컨드의 정확도를 가지고 있는 시간의 특정 점을 나타낸다고 하는데, 구체적으로 어떤 차이가 있는지는 모르겠다.</p>
+</blockquote>
+<h5 id="비동기적-Asynchronous"><a href="#비동기적-Asynchronous" class="headerlink" title="비동기적(Asynchronous)"></a>비동기적(Asynchronous)</h5><p>비동기적인 처리는 그룹에 제출된 모든 작업들이 완료된 시점에 비동기적으로 동작하는 코드로 그 다음 코드가 먼저 실행될 수도 있다. 두 가지 메서드가 제공된다.</p>
+<ul>
+<li><code>notify(queue:work:)</code>: 그룹의 작업들이 모두 끝나게 되면 인자로 전달한 큐에 <code>DispatchWorkItem</code> 타입의 작업을 제출해 실행하게 한다.</li>
+<li><code>notify(qos:flags:queue:execute:)</code>: 위의 메서드와 비슷하지만 처리하는 작업이 할당될 큐의 <code>DispatchQoS</code>를 정할 수 있고 <code>DispatchWorkItemFlags</code>를 정할 수 있는 메서드이다.</li>
+</ul>
+<h4 id="Sync-vs-Async"><a href="#Sync-vs-Async" class="headerlink" title="Sync vs. Async"></a>Sync vs. Async</h4><p>둘의 차이를 살펴보면 다음과 같다.</p>
+<p>먼저 동기적 처리를 해보면 이런식으로 출력이 된다.<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">dispatchGroup.wait(timeout: .now() + <span class="number">2.0</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"모두 출력되었습니다."</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"그 다음 코드"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// 모두 출력되었습니다.</span></span><br><span class="line"><span class="comment">// 그 다음 코드</span></span><br></pre></td></tr></table></figure></p>
+<p>이유는 1, 2가 처리되고 난 후에야 그 다음 print 문이 실행되기 때문이다.</p>
+<p>그러나 비동기라면,<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">dispatchGroup.notify(queue: .global()) &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"모두 출력되었습니다."</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"그 다음 코드"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 그 다음 코드</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 모두 출력되었습니다.</span></span><br></pre></td></tr></table></figure></p>
+<p>이런 식으로 나오게 된다. “그 다음 코드”가 출력되는 타이밍은 확실하게 말할 수가 없다. 이렇게 앞에 나올 때도 있고 뒤에 나올 때도 있다. 여기서 확실한 것은 “모두 출력되었습니다.”라는 문자열이 1, 2가 모두 출력된 다음 나온다는 것이다.</p>
+<blockquote>
+<p>물론 동기적이나 비동기적인 처리 모두 1, 2가 출력되는 순서는 달라질 수 있다.</p>
+</blockquote>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2>
   </div>
 </article>
 
@@ -158,21 +211,21 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">1.</span> <span class="toc-text">Reference</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dispatch-Group"><span class="toc-number">1.</span> <span class="toc-text">Dispatch Group</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#사용-방법"><span class="toc-number">1.1.</span> <span class="toc-text">사용 방법</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#초기화"><span class="toc-number">1.1.1.</span> <span class="toc-text">초기화</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#작업-넣기-완료-시점-정하기"><span class="toc-number">1.1.2.</span> <span class="toc-text">작업 넣기, 완료 시점 정하기</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#완료-시점-캐치하기"><span class="toc-number">1.1.3.</span> <span class="toc-text">완료 시점 캐치하기</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#동기적-Synchronous"><span class="toc-number">1.1.3.1.</span> <span class="toc-text">동기적(Synchronous)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#비동기적-Asynchronous"><span class="toc-number">1.1.3.2.</span> <span class="toc-text">비동기적(Asynchronous)</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Sync-vs-Async"><span class="toc-number">1.1.4.</span> <span class="toc-text">Sync vs. Async</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">2.</span> <span class="toc-text">Reference</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/&text=dispatchgroup"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/&title=dispatchgroup"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/&is_video=false&description=dispatchgroup"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=dispatchgroup&body=Check out this article: https://wnstkdyu.github.io/2018/07/13/dispatchgroup/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/&title=dispatchgroup"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/&title=dispatchgroup"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/&title=dispatchgroup"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/&title=dispatchgroup"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/&name=dispatchgroup&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/&text=Dispatch Group"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/&title=Dispatch Group"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/&is_video=false&description=Dispatch Group"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Dispatch Group&body=Check out this article: https://wnstkdyu.github.io/2018/07/13/dispatchgroup/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/&title=Dispatch Group"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/&title=Dispatch Group"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/&title=Dispatch Group"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/&title=Dispatch Group"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/07/13/dispatchgroup/&name=Dispatch Group&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
