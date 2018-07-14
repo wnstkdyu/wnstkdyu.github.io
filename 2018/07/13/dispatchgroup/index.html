@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="PacaLog">
 <meta property="og:description" content="iOS에서 시간이 오래 걸리는 작업은 비동기적으로, 그리고 메인 스레드가 아닌 다른 스레드에서 작업을 하는 것이 좋다. 보통 Dispatch Queue에 집어 넣어서 작업을 하게 된다. 그런데 만약 여러 비동기 작업들이 완료가 되야만 그 다음 작업을 진행할 수 있는 상황이라면 어떻게 해야 할까? 그 작업을 가능하게 해주는 것이 Dispatch Group이다">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-07-13T09:34:51.700Z">
+<meta property="og:updated_time" content="2018-07-15T10:44:45.513Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dispatch Group">
 <meta name="twitter:description" content="iOS에서 시간이 오래 걸리는 작업은 비동기적으로, 그리고 메인 스레드가 아닌 다른 스레드에서 작업을 하는 것이 좋다. 보통 Dispatch Queue에 집어 넣어서 작업을 하게 된다. 그런데 만약 여러 비동기 작업들이 완료가 되야만 그 다음 작업을 진행할 수 있는 상황이라면 어떻게 해야 할까? 그 작업을 가능하게 해주는 것이 Dispatch Group이다">
@@ -179,7 +179,7 @@
 <p>그러나 비동기라면,<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">dispatchGroup.notify(queue: .global()) &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"모두 출력되었습니다."</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"그 다음 코드"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 그 다음 코드</span></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 모두 출력되었습니다.</span></span><br></pre></td></tr></table></figure></p>
 <p>이런 식으로 나오게 된다. “그 다음 코드”가 출력되는 타이밍은 확실하게 말할 수가 없다. 이렇게 앞에 나올 때도 있고 뒤에 나올 때도 있다. 여기서 확실한 것은 “모두 출력되었습니다.”라는 문자열이 1, 2가 모두 출력된 다음 나온다는 것이다.</p>
 <blockquote>
-<p>물론 동기적이나 비동기적인 처리 모두 1, 2가 출력되는 순서는 달라질 수 있다.</p>
+<p>물론 동기적이나 비동기적인 처리 두 가지 방법 모두 1, 2가 출력되는 순서는 달라질 수 있다.</p>
 </blockquote>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
 <li><a href="https://developer.apple.com/documentation/dispatch/dispatchgroup" target="_blank" rel="noopener">DispatchGroup - Apple Developer Documentation</a></li>
