@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="첫 번째: Xcode에서 디버깅 시작하기재성 님 (늦게 가서 조금 밖에 못 들었다… 나중에 자료가 나오면 정리해야겠다.) View hierarchy뷰 계층 구도를 볼 수 있음. 각 뷰 간의 거리를 벌리거나 isHidden 값을 조정하는 버튼, constaints를 보는 버튼 등이 있음. DEBUG#if DEBUG 와 endif 문구를 사용해 개발 시에만 로">
+<meta property="og:type" content="article">
+<meta property="og:title" content="let:us Go! 2018 여름">
+<meta property="og:url" content="https://wnstkdyu.github.io/2018/07/21/letusgo2018-summer/index.html">
+<meta property="og:site_name" content="PacaLog">
+<meta property="og:description" content="첫 번째: Xcode에서 디버깅 시작하기재성 님 (늦게 가서 조금 밖에 못 들었다… 나중에 자료가 나오면 정리해야겠다.) View hierarchy뷰 계층 구도를 볼 수 있음. 각 뷰 간의 거리를 벌리거나 isHidden 값을 조정하는 버튼, constaints를 보는 버튼 등이 있음. DEBUG#if DEBUG 와 endif 문구를 사용해 개발 시에만 로">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-07-22T16:13:30.592Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="let:us Go! 2018 여름">
+<meta name="twitter:description" content="첫 번째: Xcode에서 디버깅 시작하기재성 님 (늦게 가서 조금 밖에 못 들었다… 나중에 자료가 나오면 정리해야겠다.) View hierarchy뷰 계층 구도를 볼 수 있음. 각 뷰 간의 거리를 벌리거나 isHidden 값을 조정하는 버튼, constaints를 보는 버튼 등이 있음. DEBUG#if DEBUG 와 endif 문구를 사용해 개발 시에만 로">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>let:us Go! 2018 여름</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2018/07/18/apidesignguidelines/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/07/21/letusgo2018-summer/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/07/21/letusgo2018-summer/&text=let:us Go! 2018 여름"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/07/21/letusgo2018-summer/&title=let:us Go! 2018 여름"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/07/21/letusgo2018-summer/&is_video=false&description=let:us Go! 2018 여름"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=let:us Go! 2018 여름&body=Check out this article: https://wnstkdyu.github.io/2018/07/21/letusgo2018-summer/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/07/21/letusgo2018-summer/&title=let:us Go! 2018 여름"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/07/21/letusgo2018-summer/&title=let:us Go! 2018 여름"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/07/21/letusgo2018-summer/&title=let:us Go! 2018 여름"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/07/21/letusgo2018-summer/&title=let:us Go! 2018 여름"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/07/21/letusgo2018-summer/&name=let:us Go! 2018 여름&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#첫-번째-Xcode에서-디버깅-시작하기"><span class="toc-number">1.</span> <span class="toc-text">첫 번째: Xcode에서 디버깅 시작하기</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#View-hierarchy"><span class="toc-number">1.1.</span> <span class="toc-text">View hierarchy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DEBUG"><span class="toc-number">1.2.</span> <span class="toc-text">DEBUG</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#두-번째-코드-응집도-높이기"><span class="toc-number">2.</span> <span class="toc-text">두 번째: 코드 응집도 높이기</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#장점"><span class="toc-number">2.1.</span> <span class="toc-text">장점</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#응집도를-높이는-방법"><span class="toc-number">2.2.</span> <span class="toc-text">응집도를 높이는 방법</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Elegant-way"><span class="toc-number">2.3.</span> <span class="toc-text">Elegant way</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#세-번째-Observable-Operator-적재적소-사용하기"><span class="toc-number">3.</span> <span class="toc-text">세 번째: Observable Operator 적재적소 사용하기</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#FlatMap"><span class="toc-number">3.1.</span> <span class="toc-text">FlatMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Side-Effect"><span class="toc-number">3.2.</span> <span class="toc-text">Side Effect</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Window"><span class="toc-number">3.3.</span> <span class="toc-text">Window</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Scan"><span class="toc-number">3.4.</span> <span class="toc-text">Scan</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Switch"><span class="toc-number">3.5.</span> <span class="toc-text">Switch</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#네-번째-iOS-TDD-실무에-적용하기"><span class="toc-number">4.</span> <span class="toc-text">네 번째: iOS TDD 실무에 적용하기</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TDD를-하려면"><span class="toc-number">4.1.</span> <span class="toc-text">TDD를 하려면?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#신뢰-쌓기"><span class="toc-number">4.1.1.</span> <span class="toc-text">신뢰 쌓기</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#신뢰-유지하기"><span class="toc-number">4.1.2.</span> <span class="toc-text">신뢰 유지하기</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#프로젝트-중"><span class="toc-number">4.1.2.1.</span> <span class="toc-text">프로젝트 중</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#평소에"><span class="toc-number">4.1.2.2.</span> <span class="toc-text">평소에</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#계획하기"><span class="toc-number">4.2.</span> <span class="toc-text">계획하기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TDD-적용하기"><span class="toc-number">4.3.</span> <span class="toc-text">TDD 적용하기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#상황별-TDD-사용법"><span class="toc-number">4.4.</span> <span class="toc-text">상황별 TDD 사용법</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#레거시-코드"><span class="toc-number">4.4.1.</span> <span class="toc-text">레거시 코드</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#서버-API가-있는-경우"><span class="toc-number">4.4.2.</span> <span class="toc-text">서버 API가 있는 경우</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#DTO-Data-Transfer-Object-를-두자"><span class="toc-number">4.4.2.1.</span> <span class="toc-text">DTO(Data Transfer Object)를 두자.</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#라이브러리-테스트"><span class="toc-number">4.4.3.</span> <span class="toc-text">라이브러리 테스트</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TDD-3단계"><span class="toc-number">4.5.</span> <span class="toc-text">TDD 3단계</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TDD의-한계"><span class="toc-number">4.6.</span> <span class="toc-text">TDD의 한계</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#다섯-번째-Texture-Reactive-wrapper-만들고-응용하기"><span class="toc-number">5.</span> <span class="toc-text">다섯 번째: Texture Reactive wrapper 만들고 응용하기</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Texture-란"><span class="toc-number">5.1.</span> <span class="toc-text">Texture 란?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#장점-1"><span class="toc-number">5.1.1.</span> <span class="toc-text">장점</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#How-to-make-Reactive-Wrapper"><span class="toc-number">5.2.</span> <span class="toc-text">How to make Reactive Wrapper?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#여섯-번째-미리보는-Marzipan"><span class="toc-number">6.</span> <span class="toc-text">여섯 번째: 미리보는 Marzipan</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Marzipan-이란"><span class="toc-number">6.1.</span> <span class="toc-text">Marzipan 이란?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#장점-2"><span class="toc-number">6.1.1.</span> <span class="toc-text">장점</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        let:us Go! 2018 여름
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">PacaLog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-07-21T04:33:23.000Z" itemprop="datePublished">2018-07-21</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="첫-번째-Xcode에서-디버깅-시작하기"><a href="#첫-번째-Xcode에서-디버깅-시작하기" class="headerlink" title="첫 번째: Xcode에서 디버깅 시작하기"></a>첫 번째: Xcode에서 디버깅 시작하기</h2><p><strong>재성 님</strong></p>
+<p>(늦게 가서 조금 밖에 못 들었다… 나중에 자료가 나오면 정리해야겠다.)</p>
+<h3 id="View-hierarchy"><a href="#View-hierarchy" class="headerlink" title="View hierarchy"></a>View hierarchy</h3><p>뷰 계층 구도를 볼 수 있음. 각 뷰 간의 거리를 벌리거나 <code>isHidden</code> 값을 조정하는 버튼, constaints를 보는 버튼 등이 있음.</p>
+<h3 id="DEBUG"><a href="#DEBUG" class="headerlink" title="DEBUG"></a>DEBUG</h3><p><code>#if DEBUG</code> 와 <code>endif</code> 문구를 사용해 개발 시에만 로그를 찍을 때 유용하게 사용할 수 있음.</p>
+<h2 id="두-번째-코드-응집도-높이기"><a href="#두-번째-코드-응집도-높이기" class="headerlink" title="두 번째: 코드 응집도 높이기"></a>두 번째: 코드 응집도 높이기</h2><p><strong>곰튀김 님</strong></p>
+<ul>
+<li>응집도<br>SOLID에서 나오는 이론적인 이야기지만 오늘은 단순하게! 코드의 응집도를 높이자!</li>
+</ul>
+<h3 id="장점"><a href="#장점" class="headerlink" title="장점"></a>장점</h3><p>다음과 같은 것들이 쉬워진다.</p>
+<ul>
+<li>Read</li>
+<li>Follow</li>
+<li>Maintenance</li>
+</ul>
+<p>이것을 하기 위해서 관련 있는 것들끼리 묶어 놓자.</p>
+<h3 id="응집도를-높이는-방법"><a href="#응집도를-높이는-방법" class="headerlink" title="응집도를 높이는 방법"></a>응집도를 높이는 방법</h3><ol>
+<li>Data, Logic, UI끼리 묶기</li>
+<li>Data Setter<br>DidSet을 set하는 부분을 묶자.</li>
+<li>Overrides<br>상위 View Controller를 두고 그것을 다시 상속해 클로저로 할 일을 전달.</li>
+<li>Selector<br>Wrapper 클래스를 만들어서 그 안에서 Selector를 처리하게 하고 실제에서는 클로저만 전달.</li>
+<li>Delegate<br>마찬가지로 Wrapper 클래스를 만들어서 클로저로 전달.</li>
+</ol>
+<h3 id="Elegant-way"><a href="#Elegant-way" class="headerlink" title="Elegant way"></a>Elegant way</h3><ol>
+<li>Data, Login, UI끼리 묶기: 따로 파일을 만들어서 응집시키기</li>
+<li>Data Setter: Rx를 사용해서 모으기</li>
+<li>Overrides: RxViewController를 사용해서 기본 제공되는 메서드에 클로저를 전달.</li>
+<li>Selector<br>기본 알림 메서드를 사용해 클로저를 전달.</li>
+<li>Delegate<br>Reactive에 대한 extension를 만들어서 Proxy를 사용해 <code>.rx</code>를 통해 응집도를 높일 수 있다.</li>
+</ol>
+<p>결국 이렇게 되면 Context의 역할이 ViewModel과 같아지고 MVVM 패턴과 같아진다. 여기서 <strong>중요한 것은 ViewModel이 ViewController를 보지 말아야 한다는 것.</strong> 단방향으로 쭉 이어지게끔 한다.</p>
+<h2 id="세-번째-Observable-Operator-적재적소-사용하기"><a href="#세-번째-Observable-Operator-적재적소-사용하기" class="headerlink" title="세 번째: Observable Operator 적재적소 사용하기"></a>세 번째: Observable Operator 적재적소 사용하기</h2><p><strong>엉덩숭아 님</strong></p>
+<h3 id="FlatMap"><a href="#FlatMap" class="headerlink" title="FlatMap"></a>FlatMap</h3><p>문제점: 버튼 이벤트를 1초 간격으로 3번 일어나게 한다고 했을 때 빠르게 버튼을 탭할 경우 이벤트들이 엮일 수 있다.</p>
+<ul>
+<li>FlatMapFirst: 먼저 생성된 옵저버블이 끝나기 전까지 들어오는 이벤트를 무시한다.<br>사용 예: 서버 요청을 한 번 한 후에는 그 다음 요청을 안 하게 할 수 있음. </li>
+<li>FlatMapLatest: 이벤트가 들어오면 앞에 생성된 옵저버블을 무시한다.<br>사용 예: 응답이 중요하지 않고 단지 API 요청을 보내는 것이 중요할 때.</li>
+</ul>
+<h3 id="Side-Effect"><a href="#Side-Effect" class="headerlink" title="Side Effect"></a>Side Effect</h3><p>외부에 영향을 주거나 받는 경우. 한 예로 self로 클로저 외부의 값에 직접 접근해 가져오는 경우에 발생한다.</p>
+<p>사이드 이펙트가 <strong>있으면 안되는</strong> 곳</p>
+<ul>
+<li>map</li>
+<li>flatMap</li>
+</ul>
+<p>사이드 이펙트가 <strong>있어도 괜찮은</strong> 곳</p>
+<ul>
+<li>do</li>
+<li>subscribe</li>
+</ul>
+<p>이것을 해결하기 위해서 <code>withLatestFrom</code> 메서드를 사용한다. 이 메서드는 어떤 <code>Observable</code>의 가장 마지막 이벤트를 받아오겠다는 뜻. 외부의 값을 인자로 넣어 그것을 매개변수로 받아온다.</p>
+<h3 id="Window"><a href="#Window" class="headerlink" title="Window"></a>Window</h3><p>이벤트들을 인자로 전달한 갯수만큼 모아서 작은 오퍼레이터로 다시 만들어 준다. 이것을 subscribe해서 적절한 처리를 할 수 있다.</p>
+<h3 id="Scan"><a href="#Scan" class="headerlink" title="Scan"></a>Scan</h3><p><code>Observable</code>이 배출한 항목에 연속적으로 함수를 적용하고 실행한 후 성공적으로 실행된 함수의 리턴 값을 발행한다.</p>
+<h3 id="Switch"><a href="#Switch" class="headerlink" title="Switch"></a>Switch</h3><p>Observable들을 배출하는 Observable을 싱글 Observable로 변환한다. 변환된 싱글 Observable은 변환 전 소스 Observable들이 배출한 항목들을 배출한다. -&gt; <strong>내부의 옵저버블을 새 옵저버블로 갈아치운다.</strong></p>
+<h2 id="네-번째-iOS-TDD-실무에-적용하기"><a href="#네-번째-iOS-TDD-실무에-적용하기" class="headerlink" title="네 번째: iOS TDD 실무에 적용하기"></a>네 번째: iOS TDD 실무에 적용하기</h2><p><strong>AnyObject 님</strong></p>
+<h3 id="TDD를-하려면"><a href="#TDD를-하려면" class="headerlink" title="TDD를 하려면?"></a>TDD를 하려면?</h3><ol>
+<li>팀 동료 설득하기: “안 해본 것”에 대한 두려움 -&gt; “지식”을 전달하자!</li>
+</ol>
+<ul>
+<li>동료를 설득하기 전에 ‘내가 그것을 실현할만한 충분한 개발적 역량을 가지고 있는지?’, ‘그 역량으로 신뢰받고 있는지’를 되돌아봐야 함.</li>
+<li>가르쳐 주는 것이 아니라 같이 찾아보는 것, 함께 베스트 프랙티스를 찾아보자고 제안.<ul>
+<li>페어코딩, 몹코딩</li>
+</ul>
+</li>
+<li>단, 구성원 모두 실무에 적용할 만한 지식과 경험이 필요.</li>
+<li>신뢰하는 관계</li>
+</ul>
+<ol>
+<li>상사 설득하기</li>
+</ol>
+<ul>
+<li>기술적 완성도가 올라가는 것을 어필.<ul>
+<li>책: 테스트 주도 개발 실천법과 도구</li>
+<li>에러가 의미있는 수치로 줄어들게 됨.</li>
+</ul>
+</li>
+<li>더 정확한 일정: 프로젝트 전체에 대해 좀 더 자세히 들여다보게 됨.</li>
+<li>내가 없어도 돌아간다.<ul>
+<li>이해가 바탕으로 되면 나의 퍼포먼스가 떨어져도 동료가 도와줄 수 있음.</li>
+</ul>
+</li>
+<li>대외적인 팀의 실력 어필</li>
+<li>단, 마찬가지로 상사도 실무에 적용할 만한 지식과 경험이 필요.</li>
+<li>신뢰하는 관계</li>
+</ul>
+<ol>
+<li>다른 직군 설득하기</li>
+</ol>
+<ul>
+<li>버그가 반복되지 않을 것.<ul>
+<li>같은 이유로 다시 발생하지 않을 것.</li>
+<li>다른 곳을 고쳤을 때, 이전 버그가 재발생하지 않을 것.</li>
+</ul>
+</li>
+<li>신뢰하는 관계</li>
+</ul>
+<p>여기서 가장 중요한 것은 <strong>신뢰</strong>!</p>
+<h4 id="신뢰-쌓기"><a href="#신뢰-쌓기" class="headerlink" title="신뢰 쌓기"></a>신뢰 쌓기</h4><ul>
+<li>오랜 기간 서로 노력해야 함.</li>
+<li>일관성있는 솔직한 태도.</li>
+</ul>
+<h4 id="신뢰-유지하기"><a href="#신뢰-유지하기" class="headerlink" title="신뢰 유지하기"></a>신뢰 유지하기</h4><h5 id="프로젝트-중"><a href="#프로젝트-중" class="headerlink" title="프로젝트 중"></a>프로젝트 중</h5><ul>
+<li>끊임없는 커뮤니케이션</li>
+<li>중간 공유: 진행 상황 등을 자주 공유하는게 좋음.</li>
+</ul>
+<h5 id="평소에"><a href="#평소에" class="headerlink" title="평소에"></a>평소에</h5><ul>
+<li>일관성: 컨디션에 따라서 달리지면 안 됨.</li>
+<li>인간관계: 부정적인 관계는 만들지 않는 것이 좋음.</li>
+<li>거짓말 X: 모르는 것은 인정하고 다시 알아보기.</li>
+<li>다른 직군에게도 자세히 설명하기: 자세히 알 수록 공포는 줄어든다. 알아 듣지 못해도 신뢰는 쌓임.</li>
+</ul>
+<h3 id="계획하기"><a href="#계획하기" class="headerlink" title="계획하기"></a>계획하기</h3><ul>
+<li>가능한 한 자세하게</li>
+<li>빼먹지 말 것</li>
+<li>계획을 유지하고 지속적으로 업데이트하기<ul>
+<li>변경되는 기획</li>
+<li>예상치 못한 디자인</li>
+</ul>
+</li>
+<li>내 맘 같지 않은 API<ul>
+<li>중간에 Layer를 따로 두어 API의 변경 사항이 실제 사용되는 코드에 영향을 주지 않게 하는 것이 좋다. 그 중간 Layer만 수정하면 되게끔 하자.</li>
+</ul>
+</li>
+</ul>
+<h3 id="TDD-적용하기"><a href="#TDD-적용하기" class="headerlink" title="TDD 적용하기"></a>TDD 적용하기</h3><ol>
+<li>프로젝트 생성 시 체크박스 체크.</li>
+<li>커맨드 + U 를 누르고 테스트를 실행<ul>
+<li>시뮬레이터가 실행, 종료되는 과정이 포함되기 때문에 큰 프로젝트의 경우 속도가 느릴 수 있음. 이 때는 host application을 none으로.</li>
+</ul>
+</li>
+</ol>
+<h3 id="상황별-TDD-사용법"><a href="#상황별-TDD-사용법" class="headerlink" title="상황별 TDD 사용법"></a>상황별 TDD 사용법</h3><h4 id="레거시-코드"><a href="#레거시-코드" class="headerlink" title="레거시 코드"></a>레거시 코드</h4><p>사용자가 오랜 기간 테스트를 했다고 볼 수 있기 때문에 바꾸지 않으면 안정된 상태라고 볼 수 있음.</p>
+<p>대신 추가적인 코드에 대해 TDD를 적용하는 것이 바람직함!</p>
+<h4 id="서버-API가-있는-경우"><a href="#서버-API가-있는-경우" class="headerlink" title="서버 API가 있는 경우"></a>서버 API가 있는 경우</h4><p>응집도와 결합도는 다른 것.</p>
+<p>클래스 내의 메서드와 프로퍼티들이 있는데 서로 연관있는 데 꼭 한 곳으로 모일 수는 없는 경우에 ‘응집도가 낮다!’, 그럼에도 분리는 할 수 없다면 ‘결합도는 강하다!’라고 할 수 있음.</p>
+<h5 id="DTO-Data-Transfer-Object-를-두자"><a href="#DTO-Data-Transfer-Object-를-두자" class="headerlink" title="DTO(Data Transfer Object)를 두자."></a>DTO(Data Transfer Object)를 두자.</h5><p>ViewModel -&gt; ServiceLayerProtocol -&gt; NetworkLayerProtocol</p>
+<p>Protocol로 연결되어 있기 때문에 Model을 Mock 데이터로 줘도 가능.</p>
+<h4 id="라이브러리-테스트"><a href="#라이브러리-테스트" class="headerlink" title="라이브러리 테스트"></a>라이브러리 테스트</h4><p>라이브러리가 업데이트가 될 경우에 이미 테스트 케이스는 다 작성되어 있기 때문에 기존에 개발한 기능들이 잘 동작되는지 알 수 있음.</p>
+<h3 id="TDD-3단계"><a href="#TDD-3단계" class="headerlink" title="TDD 3단계"></a>TDD 3단계</h3><ol>
+<li>실패하는 테스트</li>
+<li>가장 빨리 성공하게</li>
+<li>리팩토링<ol>
+<li>중복을 제거하고: 상수 중복, 의미 중복.</li>
+<li>의미를 드러낸다.(명확하게 한다.)</li>
+</ol>
+</li>
+</ol>
+<h3 id="TDD의-한계"><a href="#TDD의-한계" class="headerlink" title="TDD의 한계"></a>TDD의 한계</h3><ul>
+<li>테스트 한 만큼만 보장됨.</li>
+</ul>
+<h2 id="다섯-번째-Texture-Reactive-wrapper-만들고-응용하기"><a href="#다섯-번째-Texture-Reactive-wrapper-만들고-응용하기" class="headerlink" title="다섯 번째: Texture Reactive wrapper 만들고 응용하기"></a>다섯 번째: Texture Reactive wrapper 만들고 응용하기</h2><p><strong>Geektree 님</strong></p>
+<h3 id="Texture-란"><a href="#Texture-란" class="headerlink" title="Texture 란?"></a>Texture 란?</h3><p>UIKit의 부족한 부분을 채워서 만든 라이브러리로 UI를 부드럽고 반응성이 좋게 만들어줌.</p>
+<p>UIView 위에 <code>Node</code>를 얹어서 래핑한 것을 사용.</p>
+<h4 id="장점-1"><a href="#장점-1" class="headerlink" title="장점"></a>장점</h4><ul>
+<li>Thread Safe<ul>
+<li>메인 스레드에서 접근하는 경우 크래시가 나도록 함.</li>
+</ul>
+</li>
+<li><strong>무거운 UI 작업을 메인 스레드에서 하지 않도록</strong> 함.</li>
+<li>Constraints의 지옥 탈출과 Layout Specs.</li>
+<li>Node Wrapper를 사용하여 기존의 View를 그대로 사용할 수 있음.</li>
+</ul>
+<h3 id="How-to-make-Reactive-Wrapper"><a href="#How-to-make-Reactive-Wrapper" class="headerlink" title="How to make Reactive Wrapper?"></a>How to make Reactive Wrapper?</h3><p>Rx를 사용하는 데에 있어서 한계가 조금 있기 때문에 <code>UIControl</code> 클래스에 대해서 Wrapping해서 써야함.</p>
+<p>(뒤의 내용은 너무 어려웠다…)</p>
+<h2 id="여섯-번째-미리보는-Marzipan"><a href="#여섯-번째-미리보는-Marzipan" class="headerlink" title="여섯 번째: 미리보는 Marzipan"></a>여섯 번째: 미리보는 Marzipan</h2><p><strong>구범모 님</strong></p>
+<h3 id="Marzipan-이란"><a href="#Marzipan-이란" class="headerlink" title="Marzipan 이란?"></a>Marzipan 이란?</h3><p>mac OS에서 UIKit 등 iOS 코드를 돌릴 수 있도록 하는 기술.</p>
+<p>기존의 iOS 코드를 고칠 필요가 없이 자동으로 mac OS에 맞게 바꿔 준다.</p>
+<h4 id="장점-2"><a href="#장점-2" class="headerlink" title="장점"></a>장점</h4><ul>
+<li>mac OS 앱 중 업데이트가 느린 것들이 바로 업데이트가 가능해짐.</li>
+<li>수많은 iOS 앱들이 mac OS에서 돌아갈 수 있음.</li>
+</ul>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#첫-번째-Xcode에서-디버깅-시작하기"><span class="toc-number">1.</span> <span class="toc-text">첫 번째: Xcode에서 디버깅 시작하기</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#View-hierarchy"><span class="toc-number">1.1.</span> <span class="toc-text">View hierarchy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DEBUG"><span class="toc-number">1.2.</span> <span class="toc-text">DEBUG</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#두-번째-코드-응집도-높이기"><span class="toc-number">2.</span> <span class="toc-text">두 번째: 코드 응집도 높이기</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#장점"><span class="toc-number">2.1.</span> <span class="toc-text">장점</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#응집도를-높이는-방법"><span class="toc-number">2.2.</span> <span class="toc-text">응집도를 높이는 방법</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Elegant-way"><span class="toc-number">2.3.</span> <span class="toc-text">Elegant way</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#세-번째-Observable-Operator-적재적소-사용하기"><span class="toc-number">3.</span> <span class="toc-text">세 번째: Observable Operator 적재적소 사용하기</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#FlatMap"><span class="toc-number">3.1.</span> <span class="toc-text">FlatMap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Side-Effect"><span class="toc-number">3.2.</span> <span class="toc-text">Side Effect</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Window"><span class="toc-number">3.3.</span> <span class="toc-text">Window</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Scan"><span class="toc-number">3.4.</span> <span class="toc-text">Scan</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Switch"><span class="toc-number">3.5.</span> <span class="toc-text">Switch</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#네-번째-iOS-TDD-실무에-적용하기"><span class="toc-number">4.</span> <span class="toc-text">네 번째: iOS TDD 실무에 적용하기</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TDD를-하려면"><span class="toc-number">4.1.</span> <span class="toc-text">TDD를 하려면?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#신뢰-쌓기"><span class="toc-number">4.1.1.</span> <span class="toc-text">신뢰 쌓기</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#신뢰-유지하기"><span class="toc-number">4.1.2.</span> <span class="toc-text">신뢰 유지하기</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#프로젝트-중"><span class="toc-number">4.1.2.1.</span> <span class="toc-text">프로젝트 중</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#평소에"><span class="toc-number">4.1.2.2.</span> <span class="toc-text">평소에</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#계획하기"><span class="toc-number">4.2.</span> <span class="toc-text">계획하기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TDD-적용하기"><span class="toc-number">4.3.</span> <span class="toc-text">TDD 적용하기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#상황별-TDD-사용법"><span class="toc-number">4.4.</span> <span class="toc-text">상황별 TDD 사용법</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#레거시-코드"><span class="toc-number">4.4.1.</span> <span class="toc-text">레거시 코드</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#서버-API가-있는-경우"><span class="toc-number">4.4.2.</span> <span class="toc-text">서버 API가 있는 경우</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#DTO-Data-Transfer-Object-를-두자"><span class="toc-number">4.4.2.1.</span> <span class="toc-text">DTO(Data Transfer Object)를 두자.</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#라이브러리-테스트"><span class="toc-number">4.4.3.</span> <span class="toc-text">라이브러리 테스트</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TDD-3단계"><span class="toc-number">4.5.</span> <span class="toc-text">TDD 3단계</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TDD의-한계"><span class="toc-number">4.6.</span> <span class="toc-text">TDD의 한계</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#다섯-번째-Texture-Reactive-wrapper-만들고-응용하기"><span class="toc-number">5.</span> <span class="toc-text">다섯 번째: Texture Reactive wrapper 만들고 응용하기</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Texture-란"><span class="toc-number">5.1.</span> <span class="toc-text">Texture 란?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#장점-1"><span class="toc-number">5.1.1.</span> <span class="toc-text">장점</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#How-to-make-Reactive-Wrapper"><span class="toc-number">5.2.</span> <span class="toc-text">How to make Reactive Wrapper?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#여섯-번째-미리보는-Marzipan"><span class="toc-number">6.</span> <span class="toc-text">여섯 번째: 미리보는 Marzipan</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Marzipan-이란"><span class="toc-number">6.1.</span> <span class="toc-text">Marzipan 이란?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#장점-2"><span class="toc-number">6.1.1.</span> <span class="toc-text">장점</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/07/21/letusgo2018-summer/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/07/21/letusgo2018-summer/&text=let:us Go! 2018 여름"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/07/21/letusgo2018-summer/&title=let:us Go! 2018 여름"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/07/21/letusgo2018-summer/&is_video=false&description=let:us Go! 2018 여름"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=let:us Go! 2018 여름&body=Check out this article: https://wnstkdyu.github.io/2018/07/21/letusgo2018-summer/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/07/21/letusgo2018-summer/&title=let:us Go! 2018 여름"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/07/21/letusgo2018-summer/&title=let:us Go! 2018 여름"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/07/21/letusgo2018-summer/&title=let:us Go! 2018 여름"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/07/21/letusgo2018-summer/&title=let:us Go! 2018 여름"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/07/21/letusgo2018-summer/&name=let:us Go! 2018 여름&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Alpaca
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-116302583-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'alpacablog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+

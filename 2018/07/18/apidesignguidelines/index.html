@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Fundamentals 사용 시의 명확함이 가장 중요한 목표. 메서드나 프로퍼티의 선언은 한 번이지만 사용은 반복적임. 사용 할 때 문맥상 명확하도록 하라. 명확함이 간결함보다 더 중요. 주석을 사용하라. 주석을 읽음으로써 얻어지는 영감은 디자인에 지대한 영향을 미칠 수 있다.  NamingPromote Clear Usage 모호성을 피하는 데 필요한 모든">
+<meta name="keywords" content="Convention,Guidelines">
+<meta property="og:type" content="article">
+<meta property="og:title" content="API Design Guidelines">
+<meta property="og:url" content="https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/index.html">
+<meta property="og:site_name" content="PacaLog">
+<meta property="og:description" content="Fundamentals 사용 시의 명확함이 가장 중요한 목표. 메서드나 프로퍼티의 선언은 한 번이지만 사용은 반복적임. 사용 할 때 문맥상 명확하도록 하라. 명확함이 간결함보다 더 중요. 주석을 사용하라. 주석을 읽음으로써 얻어지는 영감은 디자인에 지대한 영향을 미칠 수 있다.  NamingPromote Clear Usage 모호성을 피하는 데 필요한 모든">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-07-22T16:32:31.687Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="API Design Guidelines">
+<meta name="twitter:description" content="Fundamentals 사용 시의 명확함이 가장 중요한 목표. 메서드나 프로퍼티의 선언은 한 번이지만 사용은 반복적임. 사용 할 때 문맥상 명확하도록 하라. 명확함이 간결함보다 더 중요. 주석을 사용하라. 주석을 읽음으로써 얻어지는 영감은 디자인에 지대한 영향을 미칠 수 있다.  NamingPromote Clear Usage 모호성을 피하는 데 필요한 모든">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>API Design Guidelines</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/07/21/letusgo2018-summer/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/07/13/dispatchgroup/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&text=API Design Guidelines"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&title=API Design Guidelines"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&is_video=false&description=API Design Guidelines"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=API Design Guidelines&body=Check out this article: https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&title=API Design Guidelines"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&title=API Design Guidelines"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&title=API Design Guidelines"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&title=API Design Guidelines"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&name=API Design Guidelines&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Fundamentals"><span class="toc-number">1.</span> <span class="toc-text">Fundamentals</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Naming"><span class="toc-number">2.</span> <span class="toc-text">Naming</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Promote-Clear-Usage"><span class="toc-number">2.1.</span> <span class="toc-text">Promote Clear Usage</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Strive-for-Fluent-Usage"><span class="toc-number">3.</span> <span class="toc-text">Strive for Fluent Usage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        API Design Guidelines
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">PacaLog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-07-18T01:32:21.000Z" itemprop="datePublished">2018-07-18</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Convention/">Convention</a>, <a class="tag-link" href="/tags/Guidelines/">Guidelines</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Fundamentals"><a href="#Fundamentals" class="headerlink" title="Fundamentals"></a>Fundamentals</h2><ul>
+<li><strong>사용 시의 명확함</strong>이 가장 중요한 목표. 메서드나 프로퍼티의 선언은 한 번이지만 사용은 반복적임. 사용 할 때 문맥상 명확하도록 하라.</li>
+<li><strong>명확함이 간결함보다 더 중요.</strong></li>
+<li><strong>주석을 사용하라.</strong> 주석을 읽음으로써 얻어지는 영감은 디자인에 지대한 영향을 미칠 수 있다.</li>
+</ul>
+<h2 id="Naming"><a href="#Naming" class="headerlink" title="Naming"></a>Naming</h2><h3 id="Promote-Clear-Usage"><a href="#Promote-Clear-Usage" class="headerlink" title="Promote Clear Usage"></a>Promote Clear Usage</h3><ul>
+<li><p><strong>모호성을 피하는 데 필요한 모든 단어들을 포함하라.</strong></p>
+<ul>
+<li><p>좋은 예</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">List</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">remove</span><span class="params">(at position: Index)</span></span> -&gt; <span class="type">Element</span></span><br><span class="line">&#125;</span><br><span class="line">employees.remove(at: x)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>나쁜 예</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">employess.remove(x) <span class="comment">// 불확실함: x를 지우는 것인가?</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><strong>불필요한 단어는 생략하라.</strong> 이름의 모든 단어는 사용 시에 중요한 정보를 전달해야 한다.</p>
+<ul>
+<li><p>나쁜 예: 더 많은 단어는 의도를 명확하게 하거나 뜻의 모호성을 없애주는 데 필요할 수 있지만 이미 담고 있는 정보가 불필요하게 더 전달될 수도 있다. 특히 <em>단지 타입을 반복하는</em> 단어는 생략하라.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">removeElement</span><span class="params">(<span class="number">_</span> member: Element)</span></span> -&gt; <span class="type">Element</span>?</span><br><span class="line">allViews.removeElement(cancelButton)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>좋은 예</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">remove</span><span class="params">(<span class="number">_</span> member: Element)</span></span> -&gt; <span class="type">Element</span>?</span><br><span class="line">allViews.remove(cancelButton) <span class="comment">// clearer</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><strong>변수, 인자, 그리고 연관 타입의 이름을 타입이 아닌 그들의 역할에 따라 지어라.</strong></p>
+<ul>
+<li><p>나쁜 예</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> string = <span class="string">"Hello"</span></span><br><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">ViewController</span> </span>&#123;</span><br><span class="line">  associatedtype <span class="type">ViewType</span> : <span class="type">View</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProductionLine</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">restock</span><span class="params">(from widgetFactory: WidgetFactory)</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>좋은 예</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> greeting = <span class="string">"Hello"</span></span><br><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">ViewController</span> </span>&#123;</span><br><span class="line">  associatedtype <span class="type">ContentView</span> : <span class="type">View</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProductionLine</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">restock</span><span class="params">(from supplier: WidgetFactory)</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><strong>부족한 타입 정보를 인자의 역할을 확실히 함으로써 보조하라.</strong><br>특별히 인자의 타입이 <code>NSObject</code>, <code>Any</code>, <code>AnyObject</code> 타입이나 <code>Int</code>, <code>String</code> 같은 기본 타입일 경우 타입 정보나 사용 시의 정보가 의도를 전부 전달해주지 못할 수도 있다. 다음 예에서 선언 시에는 명확하나 사용시에는 모호하다.</p>
+<ul>
+<li>나쁜 예<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">add</span><span class="params">(<span class="number">_</span> observer: NSObject, <span class="keyword">for</span> keyPath: String)</span></span></span><br><span class="line">grid.add(<span class="keyword">self</span>, <span class="keyword">for</span>: graphics) <span class="comment">// vague</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>명확함을 위해 <strong>부족한 타입 설명의 인자 각각에 역할을 보여주는 명사를 앞에 써넣어라.</strong></p>
+<ul>
+<li>좋은 예<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">addObserver</span><span class="params">(<span class="number">_</span> observer: NSObject, forKeyPath path: String)</span></span></span><br><span class="line">grid.addObserver(<span class="keyword">self</span>, forKeyPath: graphics) <span class="comment">// clear</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Strive-for-Fluent-Usage"><a href="#Strive-for-Fluent-Usage" class="headerlink" title="Strive for Fluent Usage"></a>Strive for Fluent Usage</h2><ul>
+<li><p><strong>메서드와 함수 이름이 사용 시에 문법이 맞는 영어 구문이 되도록 이름을 짓는 것을 선호하라.</strong></p>
+<ul>
+<li><p>좋은 예</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x.insert(y, at: z)          “x, insert y at z”</span><br><span class="line">x.subViews(havingColor: y)  “x's subviews having color y”</span><br><span class="line">x.capitalizingNouns()       “x, capitalizing nouns”</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>나쁜 예</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x.insert(y, position: z)</span><br><span class="line">x.subViews(color: y)</span><br><span class="line">x.nounCapitalize()</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><strong>팩토리 메서드의 이름은 “make”로 시작하라.</strong></p>
+</li>
+<li><p>초기화와 팩토리 메서드 호출 시의 첫번째 인자는 기본 이름으로 시작하는 구문을 만들어서는 안 된다.</p>
+<ul>
+<li><p>좋은 예</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> foreground = <span class="type">Color</span>(red: <span class="number">32</span>, green: <span class="number">64</span>, blue: <span class="number">128</span>)</span><br><span class="line"><span class="keyword">let</span> newPart = factory.makeWidget(gears: <span class="number">42</span>, spindles: <span class="number">14</span>)</span><br><span class="line"><span class="keyword">let</span> ref = <span class="type">Link</span>(target: destination)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>나쁜 예: 첫 번째 인자와 문법적 연속성을 만드려고 시도했다.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> foreground = <span class="type">Color</span>(havingRGBValuesRed: <span class="number">32</span>, green: <span class="number">64</span>, andBlue: <span class="number">128</span>)</span><br><span class="line"><span class="keyword">let</span> newPart = factory.makeWidget(havingGearCount: <span class="number">42</span>, andSpindleCount: <span class="number">14</span>)</span><br><span class="line"><span class="keyword">let</span> ref = <span class="type">Link</span>(to: destination)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>(작성중…)</p>
+</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://swift.org/documentation/api-design-guidelines/" target="_blank" rel="noopener">API Design Guidelines - Swift.org</a></li>
+</ul>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Fundamentals"><span class="toc-number">1.</span> <span class="toc-text">Fundamentals</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Naming"><span class="toc-number">2.</span> <span class="toc-text">Naming</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Promote-Clear-Usage"><span class="toc-number">2.1.</span> <span class="toc-text">Promote Clear Usage</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Strive-for-Fluent-Usage"><span class="toc-number">3.</span> <span class="toc-text">Strive for Fluent Usage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&text=API Design Guidelines"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&title=API Design Guidelines"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&is_video=false&description=API Design Guidelines"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=API Design Guidelines&body=Check out this article: https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&title=API Design Guidelines"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&title=API Design Guidelines"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&title=API Design Guidelines"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&title=API Design Guidelines"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&name=API Design Guidelines&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Alpaca
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-116302583-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'alpacablog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
