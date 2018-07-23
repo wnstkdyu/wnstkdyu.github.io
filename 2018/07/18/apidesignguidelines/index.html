@@ -6,18 +6,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Fundamentals 사용 시의 명확함이 가장 중요한 목표. 메서드나 프로퍼티의 선언은 한 번이지만 사용은 반복적임. 사용 할 때 문맥상 명확하도록 하라. 명확함이 간결함보다 더 중요. 주석을 사용하라. 주석을 읽음으로써 얻어지는 영감은 디자인에 지대한 영향을 미칠 수 있다.  NamingPromote Clear Usage 모호성을 피하는 데 필요한 모든">
+    <meta name="description" content="Fundamentals 사용 시의 명확함이 가장 중요한 목표. 메서드나 프로퍼티의 선언은 한 번이지만 사용은 반복적임. 사용 할 때 문맥상 명확하도록 하라. 명확함이 간결함보다 더 중요. 모든 선언에 대해 문서 주석을 사용하라. 주석을 읽음으로써 얻어지는 통찰은 디자인에 지대한 영향을 미칠 수 있다.  NamingPromote Clear Usage 모호성을">
 <meta name="keywords" content="Convention,Guidelines">
 <meta property="og:type" content="article">
-<meta property="og:title" content="API Design Guidelines">
+<meta property="og:title" content="Swift API Design Guidelines">
 <meta property="og:url" content="https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/index.html">
 <meta property="og:site_name" content="PacaLog">
-<meta property="og:description" content="Fundamentals 사용 시의 명확함이 가장 중요한 목표. 메서드나 프로퍼티의 선언은 한 번이지만 사용은 반복적임. 사용 할 때 문맥상 명확하도록 하라. 명확함이 간결함보다 더 중요. 주석을 사용하라. 주석을 읽음으로써 얻어지는 영감은 디자인에 지대한 영향을 미칠 수 있다.  NamingPromote Clear Usage 모호성을 피하는 데 필요한 모든">
+<meta property="og:description" content="Fundamentals 사용 시의 명확함이 가장 중요한 목표. 메서드나 프로퍼티의 선언은 한 번이지만 사용은 반복적임. 사용 할 때 문맥상 명확하도록 하라. 명확함이 간결함보다 더 중요. 모든 선언에 대해 문서 주석을 사용하라. 주석을 읽음으로써 얻어지는 통찰은 디자인에 지대한 영향을 미칠 수 있다.  NamingPromote Clear Usage 모호성을">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-07-22T16:32:31.687Z">
+<meta property="og:updated_time" content="2018-07-23T13:00:49.050Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="API Design Guidelines">
-<meta name="twitter:description" content="Fundamentals 사용 시의 명확함이 가장 중요한 목표. 메서드나 프로퍼티의 선언은 한 번이지만 사용은 반복적임. 사용 할 때 문맥상 명확하도록 하라. 명확함이 간결함보다 더 중요. 주석을 사용하라. 주석을 읽음으로써 얻어지는 영감은 디자인에 지대한 영향을 미칠 수 있다.  NamingPromote Clear Usage 모호성을 피하는 데 필요한 모든">
+<meta name="twitter:title" content="Swift API Design Guidelines">
+<meta name="twitter:description" content="Fundamentals 사용 시의 명확함이 가장 중요한 목표. 메서드나 프로퍼티의 선언은 한 번이지만 사용은 반복적임. 사용 할 때 문맥상 명확하도록 하라. 명확함이 간결함보다 더 중요. 모든 선언에 대해 문서 주석을 사용하라. 주석을 읽음으로써 얻어지는 통찰은 디자인에 지대한 영향을 미칠 수 있다.  NamingPromote Clear Usage 모호성을">
     
     
         
@@ -37,7 +37,7 @@
         
     
     <!-- title -->
-    <title>API Design Guidelines</title>
+    <title>Swift API Design Guidelines</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- rss -->
@@ -84,20 +84,20 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&text=API Design Guidelines"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&title=API Design Guidelines"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&is_video=false&description=API Design Guidelines"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=API Design Guidelines&body=Check out this article: https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&title=API Design Guidelines"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&title=API Design Guidelines"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&title=API Design Guidelines"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&title=API Design Guidelines"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&name=API Design Guidelines&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&text=Swift API Design Guidelines"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&title=Swift API Design Guidelines"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&is_video=false&description=Swift API Design Guidelines"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Swift API Design Guidelines&body=Check out this article: https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&title=Swift API Design Guidelines"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&title=Swift API Design Guidelines"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&title=Swift API Design Guidelines"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&title=Swift API Design Guidelines"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&name=Swift API Design Guidelines&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Fundamentals"><span class="toc-number">1.</span> <span class="toc-text">Fundamentals</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Naming"><span class="toc-number">2.</span> <span class="toc-text">Naming</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Promote-Clear-Usage"><span class="toc-number">2.1.</span> <span class="toc-text">Promote Clear Usage</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Strive-for-Fluent-Usage"><span class="toc-number">3.</span> <span class="toc-text">Strive for Fluent Usage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Fundamentals"><span class="toc-number">1.</span> <span class="toc-text">Fundamentals</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Naming"><span class="toc-number">2.</span> <span class="toc-text">Naming</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Promote-Clear-Usage"><span class="toc-number">2.1.</span> <span class="toc-text">Promote Clear Usage</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Strive-for-Fluent-Usage"><span class="toc-number">2.2.</span> <span class="toc-text">Strive for Fluent Usage</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Use-Terminology-Well"><span class="toc-number">2.3.</span> <span class="toc-text">Use Terminology Well</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conventions"><span class="toc-number">3.</span> <span class="toc-text">Conventions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#General-Conventions"><span class="toc-number">3.1.</span> <span class="toc-text">General Conventions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Parameters"><span class="toc-number">3.2.</span> <span class="toc-text">Parameters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Argument-Labels"><span class="toc-number">3.3.</span> <span class="toc-text">Argument Labels</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Special-Instructions"><span class="toc-number">4.</span> <span class="toc-text">Special Instructions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">5.</span> <span class="toc-text">Reference</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -109,7 +109,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        API Design Guidelines
+        Swift API Design Guidelines
     </h1>
 
 
@@ -137,9 +137,9 @@
 
   <div class="content" itemprop="articleBody">
     <h2 id="Fundamentals"><a href="#Fundamentals" class="headerlink" title="Fundamentals"></a>Fundamentals</h2><ul>
-<li><strong>사용 시의 명확함</strong>이 가장 중요한 목표. 메서드나 프로퍼티의 선언은 한 번이지만 사용은 반복적임. 사용 할 때 문맥상 명확하도록 하라.</li>
+<li><strong>사용 시의 명확함</strong>이 가장 중요한 목표. 메서드나 프로퍼티의 <strong>선언은 한 번이지만 사용은 반복적</strong>임. 사용 할 때 문맥상 명확하도록 하라.</li>
 <li><strong>명확함이 간결함보다 더 중요.</strong></li>
-<li><strong>주석을 사용하라.</strong> 주석을 읽음으로써 얻어지는 영감은 디자인에 지대한 영향을 미칠 수 있다.</li>
+<li>모든 선언에 대해 <strong>문서 주석을 사용하라.</strong> 주석을 읽음으로써 얻어지는 통찰은 디자인에 지대한 영향을 미칠 수 있다.</li>
 </ul>
 <h2 id="Naming"><a href="#Naming" class="headerlink" title="Naming"></a>Naming</h2><h3 id="Promote-Clear-Usage"><a href="#Promote-Clear-Usage" class="headerlink" title="Promote Clear Usage"></a>Promote Clear Usage</h3><ul>
 <li><p><strong>모호성을 피하는 데 필요한 모든 단어들을 포함하라.</strong></p>
@@ -162,7 +162,7 @@
 </li>
 </ul>
 </li>
-<li><p><strong>변수, 인자, 그리고 연관 타입의 이름을 타입이 아닌 그들의 역할에 따라 지어라.</strong></p>
+<li><p>변수, 인자, 그리고 연관 타입의 이름을 <strong>타입이 아닌 그들의 역할에 따라</strong> 지어라.</p>
 <ul>
 <li><p>나쁜 예</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> string = <span class="string">"Hello"</span></span><br><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">ViewController</span> </span>&#123;</span><br><span class="line">  associatedtype <span class="type">ViewType</span> : <span class="type">View</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ProductionLine</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">restock</span><span class="params">(from widgetFactory: WidgetFactory)</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -184,7 +184,7 @@
 </ul>
 </li>
 </ul>
-<h2 id="Strive-for-Fluent-Usage"><a href="#Strive-for-Fluent-Usage" class="headerlink" title="Strive for Fluent Usage"></a>Strive for Fluent Usage</h2><ul>
+<h3 id="Strive-for-Fluent-Usage"><a href="#Strive-for-Fluent-Usage" class="headerlink" title="Strive for Fluent Usage"></a>Strive for Fluent Usage</h3><ul>
 <li><p><strong>메서드와 함수 이름이 사용 시에 문법이 맞는 영어 구문이 되도록 이름을 짓는 것을 선호하라.</strong></p>
 <ul>
 <li><p>좋은 예</p>
@@ -202,12 +202,90 @@
 <li><p>좋은 예</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> foreground = <span class="type">Color</span>(red: <span class="number">32</span>, green: <span class="number">64</span>, blue: <span class="number">128</span>)</span><br><span class="line"><span class="keyword">let</span> newPart = factory.makeWidget(gears: <span class="number">42</span>, spindles: <span class="number">14</span>)</span><br><span class="line"><span class="keyword">let</span> ref = <span class="type">Link</span>(target: destination)</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>나쁜 예: 첫 번째 인자와 문법적 연속성을 만드려고 시도했다.</p>
+<li><p>나쁜 예: 첫 번째 인자와 <strong>문법적 연속성</strong>을 만드려고 시도했다.</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> foreground = <span class="type">Color</span>(havingRGBValuesRed: <span class="number">32</span>, green: <span class="number">64</span>, andBlue: <span class="number">128</span>)</span><br><span class="line"><span class="keyword">let</span> newPart = factory.makeWidget(havingGearCount: <span class="number">42</span>, andSpindleCount: <span class="number">14</span>)</span><br><span class="line"><span class="keyword">let</span> ref = <span class="type">Link</span>(to: destination)</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>(작성중…)</p>
 </li>
+<li><p><strong>함수와 메서드의 부작용(원래 값에 변형이 일어나느냐에 따라 구분)을 고려하여 이름을 지어라.</strong></p>
+<ul>
+<li><p>부작용이 없는 것은 명사 구문처럼 읽혀야 한다.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x.<span class="built_in">distance</span>(to: y)</span><br><span class="line">i.successor()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>부작용이 있는 것은 명령형의 동사 구문처럼 읽혀야 한다.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(x)</span><br><span class="line">x.<span class="built_in">sort</span>()</span><br><span class="line">x.append(y)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Mutating/nonmutating 메서드 쌍의 이름을 일관되게 지어라.</strong></p>
+<ul>
+<li><p>작업이 <strong>동사로 자연스럽게 설명될 수 있는 경우</strong>, <em>mutating</em> 메서드의 경우 동사의 명령형으로, <em>nonmutating</em> 메서드의 경우 “ed”나 “ing” 같은 접미사를 붙여라.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Mutating</span></span><br><span class="line">x.<span class="built_in">sort</span>()</span><br><span class="line">x.append(y)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Nonmutating</span></span><br><span class="line">z = x.sorted()</span><br><span class="line">z = x.appending(y)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>“ed”: 가장 일반적으로 선호됨.</li>
+<li>“ing”: 동사가 직접적인 목적어를 가져 “ed”가 문법적으로 옳지 않아 보일 떄</li>
+</ul>
+</li>
+<li>작업이 <strong>명사로 자연스럽게 설명될 수 있는 경우</strong>, <em>nonmutating</em> 메서드는 명사를 그대로 붙이되, <em>mutating</em> 메서드의 경우 접두사로 “form”을 붙이는 것이 좋다.<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Mutating</span></span><br><span class="line">y.formUnion(z)</span><br><span class="line"><span class="built_in">c</span>.formSuccessor(&amp;i)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Nonmutating</span></span><br><span class="line">x = y.union(z)</span><br><span class="line">j = <span class="built_in">c</span>.successor(i)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Boolean 메서드와 프로퍼티는 사용할 때 주장(assertion)처럼 읽혀야 한다.</strong></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x.isEmpty</span><br><span class="line">line1.intersects(line2)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong><em>무엇인지</em> 설명하는 프로토콜은 명사로 읽혀야 한다</strong>(e.g. Collection).</p>
+</li>
+<li><strong><em>무엇을 하는지</em>설명하는 프로토콜은 able, ible, 또는 ing 같은 접미사를 사용해 이름을 지어야 한다</strong>(e.g. Equatable, ProgressReporting).</li>
+<li><strong>타입, 프로퍼티, 변수, 상수의 이름은 명사처럼 읽혀야 한다.</strong></li>
+</ul>
+<h3 id="Use-Terminology-Well"><a href="#Use-Terminology-Well" class="headerlink" title="Use Terminology Well"></a>Use Terminology Well</h3><ul>
+<li><strong>애매한 용어는 피하라.</strong></li>
+<li><strong>확립된 뜻에 충실하라.</strong>: 새로운 용어를 만들 필요가 없는 경우에는 기존의 널리 알려진 용어를 사용하자.</li>
+<li><strong>약어를 피하라.</strong>: 사용되는 약어는 널리 알려지고 쉽게 찾을 수 있어야 한다.</li>
+<li><strong>선례를 따르라.</strong></li>
+</ul>
+<h2 id="Conventions"><a href="#Conventions" class="headerlink" title="Conventions"></a>Conventions</h2><h3 id="General-Conventions"><a href="#General-Conventions" class="headerlink" title="General Conventions"></a>General Conventions</h3><ul>
+<li><strong>O(1)이 아닌 연산 프로퍼티의 경우 그것의 복잡도를 명시히라.</strong>: 일반적으로 연산 프로퍼티를 접근하여 사용하는 경우 O(1)로 생각하기 쉽기 때문에 아닌 경우에는 알려 주어야 한다.</li>
+<li><strong>함수를 사용하는 대신 메서드와 프로퍼티를 선호하라.</strong></li>
+<li><strong>대소문자 컨벤션을 따르라.</strong>: 타입과 프로토콜의 이름은 UpperCamelCase로, 그 외의 것은 lowerCamelCase로 한다.</li>
+<li>기본적인 뜻을 공유하거나 특정 도메인에서 동작하는 메서드의 경우 <strong>기본 이름을 공유할 수 있다.</strong> </li>
+</ul>
+<h3 id="Parameters"><a href="#Parameters" class="headerlink" title="Parameters"></a>Parameters</h3><ul>
+<li><p><strong>설명을 제공하는 인자 이름을 골라야 한다.</strong></p>
+<ul>
+<li><p>좋은 예: 해당 설명이 자연스럽게 읽혀진다.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// Return an `Array` containing the elements of `self`</span></span><br><span class="line"><span class="comment">/// that satisfy `predicate`.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">filter</span><span class="params">(<span class="number">_</span> predicate: <span class="params">(Element)</span></span></span> -&gt; <span class="type">Bool</span>) -&gt; [<span class="type">Generator</span>.<span class="type">Element</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">/// Replace the given `subRange` of elements with `newElements`.</span></span><br><span class="line"><span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">replaceRange</span><span class="params">(<span class="number">_</span> subRange: Range, with newElements: [E])</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>나쁜 예: 해당 설명이 이상하고 문법적으로 맞지 않는다.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// Return an `Array` containing the elements of `self`</span></span><br><span class="line"><span class="comment">/// that satisfy `includedInResult`.</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">filter</span><span class="params">(<span class="number">_</span> includedInResult: <span class="params">(Element)</span></span></span> -&gt; <span class="type">Bool</span>) -&gt; [<span class="type">Generator</span>.<span class="type">Element</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">/// Replace the range of elements indicated by `r` with</span></span><br><span class="line"><span class="comment">/// the contents of `with`.</span></span><br><span class="line"><span class="keyword">mutating</span> <span class="function"><span class="keyword">func</span> <span class="title">replaceRange</span><span class="params">(<span class="number">_</span> r: Range, with: [E])</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><strong>기본값을 가진 인자의 장점을 활용하라.</strong>: 메서드의 일반적인 사용을 단순화시킬 수 있다.</p>
+</li>
+<li><strong>기본값을 가진 인자는 뒤로 위치시켜라.</strong>: 기본값이 제공되지 않은 인자가 대개의 경우 메서드 사용 시에 더 중요하다.</li>
+</ul>
+<h3 id="Argument-Labels"><a href="#Argument-Labels" class="headerlink" title="Argument Labels"></a>Argument Labels</h3><ul>
+<li><strong>효과적으로 구별될 수 없는 인자의 경우 모든 라벨을 생략하라</strong>(e.g. min(number1, number2), zip(sequence1, sequence2)).</li>
+<li><strong>값 보존 타입 변환을 수행하는 초기화의 경우, 첫 번째 인자 라벨을 생략하라</strong>(e.g. Int64(someUInt32)).</li>
+<li><p><strong>첫 번째 인자가 전치 구문의 부분을 구성할 경우 인자 라벨을 달아주는 것이 좋다</strong>(e.g. x.removeBoxes(havingLength: 12)).</p>
+<ul>
+<li>예외: 첫 번째 인자말고도 다른 인자들이 같은 추상화 수준일 경우에는 메서드 이름 다음에 전치사를 달아주는 것이 좋다.</li>
+<li><p>나쁜 예</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a.move(toX: b, y: <span class="built_in">c</span>)</span><br><span class="line">a.fade(fromRed: b, green: <span class="built_in">c</span>, blue: d)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>좋은 예</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a.moveTo(x: b, y: <span class="built_in">c</span>)</span><br><span class="line">a.fadeFrom(red: b, green: <span class="built_in">c</span>, blue: d)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p><strong>위의 경우가 모두 아닌 경우, 첫 번째 인자가 문법적 구문을 구성할 경우, 라벨을 생략하고</strong> 메서드 기본 이름에 붙이는 것이 좋다.</p>
+</li>
+<li><strong>다른 모든 인자에 라벨을 붙이는 것이 좋다.</strong></li>
+</ul>
+<h2 id="Special-Instructions"><a href="#Special-Instructions" class="headerlink" title="Special Instructions"></a>Special Instructions</h2><ul>
+<li><strong>튜플의 멤버에 라벨을 붙여주고 클로저의 인자에 이름을 붙여라.</strong></li>
+<li><strong>제약이 없는 다형성에 신경써야 한다.</strong>(e.g. <code>Any</code>, <code>AnyObject</code>와 같은 경우)</li>
 </ul>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
 <li><a href="https://swift.org/documentation/api-design-guidelines/" target="_blank" rel="noopener">API Design Guidelines - Swift.org</a></li>
@@ -242,21 +320,21 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Fundamentals"><span class="toc-number">1.</span> <span class="toc-text">Fundamentals</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Naming"><span class="toc-number">2.</span> <span class="toc-text">Naming</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Promote-Clear-Usage"><span class="toc-number">2.1.</span> <span class="toc-text">Promote Clear Usage</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Strive-for-Fluent-Usage"><span class="toc-number">3.</span> <span class="toc-text">Strive for Fluent Usage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Fundamentals"><span class="toc-number">1.</span> <span class="toc-text">Fundamentals</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Naming"><span class="toc-number">2.</span> <span class="toc-text">Naming</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Promote-Clear-Usage"><span class="toc-number">2.1.</span> <span class="toc-text">Promote Clear Usage</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Strive-for-Fluent-Usage"><span class="toc-number">2.2.</span> <span class="toc-text">Strive for Fluent Usage</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Use-Terminology-Well"><span class="toc-number">2.3.</span> <span class="toc-text">Use Terminology Well</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Conventions"><span class="toc-number">3.</span> <span class="toc-text">Conventions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#General-Conventions"><span class="toc-number">3.1.</span> <span class="toc-text">General Conventions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Parameters"><span class="toc-number">3.2.</span> <span class="toc-text">Parameters</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Argument-Labels"><span class="toc-number">3.3.</span> <span class="toc-text">Argument Labels</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Special-Instructions"><span class="toc-number">4.</span> <span class="toc-text">Special Instructions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">5.</span> <span class="toc-text">Reference</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&text=API Design Guidelines"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&title=API Design Guidelines"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&is_video=false&description=API Design Guidelines"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=API Design Guidelines&body=Check out this article: https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&title=API Design Guidelines"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&title=API Design Guidelines"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&title=API Design Guidelines"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&title=API Design Guidelines"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&name=API Design Guidelines&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&text=Swift API Design Guidelines"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&title=Swift API Design Guidelines"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&is_video=false&description=Swift API Design Guidelines"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Swift API Design Guidelines&body=Check out this article: https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&title=Swift API Design Guidelines"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&title=Swift API Design Guidelines"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&title=Swift API Design Guidelines"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&title=Swift API Design Guidelines"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/07/18/apidesignguidelines/&name=Swift API Design Guidelines&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
