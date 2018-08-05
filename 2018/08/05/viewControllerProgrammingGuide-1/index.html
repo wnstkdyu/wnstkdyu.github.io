@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/sizeClassCombination.png">
 <meta property="og:image" content="https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/rootVC.png">
 <meta property="og:image" content="https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/containerAsRootVC.png">
-<meta property="og:updated_time" content="2018-08-05T08:18:54.670Z">
+<meta property="og:updated_time" content="2018-08-05T08:21:43.706Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="View Controller Programming Guide - Overview">
 <meta name="twitter:description" content="The Role of View Controllers뷰 컨트롤러는 앱 내부 구조의 기반으로 다음과 같은 역할을 한다.  UI를 관리  데이터와의 인터랙션  UI의 전환  이러한 중요한 역할을 하기 때문에 뷰 컨트롤러는 개발자가 하는 모든 것의 중심에 있다. 다음과 같은 두 유형의 뷰 컨트롤러가 존재한다.  Content view controller: 앱 컨텐">
@@ -229,7 +229,13 @@
 <h3 id="Make-Each-View-Controller-an-Island"><a href="#Make-Each-View-Controller-an-Island" class="headerlink" title="Make Each View Controller an Island"></a>Make Each View Controller an Island</h3><p>뷰 컨트롤러는 다른 내부 작업이나 뷰 컨트롤러에 대해 알 필요가 없다. 만약 다른 뷰 컨트롤러와 소통해야 한다면 프로토콜과 함께 사용하는 <em>Delegation</em> 패턴을 따르는 것이 좋다.</p>
 <h3 id="Use-the-Root-View-Only-as-a-Container-for-Other-Views"><a href="#Use-the-Root-View-Only-as-a-Container-for-Other-Views" class="headerlink" title="Use the Root View Only as a Container for Other Views"></a>Use the Root View Only as a Container for Other Views</h3><h3 id="Know-Where-Your-Data-Lives"><a href="#Know-Where-Your-Data-Lives" class="headerlink" title="Know Where Your Data Lives"></a>Know Where Your Data Lives</h3><p>MVC 패턴 하에서 뷰 컨트롤러는 모델 객체와 뷰 객체 사이에서 데이터의 이동을 원활하게 하는 역할을 한다. <strong>실제 데이터를 관리하는 책임은 모델 객체가 가지고 있어야 하며 뷰 컨트롤러 객체는 그저 정확한 데이터가 뷰에 보일 수 있게만 한다.</strong></p>
 <h3 id="Adapt-to-Changes"><a href="#Adapt-to-Changes" class="headerlink" title="Adapt to Changes"></a>Adapt to Changes</h3><p>앱은 다양한 iOS 기기에 대해 대응해야 한다. 다양한 뷰 컨트롤러를 만들 필요 없이 내장된 Adativity 도구를 사용하면 된다.</p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://developer.apple.com/library/archive/featuredarticles/ViewControllerPGforiPhoneOS/index.html#//apple_ref/doc/uid/TP40007457-CH2-SW1" target="_blank" rel="noopener">View Controller Programming Guide for iOS - Overview</a></li>
+<li><a href="https://wnstkdyu.github.io/2018/01/06/uitraitcollection/">PacaLog - UITraitCollection 공부</a></li>
+<li><a href="https://wnstkdyu.github.io/2017/12/29/uiwindow/">PacaLog - UIWindow 공부</a></li>
+<li><a href="https://developer.apple.com/design/human-interface-guidelines/ios/app-architecture/modality/" target="_blank" rel="noopener">Human Interface Guidelines - Modality</a></li>
+</ul>
+
   </div>
 </article>
 
