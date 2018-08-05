@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="The Role of View Controllers뷰 컨트롤러는 앱 내부 구조의 기반으로 다음과 같은 역할을 한다.  UI를 관리  데이터와의 인터랙션  UI의 전환  이러한 중요한 역할을 하기 때문에 뷰 컨트롤러는 개발자가 하는 모든 것의 중심에 있다. 다음과 같은 두 유형의 뷰 컨트롤러가 존재한다.  Content view controller: 앱 컨텐">
+<meta name="keywords" content="View Controller">
+<meta property="og:type" content="article">
+<meta property="og:title" content="View Controller Programming Guide - Overview">
+<meta property="og:url" content="https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/index.html">
+<meta property="og:site_name" content="PacaLog">
+<meta property="og:description" content="The Role of View Controllers뷰 컨트롤러는 앱 내부 구조의 기반으로 다음과 같은 역할을 한다.  UI를 관리  데이터와의 인터랙션  UI의 전환  이러한 중요한 역할을 하기 때문에 뷰 컨트롤러는 개발자가 하는 모든 것의 중심에 있다. 다음과 같은 두 유형의 뷰 컨트롤러가 존재한다.  Content view controller: 앱 컨텐">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/vcHierarchy.png">
+<meta property="og:image" content="https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/containerVC.png">
+<meta property="og:image" content="https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/dataVC.png">
+<meta property="og:image" content="https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/sizeclassVC.png">
+<meta property="og:image" content="https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/sizeClassCombination.png">
+<meta property="og:image" content="https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/rootVC.png">
+<meta property="og:image" content="https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/containerAsRootVC.png">
+<meta property="og:updated_time" content="2018-08-05T08:18:54.670Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="View Controller Programming Guide - Overview">
+<meta name="twitter:description" content="The Role of View Controllers뷰 컨트롤러는 앱 내부 구조의 기반으로 다음과 같은 역할을 한다.  UI를 관리  데이터와의 인터랙션  UI의 전환  이러한 중요한 역할을 하기 때문에 뷰 컨트롤러는 개발자가 하는 모든 것의 중심에 있다. 다음과 같은 두 유형의 뷰 컨트롤러가 존재한다.  Content view controller: 앱 컨텐">
+<meta name="twitter:image" content="https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/vcHierarchy.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>View Controller Programming Guide - Overview</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2018/07/21/letusgo2018-summer/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&text=View Controller Programming Guide - Overview"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&title=View Controller Programming Guide - Overview"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&is_video=false&description=View Controller Programming Guide - Overview"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=View Controller Programming Guide - Overview&body=Check out this article: https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&title=View Controller Programming Guide - Overview"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&title=View Controller Programming Guide - Overview"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&title=View Controller Programming Guide - Overview"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&title=View Controller Programming Guide - Overview"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&name=View Controller Programming Guide - Overview&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Role-of-View-Controllers"><span class="toc-number">1.</span> <span class="toc-text">The Role of View Controllers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#View-Management"><span class="toc-number">1.1.</span> <span class="toc-text">View Management</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Data-Marshaling"><span class="toc-number">1.2.</span> <span class="toc-text">Data Marshaling</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#UIDocument"><span class="toc-number">1.2.1.</span> <span class="toc-text">UIDocument</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#User-Interactions"><span class="toc-number">1.3.</span> <span class="toc-text">User Interactions</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Target-Action-패턴"><span class="toc-number">1.3.1.</span> <span class="toc-text">Target-Action 패턴</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Resource-Management"><span class="toc-number">1.4.</span> <span class="toc-text">Resource Management</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Adaptivity"><span class="toc-number">1.5.</span> <span class="toc-text">Adaptivity</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Coarse-grained"><span class="toc-number">1.5.1.</span> <span class="toc-text">Coarse-grained</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#UITraitCollection"><span class="toc-number">1.5.1.1.</span> <span class="toc-text">UITraitCollection</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Fine-grained"><span class="toc-number">1.5.2.</span> <span class="toc-text">Fine-grained</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-View-Controller-Hierarchy"><span class="toc-number">2.</span> <span class="toc-text">The View Controller Hierarchy</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Root-View-Controller"><span class="toc-number">2.1.</span> <span class="toc-text">The Root View Controller</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Continer-View-Controllers"><span class="toc-number">2.2.</span> <span class="toc-text">Continer View Controllers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Presented-View-Controllers"><span class="toc-number">2.3.</span> <span class="toc-text">Presented View Controllers</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Modal"><span class="toc-number">2.3.1.</span> <span class="toc-text">Modal</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Design-Tips"><span class="toc-number">3.</span> <span class="toc-text">Design Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Use-System-Supplied-View-Controllers-Whenever-Possible"><span class="toc-number">3.1.</span> <span class="toc-text">Use System-Supplied View Controllers Whenever Possible</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Make-Each-View-Controller-an-Island"><span class="toc-number">3.2.</span> <span class="toc-text">Make Each View Controller an Island</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Use-the-Root-View-Only-as-a-Container-for-Other-Views"><span class="toc-number">3.3.</span> <span class="toc-text">Use the Root View Only as a Container for Other Views</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Know-Where-Your-Data-Lives"><span class="toc-number">3.4.</span> <span class="toc-text">Know Where Your Data Lives</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Adapt-to-Changes"><span class="toc-number">3.5.</span> <span class="toc-text">Adapt to Changes</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        View Controller Programming Guide - Overview
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">PacaLog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-08-05T06:18:57.000Z" itemprop="datePublished">2018-08-05</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/View-Controller/">View Controller</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="The-Role-of-View-Controllers"><a href="#The-Role-of-View-Controllers" class="headerlink" title="The Role of View Controllers"></a>The Role of View Controllers</h2><p>뷰 컨트롤러는 앱 내부 구조의 기반으로 다음과 같은 역할을 한다.</p>
+<ul>
+<li>UI를 관리 </li>
+<li>데이터와의 인터랙션 </li>
+<li>UI의 전환</li>
+</ul>
+<p>이러한 중요한 역할을 하기 때문에 뷰 컨트롤러는 개발자가 하는 모든 것의 중심에 있다. 다음과 같은 두 유형의 뷰 컨트롤러가 존재한다.</p>
+<ul>
+<li><em>Content view controller</em>: 앱 컨텐츠의 개별 부분을 맡으며 개발자가 만드는 가장 주요한 타입의 컨트롤러.</li>
+<li><em>Container view controller</em>: 다른 뷰 컨트롤러를 관리하고 뷰 컨트롤러 간 이동을 원할하게 또는 컨텐츠를 보여주는 것을 뷰 컨트롤러마다 달리한다.</li>
+</ul>
+<p>대부분의 앱은 이 두 가지 형태의 뷰 컨트롤러가 혼합된 형태이다.</p>
+<h3 id="View-Management"><a href="#View-Management" class="headerlink" title="View Management"></a>View Management</h3><p>뷰 컨트롤러의 <strong>가장 중요한 역할은 뷰 계층도 관리</strong>이다. 모든 뷰 컨트롤러는 컨텐츠를 담고 있는 단일 <em>루트 뷰</em>를 가지고 있는데 이 루트 뷰에 컨텐츠를 표현하는 다른 뷰를 더한다. 뷰 컨트롤러는 항상 루트 뷰의 참조를 유지하고 각각의 뷰는 그 아래 <code>subview</code>들에 대한 강한 참조를 유지한다.</p>
+<img src="/2018/08/05/viewControllerProgrammingGuide-1/vcHierarchy.png" title="image">
+<blockquote>
+<p>뷰 컨트롤러 계층에서 뷰에 접근할 때 보통 <code>outlet</code>을 사용하는데 이 <code>outlet</code>은 스토리보드로부터 뷰가 로드될 때 자동으로 뷰에 연결된다.</p>
+</blockquote>
+<p>컨테이너 뷰 컨트롤러는 자식들의 컨텐츠를 관리하지 않는다. 다만, <strong>컨테이너의 디자인에 따라 루트 뷰의 사이즈와 위치를 관리할 뿐</strong>이다. Figure 1-2는 <em>Split 뷰 컨트롤러</em>가 자식 뷰들의 사이즈와 위치를 정해주는 모습을 보이고 있다.</p>
+<img src="/2018/08/05/viewControllerProgrammingGuide-1/containerVC.png" title="image">
+<h3 id="Data-Marshaling"><a href="#Data-Marshaling" class="headerlink" title="Data Marshaling"></a>Data Marshaling</h3><p>뷰 컨트롤러는 <strong>뷰와 데이터 간의 중재자 역할</strong>을 한다. <code>UIViewController</code>를 상속하고 데이터를 관리하는 변수를 설정하는 것으로 데이터를 관리한다.</p>
+<img src="/2018/08/05/viewControllerProgrammingGuide-1/dataVC.png" title="image">
+<p>뷰 컨트롤러와 데이터 객체 사이는 <strong>항상 분명한 책임의 나눔이 있어야</strong> 한다. 자료 구조의 무결성을 확인하는 대부분의 로직은 데이터 객체 자체에 속해야 한다. 뷰 컨트롤러는 뷰로부터 오는 입력 값의 유효성을 검사하고 데이터 객체에서 요구하는 포맷으로 포장하는 역할을 한다. 그러나 <strong>뷰 컨트롤러가 실제 데이터를 관리하는 역할은 최소화해야</strong> 한다.</p>
+<p><code>UIDocument</code> 객체가 뷰 컨트롤러와 데이터를 분리하여 관리하는 한 방법이 된다. 도큐먼트 객체는 저장소의 데이터를 읽고 쓰는 방법을 제공하는 컨트롤러 객체다.</p>
+<h4 id="UIDocument"><a href="#UIDocument" class="headerlink" title="UIDocument"></a>UIDocument</h4><p>앱의 데이터를 관리하는 추상 클래스로 도큐먼트를 사용함으로써 얻을 수 있는 이점은 다음과 같다.</p>
+<ul>
+<li>백그라운드 큐에서 비동기적으로 데이터를 읽거나 쓰기가 가능. 반응성이 좋아진다.</li>
+<li>도큐먼트 파일의 읽기나 쓰기가 클라우드 서비스에 자동으로 결합됨.</li>
+<li>다른 버전의 도큐먼트의 충돌 감지를 지원.</li>
+<li>임시 파일에 먼저 저장하고 이후 실제 파일을 대체함으로써 안전한 저장이 가능.</li>
+<li>자동 저장 기능.</li>
+</ul>
+<h3 id="User-Interactions"><a href="#User-Interactions" class="headerlink" title="User Interactions"></a>User Interactions</h3><p>뷰 컨트롤러는 <strong>리스폰더 객체</strong>기 때문에 <em>리스폰더 체인</em>을 따라 내려오는 이벤트를 처리할 수 있다. 하지만 대부분 뷰가 터치 이벤트를 처리하는데 뷰는 터치를 받고 타겟 객체나 델리게이트에게 처리를 맡기는데, 이는 보통 뷰 컨트롤러이다. </p>
+<h4 id="Target-Action-패턴"><a href="#Target-Action-패턴" class="headerlink" title="Target-Action 패턴"></a>Target-Action 패턴</h4><p>타겟-액션 패턴은 객체가 이벤트가 일어날 시에 다른 객체에게 보내는 데 필요한 정보를 보유하는 패턴으로 다음과 같은 정보를 가지고 있는다.</p>
+<ul>
+<li>Action selector: 실행될 메서드를 식별.</li>
+<li>Target: 메시지를 받을 객체.</li>
+</ul>
+<p>액션 메시지를 발생시키는 이벤트나 메세지를 보내는 객체는 아무것이나 될 수 있다. 그러나 일반적으로 <code>UIContol</code>(iOS)이나 <code>NSControl</code>(OS X)의 하위 클래스가 이벤트를 발행한다.</p>
+<h3 id="Resource-Management"><a href="#Resource-Management" class="headerlink" title="Resource Management"></a>Resource Management</h3><p>뷰 컨트롤러는 그것이 생성한 뷰와 객체들에 대해 필요 없을 시에 메모리에서 해제할 책임을 가지고 있다.</p>
+<p>시스템이 여유 메모리가 별로 없을 때 UIKit은 앱이 필요없는 자원을 비우기를 요청하는데, 그 중 하나가 <code>didReceiveMemoryWarning</code> 메서드를 호출하는 것이다. 이 메서드에서 더 이상 필요없는 객체나 쉽게 재생성할 수 있는 것들을 메모리에서 해제하면 된다.</p>
+<h3 id="Adaptivity"><a href="#Adaptivity" class="headerlink" title="Adaptivity"></a>Adaptivity</h3><p>iPad와 iPhone 등 다양한 사이즈에 대응하기 위해 다양한 뷰 컨트롤러를 만들기보다 한 뷰 컨트롤러를 다양한 요구에 맞추는 것이 좋다.</p>
+<p>변형에는 두 가지가 있다.</p>
+<h4 id="Coarse-grained"><a href="#Coarse-grained" class="headerlink" title="Coarse-grained"></a>Coarse-grained</h4><p>뷰 컨트롤러의 <em>trait</em>의 변경이 일어날 때. 디스플레이 스케일 같은 전체적인 환경의 변화를 뜻한다.</p>
+<img src="/2018/08/05/viewControllerProgrammingGuide-1/sizeclassVC.png" title="image">
+<h5 id="UITraitCollection"><a href="#UITraitCollection" class="headerlink" title="UITraitCollection"></a>UITraitCollection</h5><p>iOS 인터페이스 환경을 나타내는 클래스로 가로, 세로 사이즈 클래스, 디스플레이 스케일, 유저 인터페이스 idiom trait으로 이루어진다.</p>
+<ul>
+<li>Size class: <code>compact</code>와 <code>regular</code>로 표현되는 enum 타입으로 기기마다 다르다.</li>
+<li>Display scale: <code>CGFloat</code>으로 표현되는 값으로 1.0은 비레티나, 2.0은 레티나 디스플레이를 나타낸다.</li>
+<li>User interface idiom: <code>phone</code>, <code>pad</code>, <code>tv</code>, <code>carPlay</code>로 표현되는 enum 타입으로 인터페이스 타입을 나타낸다.</li>
+</ul>
+<img src="/2018/08/05/viewControllerProgrammingGuide-1/sizeClassCombination.png" title="image">
+<h4 id="Fine-grained"><a href="#Fine-grained" class="headerlink" title="Fine-grained"></a>Fine-grained</h4><p>어느 때나 일어날 수 있는 사이즈 변경을 뜻하며 유저가 기기를 회전시키는 것이 해당됨.</p>
+<blockquote>
+<p>참고: <a href="https://wnstkdyu.github.io/2018/01/06/uitraitcollection/">PacaLog - UITraitCollection 공부</a></p>
+</blockquote>
+<h2 id="The-View-Controller-Hierarchy"><a href="#The-View-Controller-Hierarchy" class="headerlink" title="The View Controller Hierarchy"></a>The View Controller Hierarchy</h2><p>UIKit은 뷰 컨트롤러들이 미리 정해진 방법대로 사용되기를 원한다. 적절한 뷰 컨트롤러 간의 관계를 유지하는 것이 특정 뷰 컨트롤러가 필요할 때 정확한 특정 뷰 컨트롤러를 전달함에 있어 중요하다.</p>
+<h3 id="The-Root-View-Controller"><a href="#The-Root-View-Controller" class="headerlink" title="The Root View Controller"></a>The Root View Controller</h3><p>루트 뷰 컨트롤러는 뷰 컨트롤러 계층도의 앵커이다. <strong>모든 윈도우는 컨텐츠를 표현하는 하나의 루트 뷰 컨트롤러를 가진다.</strong> 윈도우는 보일 수 있는 컨텐츠를 보유하지 않기 때문에 뷰 컨트롤러가 컨텐츠를 제공한다.</p>
+<img src="/2018/08/05/viewControllerProgrammingGuide-1/rootVC.png" title="image">
+<p>루트 뷰 컨트롤러는 <code>UIWindow</code> 객체의 <code>rootViewContoller</code> 프로퍼티로 접근이 가능하다. <strong>스토리보드를 사용해 뷰 컨트롤러를 설정할 경우 자동으로 UIKit이 루트 뷰 컨트롤러를 설정해주지만 윈도우를 직접 코드로 만드는 경우 루트 뷰 컨트롤러를 설정해 주어야 한다.</strong></p>
+<blockquote>
+<p>참고: <a href="https://wnstkdyu.github.io/2017/12/29/uiwindow/">PacaLog - UIWindow 공부</a></p>
+</blockquote>
+<h3 id="Continer-View-Controllers"><a href="#Continer-View-Controllers" class="headerlink" title="Continer View Controllers"></a>Continer View Controllers</h3><p>컨테이너 뷰 컨트롤러는 더욱 관리하기 쉽고 재사용이 가능한 조각들로 복잡한 인터페이스를 만들 수 있게 한다. 이는 자식 뷰 컨트롤러를 가지며 <code>UINavigationController</code>, <code>UISplitViewController</code>, <code>UIPageViewController</code>가 이러한 종류에 해당한다.</p>
+<p>컨테이너 뷰 컨트롤러도 물론 다른 컨테이너의 자식이 될 수 있다. 또 자식 뷰 컨트롤러는 다른 자식 뷰 컨트롤러에 대해 거의 알지 못한다.</p>
+<p>다음 그림은 컨테이너 뷰 컨트롤러가 루트 뷰 컨트롤러로서 역할을 하는 모습을 보여주고 있다.</p>
+<img src="/2018/08/05/viewControllerProgrammingGuide-1/containerAsRootVC.png" title="image">
+<h3 id="Presented-View-Controllers"><a href="#Presented-View-Controllers" class="headerlink" title="Presented View Controllers"></a>Presented View Controllers</h3><p>뷰 컨트롤러를 <em>Presenting</em>하는 행위는 전의 뷰 컨트롤러의 컨텐츠를 가리면서 새 컨텐츠로 대체하는 행위로 주로 <em>Modally</em>(모달)하게 띄우는 데 사용된다.</p>
+<p>모달을 띄우는 뷰 컨트롤러는 <em>Presenting view controller</em>, 띄워지는 <em>Presented view controller</em>로 불리며 프로퍼티로 접근이 가능하다.</p>
+<h4 id="Modal"><a href="#Modal" class="headerlink" title="Modal"></a>Modal</h4><p>모달 형식은 유저가 특정 작업을 완료할 때까지 특정 뷰에 주의를 집중시킬 때 사용한다. <em>Action sheets</em>, <em>Alerts</em>, <em>Acitvity views</em>가 여기에 해당된다. 주의를 집중시키는 만큼 다음과 같은 유의 사항이 존재한다.</p>
+<ul>
+<li>모달의 사용은 최소화해야한다.</li>
+<li>모달 작업에서 빠져나가는 명확하고 안전한 방법을 제공해야 한다.</li>
+<li>해야 하는 작업을 명확하게 표시해야 한다.</li>
+<li>적절할 형태의 모달 뷰 스타일을 제공한다.</li>
+</ul>
+<blockquote>
+<p>참고: <a href="https://developer.apple.com/design/human-interface-guidelines/ios/app-architecture/modality/" target="_blank" rel="noopener">Human Interface Guidelines - Modality</a></p>
+</blockquote>
+<p>모달을 띄우는 방식은 개발자가 임의로 정해줄 수 있으며 적절하게 바꿔주면 된다.(추후에 나옴)</p>
+<h2 id="Design-Tips"><a href="#Design-Tips" class="headerlink" title="Design Tips"></a>Design Tips</h2><p>다음과 같은 가이드라인을 따름으로써 시스템에서 기대하는 자연스러운 뷰 컨트롤러의 사용을 제공할 수 있다.</p>
+<h3 id="Use-System-Supplied-View-Controllers-Whenever-Possible"><a href="#Use-System-Supplied-View-Controllers-Whenever-Possible" class="headerlink" title="Use System-Supplied View Controllers Whenever Possible"></a>Use System-Supplied View Controllers Whenever Possible</h3><p>iOS에서 기본으로 제공하는 뷰 컨트롤러를 사용할 수 있다면 사용하는 것은 개발 시간을 단축시킬 뿐 아니라 유저에게 일관성 있는 경험을 줄 수 있다.</p>
+<blockquote>
+<p>시스템에서 기본 제공하는 뷰 컨트롤러의 뷰 계층도를 절대로 바꾸면 안 된다. 임의로 바꾸는 행위는 중대한 버그를 일으킬 수 있다.</p>
+</blockquote>
+<h3 id="Make-Each-View-Controller-an-Island"><a href="#Make-Each-View-Controller-an-Island" class="headerlink" title="Make Each View Controller an Island"></a>Make Each View Controller an Island</h3><p>뷰 컨트롤러는 다른 내부 작업이나 뷰 컨트롤러에 대해 알 필요가 없다. 만약 다른 뷰 컨트롤러와 소통해야 한다면 프로토콜과 함께 사용하는 <em>Delegation</em> 패턴을 따르는 것이 좋다.</p>
+<h3 id="Use-the-Root-View-Only-as-a-Container-for-Other-Views"><a href="#Use-the-Root-View-Only-as-a-Container-for-Other-Views" class="headerlink" title="Use the Root View Only as a Container for Other Views"></a>Use the Root View Only as a Container for Other Views</h3><h3 id="Know-Where-Your-Data-Lives"><a href="#Know-Where-Your-Data-Lives" class="headerlink" title="Know Where Your Data Lives"></a>Know Where Your Data Lives</h3><p>MVC 패턴 하에서 뷰 컨트롤러는 모델 객체와 뷰 객체 사이에서 데이터의 이동을 원활하게 하는 역할을 한다. <strong>실제 데이터를 관리하는 책임은 모델 객체가 가지고 있어야 하며 뷰 컨트롤러 객체는 그저 정확한 데이터가 뷰에 보일 수 있게만 한다.</strong></p>
+<h3 id="Adapt-to-Changes"><a href="#Adapt-to-Changes" class="headerlink" title="Adapt to Changes"></a>Adapt to Changes</h3><p>앱은 다양한 iOS 기기에 대해 대응해야 한다. 다양한 뷰 컨트롤러를 만들 필요 없이 내장된 Adativity 도구를 사용하면 된다.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2>
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#The-Role-of-View-Controllers"><span class="toc-number">1.</span> <span class="toc-text">The Role of View Controllers</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#View-Management"><span class="toc-number">1.1.</span> <span class="toc-text">View Management</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Data-Marshaling"><span class="toc-number">1.2.</span> <span class="toc-text">Data Marshaling</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#UIDocument"><span class="toc-number">1.2.1.</span> <span class="toc-text">UIDocument</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#User-Interactions"><span class="toc-number">1.3.</span> <span class="toc-text">User Interactions</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Target-Action-패턴"><span class="toc-number">1.3.1.</span> <span class="toc-text">Target-Action 패턴</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Resource-Management"><span class="toc-number">1.4.</span> <span class="toc-text">Resource Management</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Adaptivity"><span class="toc-number">1.5.</span> <span class="toc-text">Adaptivity</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Coarse-grained"><span class="toc-number">1.5.1.</span> <span class="toc-text">Coarse-grained</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#UITraitCollection"><span class="toc-number">1.5.1.1.</span> <span class="toc-text">UITraitCollection</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Fine-grained"><span class="toc-number">1.5.2.</span> <span class="toc-text">Fine-grained</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#The-View-Controller-Hierarchy"><span class="toc-number">2.</span> <span class="toc-text">The View Controller Hierarchy</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Root-View-Controller"><span class="toc-number">2.1.</span> <span class="toc-text">The Root View Controller</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Continer-View-Controllers"><span class="toc-number">2.2.</span> <span class="toc-text">Continer View Controllers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Presented-View-Controllers"><span class="toc-number">2.3.</span> <span class="toc-text">Presented View Controllers</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Modal"><span class="toc-number">2.3.1.</span> <span class="toc-text">Modal</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Design-Tips"><span class="toc-number">3.</span> <span class="toc-text">Design Tips</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Use-System-Supplied-View-Controllers-Whenever-Possible"><span class="toc-number">3.1.</span> <span class="toc-text">Use System-Supplied View Controllers Whenever Possible</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Make-Each-View-Controller-an-Island"><span class="toc-number">3.2.</span> <span class="toc-text">Make Each View Controller an Island</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Use-the-Root-View-Only-as-a-Container-for-Other-Views"><span class="toc-number">3.3.</span> <span class="toc-text">Use the Root View Only as a Container for Other Views</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Know-Where-Your-Data-Lives"><span class="toc-number">3.4.</span> <span class="toc-text">Know Where Your Data Lives</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Adapt-to-Changes"><span class="toc-number">3.5.</span> <span class="toc-text">Adapt to Changes</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&text=View Controller Programming Guide - Overview"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&title=View Controller Programming Guide - Overview"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&is_video=false&description=View Controller Programming Guide - Overview"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=View Controller Programming Guide - Overview&body=Check out this article: https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&title=View Controller Programming Guide - Overview"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&title=View Controller Programming Guide - Overview"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&title=View Controller Programming Guide - Overview"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&title=View Controller Programming Guide - Overview"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&name=View Controller Programming Guide - Overview&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Alpaca
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-116302583-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'alpacablog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
