@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/sizeClassCombination.png">
 <meta property="og:image" content="https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/rootVC.png">
 <meta property="og:image" content="https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/containerAsRootVC.png">
-<meta property="og:updated_time" content="2018-08-06T02:49:36.289Z">
+<meta property="og:updated_time" content="2018-08-06T02:53:06.452Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="View Controller Programming Guide - Overview">
 <meta name="twitter:description" content="The Role of View Controllers뷰 컨트롤러는 앱 내부 구조의 기반으로 다음과 같은 역할을 한다.  UI를 관리  데이터와의 인터랙션  UI의 전환  이러한 중요한 역할을 하기 때문에 뷰 컨트롤러는 개발자가 하는 모든 것의 중심에 있다. 다음과 같은 두 유형의 뷰 컨트롤러가 존재한다.  Content view controller: 앱 컨텐">
@@ -182,7 +182,7 @@
 </ul>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">myButton.addTarget(<span class="keyword">self</span>, action: #selector(doSomething), <span class="keyword">for</span>: .touchUpInside)</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line"><span class="meta">@objc</span> <span class="function"><span class="keyword">func</span> <span class="title">doSomething</span><span class="params">()</span></span> &#123;...&#125;</span><br><span class="line"><span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">doSomething</span><span class="params">()</span></span> &#123;...&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0160-objc-inference.md" target="_blank" rel="noopener">Swift-Evolution - Limiting @objc inference</a></p>
+<p>@objc를 명시: <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0160-objc-inference.md" target="_blank" rel="noopener">Swift-Evolution - Limiting @objc inference</a></p>
 </blockquote>
 <p>액션 메시지를 발생시키는 이벤트나 메세지를 보내는 객체는 아무것이나 될 수 있다. 그러나 일반적으로 <code>UIContol</code>(iOS)이나 <code>NSControl</code>(OS X)의 하위 클래스가 이벤트를 발행한다.</p>
 <h3 id="Resource-Management"><a href="#Resource-Management" class="headerlink" title="Resource Management"></a>Resource Management</h3><p>뷰 컨트롤러는 그것이 생성한 뷰와 객체들에 대해 필요 없을 시에 메모리에서 해제할 책임을 가지고 있다.</p>
