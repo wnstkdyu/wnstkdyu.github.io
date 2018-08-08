@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Defining Your Subclass대부분의 커스텀 뷰 컨트롤러는 Content view controller이다. 각자의 뷰들을 소유하고 뷰에 나타나는 데이터에 대한 책임이 있다. 이와 대조적으로 Container view controller는 모든 뷰를 소유하지는 않는다.  Defining Your UI프로그래밍으로 UI를 만들 수도 있지만 스토리보드">
+<meta name="keywords" content="View Controller">
+<meta property="og:type" content="article">
+<meta property="og:title" content="View Controller Programming Guide for iOS - View Controller Definition">
+<meta property="og:url" content="https://wnstkdyu.github.io/2018/08/07/viewControllerProgrammingGuide-2/index.html">
+<meta property="og:site_name" content="PacaLog">
+<meta property="og:description" content="Defining Your Subclass대부분의 커스텀 뷰 컨트롤러는 Content view controller이다. 각자의 뷰들을 소유하고 뷰에 나타나는 데이터에 대한 책임이 있다. 이와 대조적으로 Container view controller는 모든 뷰를 소유하지는 않는다.  Defining Your UI프로그래밍으로 UI를 만들 수도 있지만 스토리보드">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://wnstkdyu.github.io/2018/08/07/viewControllerProgrammingGuide-2/storyboard.png">
+<meta property="og:image" content="https://wnstkdyu.github.io/2018/08/07/viewControllerProgrammingGuide-2/navigation.png">
+<meta property="og:image" content="https://wnstkdyu.github.io/2018/08/07/viewControllerProgrammingGuide-2/split.png">
+<meta property="og:updated_time" content="2018-08-08T05:48:15.296Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="View Controller Programming Guide for iOS - View Controller Definition">
+<meta name="twitter:description" content="Defining Your Subclass대부분의 커스텀 뷰 컨트롤러는 Content view controller이다. 각자의 뷰들을 소유하고 뷰에 나타나는 데이터에 대한 책임이 있다. 이와 대조적으로 Container view controller는 모든 뷰를 소유하지는 않는다.  Defining Your UI프로그래밍으로 UI를 만들 수도 있지만 스토리보드">
+<meta name="twitter:image" content="https://wnstkdyu.github.io/2018/08/07/viewControllerProgrammingGuide-2/storyboard.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>View Controller Programming Guide for iOS - View Controller Definition</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2018/08/05/viewControllerProgrammingGuide-1/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/08/07/viewControllerProgrammingGuide-2/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/08/07/viewControllerProgrammingGuide-2/&text=View Controller Programming Guide for iOS - View Controller Definition"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/08/07/viewControllerProgrammingGuide-2/&title=View Controller Programming Guide for iOS - View Controller Definition"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/08/07/viewControllerProgrammingGuide-2/&is_video=false&description=View Controller Programming Guide for iOS - View Controller Definition"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=View Controller Programming Guide for iOS - View Controller Definition&body=Check out this article: https://wnstkdyu.github.io/2018/08/07/viewControllerProgrammingGuide-2/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/08/07/viewControllerProgrammingGuide-2/&title=View Controller Programming Guide for iOS - View Controller Definition"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/08/07/viewControllerProgrammingGuide-2/&title=View Controller Programming Guide for iOS - View Controller Definition"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/08/07/viewControllerProgrammingGuide-2/&title=View Controller Programming Guide for iOS - View Controller Definition"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/08/07/viewControllerProgrammingGuide-2/&title=View Controller Programming Guide for iOS - View Controller Definition"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/08/07/viewControllerProgrammingGuide-2/&name=View Controller Programming Guide for iOS - View Controller Definition&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Defining-Your-Subclass"><span class="toc-number">1.</span> <span class="toc-text">Defining Your Subclass</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Defining-Your-UI"><span class="toc-number">1.1.</span> <span class="toc-text">Defining Your UI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Handling-User-Interactions"><span class="toc-number">1.2.</span> <span class="toc-text">Handling User Interactions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Displaying-Your-Views-at-Runtime"><span class="toc-number">1.3.</span> <span class="toc-text">Displaying Your Views at Runtime</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Managing-View-Layout"><span class="toc-number">1.4.</span> <span class="toc-text">Managing View Layout</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Managing-Memory-Efficiently"><span class="toc-number">1.5.</span> <span class="toc-text">Managing Memory Efficiently</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Places-to-allocate-and-deallocate-memory"><span class="toc-number">1.5.1.</span> <span class="toc-text">Places to allocate and deallocate memory</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Implementing-a-Container-View-Controller"><span class="toc-number">2.</span> <span class="toc-text">Implementing a Container View Controller</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Designing-a-Custom-Container-View-Controller"><span class="toc-number">2.1.</span> <span class="toc-text">Designing a Custom Container View Controller</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Example-Navigation-Controller"><span class="toc-number">2.1.1.</span> <span class="toc-text">Example: Navigation Controller</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Example-Split-View-Controller"><span class="toc-number">2.1.2.</span> <span class="toc-text">Example: Split View Controller</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Implementing-a-Custom-Container-View-Controller"><span class="toc-number">2.2.</span> <span class="toc-text">Implementing a Custom Container View Controller</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Adding-a-Child-View-Controller-to-Your-Content"><span class="toc-number">2.2.1.</span> <span class="toc-text">Adding a Child View Controller to Your Content</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Removing-a-Child-View-Controller"><span class="toc-number">2.2.2.</span> <span class="toc-text">Removing a Child View Controller</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Suggestions-for-Building-a-Container-View-Controller"><span class="toc-number">2.2.3.</span> <span class="toc-text">Suggestions for Building a Container View Controller</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Delegating-Control-to-a-Child-View-Controller"><span class="toc-number">2.2.4.</span> <span class="toc-text">Delegating Control to a Child View Controller</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Supporting-Accessibility"><span class="toc-number">3.</span> <span class="toc-text">Supporting Accessibility</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Moving-the-VoiceOver-Cursor-to-a-Specific-Element"><span class="toc-number">3.1.</span> <span class="toc-text">Moving the VoiceOver Cursor to a Specific Element</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Responding-to-Speical-VoiceOver-Gestures"><span class="toc-number">3.2.</span> <span class="toc-text">Responding to Speical VoiceOver Gestures</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Observing-Accessibility-Notifications"><span class="toc-number">3.3.</span> <span class="toc-text">Observing Accessibility Notifications</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        View Controller Programming Guide for iOS - View Controller Definition
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">PacaLog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-08-07T07:19:03.000Z" itemprop="datePublished">2018-08-07</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/View-Controller/">View Controller</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Defining-Your-Subclass"><a href="#Defining-Your-Subclass" class="headerlink" title="Defining Your Subclass"></a>Defining Your Subclass</h2><p>대부분의 커스텀 뷰 컨트롤러는 <em>Content view controller</em>이다. 각자의 뷰들을 소유하고 뷰에 나타나는 데이터에 대한 책임이 있다. 이와 대조적으로 <em>Container view controller</em>는 <strong>모든 뷰를 소유하지는 않는다.</strong> </p>
+<h3 id="Defining-Your-UI"><a href="#Defining-Your-UI" class="headerlink" title="Defining Your UI"></a>Defining Your UI</h3><p>프로그래밍으로 UI를 만들 수도 있지만 스토리보드로 만드는 것은 컨텐츠를 시각화하고 뷰 계층도를 커스터마이즈하기 좋은 방법이다. <strong>UI를 보이게 만드는 것은 변경을 빠르게하고 앱을 실행시키지 않고도 결과를 볼 수 있게 한다.</strong></p>
+<p>다음 그림의 뷰 컨트롤러 간 선은 뷰 컨트롤러의 relationship과 segue를 나타낸다.</p>
+<ul>
+<li><em>Relationship</em>: 컨테이너 뷰 컨트롤러와 자식 뷰 컨트롤러들을 이어준다.</li>
+<li><em>Segue</em>: 인터페이스에서 뷰 컨트롤러 간 이동을 하게 해준다.</li>
+</ul>
+<img src="/2018/08/07/viewControllerProgrammingGuide-2/storyboard.png" title="image">
+<p>다음과 같이 스토리보드 에디터를 사용하자.</p>
+<ul>
+<li>뷰 컨트롤러의 뷰를 더하고, 정렬하고 설정하라.</li>
+<li>outlet과 action을 연결하라.</li>
+<li>뷰 컨트롤러 간 relationship과 segue를 생성하라.</li>
+<li>다른 사이즈 클래스를 고려하여 레이아웃과 뷰를 커스터마이즈하라.</li>
+<li>뷰의 유저 인터랙션을 다루기 위해 gesture recognizer를 달아라.</li>
+</ul>
+<h3 id="Handling-User-Interactions"><a href="#Handling-User-Interactions" class="headerlink" title="Handling User Interactions"></a>Handling User Interactions</h3><p>뷰 컨트롤러는 리스폰더 객체지만 직접 터치 이벤트를 처리하지는 않는다. 대신, 다음과 같은 방법으로 이벤트를 처리한다.</p>
+<ul>
+<li><strong>고차원의 이벤트를 처리하는 액션 메서드를 정의한다.</strong> 액션 메서드는 다음에 응답한다.<ul>
+<li>특정 액션을 처리하기 위해 컨트롤 객체나 뷰가 호출한다.</li>
+<li>Gesture recognizer: 제스처의 상태를 보고하기 위해 액션 메서드를 호출한다.</li>
+</ul>
+</li>
+<li><strong>시스템이나 다른 객체들이 보내는 노티피케이션을 감지한다.</strong></li>
+<li><strong>다른 객체의 data source나 delegate 역할을 한다.</strong></li>
+</ul>
+<h3 id="Displaying-Your-Views-at-Runtime"><a href="#Displaying-Your-Views-at-Runtime" class="headerlink" title="Displaying Your Views at Runtime"></a>Displaying Your Views at Runtime</h3><p>UIKit은 자동으로 필요할 때 스토리보드의 뷰들을 로드한다. 다음과 같은 과정을 거친다.</p>
+<ol>
+<li>스토리보드 파일 안의 정보를 통해 뷰를 초기화한다.</li>
+<li>outlet과 action을 연결한다.</li>
+<li>뷰 컨트롤러의 프로퍼티에 루트 뷰를 할당한다.</li>
+<li>뷰 컨트롤러의 <code>awakeFromNib</code> 메서드를 호출한다.<br>이 메서드가 불릴 때는 <strong>뷰 컨트롤러의 trait collection이 비어 있고 뷰의 위치가 확정되지 않았을 수도 있다.</strong></li>
+<li>뷰 컨트롤러의 <code>viewDidLoad</code> 메서드를 호출한다.<br>이 메서드를 사용하여 뷰를 더하거나 제거하고, 레이아웃 제약을 수정하고 뷰의 데이터를 로드하라.</li>
+</ol>
+<p>뷰를 보여주기 전에 UIKit은 뷰들을 준비할 수 있는 추가적인 기회를 준다. 다음과 같은 과정을 거친다.</p>
+<ol>
+<li>뷰 컨트롤러의 <code>viewWillAppear</code>를 호출하여 뷰가 화면에 곧 보일 것임을 알려준다.</li>
+<li>뷰의 레이아웃을 업데이트한다.</li>
+<li>뷰를 화면에 보여준다.</li>
+<li><code>viewDidAppear</code>를 호출한다.</li>
+</ol>
+<p>뷰의 사이즈나 위치를 더하거나, 제거하거나, 변경할 때는 <strong>해당하는 제약도 더하거나 제거해야 함을 잊지 말아야 한다.</strong> <strong>레이아웃과 관련된 변경을 하는 것은 UIKit이 레이아웃이 ‘dirty’하다고 표시하도록 한다.</strong> 다음 업데이트 주기 때, 레이아웃 엔진이 뷰 계층도에 이 변화를 반영한다.</p>
+<h3 id="Managing-View-Layout"><a href="#Managing-View-Layout" class="headerlink" title="Managing View Layout"></a>Managing View Layout</h3><p>뷰의 사이즈나 위치 변경이 있으면 UIKit은 뷰 계층도의 레이아웃 정보를 업데이트한다. 레이아웃을 업데이트하는 것은 <strong>오토레이아웃 엔진</strong>이나 <strong>Presentation 컨트롤러</strong>의 도움을 받는다. </p>
+<p>레이아웃 과정에서 UIKit은 추가적인 레이아웃 작업을 할 수 있도록 몇몇 포인트를 제공해준다. 이 지점에서 마지막 변덕을 적용할 수 있다. 다음과 같은 과정을 거친다.</p>
+<ol>
+<li>필요한 경우, 뷰 컨트롤러와 뷰의 trait colletion을 업데이트한다.</li>
+<li>뷰 컨트롤러의 <code>viewWillLayoutSubviews</code> 메서드를 호출한다.</li>
+<li>현재 <code>UIPresentationController</code> 객체의 <code>containerViewWillLayoutSubviews</code> 메서드를 호출한다.</li>
+<li>뷰 컨트롤러 루트 뷰의 <code>layoutSubviews</code>를 호출한다.<br>이 메서드를 통해 현재 제약들을 통해 새로운 레이아웃 정보를 계산한다. 그리고 이 메서드는 <strong>뷰 계층도를 따라 subview들에서도 연속적으로 호출</strong>된다.</li>
+<li>뷰의 레이아웃 정보를 적용한다.</li>
+<li>뷰 컨트롤러의 <code>viewDidLayoutSubviews</code>를 호출한다.</li>
+<li>현재 <code>UIPresentationController</code> 객체의 <code>containerViewDidLayoutSubviews</code> 메서드를 호출한다.</li>
+</ol>
+<p>뷰 컨트롤러의 <code>viewWillLayoutSubviews</code>나 <code>viewDidLayoutSubviews</code> 메서드에서 추가적인 업데이트를 할 수 있다.</p>
+<p>다음은 효과적인 레이아웃을 위한 몇 가지 팁이다.</p>
+<ul>
+<li><strong>오토 레이아웃을 사용하라.</strong> 다양한 화면 크기에 대응하기 좋은 방법이다.</li>
+<li>탑, 바텀 레이아웃 가이드를 활용하라. -&gt; <strong>Safe Area로 변경!(iOS 11)</strong></li>
+<li><strong>뷰를 더하거나 제거할 때 제약을 업데이트하는 것을 기억하라.</strong></li>
+<li><strong>뷰 컨트롤러의 뷰를 애니메이팅 할 때 제약을 잠시 제거하라.</strong></li>
+</ul>
+<h3 id="Managing-Memory-Efficiently"><a href="#Managing-Memory-Efficiently" class="headerlink" title="Managing Memory Efficiently"></a>Managing Memory Efficiently</h3><h4 id="Places-to-allocate-and-deallocate-memory"><a href="#Places-to-allocate-and-deallocate-memory" class="headerlink" title="Places to allocate and deallocate memory"></a>Places to allocate and deallocate memory</h4><ul>
+<li>뷰 컨트롤러의 중요한 핵심 자료구조 Alloc: 초기화 메서드</li>
+<li>뷰에 보여줘야 하는 데이터의 Alloc/Load: <code>viewDidLoad</code></li>
+<li>low-memory 알림에 대응: <code>didReceiveMemoryWarning</code></li>
+<li>핵심 자료구조의 Release: <code>dealloc</code></li>
+</ul>
+<h2 id="Implementing-a-Container-View-Controller"><a href="#Implementing-a-Container-View-Controller" class="headerlink" title="Implementing a Container View Controller"></a>Implementing a Container View Controller</h2><p>컨테이너 뷰 컨트롤러는 여러 뷰 컨트롤러들의 컨텐츠를 묶어서 하나의 UI로 보여주는 방법이다.</p>
+<h3 id="Designing-a-Custom-Container-View-Controller"><a href="#Designing-a-Custom-Container-View-Controller" class="headerlink" title="Designing a Custom Container View Controller"></a>Designing a Custom Container View Controller</h3><p>컨테이너 뷰 컨트롤러도 컨텐트 뷰 컨트롤러와 같이 루트 뷰와 컨텐트를 관리하는 방법은 같다. 그러나 차이점은 컨테이너 뷰 컨트롤러는 그 컨텐츠를 다른 뷰 컨트롤러에게서 받아와 보여준다는 것이다.</p>
+<p>컨테이너 뷰 컨트롤러를 만들 때는 항상 <strong>자식 뷰 컨트롤러와의 관계를 염두</strong>에 두어야 한다.</p>
+<h4 id="Example-Navigation-Controller"><a href="#Example-Navigation-Controller" class="headerlink" title="Example: Navigation Controller"></a>Example: Navigation Controller</h4><p><code>UINavigationController</code> 객체는 계층적인 데이터 세트 안에서의 이동을 지원한다. 네비게이션 인터페이스는 한 번에 하나의 자식 뷰 컨트롤러를 보여주게 된다. 네비게이션 바는 인터페이스의 상단에 위치해 있고 현재 데이터 계층에서 어느 위치에 있는지 보여준다.</p>
+<img src="/2018/08/07/viewControllerProgrammingGuide-2/navigation.png" title="image">
+<p>네비게이션 컨트롤러는 compact나 regular 환경 모두에서, 하나의 자식 뷰 컨트롤러만을 보여준다.</p>
+<h4 id="Example-Split-View-Controller"><a href="#Example-Split-View-Controller" class="headerlink" title="Example: Split View Controller"></a>Example: Split View Controller</h4><p><code>UISplitViewController</code> 객체는 ‘<strong>master-detail</strong>‘ 배치를 통해 두 뷰 컨트롤러를 보여준다. 이러한 배치에서 master에 해당하는 뷰 컨트롤러의 컨텐츠가 detail에 해당하는 뷰 컨트롤러의 컨텐츠를 결정한다.</p>
+<p>두 뷰 컨트롤러의 보여짐은 현재 환경에 따라 달라진다. <em>regular horizontal</em> 환경의 경우, 두 뷰 컨트롤러 모두 보여줄 수 있지만, <em>compact</em>한 환경에서는 하나의 뷰 컨트롤러만을 보여주게 된다.</p>
+<img src="/2018/08/07/viewControllerProgrammingGuide-2/split.png" title="image">
+<h3 id="Implementing-a-Custom-Container-View-Controller"><a href="#Implementing-a-Custom-Container-View-Controller" class="headerlink" title="Implementing a Custom Container View Controller"></a>Implementing a Custom Container View Controller</h3><p>컨테이너 뷰 컨트롤러를 적용하기 위해 뷰 컨트롤러와 자식 뷰 컨트롤러 같의 관계를 반드시 정립해야 한다. 인터페이스 빌더를 통해 할 수도 있지만 프로그래밍으로 하는 방법을 보겠다.</p>
+<h4 id="Adding-a-Child-View-Controller-to-Your-Content"><a href="#Adding-a-Child-View-Controller-to-Your-Content" class="headerlink" title="Adding a Child View Controller to Your Content"></a>Adding a Child View Controller to Your Content</h4><p>자식 뷰 컨트롤러를 통합하고 부모-자식의 관계를 만들기 위해 다음과 같은 절차를 따른다.</p>
+<ol>
+<li>컨테이너 뷰 컨트롤러의 <code>addChildViewController:</code>를 호출한다.<br>이 메서드를 통해 컨테이너 뷰 컨트롤러가 자식 뷰 컨트롤러의 뷰를 관리한다는 것을 UIKit에게 알려준다.</li>
+<li>자식의 루트 뷰를 컨테이너의 뷰 계층도에 더한다.<br>자식 뷰의 프레임은 정해져 있어야 한다.</li>
+<li>자식의 루트 뷰의 사이즈와 위치를 결정하는 제약을 더한다.</li>
+<li>자식 뷰 컨트롤러의 <code>didMoveToParentViewController:</code>를 호출한다.</li>
+</ol>
+<p>참고로, 부모의 <code>addChildViewContrller:</code>를 호출하는 것은 자식의 <code>willMoveToParentViewController</code>를 호출시킨다. 오토 레이아웃을 사용할 때는 <strong>자식을 컨테이너의 뷰 계층도에 더한 뒤에 제약을 설정해야 한다.</strong></p>
+<h4 id="Removing-a-Child-View-Controller"><a href="#Removing-a-Child-View-Controller" class="headerlink" title="Removing a Child View Controller"></a>Removing a Child View Controller</h4><p>자식 뷰 컨트롤러를 제거할 때는 다음과 같은 절차를 거친다</p>
+<ol>
+<li>자식의 <code>willMoveToParentViewController:</code>를 <code>nil</code> 값과 함께 호출한다.</li>
+<li>자식의 루트 뷰에 설정된 제약을 제거한다.</li>
+<li>자식의 루트 뷰를 뷰 계층도에서 제거한다.</li>
+<li>자식의 <code>removeFromParentViewController</code> 메서드를 호출하여 마무리한다.</li>
+</ol>
+<h4 id="Suggestions-for-Building-a-Container-View-Controller"><a href="#Suggestions-for-Building-a-Container-View-Controller" class="headerlink" title="Suggestions for Building a Container View Controller"></a>Suggestions for Building a Container View Controller</h4><ul>
+<li><strong>컨테이너는 자식 뷰 컨트롤러의 루트 뷰에만 접근해야 한다.</strong></li>
+<li><strong>자식 뷰 컨트롤러는 컨테이너에 대한 최소한의 정보만 가지고 있어야 한다.</strong><br>만약 둘의 소통이 필요할 경우 <em>delegation</em> 패턴을 이용한다.</li>
+<li><strong>일반적인 뷰를 통해 먼저 테스트를 하는 것이 좋다.</strong></li>
+</ul>
+<h4 id="Delegating-Control-to-a-Child-View-Controller"><a href="#Delegating-Control-to-a-Child-View-Controller" class="headerlink" title="Delegating Control to a Child View Controller"></a>Delegating Control to a Child View Controller</h4><p>부모는 자식의 모습을 결정하는 몇몇 요소를 자식에게 위임할 수 있다.</p>
+<ul>
+<li>상태 바의 스타일을 결정하게 할 수 있다.: <code>childViewControllerForStatusBarStyle</code>와 <code>childViewControllerForStatusBarHidden</code>.</li>
+<li>선호되는 사이즈를 특정할 수 있다.: <code>preferredContentSize</code>.</li>
+</ul>
+<h2 id="Supporting-Accessibility"><a href="#Supporting-Accessibility" class="headerlink" title="Supporting Accessibility"></a>Supporting Accessibility</h2><p>Accessible한 앱은 조금 불편한 사람들도 유용한 도구로서 기능을 유지한 채로 이용할 수 있다. Accessible하기 위해 UI 요소의 정보를 <em>VoiceOver</em>에 전달해야 한다. 기본적인 UIKit 객체는 accessible하지만, 뷰 컨트롤러 관점에서 할 수 있는 몇 가지 점들이 있다.</p>
+<ul>
+<li>모든 인터페이스가 accessbile 해야 한다.</li>
+<li>Accessible한 객체가 정확하고 도움이 되는 정보를 전달하도록 한다.</li>
+</ul>
+<p>개발자는 VoiceOver focus ring의 위치를 설정하거나, VoiceOver 제스처에 대응하거나, accessibility 알림에 대응함으로써 VoiceOver 사용자 경험을 높일 수 있다.</p>
+<h3 id="Moving-the-VoiceOver-Cursor-to-a-Specific-Element"><a href="#Moving-the-VoiceOver-Cursor-to-a-Specific-Element" class="headerlink" title="Moving the VoiceOver Cursor to a Specific Element"></a>Moving the VoiceOver Cursor to a Specific Element</h3><p>VoiceOver의 포커싱이 되는 커서의 위치를 설정해줄 수 있다. 예를 들어 네비게이션 컨트롤러가 새로운 뷰 컨트롤러를 푸시하여 보여주면 해당 컨텐츠가 어떤 것인지 네비게이션 바의 타이틀에 포커싱을 할 수 있다.</p>
+<p>위치를 바꾸기 위해 <code>UIAccessibilityScreenChangedNotification</code>을 <code>UIAccessibilityPostNotfication</code> 함수를 통해 보낸다.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewWillAppear</span><span class="params">(<span class="number">_</span> animated: Bool)</span></span> &#123;</span><br><span class="line">    <span class="keyword">super</span>.viewWillAppear(animated)</span><br><span class="line">    </span><br><span class="line">    <span class="type">UIAccessibilityPostNotification</span>(<span class="type">UIAccessibilityScreenChangedNotification</span>, myFirstElement)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>회전이 일어나 레이아웃의 변경이 일어나면 <code>UIAccessibilityLayoutChangedNotification</code>을 보내 커서의 위치를 재설정해야 한다.</p>
+<h3 id="Responding-to-Speical-VoiceOver-Gestures"><a href="#Responding-to-Speical-VoiceOver-Gestures" class="headerlink" title="Responding to Speical VoiceOver Gestures"></a>Responding to Speical VoiceOver Gestures</h3><p>VoiceOver는 앱에 특정한 액션을 야기하는 다섯 가지의 특별한 제스처를 가지고 있다.</p>
+<ul>
+<li>Escape: 두 손가락의 Z 모양의 제스처로 모달을 내리거나 팝 백할 때 사용.</li>
+<li>Magic Tap: 두 손가락으로 더블 탭.</li>
+<li>Three-Finger Scroll: 세 손가락으로 컨텐츠를 옆으로, 세로로 스크롤할 때 사용.</li>
+<li>Increment: 한 손가락으로 위로 하는 스와이프로 특정 값의 증가를 일으킨다.</li>
+<li>Decrement: 한 손가각으로 아래로 하는 스와이프로 특정 값의 감소를 일으킨다.</li>
+</ul>
+<p>UIKit은 제스처가 들어오면 VoiceOver의 포커스가 되는 요소부터 <strong>리스폰더 체인</strong>을 따라 처리할 수 있는 객체를 찾는다. 만약 없다면 UIKit은 기본 시스템 액션을 실행한다.</p>
+<h3 id="Observing-Accessibility-Notifications"><a href="#Observing-Accessibility-Notifications" class="headerlink" title="Observing Accessibility Notifications"></a>Observing Accessibility Notifications</h3><p>Accessibility notification을 듣는 것은 <code>NotificationCenter</code>를 이용하여 Observer를 붙여 그에 따른 처리를 해주면 된다.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2>
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Defining-Your-Subclass"><span class="toc-number">1.</span> <span class="toc-text">Defining Your Subclass</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Defining-Your-UI"><span class="toc-number">1.1.</span> <span class="toc-text">Defining Your UI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Handling-User-Interactions"><span class="toc-number">1.2.</span> <span class="toc-text">Handling User Interactions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Displaying-Your-Views-at-Runtime"><span class="toc-number">1.3.</span> <span class="toc-text">Displaying Your Views at Runtime</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Managing-View-Layout"><span class="toc-number">1.4.</span> <span class="toc-text">Managing View Layout</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Managing-Memory-Efficiently"><span class="toc-number">1.5.</span> <span class="toc-text">Managing Memory Efficiently</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Places-to-allocate-and-deallocate-memory"><span class="toc-number">1.5.1.</span> <span class="toc-text">Places to allocate and deallocate memory</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Implementing-a-Container-View-Controller"><span class="toc-number">2.</span> <span class="toc-text">Implementing a Container View Controller</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Designing-a-Custom-Container-View-Controller"><span class="toc-number">2.1.</span> <span class="toc-text">Designing a Custom Container View Controller</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Example-Navigation-Controller"><span class="toc-number">2.1.1.</span> <span class="toc-text">Example: Navigation Controller</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Example-Split-View-Controller"><span class="toc-number">2.1.2.</span> <span class="toc-text">Example: Split View Controller</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Implementing-a-Custom-Container-View-Controller"><span class="toc-number">2.2.</span> <span class="toc-text">Implementing a Custom Container View Controller</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Adding-a-Child-View-Controller-to-Your-Content"><span class="toc-number">2.2.1.</span> <span class="toc-text">Adding a Child View Controller to Your Content</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Removing-a-Child-View-Controller"><span class="toc-number">2.2.2.</span> <span class="toc-text">Removing a Child View Controller</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Suggestions-for-Building-a-Container-View-Controller"><span class="toc-number">2.2.3.</span> <span class="toc-text">Suggestions for Building a Container View Controller</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Delegating-Control-to-a-Child-View-Controller"><span class="toc-number">2.2.4.</span> <span class="toc-text">Delegating Control to a Child View Controller</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Supporting-Accessibility"><span class="toc-number">3.</span> <span class="toc-text">Supporting Accessibility</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Moving-the-VoiceOver-Cursor-to-a-Specific-Element"><span class="toc-number">3.1.</span> <span class="toc-text">Moving the VoiceOver Cursor to a Specific Element</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Responding-to-Speical-VoiceOver-Gestures"><span class="toc-number">3.2.</span> <span class="toc-text">Responding to Speical VoiceOver Gestures</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Observing-Accessibility-Notifications"><span class="toc-number">3.3.</span> <span class="toc-text">Observing Accessibility Notifications</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/08/07/viewControllerProgrammingGuide-2/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/08/07/viewControllerProgrammingGuide-2/&text=View Controller Programming Guide for iOS - View Controller Definition"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/08/07/viewControllerProgrammingGuide-2/&title=View Controller Programming Guide for iOS - View Controller Definition"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/08/07/viewControllerProgrammingGuide-2/&is_video=false&description=View Controller Programming Guide for iOS - View Controller Definition"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=View Controller Programming Guide for iOS - View Controller Definition&body=Check out this article: https://wnstkdyu.github.io/2018/08/07/viewControllerProgrammingGuide-2/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/08/07/viewControllerProgrammingGuide-2/&title=View Controller Programming Guide for iOS - View Controller Definition"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/08/07/viewControllerProgrammingGuide-2/&title=View Controller Programming Guide for iOS - View Controller Definition"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/08/07/viewControllerProgrammingGuide-2/&title=View Controller Programming Guide for iOS - View Controller Definition"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/08/07/viewControllerProgrammingGuide-2/&title=View Controller Programming Guide for iOS - View Controller Definition"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/08/07/viewControllerProgrammingGuide-2/&name=View Controller Programming Guide for iOS - View Controller Definition&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Alpaca
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-116302583-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'alpacablog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+

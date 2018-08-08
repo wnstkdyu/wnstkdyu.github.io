@@ -9,7 +9,7 @@
     <meta name="description" content="The Role of View Controllers뷰 컨트롤러는 앱 내부 구조의 기반으로 다음과 같은 역할을 한다.  UI를 관리  데이터와의 인터랙션  UI의 전환  이러한 중요한 역할을 하기 때문에 뷰 컨트롤러는 개발자가 하는 모든 것의 중심에 있다. 다음과 같은 두 유형의 뷰 컨트롤러가 존재한다.  Content view controller: 앱 컨텐">
 <meta name="keywords" content="View Controller">
 <meta property="og:type" content="article">
-<meta property="og:title" content="View Controller Programming Guide - Overview">
+<meta property="og:title" content="View Controller Programming Guide for iOS - Overview">
 <meta property="og:url" content="https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/index.html">
 <meta property="og:site_name" content="PacaLog">
 <meta property="og:description" content="The Role of View Controllers뷰 컨트롤러는 앱 내부 구조의 기반으로 다음과 같은 역할을 한다.  UI를 관리  데이터와의 인터랙션  UI의 전환  이러한 중요한 역할을 하기 때문에 뷰 컨트롤러는 개발자가 하는 모든 것의 중심에 있다. 다음과 같은 두 유형의 뷰 컨트롤러가 존재한다.  Content view controller: 앱 컨텐">
@@ -22,9 +22,9 @@
 <meta property="og:image" content="https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/sizeClassCombination.png">
 <meta property="og:image" content="https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/rootVC.png">
 <meta property="og:image" content="https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/containerAsRootVC.png">
-<meta property="og:updated_time" content="2018-08-06T02:53:06.452Z">
+<meta property="og:updated_time" content="2018-08-07T07:19:32.026Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="View Controller Programming Guide - Overview">
+<meta name="twitter:title" content="View Controller Programming Guide for iOS - Overview">
 <meta name="twitter:description" content="The Role of View Controllers뷰 컨트롤러는 앱 내부 구조의 기반으로 다음과 같은 역할을 한다.  UI를 관리  데이터와의 인터랙션  UI의 전환  이러한 중요한 역할을 하기 때문에 뷰 컨트롤러는 개발자가 하는 모든 것의 중심에 있다. 다음과 같은 두 유형의 뷰 컨트롤러가 존재한다.  Content view controller: 앱 컨텐">
 <meta name="twitter:image" content="https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/vcHierarchy.png">
     
@@ -46,7 +46,7 @@
         
     
     <!-- title -->
-    <title>View Controller Programming Guide - Overview</title>
+    <title>View Controller Programming Guide for iOS - Overview</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- rss -->
@@ -76,6 +76,8 @@
     <span id="actions">
       <ul>
         
+        <li><a class="icon" href="/2018/08/07/viewControllerProgrammingGuide-2/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
         
         <li><a class="icon" href="/2018/07/21/letusgo2018-summer/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
         
@@ -91,15 +93,15 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&text=View Controller Programming Guide - Overview"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&title=View Controller Programming Guide - Overview"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&is_video=false&description=View Controller Programming Guide - Overview"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=View Controller Programming Guide - Overview&body=Check out this article: https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&title=View Controller Programming Guide - Overview"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&title=View Controller Programming Guide - Overview"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&title=View Controller Programming Guide - Overview"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&title=View Controller Programming Guide - Overview"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&name=View Controller Programming Guide - Overview&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&text=View Controller Programming Guide for iOS - Overview"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&title=View Controller Programming Guide for iOS - Overview"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&is_video=false&description=View Controller Programming Guide for iOS - Overview"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=View Controller Programming Guide for iOS - Overview&body=Check out this article: https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&title=View Controller Programming Guide for iOS - Overview"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&title=View Controller Programming Guide for iOS - Overview"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&title=View Controller Programming Guide for iOS - Overview"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&title=View Controller Programming Guide for iOS - Overview"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&name=View Controller Programming Guide for iOS - Overview&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
@@ -116,7 +118,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        View Controller Programming Guide - Overview
+        View Controller Programming Guide for iOS - Overview
     </h1>
 
 
@@ -277,15 +279,15 @@
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&text=View Controller Programming Guide - Overview"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&title=View Controller Programming Guide - Overview"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&is_video=false&description=View Controller Programming Guide - Overview"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=View Controller Programming Guide - Overview&body=Check out this article: https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&title=View Controller Programming Guide - Overview"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&title=View Controller Programming Guide - Overview"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&title=View Controller Programming Guide - Overview"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&title=View Controller Programming Guide - Overview"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&name=View Controller Programming Guide - Overview&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&text=View Controller Programming Guide for iOS - Overview"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&title=View Controller Programming Guide for iOS - Overview"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&is_video=false&description=View Controller Programming Guide for iOS - Overview"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=View Controller Programming Guide for iOS - Overview&body=Check out this article: https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&title=View Controller Programming Guide for iOS - Overview"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&title=View Controller Programming Guide for iOS - Overview"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&title=View Controller Programming Guide for iOS - Overview"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&title=View Controller Programming Guide for iOS - Overview"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/&name=View Controller Programming Guide for iOS - Overview&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
