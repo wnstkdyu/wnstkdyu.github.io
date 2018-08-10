@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Presenting a View Controller두 가지 방법이 있다.  Embeded in Container view controller Present  The Presentation and Transition ProcessPresentation Styles보여지는 모습을 결정. 시스템이 제공하는 기본 스타일도 있지만 커스텀으로 만들 수도 있음. 적절한">
+<meta name="keywords" content="View Controller,Presenting,Transition">
+<meta property="og:type" content="article">
+<meta property="og:title" content="View Controller Programming Guide for iOS - Presenting and Transitions">
+<meta property="og:url" content="https://wnstkdyu.github.io/2018/08/09/viewControllerProgrammingGuide-3/index.html">
+<meta property="og:site_name" content="PacaLog">
+<meta property="og:description" content="Presenting a View Controller두 가지 방법이 있다.  Embeded in Container view controller Present  The Presentation and Transition ProcessPresentation Styles보여지는 모습을 결정. 시스템이 제공하는 기본 스타일도 있지만 커스텀으로 만들 수도 있음. 적절한">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-08-10T05:07:27.233Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="View Controller Programming Guide for iOS - Presenting and Transitions">
+<meta name="twitter:description" content="Presenting a View Controller두 가지 방법이 있다.  Embeded in Container view controller Present  The Presentation and Transition ProcessPresentation Styles보여지는 모습을 결정. 시스템이 제공하는 기본 스타일도 있지만 커스텀으로 만들 수도 있음. 적절한">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>View Controller Programming Guide for iOS - Presenting and Transitions</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2018/08/08/solidWithSwift/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/08/09/viewControllerProgrammingGuide-3/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/08/09/viewControllerProgrammingGuide-3/&text=View Controller Programming Guide for iOS - Presenting and Transitions"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/08/09/viewControllerProgrammingGuide-3/&title=View Controller Programming Guide for iOS - Presenting and Transitions"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/08/09/viewControllerProgrammingGuide-3/&is_video=false&description=View Controller Programming Guide for iOS - Presenting and Transitions"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=View Controller Programming Guide for iOS - Presenting and Transitions&body=Check out this article: https://wnstkdyu.github.io/2018/08/09/viewControllerProgrammingGuide-3/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/08/09/viewControllerProgrammingGuide-3/&title=View Controller Programming Guide for iOS - Presenting and Transitions"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/08/09/viewControllerProgrammingGuide-3/&title=View Controller Programming Guide for iOS - Presenting and Transitions"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/08/09/viewControllerProgrammingGuide-3/&title=View Controller Programming Guide for iOS - Presenting and Transitions"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/08/09/viewControllerProgrammingGuide-3/&title=View Controller Programming Guide for iOS - Presenting and Transitions"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/08/09/viewControllerProgrammingGuide-3/&name=View Controller Programming Guide for iOS - Presenting and Transitions&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Presenting-a-View-Controller"><span class="toc-number">1.</span> <span class="toc-text">Presenting a View Controller</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Presentation-and-Transition-Process"><span class="toc-number">1.1.</span> <span class="toc-text">The Presentation and Transition Process</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Presentation-Styles"><span class="toc-number">1.1.1.</span> <span class="toc-text">Presentation Styles</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Full-Screen-Presentation-Styles"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">Full-Screen Presentation Styles</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#The-Popover-Style"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">The Popover Style</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#The-Current-Context-Styles"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">The Current Context Styles</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Custom-Presentation-Styles"><span class="toc-number">1.1.1.4.</span> <span class="toc-text">Custom Presentation Styles</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Transition-Styles"><span class="toc-number">1.1.1.5.</span> <span class="toc-text">Transition Styles</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Presenting-Versus-Showing-a-View-Controller"><span class="toc-number">1.1.1.6.</span> <span class="toc-text">Presenting Versus Showing a View Controller</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Presenting-a-View-Controller-1"><span class="toc-number">1.2.</span> <span class="toc-text">Presenting a View Controller</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Showing-View-Controllers"><span class="toc-number">1.2.1.</span> <span class="toc-text">Showing View Controllers</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">2.</span> <span class="toc-text">Reference</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        View Controller Programming Guide for iOS - Presenting and Transitions
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">PacaLog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-08-09T08:19:08.000Z" itemprop="datePublished">2018-08-09</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Presenting/">Presenting</a>, <a class="tag-link" href="/tags/Transition/">Transition</a>, <a class="tag-link" href="/tags/View-Controller/">View Controller</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Presenting-a-View-Controller"><a href="#Presenting-a-View-Controller" class="headerlink" title="Presenting a View Controller"></a>Presenting a View Controller</h2><p>두 가지 방법이 있다.</p>
+<ul>
+<li>Embeded in Container view controller</li>
+<li>Present</li>
+</ul>
+<h3 id="The-Presentation-and-Transition-Process"><a href="#The-Presentation-and-Transition-Process" class="headerlink" title="The Presentation and Transition Process"></a>The Presentation and Transition Process</h3><h4 id="Presentation-Styles"><a href="#Presentation-Styles" class="headerlink" title="Presentation Styles"></a>Presentation Styles</h4><p>보여지는 모습을 결정. 시스템이 제공하는 기본 스타일도 있지만 커스텀으로 만들 수도 있음. 적절한 스타일을 정하고 present할 뷰 컨트롤러의 <code>modalPresentationStyle</code> 프로퍼티에 할당하면 된다.</p>
+<h5 id="Full-Screen-Presentation-Styles"><a href="#Full-Screen-Presentation-Styles" class="headerlink" title="Full-Screen Presentation Styles"></a>Full-Screen Presentation Styles</h5><p>전체 화면을 덮어 밑에 깔려있는 컨텐츠와의 인터랙션을 막는다. <em>horizontal regular</em> 환경에서 전체를 뒤덮는 스타일은 하나밖에 없다. 덮지 못하는 부분은 거무잡잡하게 처리를 하여 인터랙션을 막는다.</p>
+<blockquote>
+<p><code>UIModalPresentationFullScreen</code> 스타일을 적용하면 UIKit은 전환 애니메이션이 끝난 후에 아래에 있는 뷰 컨트롤러의 뷰를 제거한다. 이를 막기 위해서는 <code>UIModalPresentationOverFullScreen</code> 스타일을 적용하면 된다.</p>
+</blockquote>
+<h5 id="The-Popover-Style"><a href="#The-Popover-Style" class="headerlink" title="The Popover Style"></a>The Popover Style</h5><p><code>UIModalPresentationPopover</code> 스타일은 추가적인 정보나 포커스된 객체의 관련된 아이템의 리스트를 보여줄 때 효과적이다. </p>
+<p><em>horizontal compact</em> 환경에서는 <code>UIModalPresentationFullScreen</code> 스타일처럼 동작한다. 때문에 따로 dismiss할 버튼이나 동작을 추가해야 한다.</p>
+<h5 id="The-Current-Context-Styles"><a href="#The-Current-Context-Styles" class="headerlink" title="The Current Context Styles"></a>The Current Context Styles</h5><p><code>UIModalPresentationCurrentContext</code> 스타일은 특정 뷰 컨트롤러를 덮는 스타일이다. 원하는 뷰 컨트롤러의 <code>definesPresentationContext</code>를 <code>YES</code>로 바꿔준다.</p>
+<blockquote>
+<p>마찬가지로 <code>UIModalPresentationCurrentContext</code> 스타일을 적용하면 UIKit이 뷰의 전환이 끝난 뒤에 아래 뷰를 제거한다. 이것을 막기 위해서는 <code>UIModalPresentationOverCurrentContext</code>를 적용하면 된다.</p>
+</blockquote>
+<h5 id="Custom-Presentation-Styles"><a href="#Custom-Presentation-Styles" class="headerlink" title="Custom Presentation Styles"></a>Custom Presentation Styles</h5><p><code>UIModalPresentationCustom</code> 스타일을 적용해 개발자가 임의로 스타일을 지정해 줄 수 있다. <code>UIPresentationController</code>를 상속 받아 커스텀 스타일을 만들 수 있다.</p>
+<h5 id="Transition-Styles"><a href="#Transition-Styles" class="headerlink" title="Transition Styles"></a>Transition Styles</h5><p>Present 할 뷰 컨트롤러의 <code>modalTransitionStyle</code> 프로퍼티에 원하는 스타일을 지정해서 전환되는 모습을 바꿀 수 있다.</p>
+<h5 id="Presenting-Versus-Showing-a-View-Controller"><a href="#Presenting-Versus-Showing-a-View-Controller" class="headerlink" title="Presenting Versus Showing a View Controller"></a>Presenting Versus Showing a View Controller</h5><p><code>UIViewController</code>는 뷰 컨트롤러를 보이게 하는 두 가지 방법을 제공한다.</p>
+<ul>
+<li><code>showViewController:sender:</code>와 <code>showDetailViewController:sender:</code> 메서드는 가장 적절한 방법으로 뷰 컨트롤러를 표시한다. 컨테이너 뷰 컨트롤러에 속해 있을 때는 거기에 맞는 방식으로, 기본은 모달 형식이다.</li>
+<li><code>presentViewController:animated:completion:</code> 메서드는 항상 모달로 뷰 컨트롤러를 띄운다.</li>
+</ul>
+<h3 id="Presenting-a-View-Controller-1"><a href="#Presenting-a-View-Controller-1" class="headerlink" title="Presenting a View Controller"></a>Presenting a View Controller</h3><p>다음과 같은 방법으로 뷰 컨트롤러의 presentation을 시작한다.</p>
+<ul>
+<li>Segue</li>
+<li><code>showViewController:sender:</code>나 <code>showDetailViewController:sender:</code></li>
+<li><code>presentViewController:animated:completion:</code></li>
+</ul>
+<h4 id="Showing-View-Controllers"><a href="#Showing-View-Controllers" class="headerlink" title="Showing View Controllers"></a>Showing View Controllers</h4><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2>
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Presenting-a-View-Controller"><span class="toc-number">1.</span> <span class="toc-text">Presenting a View Controller</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Presentation-and-Transition-Process"><span class="toc-number">1.1.</span> <span class="toc-text">The Presentation and Transition Process</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Presentation-Styles"><span class="toc-number">1.1.1.</span> <span class="toc-text">Presentation Styles</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Full-Screen-Presentation-Styles"><span class="toc-number">1.1.1.1.</span> <span class="toc-text">Full-Screen Presentation Styles</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#The-Popover-Style"><span class="toc-number">1.1.1.2.</span> <span class="toc-text">The Popover Style</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#The-Current-Context-Styles"><span class="toc-number">1.1.1.3.</span> <span class="toc-text">The Current Context Styles</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Custom-Presentation-Styles"><span class="toc-number">1.1.1.4.</span> <span class="toc-text">Custom Presentation Styles</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Transition-Styles"><span class="toc-number">1.1.1.5.</span> <span class="toc-text">Transition Styles</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Presenting-Versus-Showing-a-View-Controller"><span class="toc-number">1.1.1.6.</span> <span class="toc-text">Presenting Versus Showing a View Controller</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Presenting-a-View-Controller-1"><span class="toc-number">1.2.</span> <span class="toc-text">Presenting a View Controller</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Showing-View-Controllers"><span class="toc-number">1.2.1.</span> <span class="toc-text">Showing View Controllers</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">2.</span> <span class="toc-text">Reference</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/08/09/viewControllerProgrammingGuide-3/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/08/09/viewControllerProgrammingGuide-3/&text=View Controller Programming Guide for iOS - Presenting and Transitions"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/08/09/viewControllerProgrammingGuide-3/&title=View Controller Programming Guide for iOS - Presenting and Transitions"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/08/09/viewControllerProgrammingGuide-3/&is_video=false&description=View Controller Programming Guide for iOS - Presenting and Transitions"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=View Controller Programming Guide for iOS - Presenting and Transitions&body=Check out this article: https://wnstkdyu.github.io/2018/08/09/viewControllerProgrammingGuide-3/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/08/09/viewControllerProgrammingGuide-3/&title=View Controller Programming Guide for iOS - Presenting and Transitions"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/08/09/viewControllerProgrammingGuide-3/&title=View Controller Programming Guide for iOS - Presenting and Transitions"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/08/09/viewControllerProgrammingGuide-3/&title=View Controller Programming Guide for iOS - Presenting and Transitions"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/08/09/viewControllerProgrammingGuide-3/&title=View Controller Programming Guide for iOS - Presenting and Transitions"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/08/09/viewControllerProgrammingGuide-3/&name=View Controller Programming Guide for iOS - Presenting and Transitions&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Alpaca
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-116302583-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'alpacablog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
