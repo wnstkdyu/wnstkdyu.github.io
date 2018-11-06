@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="사이드 프로젝트로 앱스토어 1위 공략하기 - 노수진 님Hompage: http://soojin.ro작고 재밌는 아이디어에서 시작하기새 앱을 다운로드 하는 이유–    쓰고 있던 앱이 관리되지 않을 때–    더 (기능이 많은, 적은, 이쁜, 편리한) 앱을 발견했을 때–    새 아이폰을 샀을 때 비즈니스 모델 정하기–    본인의 앱의 특성에 맞게 모델을">
+<meta name="keywords" content="iOS,Conference">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Let&#39;Swift 2018">
+<meta property="og:url" content="https://wnstkdyu.github.io/2018/11/06/Let-Swift-2018/index.html">
+<meta property="og:site_name" content="PacaLog">
+<meta property="og:description" content="사이드 프로젝트로 앱스토어 1위 공략하기 - 노수진 님Hompage: http://soojin.ro작고 재밌는 아이디어에서 시작하기새 앱을 다운로드 하는 이유–    쓰고 있던 앱이 관리되지 않을 때–    더 (기능이 많은, 적은, 이쁜, 편리한) 앱을 발견했을 때–    새 아이폰을 샀을 때 비즈니스 모델 정하기–    본인의 앱의 특성에 맞게 모델을">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-11-06T13:09:17.215Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Let&#39;Swift 2018">
+<meta name="twitter:description" content="사이드 프로젝트로 앱스토어 1위 공략하기 - 노수진 님Hompage: http://soojin.ro작고 재밌는 아이디어에서 시작하기새 앱을 다운로드 하는 이유–    쓰고 있던 앱이 관리되지 않을 때–    더 (기능이 많은, 적은, 이쁜, 편리한) 앱을 발견했을 때–    새 아이폰을 샀을 때 비즈니스 모델 정하기–    본인의 앱의 특성에 맞게 모델을">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Let&#39;Swift 2018</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2018/10/21/HCI-Assignment-3/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/11/06/Let-Swift-2018/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/11/06/Let-Swift-2018/&text=Let&#39;Swift 2018"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/11/06/Let-Swift-2018/&title=Let&#39;Swift 2018"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/11/06/Let-Swift-2018/&is_video=false&description=Let&#39;Swift 2018"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Let&#39;Swift 2018&body=Check out this article: https://wnstkdyu.github.io/2018/11/06/Let-Swift-2018/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/11/06/Let-Swift-2018/&title=Let&#39;Swift 2018"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/11/06/Let-Swift-2018/&title=Let&#39;Swift 2018"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/11/06/Let-Swift-2018/&title=Let&#39;Swift 2018"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/11/06/Let-Swift-2018/&title=Let&#39;Swift 2018"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/11/06/Let-Swift-2018/&name=Let&#39;Swift 2018&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#사이드-프로젝트로-앱스토어-1위-공략하기-노수진-님"><span class="toc-number">1.</span> <span class="toc-text">사이드 프로젝트로 앱스토어 1위 공략하기 - 노수진 님</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Hompage-http-soojin-ro"><span class="toc-number">1.0.1.</span> <span class="toc-text">Hompage: http://soojin.ro</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#작고-재밌는-아이디어에서-시작하기"><span class="toc-number">1.1.</span> <span class="toc-text">작고 재밌는 아이디어에서 시작하기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#새-앱을-다운로드-하는-이유"><span class="toc-number">1.2.</span> <span class="toc-text">새 앱을 다운로드 하는 이유</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#비즈니스-모델-정하기"><span class="toc-number">1.3.</span> <span class="toc-text">비즈니스 모델 정하기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#앱-심사하기"><span class="toc-number">1.4.</span> <span class="toc-text">앱 심사하기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#사용자-모으기"><span class="toc-number">1.5.</span> <span class="toc-text">사용자 모으기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#유저들과-소통하기"><span class="toc-number">1.6.</span> <span class="toc-text">유저들과 소통하기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#유지-보수"><span class="toc-number">1.7.</span> <span class="toc-text">유지 보수</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#앱스토어-리뷰-관리하기"><span class="toc-number">1.8.</span> <span class="toc-text">앱스토어 리뷰 관리하기</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iOS-❤️-Ruby-김은영-님"><span class="toc-number">2.</span> <span class="toc-text">iOS ❤️ Ruby - 김은영 님</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#iOS-개발자에게-유용한-Ruby-Gem을-소개"><span class="toc-number">2.1.</span> <span class="toc-text">iOS 개발자에게 유용한 Ruby Gem을 소개</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ruby와-Gem"><span class="toc-number">2.2.</span> <span class="toc-text">Ruby와 Gem</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Ruby"><span class="toc-number">2.2.1.</span> <span class="toc-text">Ruby</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Gem"><span class="toc-number">2.2.2.</span> <span class="toc-text">Gem</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Gem-소개"><span class="toc-number">2.3.</span> <span class="toc-text">Gem 소개</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Tachikoma-버전이-고정된-라이브러리-이외에는-계속적인-최신-버전의-업데이트가-필요"><span class="toc-number">2.3.1.</span> <span class="toc-text">Tachikoma: 버전이 고정된 라이브러리 이외에는 계속적인 최신 버전의 업데이트가 필요</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Danger-버전-PR-내-확인사항-Objc-코드-Storyboard-에러-체크"><span class="toc-number">2.3.2.</span> <span class="toc-text">Danger: 버전 PR 내 확인사항, Objc 코드, Storyboard 에러 체크</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#houston-로컬-푸시를-날릴-수-있음"><span class="toc-number">2.3.3.</span> <span class="toc-text">houston: 로컬 푸시를 날릴 수 있음</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tenma-Mile-stone-에-따른-dev-master-브런치-제작"><span class="toc-number">2.3.4.</span> <span class="toc-text">tenma: Mile stone 에 따른 dev, master 브런치 제작</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Fastlane-앱-스토어-업로드-및-배포"><span class="toc-number">2.3.5.</span> <span class="toc-text">Fastlane: 앱 스토어 업로드 및 배포</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TDS-Toss-Design-System-v2-소개-이택규-님"><span class="toc-number">3.</span> <span class="toc-text">TDS(Toss Design System) v2 소개 - 이택규 님</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Before-TDS-v2"><span class="toc-number">3.0.1.</span> <span class="toc-text">Before TDS v2</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TDSv2-to-code"><span class="toc-number">3.1.</span> <span class="toc-text">TDSv2 to code</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#View-View-model"><span class="toc-number">3.1.1.</span> <span class="toc-text">View - View model</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cell-as-base-view"><span class="toc-number">3.1.2.</span> <span class="toc-text">Cell as base view</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#List-binding"><span class="toc-number">3.1.3.</span> <span class="toc-text">List binding</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Event-emitter-protocol"><span class="toc-number">3.1.4.</span> <span class="toc-text">Event emitter protocol</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#외부-Pod으로-관리"><span class="toc-number">3.1.5.</span> <span class="toc-text">외부 Pod으로 관리</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#시행착오"><span class="toc-number">3.2.</span> <span class="toc-text">시행착오</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RxRIBs-Multiplatform-architecture-with-Rx-김남현-님"><span class="toc-number">4.</span> <span class="toc-text">RxRIBs, Multiplatform architecture with Rx - 김남현 님</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Factors-to-consider"><span class="toc-number">4.0.1.</span> <span class="toc-text">Factors to consider</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RIBs-http-github-com-uber-RIBs"><span class="toc-number">4.1.</span> <span class="toc-text">RIBs(http://github.com/uber/RIBs)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#State-tree-gt-RIB-tree"><span class="toc-number">4.1.1.</span> <span class="toc-text">State tree -&gt; RIB tree</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Scope"><span class="toc-number">4.1.2.</span> <span class="toc-text">Scope</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ReactorKit으로-RxSwift-시작하기-김태준-님"><span class="toc-number">5.</span> <span class="toc-text">ReactorKit으로 RxSwift 시작하기 - 김태준 님</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#RxSwift-왜-써요"><span class="toc-number">5.1.</span> <span class="toc-text">RxSwift, 왜 써요?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RxSwift-왜-어렵죠"><span class="toc-number">5.2.</span> <span class="toc-text">RxSwift, 왜 어렵죠?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ReactorKit"><span class="toc-number">5.3.</span> <span class="toc-text">ReactorKit</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ReSwift와-함께-Undirectional-Architecture-황재욱-님"><span class="toc-number">6.</span> <span class="toc-text">ReSwift와 함께 Undirectional Architecture - 황재욱 님</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ReSwift-톺아보기"><span class="toc-number">6.1.</span> <span class="toc-text">ReSwift 톺아보기</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ReSwift"><span class="toc-number">6.1.1.</span> <span class="toc-text">ReSwift?</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Store"><span class="toc-number">6.1.1.1.</span> <span class="toc-text">Store</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Action"><span class="toc-number">6.1.1.2.</span> <span class="toc-text">Action</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Reducer"><span class="toc-number">6.1.1.3.</span> <span class="toc-text">Reducer</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#View-State-변화에-반응하여-view를-보여주는-역할이며-주로-Action을-Dispatch한다"><span class="toc-number">6.1.1.4.</span> <span class="toc-text">View: State 변화에 반응하여 view를 보여주는 역할이며 주로 Action을 Dispatch한다.</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Unidirectional-Architecture는"><span class="toc-number">6.1.2.</span> <span class="toc-text">Unidirectional Architecture는?</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RxSwift-Internal-Observer와-Event를-중심으로-오진성-님"><span class="toc-number">7.</span> <span class="toc-text">RxSwift Internal(Observer와 Event를 중심으로) - 오진성 님</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GraphQL-over-Rest-API-이봉원-님"><span class="toc-number">8.</span> <span class="toc-text">GraphQL over Rest API - 이봉원 님</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#기존의-API-인터페이스"><span class="toc-number">8.0.1.</span> <span class="toc-text">기존의 API 인터페이스</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Changed-API-Landscape"><span class="toc-number">8.0.2.</span> <span class="toc-text">Changed API Landscape</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GraphQL"><span class="toc-number">8.1.</span> <span class="toc-text">GraphQL</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Blogging-App-with-GraphQL"><span class="toc-number">8.1.1.</span> <span class="toc-text">Blogging App with GraphQL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#기존-API의-문제점"><span class="toc-number">8.1.2.</span> <span class="toc-text">기존 API의 문제점</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Query"><span class="toc-number">8.1.3.</span> <span class="toc-text">Query</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Resource-Limitation"><span class="toc-number">8.1.3.1.</span> <span class="toc-text">Resource Limitation</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mutation"><span class="toc-number">8.1.4.</span> <span class="toc-text">Mutation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Subscription"><span class="toc-number">8.1.5.</span> <span class="toc-text">Subscription</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SIMD-amp-MPS-in-Swift-양승헌-님"><span class="toc-number">9.</span> <span class="toc-text">SIMD &amp; MPS in Swift - 양승헌 님</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Let&#39;Swift 2018
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">PacaLog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-11-06T08:24:29.000Z" itemprop="datePublished">2018-11-06</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Conference/">Conference</a>, <a class="tag-link" href="/tags/iOS/">iOS</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="사이드-프로젝트로-앱스토어-1위-공략하기-노수진-님"><a href="#사이드-프로젝트로-앱스토어-1위-공략하기-노수진-님" class="headerlink" title="사이드 프로젝트로 앱스토어 1위 공략하기 - 노수진 님"></a>사이드 프로젝트로 앱스토어 1위 공략하기 - 노수진 님</h2><h4 id="Hompage-http-soojin-ro"><a href="#Hompage-http-soojin-ro" class="headerlink" title="Hompage: http://soojin.ro"></a>Hompage: <a href="http://soojin.ro" target="_blank" rel="noopener">http://soojin.ro</a></h4><h3 id="작고-재밌는-아이디어에서-시작하기"><a href="#작고-재밌는-아이디어에서-시작하기" class="headerlink" title="작고 재밌는 아이디어에서 시작하기"></a>작고 재밌는 아이디어에서 시작하기</h3><h3 id="새-앱을-다운로드-하는-이유"><a href="#새-앱을-다운로드-하는-이유" class="headerlink" title="새 앱을 다운로드 하는 이유"></a>새 앱을 다운로드 하는 이유</h3><p>–    쓰고 있던 앱이 관리되지 않을 때<br>–    더 (기능이 많은, 적은, 이쁜, 편리한) 앱을 발견했을 때<br>–    새 아이폰을 샀을 때</p>
+<h3 id="비즈니스-모델-정하기"><a href="#비즈니스-모델-정하기" class="headerlink" title="비즈니스 모델 정하기"></a>비즈니스 모델 정하기</h3><p>–    본인의 앱의 특성에 맞게 모델을 정해야 함<br>–    무료도 아닐 수 있음</p>
+<h3 id="앱-심사하기"><a href="#앱-심사하기" class="headerlink" title="앱 심사하기"></a>앱 심사하기</h3><p>–    리젝은 이의 제기해도 별로 소용이 없었음</p>
+<h3 id="사용자-모으기"><a href="#사용자-모으기" class="headerlink" title="사용자 모으기"></a>사용자 모으기</h3><p>–    커뮤니티(카페, 클리앙 등)에 홍보<br>–    앱스토어 순위에 오르고 난 뒤에는 수동으로 광고를 하지 않아도 유입<br>–    이후 페이스북 유료 광고했지만 비용이 더 큰 구조였지만 앱스토어 순위 유지가 더 이익이었기 때문에 유지<br>–    리뷰해 준 블로거에는 프로모션 코드를 제공</p>
+<h3 id="유저들과-소통하기"><a href="#유저들과-소통하기" class="headerlink" title="유저들과 소통하기"></a>유저들과 소통하기</h3><p>–    페이스북 그룹 유지<br>–    전용 메일로 피드백 받기: SNS보다 더 많은 피드백<br>–    MFMailComposeViewController: 메일 앱에 계정 연동이 되어 있어야 하는 한계<br>–    MailCore2(라이브러리): 좀 더 자유로운 메일<br>–    업데이트 노트로 상세한 설명</p>
+<h3 id="유지-보수"><a href="#유지-보수" class="headerlink" title="유지 보수"></a>유지 보수</h3><p>–    심각한 버그가 있을 때는 긴급 리뷰(몇 시간만에 가능)를 사용했음</p>
+<h3 id="앱스토어-리뷰-관리하기"><a href="#앱스토어-리뷰-관리하기" class="headerlink" title="앱스토어 리뷰 관리하기"></a>앱스토어 리뷰 관리하기</h3><p>–    앱스토어의 별점이 미치는 영향은 생각보다 큼: 적절하게 별점을 남겨주라는 요청을 하자<br>–    리뷰가 너무 욕이면 리포트를 통해 해결: 검토 후 리뷰가 삭제됨</p>
+<h2 id="iOS-❤️-Ruby-김은영-님"><a href="#iOS-❤️-Ruby-김은영-님" class="headerlink" title="iOS ❤️ Ruby - 김은영 님"></a>iOS ❤️ Ruby - 김은영 님</h2><h3 id="iOS-개발자에게-유용한-Ruby-Gem을-소개"><a href="#iOS-개발자에게-유용한-Ruby-Gem을-소개" class="headerlink" title="iOS 개발자에게 유용한 Ruby Gem을 소개"></a>iOS 개발자에게 유용한 Ruby Gem을 소개</h3><h3 id="Ruby와-Gem"><a href="#Ruby와-Gem" class="headerlink" title="Ruby와 Gem"></a>Ruby와 Gem</h3><h4 id="Ruby"><a href="#Ruby" class="headerlink" title="Ruby"></a>Ruby</h4><p>–    객체 지향 프로그래밍 언어<br>–    일본에서 만들어져 모바일을 포함해서 여러 분야에서 활발하게 사용</p>
+<h4 id="Gem"><a href="#Gem" class="headerlink" title="Gem"></a>Gem</h4><p>–    Bundler로 버전관리를 진행<br>–    cocoapods를 사용하는 것과 비슷</p>
+<h3 id="Gem-소개"><a href="#Gem-소개" class="headerlink" title="Gem 소개"></a>Gem 소개</h3><blockquote>
+<p>CI Tool: Commit 단위로 컴파일, 테스트, 디플로이를 실행시키는 툴. 예로는 Jenkins, Bitrise가 있다.</p>
+</blockquote>
+<h4 id="Tachikoma-버전이-고정된-라이브러리-이외에는-계속적인-최신-버전의-업데이트가-필요"><a href="#Tachikoma-버전이-고정된-라이브러리-이외에는-계속적인-최신-버전의-업데이트가-필요" class="headerlink" title="Tachikoma: 버전이 고정된 라이브러리 이외에는 계속적인 최신 버전의 업데이트가 필요"></a>Tachikoma: 버전이 고정된 라이브러리 이외에는 계속적인 최신 버전의 업데이트가 필요</h4><p>–    Cocoapods나 Carthage에 의해 관리되는 라이브러리 자동 업데이트 및 PR까지 올려줌<br>–    커맨드 라인으로 수동으로 실행하거나 CI Tool에 통합되어 자동적으로 실행</p>
+<h4 id="Danger-버전-PR-내-확인사항-Objc-코드-Storyboard-에러-체크"><a href="#Danger-버전-PR-내-확인사항-Objc-코드-Storyboard-에러-체크" class="headerlink" title="Danger: 버전 PR 내 확인사항, Objc 코드, Storyboard 에러 체크"></a>Danger: 버전 PR 내 확인사항, Objc 코드, Storyboard 에러 체크</h4><p>–    사람이 자주 실수하는 것들을 dangerFile에 등록해놓으면 자동으로 체크<br>–    Storyboard 내에 어그러진 것을 확인해줌.</p>
+<h4 id="houston-로컬-푸시를-날릴-수-있음"><a href="#houston-로컬-푸시를-날릴-수-있음" class="headerlink" title="houston: 로컬 푸시를 날릴 수 있음"></a>houston: 로컬 푸시를 날릴 수 있음</h4><p>–    USB로 아이폰을 연결해서 디바이스 토큰을 얻은 뒤 푸시 알림을 날릴 수 있음<br>–    AppDelegate에서 device_token을 찾아 push를 날림</p>
+<h4 id="tenma-Mile-stone-에-따른-dev-master-브런치-제작"><a href="#tenma-Mile-stone-에-따른-dev-master-브런치-제작" class="headerlink" title="tenma: Mile stone 에 따른 dev, master 브런치 제작"></a>tenma: Mile stone 에 따른 dev, master 브런치 제작</h4><p>–    릴리즈 준비의 자동화 툴: 릴리즈 브랜치를 자동으로 만들어 줌</p>
+<h4 id="Fastlane-앱-스토어-업로드-및-배포"><a href="#Fastlane-앱-스토어-업로드-및-배포" class="headerlink" title="Fastlane: 앱 스토어 업로드 및 배포"></a>Fastlane: 앱 스토어 업로드 및 배포</h4><p>–    앱 스토어 등록 시에 귀찮은 일들을 맡길 수 있음</p>
+<h2 id="TDS-Toss-Design-System-v2-소개-이택규-님"><a href="#TDS-Toss-Design-System-v2-소개-이택규-님" class="headerlink" title="TDS(Toss Design System) v2 소개 - 이택규 님"></a>TDS(Toss Design System) v2 소개 - 이택규 님</h2><h4 id="Before-TDS-v2"><a href="#Before-TDS-v2" class="headerlink" title="Before TDS v2"></a>Before TDS v2</h4><p>–    단위단위마다 디자인을 했음<br>–    디자인을 하기 위해서 미리 재료를 만들었지만 통일된 사용자 경험을 전달해주지 못함</p>
+<h3 id="TDSv2-to-code"><a href="#TDSv2-to-code" class="headerlink" title="TDSv2 to code"></a>TDSv2 to code</h3><h4 id="View-View-model"><a href="#View-View-model" class="headerlink" title="View - View model"></a>View - View model</h4><p>–    View model에서는 피쳐 개발에 집중<br>–    프로토콜을 통해 구현하여 확장 가능</p>
+<h4 id="Cell-as-base-view"><a href="#Cell-as-base-view" class="headerlink" title="Cell as base view"></a>Cell as base view</h4><p>–    모든 TDS 컴포턴트는 UICollectionViewCell의 서브클래스<br>–    이것을 조합해서 관리</p>
+<h4 id="List-binding"><a href="#List-binding" class="headerlink" title="List binding"></a>List binding</h4><p>–    최소한의 layout 프로토콜을 만들어 뷰 모델을 adapter에 바인딩하여 리스트 생성<br>–    cell distribution, alignment</p>
+<h4 id="Event-emitter-protocol"><a href="#Event-emitter-protocol" class="headerlink" title="Event emitter protocol"></a>Event emitter protocol</h4><p>–    컴포넌트에서 발생하는 모든 이벤트를 protocol-base로 처리</p>
+<h4 id="외부-Pod으로-관리"><a href="#외부-Pod으로-관리" class="headerlink" title="외부 Pod으로 관리"></a>외부 Pod으로 관리</h4><p>–    별도로 컴파일되므로 시간 절약<br>–    비즈니스 코드가 이곳에 적히는 것을 지양하게 됨</p>
+<h3 id="시행착오"><a href="#시행착오" class="headerlink" title="시행착오"></a>시행착오</h3><ol>
+<li>TDS를 사용하면 쉽고 빠르지만 개발자는 효율성을 잃었음</li>
+<li>비즈니스에 따라 TDS 컴포넌트가 구분되는데 이것을 좀 더 일반화할 수 없을까?</li>
+</ol>
+<h2 id="RxRIBs-Multiplatform-architecture-with-Rx-김남현-님"><a href="#RxRIBs-Multiplatform-architecture-with-Rx-김남현-님" class="headerlink" title="RxRIBs, Multiplatform architecture with Rx - 김남현 님"></a>RxRIBs, Multiplatform architecture with Rx - 김남현 님</h2><p>시간이 걸리더라도 두 플랫폼이 같은 구조를 가지도록 하자.</p>
+<h4 id="Factors-to-consider"><a href="#Factors-to-consider" class="headerlink" title="Factors to consider"></a>Factors to consider</h4><p>–    No MVC(mvvm, mvp도 마찬가지)</p>
+<ul>
+<li>넘어가서 다 못적었다…</li>
+</ul>
+<h3 id="RIBs-http-github-com-uber-RIBs"><a href="#RIBs-http-github-com-uber-RIBs" class="headerlink" title="RIBs(http://github.com/uber/RIBs)"></a>RIBs(<a href="http://github.com/uber/RIBs" target="_blank" rel="noopener">http://github.com/uber/RIBs</a>)</h3><p>–    Router<br>–    Interactor<br>–    Builder<br>–    Presenter<br>–    View</p>
+<p>이렇게 나눠 놓아 Massive View Controller 문제를 해결할 수 있다.</p>
+<p>그러나, <strong>진정한 RIB의 강점은 State 관리</strong>에 있다.</p>
+<h4 id="State-tree-gt-RIB-tree"><a href="#State-tree-gt-RIB-tree" class="headerlink" title="State tree -&gt; RIB tree"></a>State tree -&gt; RIB tree</h4><p>–    앱의 상태를 트리의 형태로 표현한 것<br>–    Viewless, Viewful로 구분<br>–    attach, detach의 형태로 뷰 hierarchy를 표현</p>
+<p>RIB tree의 가장 큰 장점은 <strong>비즈니스 로직에 따라 상태를 표현</strong>할 수 있다는 것</p>
+<h4 id="Scope"><a href="#Scope" class="headerlink" title="Scope"></a>Scope</h4><p>–    Scope를 제한함으로써 불필요한 옵셔널을 줄일 수 있다.<br>–    정말 필요할 때만 사용하는 프로퍼티를 정의할 수 있다.</p>
+<h2 id="ReactorKit으로-RxSwift-시작하기-김태준-님"><a href="#ReactorKit으로-RxSwift-시작하기-김태준-님" class="headerlink" title="ReactorKit으로 RxSwift 시작하기 - 김태준 님"></a>ReactorKit으로 RxSwift 시작하기 - 김태준 님</h2><h3 id="RxSwift-왜-써요"><a href="#RxSwift-왜-써요" class="headerlink" title="RxSwift, 왜 써요?"></a>RxSwift, 왜 써요?</h3><p>–    강력한 비동기 처리: 많은 오퍼레이터들이 제공됨.<br>–    간결해지는 코드<br>–    코드 가독성 향상<br>–    유행…?</p>
+<h3 id="RxSwift-왜-어렵죠"><a href="#RxSwift-왜-어렵죠" class="headerlink" title="RxSwift, 왜 어렵죠?"></a>RxSwift, 왜 어렵죠?</h3><p>–    처음 보는 문법과 용어<br>–    예제마다 다른 코드 스타일<br>–    검색에서의 어려움</p>
+<p>그래서 포기하고 있다가 채팅 프로젝트를 하게됨.<br>–    비동기 채팅 데이터를 실시간으로 UI에 반영해야 함.<br>–    순차적인 리퀘스트</p>
+<h3 id="ReactorKit"><a href="#ReactorKit" class="headerlink" title="ReactorKit"></a><a href="http://github.com/ReactorKit/ReactorKit" target="_blank" rel="noopener">ReactorKit</a></h3><p>View에서 Action을 Reactor에 날리면 Reactor에서 Mutation을 통해 side-effect를 일으킨 뒤 이것을 다시 View에 반영한다!<br>–    RxSwift에서 권장하는 방식으로 쉽게 작성을 유도<br>–    RxSwift보다 좀 더 정형화된 스타일의 예제를 제공해 주어 공부하기 수월함<br>–    국내 커뮤니티가 활성화<br>–    RxSwift를 잘 몰라도 쉽게 도입할 수 있음</p>
+<h2 id="ReSwift와-함께-Undirectional-Architecture-황재욱-님"><a href="#ReSwift와-함께-Undirectional-Architecture-황재욱-님" class="headerlink" title="ReSwift와 함께 Undirectional Architecture - 황재욱 님"></a>ReSwift와 함께 Undirectional Architecture - 황재욱 님</h2><h3 id="ReSwift-톺아보기"><a href="#ReSwift-톺아보기" class="headerlink" title="ReSwift 톺아보기"></a>ReSwift 톺아보기</h3><p>–    Redux + Swift<br>  –    Redux: Flux를 적용한 라이브러리</p>
+<h4 id="ReSwift"><a href="#ReSwift" class="headerlink" title="ReSwift?"></a>ReSwift?</h4><p>중앙 데이터 관리자를 통해 단방향 데이터 흐름을 구현한 라이브러리</p>
+<p>단점<br>–    스레드 세이프하지 않음.<br>–    전역으로 관리하기 때문에 Decopuling이 어렵다.<br>–    Store가 많은 데이터를 가지고 있기 때문에 규모가 커졌을 때 무거워 짐.</p>
+<h5 id="Store"><a href="#Store" class="headerlink" title="Store"></a>Store</h5><p>–    앱의 State를 저장하는 중앙 저장소<br>–    전역으로 선언된 단 하나의 객체여야 함.</p>
+<h5 id="Action"><a href="#Action" class="headerlink" title="Action"></a>Action</h5><p>–    작업에 대한 정보를 지니는 객체.</p>
+<h5 id="Reducer"><a href="#Reducer" class="headerlink" title="Reducer"></a>Reducer</h5><p>–    Action에 따라 state에 변화를 일으키는 함수<br>–    Side-effect를 일으키지 않는 순수 함수로 선언해야 함.</p>
+<h5 id="View-State-변화에-반응하여-view를-보여주는-역할이며-주로-Action을-Dispatch한다"><a href="#View-State-변화에-반응하여-view를-보여주는-역할이며-주로-Action을-Dispatch한다" class="headerlink" title="View: State 변화에 반응하여 view를 보여주는 역할이며 주로 Action을 Dispatch한다."></a>View: State 변화에 반응하여 view를 보여주는 역할이며 주로 Action을 Dispatch한다.</h5><h4 id="Unidirectional-Architecture는"><a href="#Unidirectional-Architecture는" class="headerlink" title="Unidirectional Architecture는?"></a>Unidirectional Architecture는?</h4><p>아직까지 ReSwift로 정립된 확실한 구조가 없다. 계속해서 대안을 찾다가 찾은 구조가 VIP 아키텍쳐.</p>
+<h2 id="RxSwift-Internal-Observer와-Event를-중심으로-오진성-님"><a href="#RxSwift-Internal-Observer와-Event를-중심으로-오진성-님" class="headerlink" title="RxSwift Internal(Observer와 Event를 중심으로) - 오진성 님"></a>RxSwift Internal(Observer와 Event를 중심으로) - 오진성 님</h2><p>이 세션은 어렵고 깊어서 이해하기가 어려웠다.</p>
+<h2 id="GraphQL-over-Rest-API-이봉원-님"><a href="#GraphQL-over-Rest-API-이봉원-님" class="headerlink" title="GraphQL over Rest API - 이봉원 님"></a>GraphQL over Rest API - 이봉원 님</h2><h4 id="기존의-API-인터페이스"><a href="#기존의-API-인터페이스" class="headerlink" title="기존의 API 인터페이스"></a>기존의 API 인터페이스</h4><p>–    소켓 프로그래밍: 할 것이 많고 다수의 사용자에게 보내기 힘듦.<br>–    XML-RPC: XML로 인코딩하여 http로 주고 받기. 형식을 서로 알아야 하는 단점.<br>–    SOAP: XML이 무거움.<br>–    REST: HTTP의 개발 원리를 최대한 이용해서 설계. 그러나 비표준임.</p>
+<h4 id="Changed-API-Landscape"><a href="#Changed-API-Landscape" class="headerlink" title="Changed API Landscape"></a>Changed API Landscape</h4><p>–    효율적인 데이터 로딩이 필요<br>–    다양한 프론트 플랫폼</p>
+<h3 id="GraphQL"><a href="#GraphQL" class="headerlink" title="GraphQL"></a>GraphQL</h3><p>–    Graph(그래프로 데이터들이 연결되어 있음) + QL(API를 위한 쿼리 언어)<br>–    페이스북에 의해 만들어진 새 API Standard로 2015년 공식 발표.<br>–    <em>기존의 API와는 달리 클라이언트가 필요한 필드를 직접 요청할 수 있음.(Declarative Data Fetching)</em><br>–    Single Endpoint, Single Request<br>–    Strong Type System</p>
+<h4 id="Blogging-App-with-GraphQL"><a href="#Blogging-App-with-GraphQL" class="headerlink" title="Blogging App with GraphQL"></a>Blogging App with GraphQL</h4><p>–    REST API를 통해서는 필요한 정보를 받을 떄마다 요청.<br>–    그러나, GraphQL에서는 한 번의 쿼리문으로 필요한 데이터를 다 받아올 수 있음.</p>
+<h4 id="기존-API의-문제점"><a href="#기존-API의-문제점" class="headerlink" title="기존 API의 문제점"></a>기존 API의 문제점</h4><p>–    Nested CompletionHandler<br>–    Overfetching problem<br>  –    기존의 REST API 하에서는 불필요한 정보들까지 다 받아와야 하는 문제가 존재<br>–    Too many Endpoint<br>–    Versioning<br>–    Schemeless<br>–    개발 속도<br>  –    서버에 수정해야 할 사항이 있을 경우 요청을 하고 반영되기까지 기다려야 하지만 그럴 필요가 없음.</p>
+<h4 id="Query"><a href="#Query" class="headerlink" title="Query"></a>Query</h4><p>–    CRUD의 Read<br>–    <strong>get이 아닌 post</strong><br>–    원하는 데이터를 트리의 형태로 변환해 클라이언트에 전달하는 방식이라 할 수 있음</p>
+<h5 id="Resource-Limitation"><a href="#Resource-Limitation" class="headerlink" title="Resource Limitation"></a>Resource Limitation</h5><p>–    기존의 요청 횟수로는 맞지 않음<br>–    대신 Node Limit, Rate Limit</p>
+<h4 id="Mutation"><a href="#Mutation" class="headerlink" title="Mutation"></a>Mutation</h4><p>–    CUD</p>
+<h4 id="Subscription"><a href="#Subscription" class="headerlink" title="Subscription"></a>Subscription</h4><p>–    서버의 변경이 일어날 때 미리 등록한 내용(데이터)을 클라이언트에 알려주게 됨<br>–    계속 연결되어야 하기 때문에 Stream의 개념이 사용</p>
+<h2 id="SIMD-amp-MPS-in-Swift-양승헌-님"><a href="#SIMD-amp-MPS-in-Swift-양승헌-님" class="headerlink" title="SIMD &amp; MPS in Swift - 양승헌 님"></a>SIMD &amp; MPS in Swift - 양승헌 님</h2><p>“<em>Software is not a platform</em>”: ‘HW를 잘 이해하고 그에 따라 SW를 만들어야 한다’ 라는 뜻.<br>애플의 Accelerate Framework: 고성능, 에너지 효율적인 작업을 해주는 프레임워크</p>
+<p>그 중 simd: <em>Single Instruction, Multiple Data</em><br>–    간소화된 벡터 프로그래밍<br>–    소규모 벡터와 행렬 연산 지원<br>–    플랫폼 별 타입과 명령어를 추상화 함.</p>
+<p>이후에는 어렵고 졸아서 제대로 적지 못했다.</p>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#사이드-프로젝트로-앱스토어-1위-공략하기-노수진-님"><span class="toc-number">1.</span> <span class="toc-text">사이드 프로젝트로 앱스토어 1위 공략하기 - 노수진 님</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Hompage-http-soojin-ro"><span class="toc-number">1.0.1.</span> <span class="toc-text">Hompage: http://soojin.ro</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#작고-재밌는-아이디어에서-시작하기"><span class="toc-number">1.1.</span> <span class="toc-text">작고 재밌는 아이디어에서 시작하기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#새-앱을-다운로드-하는-이유"><span class="toc-number">1.2.</span> <span class="toc-text">새 앱을 다운로드 하는 이유</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#비즈니스-모델-정하기"><span class="toc-number">1.3.</span> <span class="toc-text">비즈니스 모델 정하기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#앱-심사하기"><span class="toc-number">1.4.</span> <span class="toc-text">앱 심사하기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#사용자-모으기"><span class="toc-number">1.5.</span> <span class="toc-text">사용자 모으기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#유저들과-소통하기"><span class="toc-number">1.6.</span> <span class="toc-text">유저들과 소통하기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#유지-보수"><span class="toc-number">1.7.</span> <span class="toc-text">유지 보수</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#앱스토어-리뷰-관리하기"><span class="toc-number">1.8.</span> <span class="toc-text">앱스토어 리뷰 관리하기</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iOS-❤️-Ruby-김은영-님"><span class="toc-number">2.</span> <span class="toc-text">iOS ❤️ Ruby - 김은영 님</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#iOS-개발자에게-유용한-Ruby-Gem을-소개"><span class="toc-number">2.1.</span> <span class="toc-text">iOS 개발자에게 유용한 Ruby Gem을 소개</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ruby와-Gem"><span class="toc-number">2.2.</span> <span class="toc-text">Ruby와 Gem</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Ruby"><span class="toc-number">2.2.1.</span> <span class="toc-text">Ruby</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Gem"><span class="toc-number">2.2.2.</span> <span class="toc-text">Gem</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Gem-소개"><span class="toc-number">2.3.</span> <span class="toc-text">Gem 소개</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Tachikoma-버전이-고정된-라이브러리-이외에는-계속적인-최신-버전의-업데이트가-필요"><span class="toc-number">2.3.1.</span> <span class="toc-text">Tachikoma: 버전이 고정된 라이브러리 이외에는 계속적인 최신 버전의 업데이트가 필요</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Danger-버전-PR-내-확인사항-Objc-코드-Storyboard-에러-체크"><span class="toc-number">2.3.2.</span> <span class="toc-text">Danger: 버전 PR 내 확인사항, Objc 코드, Storyboard 에러 체크</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#houston-로컬-푸시를-날릴-수-있음"><span class="toc-number">2.3.3.</span> <span class="toc-text">houston: 로컬 푸시를 날릴 수 있음</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#tenma-Mile-stone-에-따른-dev-master-브런치-제작"><span class="toc-number">2.3.4.</span> <span class="toc-text">tenma: Mile stone 에 따른 dev, master 브런치 제작</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Fastlane-앱-스토어-업로드-및-배포"><span class="toc-number">2.3.5.</span> <span class="toc-text">Fastlane: 앱 스토어 업로드 및 배포</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TDS-Toss-Design-System-v2-소개-이택규-님"><span class="toc-number">3.</span> <span class="toc-text">TDS(Toss Design System) v2 소개 - 이택규 님</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Before-TDS-v2"><span class="toc-number">3.0.1.</span> <span class="toc-text">Before TDS v2</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TDSv2-to-code"><span class="toc-number">3.1.</span> <span class="toc-text">TDSv2 to code</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#View-View-model"><span class="toc-number">3.1.1.</span> <span class="toc-text">View - View model</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cell-as-base-view"><span class="toc-number">3.1.2.</span> <span class="toc-text">Cell as base view</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#List-binding"><span class="toc-number">3.1.3.</span> <span class="toc-text">List binding</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Event-emitter-protocol"><span class="toc-number">3.1.4.</span> <span class="toc-text">Event emitter protocol</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#외부-Pod으로-관리"><span class="toc-number">3.1.5.</span> <span class="toc-text">외부 Pod으로 관리</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#시행착오"><span class="toc-number">3.2.</span> <span class="toc-text">시행착오</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RxRIBs-Multiplatform-architecture-with-Rx-김남현-님"><span class="toc-number">4.</span> <span class="toc-text">RxRIBs, Multiplatform architecture with Rx - 김남현 님</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Factors-to-consider"><span class="toc-number">4.0.1.</span> <span class="toc-text">Factors to consider</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RIBs-http-github-com-uber-RIBs"><span class="toc-number">4.1.</span> <span class="toc-text">RIBs(http://github.com/uber/RIBs)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#State-tree-gt-RIB-tree"><span class="toc-number">4.1.1.</span> <span class="toc-text">State tree -&gt; RIB tree</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Scope"><span class="toc-number">4.1.2.</span> <span class="toc-text">Scope</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ReactorKit으로-RxSwift-시작하기-김태준-님"><span class="toc-number">5.</span> <span class="toc-text">ReactorKit으로 RxSwift 시작하기 - 김태준 님</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#RxSwift-왜-써요"><span class="toc-number">5.1.</span> <span class="toc-text">RxSwift, 왜 써요?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RxSwift-왜-어렵죠"><span class="toc-number">5.2.</span> <span class="toc-text">RxSwift, 왜 어렵죠?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ReactorKit"><span class="toc-number">5.3.</span> <span class="toc-text">ReactorKit</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ReSwift와-함께-Undirectional-Architecture-황재욱-님"><span class="toc-number">6.</span> <span class="toc-text">ReSwift와 함께 Undirectional Architecture - 황재욱 님</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ReSwift-톺아보기"><span class="toc-number">6.1.</span> <span class="toc-text">ReSwift 톺아보기</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ReSwift"><span class="toc-number">6.1.1.</span> <span class="toc-text">ReSwift?</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Store"><span class="toc-number">6.1.1.1.</span> <span class="toc-text">Store</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Action"><span class="toc-number">6.1.1.2.</span> <span class="toc-text">Action</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Reducer"><span class="toc-number">6.1.1.3.</span> <span class="toc-text">Reducer</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#View-State-변화에-반응하여-view를-보여주는-역할이며-주로-Action을-Dispatch한다"><span class="toc-number">6.1.1.4.</span> <span class="toc-text">View: State 변화에 반응하여 view를 보여주는 역할이며 주로 Action을 Dispatch한다.</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Unidirectional-Architecture는"><span class="toc-number">6.1.2.</span> <span class="toc-text">Unidirectional Architecture는?</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RxSwift-Internal-Observer와-Event를-중심으로-오진성-님"><span class="toc-number">7.</span> <span class="toc-text">RxSwift Internal(Observer와 Event를 중심으로) - 오진성 님</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GraphQL-over-Rest-API-이봉원-님"><span class="toc-number">8.</span> <span class="toc-text">GraphQL over Rest API - 이봉원 님</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#기존의-API-인터페이스"><span class="toc-number">8.0.1.</span> <span class="toc-text">기존의 API 인터페이스</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Changed-API-Landscape"><span class="toc-number">8.0.2.</span> <span class="toc-text">Changed API Landscape</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GraphQL"><span class="toc-number">8.1.</span> <span class="toc-text">GraphQL</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Blogging-App-with-GraphQL"><span class="toc-number">8.1.1.</span> <span class="toc-text">Blogging App with GraphQL</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#기존-API의-문제점"><span class="toc-number">8.1.2.</span> <span class="toc-text">기존 API의 문제점</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Query"><span class="toc-number">8.1.3.</span> <span class="toc-text">Query</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Resource-Limitation"><span class="toc-number">8.1.3.1.</span> <span class="toc-text">Resource Limitation</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mutation"><span class="toc-number">8.1.4.</span> <span class="toc-text">Mutation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Subscription"><span class="toc-number">8.1.5.</span> <span class="toc-text">Subscription</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SIMD-amp-MPS-in-Swift-양승헌-님"><span class="toc-number">9.</span> <span class="toc-text">SIMD &amp; MPS in Swift - 양승헌 님</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2018/11/06/Let-Swift-2018/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2018/11/06/Let-Swift-2018/&text=Let&#39;Swift 2018"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2018/11/06/Let-Swift-2018/&title=Let&#39;Swift 2018"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2018/11/06/Let-Swift-2018/&is_video=false&description=Let&#39;Swift 2018"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Let&#39;Swift 2018&body=Check out this article: https://wnstkdyu.github.io/2018/11/06/Let-Swift-2018/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2018/11/06/Let-Swift-2018/&title=Let&#39;Swift 2018"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2018/11/06/Let-Swift-2018/&title=Let&#39;Swift 2018"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2018/11/06/Let-Swift-2018/&title=Let&#39;Swift 2018"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2018/11/06/Let-Swift-2018/&title=Let&#39;Swift 2018"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2018/11/06/Let-Swift-2018/&name=Let&#39;Swift 2018&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 Alpaca
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-116302583-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'alpacablog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
