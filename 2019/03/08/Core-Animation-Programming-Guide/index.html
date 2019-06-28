@@ -16,7 +16,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://wnstkdyu.github.io/2019/03/08/Core-Animation-Programming-Guide/Figure%201-1.png">
 <meta property="og:image" content="https://wnstkdyu.github.io/2019/03/08/Core-Animation-Programming-Guide/Figure%201-2.png">
-<meta property="og:updated_time" content="2019-06-28T16:27:34.277Z">
+<meta property="og:updated_time" content="2019-06-28T16:30:41.416Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Core Animation Programming Guide">
 <meta name="twitter:description" content="Core Animation BasicsCore Animation은 앱의 뷰를 대체하는 것이 아니라 뷰들과 결합하여 더 좋은 성능을 발휘하면서 그들의 컨텐츠를 애니메이팅하는 데 도와주는 기술이다. 이것은 뷰들의 컨텐츠를 비트맵으로 캐싱함으로써 그래픽 하드웨어가 직접적으로 조작할 수 있게함으로써 달성된다. 주로 뷰의 위치, 크기, 투명도 등의 특성의 변화를 애">
@@ -149,6 +149,7 @@
 <p>애니메이션 도중 코어 애니메이션은 하드웨어에서의 프레임마다의 드로잉을 한다. 당신은 그저 시작점과 끝점만 코어 애니메이션에게 제공하고 나머지는 맡기면 된다. 물론 타이밍 정보나 필요한 파라미터를 전달할 수도 있지만 하지 않아도 코어 애니메이션이 적절한 값을 제공한다.</p>
 <h3 id="Layer-Objects-Define-Their-Own-Geometry"><a href="#Layer-Objects-Define-Their-Own-Geometry" class="headerlink" title="Layer Objects Define Their Own Geometry"></a>Layer Objects Define Their Own Geometry</h3><p>레이어의 중요한 일 중 하나는 컨텐츠의 기하학적 정보를 관리하는 것이다. 기하학적 정보는 컨텐츠의 bounds, position, rotated, scaled, tranformed 등의 정보를 포함한다. 레이어도 뷰와 마찬가지로 레이어와 컨텐츠를 위치할 수 있는 frame과 bounds 사각형의 정보를 가지고 있다. 레이어는 뷰가 가지고 있지 않은 정보를 담고도 있는데, 예를 들면  <em>anchor point</em> 가 있는데 이 지점을 중심으로 조작이 일어난다. 레이어의 기하학 정보를 수정하는 것은 뷰의 정보를 특정하는 것과 다르다.</p>
 <h4 id="Layers-Use-Two-Types-of-Coordinate-Systems"><a href="#Layers-Use-Two-Types-of-Coordinate-Systems" class="headerlink" title="Layers Use Two Types of Coordinate Systems"></a>Layers Use Two Types of Coordinate Systems</h4><p>레이어는 컨텐츠의 위치를 잡을 때 <em>point-based coordinate</em> 시스템과 <em>unit coordinate</em> 시스템 둘 다를 사용한다. 어떤 좌표 시스템을 사용할 지는 어떤 타입의 정보를 전달하느냐에 따라 달라진다. Point 기반 좌표는 화면 좌표계에 바로 대응되거나 다른 레이어에 상대적으로 특정되는 값을 전달할 때 사용하는데, 대표적으로 <code>position</code> 프로퍼티가 있다. Unit 좌표는 그 값이 화면 좌표에 묶이면 안 되고 다른 값에 상대적일 때 사용되며 대표적으로 레이어의 bounds에 상대적으로 특정되는 point인 <code>anchorPoint</code> 프로퍼티가 있다.</p>
+<p>… continue</p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2>
   </div>
 </article>
