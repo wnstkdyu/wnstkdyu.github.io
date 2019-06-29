@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="객체들을 어떻게 작은 객체들로 나누고, 함께 묶을지 설계하는 것은 구조적 기술에서 핵심적이다. 기대할 수 있는목표이 단원의 의존성 관리 기술을 배우게 되면 기대할 수 있는 목표는 다음과 같다.  Maintainability: ‘사이드 이펙트’ 없이 코드의 변경이 용이 Testability Substitutability: 컴포넌트 간에 대체 능력이 높아져 A">
+<meta name="keywords" content="Object,Dependencies">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Advanced iOS App Architecture - Ch4: Object &amp; Their Dependencies (이론 부분)">
+<meta property="og:url" content="https://wnstkdyu.github.io/2019/06/29/Advanced-iOS-App-Architecture-Ch4-Object-Their-Dependencies/index.html">
+<meta property="og:site_name" content="PacaLog">
+<meta property="og:description" content="객체들을 어떻게 작은 객체들로 나누고, 함께 묶을지 설계하는 것은 구조적 기술에서 핵심적이다. 기대할 수 있는목표이 단원의 의존성 관리 기술을 배우게 되면 기대할 수 있는 목표는 다음과 같다.  Maintainability: ‘사이드 이펙트’ 없이 코드의 변경이 용이 Testability Substitutability: 컴포넌트 간에 대체 능력이 높아져 A">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-06-29T18:53:00.995Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Advanced iOS App Architecture - Ch4: Object &amp; Their Dependencies (이론 부분)">
+<meta name="twitter:description" content="객체들을 어떻게 작은 객체들로 나누고, 함께 묶을지 설계하는 것은 구조적 기술에서 핵심적이다. 기대할 수 있는목표이 단원의 의존성 관리 기술을 배우게 되면 기대할 수 있는 목표는 다음과 같다.  Maintainability: ‘사이드 이펙트’ 없이 코드의 변경이 용이 Testability Substitutability: 컴포넌트 간에 대체 능력이 높아져 A">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Advanced iOS App Architecture - Ch4: Object &amp; Their Dependencies (이론 부분)</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2019/03/08/Core-Animation-Programming-Guide/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2019/06/29/Advanced-iOS-App-Architecture-Ch4-Object-Their-Dependencies/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2019/06/29/Advanced-iOS-App-Architecture-Ch4-Object-Their-Dependencies/&text=Advanced iOS App Architecture - Ch4: Object &amp; Their Dependencies (이론 부분)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2019/06/29/Advanced-iOS-App-Architecture-Ch4-Object-Their-Dependencies/&title=Advanced iOS App Architecture - Ch4: Object &amp; Their Dependencies (이론 부분)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2019/06/29/Advanced-iOS-App-Architecture-Ch4-Object-Their-Dependencies/&is_video=false&description=Advanced iOS App Architecture - Ch4: Object &amp; Their Dependencies (이론 부분)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Advanced iOS App Architecture - Ch4: Object &amp; Their Dependencies (이론 부분)&body=Check out this article: https://wnstkdyu.github.io/2019/06/29/Advanced-iOS-App-Architecture-Ch4-Object-Their-Dependencies/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2019/06/29/Advanced-iOS-App-Architecture-Ch4-Object-Their-Dependencies/&title=Advanced iOS App Architecture - Ch4: Object &amp; Their Dependencies (이론 부분)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2019/06/29/Advanced-iOS-App-Architecture-Ch4-Object-Their-Dependencies/&title=Advanced iOS App Architecture - Ch4: Object &amp; Their Dependencies (이론 부분)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2019/06/29/Advanced-iOS-App-Architecture-Ch4-Object-Their-Dependencies/&title=Advanced iOS App Architecture - Ch4: Object &amp; Their Dependencies (이론 부분)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2019/06/29/Advanced-iOS-App-Architecture-Ch4-Object-Their-Dependencies/&title=Advanced iOS App Architecture - Ch4: Object &amp; Their Dependencies (이론 부분)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2019/06/29/Advanced-iOS-App-Architecture-Ch4-Object-Their-Dependencies/&name=Advanced iOS App Architecture - Ch4: Object &amp; Their Dependencies (이론 부분)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#기대할-수-있는목표"><span class="toc-number">1.</span> <span class="toc-text">기대할 수 있는목표</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#관련-용어"><span class="toc-number">2.</span> <span class="toc-text">관련 용어</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#의존성이-어떻게-생기는가"><span class="toc-number">3.</span> <span class="toc-text">의존성이 어떻게 생기는가?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#의존성-관리에서-핵심적-고려사항"><span class="toc-number">4.</span> <span class="toc-text">의존성 관리에서 핵심적 고려사항</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#의존성에-접근-Access-하는-것"><span class="toc-number">4.1.</span> <span class="toc-text">의존성에 접근(Access)하는 것</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#From-the-inside"><span class="toc-number">4.1.1.</span> <span class="toc-text">From the inside</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#From-the-outside"><span class="toc-number">4.1.2.</span> <span class="toc-text">From the outside</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#대체-가능성-Subsitutability-의-결정"><span class="toc-number">4.2.</span> <span class="toc-text">대체 가능성(Subsitutability)의 결정</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Designing-substitutability"><span class="toc-number">4.2.1.</span> <span class="toc-text">Designing substitutability</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#의존성-패턴"><span class="toc-number">5.</span> <span class="toc-text">의존성 패턴</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dependency-Injection"><span class="toc-number">6.</span> <span class="toc-text">Dependency Injection</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#주입의-유형"><span class="toc-number">6.1.</span> <span class="toc-text">주입의 유형</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Substituting-dependency-implementations"><span class="toc-number">6.2.</span> <span class="toc-text">Substituting dependency implementations</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Compile-time-substitution"><span class="toc-number">6.2.1.</span> <span class="toc-text">Compile-time substitution</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Run-time-substitution"><span class="toc-number">6.2.2.</span> <span class="toc-text">Run-time substitution</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DI-적용-방법"><span class="toc-number"></span> <span class="toc-text">DI 적용 방법</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#On-demand-approach"><span class="toc-number">1.</span> <span class="toc-text">On-demand approach</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Initializing-ephemeral-dependencies"><span class="toc-number">1.1.</span> <span class="toc-text">Initializing ephemeral dependencies</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Finding-long-lived-dependencies"><span class="toc-number">1.2.</span> <span class="toc-text">Finding long-lived dependencies</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pros"><span class="toc-number">1.3.</span> <span class="toc-text">Pros</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cons"><span class="toc-number">1.4.</span> <span class="toc-text">Cons</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Factories-approach"><span class="toc-number">2.</span> <span class="toc-text">Factories approach</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Factories-class"><span class="toc-number">2.1.</span> <span class="toc-text">Factories class</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Dependency-factory-methods"><span class="toc-number">2.2.</span> <span class="toc-text">Dependency factory methods</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Resolving-protocol-dependencies"><span class="toc-number">2.2.1.</span> <span class="toc-text">Resolving protocol dependencies</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ouc-factory-methods"><span class="toc-number">2.3.</span> <span class="toc-text">Ouc factory methods</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Substituting-dependency-implementations-1"><span class="toc-number">2.4.</span> <span class="toc-text">Substituting dependency implementations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pros-1"><span class="toc-number">2.5.</span> <span class="toc-text">Pros</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cons-1"><span class="toc-number">2.6.</span> <span class="toc-text">Cons</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Single-container-approach"><span class="toc-number">3.</span> <span class="toc-text">Single-container approach</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Dependency-factory-methods-1"><span class="toc-number">3.1.</span> <span class="toc-text">Dependency factory methods</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ouc-factory-methods-1"><span class="toc-number">3.2.</span> <span class="toc-text">Ouc factory methods</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Creating-and-holding-a-container"><span class="toc-number">3.3.</span> <span class="toc-text">Creating and holding a container</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pros-2"><span class="toc-number">3.4.</span> <span class="toc-text">Pros</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cons-2"><span class="toc-number">3.5.</span> <span class="toc-text">Cons</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Designing-container-hierarchies"><span class="toc-number">4.</span> <span class="toc-text">Designing container hierarchies</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Single-Container의-이슈들"><span class="toc-number">4.1.</span> <span class="toc-text">Single Container의 이슈들</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Object-scopes"><span class="toc-number">4.2.</span> <span class="toc-text">Object scopes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Container-hierarchy"><span class="toc-number">4.3.</span> <span class="toc-text">Container hierarchy</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Designing-a-container-hierarchy"><span class="toc-number">4.3.1.</span> <span class="toc-text">Designing a container hierarchy</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Capturing-data"><span class="toc-number">4.3.2.</span> <span class="toc-text">Capturing data</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pros-3"><span class="toc-number">4.4.</span> <span class="toc-text">Pros</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cons-3"><span class="toc-number">4.5.</span> <span class="toc-text">Cons</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">5.</span> <span class="toc-text">Reference</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Advanced iOS App Architecture - Ch4: Object &amp; Their Dependencies (이론 부분)
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">PacaLog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2019-06-28T16:33:02.000Z" itemprop="datePublished">2019-06-29</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Dependencies/">Dependencies</a>, <a class="tag-link" href="/tags/Object/">Object</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>객체들을 어떻게 작은 객체들로 나누고, 함께 묶을지 설계하는 것은 구조적 기술에서 핵심적이다.</p>
+<h2 id="기대할-수-있는목표"><a href="#기대할-수-있는목표" class="headerlink" title="기대할 수 있는목표"></a>기대할 수 있는목표</h2><p>이 단원의 의존성 관리 기술을 배우게 되면 기대할 수 있는 목표는 다음과 같다.</p>
+<ul>
+<li><strong>Maintainability</strong>: ‘사이드 이펙트’ 없이 코드의 변경이 용이</li>
+<li><strong>Testability</strong></li>
+<li><strong>Substitutability</strong>: 컴포넌트 간에 대체 능력이 높아져 A/B 테스팅이 쉬워진다.</li>
+<li><strong>Deferability</strong>: ‘어떤 DB를 선택할까?’ 등의 큰 결정을 미룰 수 있다.</li>
+<li><strong>Parallel work streams</strong>: 부분이 잘 나뉘어져 있어 협업이 용이</li>
+<li><strong>Control during development</strong></li>
+<li><strong>Minimizing obejct lifetimes</strong>: state를 줄여줘 앱을 관리하기 쉬워지게 함.</li>
+<li><strong>Reusability</strong></li>
+</ul>
+<h2 id="관련-용어"><a href="#관련-용어" class="headerlink" title="관련 용어"></a>관련 용어</h2><ul>
+<li><strong>Dependency</strong>: 다른 객체가 특정 작업을 하기 위해 의존하는 객체</li>
+<li><strong>Transitvie dependencies</strong>: ‘의존성’이 또 다른 객체에 의존하는 것</li>
+<li><strong>Object-under-consturction</strong>(Ouc): Dependencies에 의존하는 객체</li>
+<li><strong>Consumer</strong>: Object-under-construction을 사용하는 객체</li>
+</ul>
+<blockquote>
+<p>Ouc라고 줄여서 표현하겠다.</p>
+</blockquote>
+<h2 id="의존성이-어떻게-생기는가"><a href="#의존성이-어떻게-생기는가" class="headerlink" title="의존성이 어떻게 생기는가?"></a>의존성이 어떻게 생기는가?</h2><ul>
+<li>거대한 클래스를 리팩토링할 때: 역할이 너무 많은 클래스의 경우 이것을 </li>
+<li>중복 코드를 제거할 때: 중복 로직을 하나의 객체에 모아 이 객체에 의존하게 함</li>
+</ul>
+<h2 id="의존성-관리에서-핵심적-고려사항"><a href="#의존성-관리에서-핵심적-고려사항" class="headerlink" title="의존성 관리에서 핵심적 고려사항"></a>의존성 관리에서 핵심적 고려사항</h2><h3 id="의존성에-접근-Access-하는-것"><a href="#의존성에-접근-Access-하는-것" class="headerlink" title="의존성에 접근(Access)하는 것"></a>의존성에 접근(Access)하는 것</h3><h4 id="From-the-inside"><a href="#From-the-inside" class="headerlink" title="From the inside"></a>From the inside</h4><ul>
+<li>전역 프로퍼티</li>
+<li>초기화: 의존성이 일시적이라면 Ouc보다 오래 살아 있을 필요가 없다. Ouc가 의존성을 초기화하도록 한다.</li>
+</ul>
+<h4 id="From-the-outside"><a href="#From-the-outside" class="headerlink" title="From the outside"></a>From the outside</h4><ul>
+<li>초기화 인자(argument): 의존성이 Ouc의 초기화 인자값으로부터 생성됨</li>
+<li>Mutable 저장 프로퍼티: 이미 생성된 Ouc의 mutable한 저장 프로퍼티에 넣어주는 방법</li>
+<li>메서드: Ouc의 메서드에서 관리</li>
+</ul>
+<h3 id="대체-가능성-Subsitutability-의-결정"><a href="#대체-가능성-Subsitutability-의-결정" class="headerlink" title="대체 가능성(Subsitutability)의 결정"></a>대체 가능성(Subsitutability)의 결정</h3><p>모든 앱에서 대체 가능성이 필요한 것은 아니다. 예를 들어 순수한 비즈니스 로직만 가지고 있어서 의존성이 아무런 사이드 이펙트가 없다면 대체 가능성이 필요없을 것이다. 그러나 <strong>의존성이 디스크에 write한다든지, 네트워크 요청을 한다든지, analytic 이벤트를 보내는</strong> 등 이러한 의존성의 기능은 <strong>개발 또는 테스트 시</strong>에는 대체하여 사용하기를 원할 것이다.</p>
+<h4 id="Designing-substitutability"><a href="#Designing-substitutability" class="headerlink" title="Designing substitutability"></a>Designing substitutability</h4><p>만약 이러한 대체 가능성이 필요하다면 어느 시기에 필요한 지도 결정해야 한다. 만약 A/B 테스팅을 하고 싶다면 런타임 시에, 그게 아니고 테스트만이 목적이라면 컴파일 타임으로 하면 된다.</p>
+<h2 id="의존성-패턴"><a href="#의존성-패턴" class="headerlink" title="의존성 패턴"></a>의존성 패턴</h2><ul>
+<li><strong>Dependency Injection</strong>: Ouc 바깥에서 모든 의존성을 주입</li>
+<li><strong>Service Locator</strong>: 의존성을 생성하고 의존성을 붙들고 있는 Service Locator 객체를 이용. 만약 Ouc가 의존성이 필요하다면 Service Locator에 요청하기만 하면 된다.</li>
+</ul>
+<p>그 밖의 패턴들…</p>
+<ul>
+<li><strong>Environment</strong>: Service Locator와 비슷하게 Ouc가 필요한 의존성을 제공한다. 그러나 차이점은 Environment는 Ouc  내부에서 접근하는 반면, Service Locator는 Ouc에 제공되어 진다(?)는 점이다.</li>
+<li><strong>Protocol Extension</strong></li>
+</ul>
+<h2 id="Dependency-Injection"><a href="#Dependency-Injection" class="headerlink" title="Dependency Injection"></a>Dependency Injection</h2><ul>
+<li>주요 목표는 Ouc 안에서 의존성을 찾는 것이 아니라 바깥에서 의존성을 제공하는 것</li>
+<li><p>이것은 <strong>바깥에서 의존성을 관리할 수 있다는 장점</strong>을 가져 객체가 어떤 의존성을 가지는 지 쉽게 확인이 가능함.</p>
+</li>
+<li><p>DI는 <strong>의존성 역전 원칙</strong>에 기반한다.</p>
+</li>
+</ul>
+<blockquote>
+<p>참고 링크: <a href="https://wnstkdyu.github.io/2018/08/08/solidWithSwift/">SOLID with Swift - PacaLog</a></p>
+</blockquote>
+<h3 id="주입의-유형"><a href="#주입의-유형" class="headerlink" title="주입의 유형"></a>주입의 유형</h3><ul>
+<li>Initializer<ul>
+<li>초기화 시에 파라미터로 전달</li>
+<li>의존성이 nil이 되거나 의존성이 바뀌는 것을 신경쓰지 않아도 됨.</li>
+</ul>
+</li>
+<li>Property<ul>
+<li>Ouc의 초기화가 끝난 뒤에 전달해야 할 때 유용하게 사용</li>
+<li>만약 마땅한 기본값이 없을 경우 Optional로 선언</li>
+<li>Interface Builder를 통해 초기화되는 VC의 경우, 이런 주입을 많이 사용</li>
+</ul>
+</li>
+<li>Method<ul>
+<li>거의 드물게 사용</li>
+<li>의존성이 메서드 실행 시에만 필요한 경우</li>
+</ul>
+</li>
+</ul>
+<p>A good rule of thumb</p>
+<ul>
+<li>Ouc가 의존성없이 기능을 하지 못할 경우: 초기화 주입을 사용</li>
+<li>의존성없이도 기능을 할 경우: 다른 주입을 사용해도 되지만 초기화 주입을 선호</li>
+</ul>
+<h3 id="Substituting-dependency-implementations"><a href="#Substituting-dependency-implementations" class="headerlink" title="Substituting dependency implementations"></a>Substituting dependency implementations</h3><ul>
+<li>주입을 사용하는 것만으로는 testability를 얻을 수 없음</li>
+<li>대체 가능성을 위해서는, 의존성의 <strong>프로토콜 선언하여 이를 따르는 여러 클래스들을 사용처에서 주입할 수 있어야</strong> 함</li>
+<li>If-else 구문을 통해 컴파일 시에는 fake type을, 실제 product에는 진짜 type을 넣어줌으로써 유연함을 증대시킴</li>
+</ul>
+<h4 id="Compile-time-substitution"><a href="#Compile-time-substitution" class="headerlink" title="Compile-time substitution"></a>Compile-time substitution</h4><p>테스트 스킴을 만들어 #if와 #endif를 통해 Test와 Run 스킴 간의 실행 코드를 달리 한다.</p>
+<h4 id="Run-time-substitution"><a href="#Run-time-substitution" class="headerlink" title="Run-time substitution"></a>Run-time substitution</h4><ul>
+<li>의존성의 초기화 시에 if 구문을 넣어 특정 값(예: 앱 버전 값)을 통해 분기 처리</li>
+<li>앱의 launch 인자값들을 통해 분기 처리</li>
+</ul>
+<h1 id="DI-적용-방법"><a href="#DI-적용-방법" class="headerlink" title="DI 적용 방법"></a>DI 적용 방법</h1><h2 id="On-demand-approach"><a href="#On-demand-approach" class="headerlink" title="On-demand approach"></a>On-demand approach</h2><p>DI를 배우기 위해서 만들어진 접근법이다. On-demand에서는 Consumer가 새로운 Ouc가 필요할 때 Ouc의 초기화 시에 요구되는 의존성을 생성하거나 찾는다. 다시 말해 <strong>Consumer가 필요한 의존성을 제공하는 책임을 가지고</strong> 있다.</p>
+<h3 id="Initializing-ephemeral-dependencies"><a href="#Initializing-ephemeral-dependencies" class="headerlink" title="Initializing ephemeral dependencies"></a>Initializing ephemeral dependencies</h3><p>Ouc보다 더 오래 살 필요가 없는 의존성의 경우 Ouc에 의해 소유(owned)되며, Consumer가 간단히 의존성을 초기화하고 제공해주면 된다. 이 경우 <strong>Ouc는 의존성을 ‘프로토콜’ 타입으로 사용하기 때문에 구체적인 동작은 알지 못하고 Consumer는 알아야 한다.</strong></p>
+<h3 id="Finding-long-lived-dependencies"><a href="#Finding-long-lived-dependencies" class="headerlink" title="Finding long-lived dependencies"></a>Finding long-lived dependencies</h3><p>의존성이 Ouc보다 오래 살아야 하는 경우, Consumer는 의존성에 대한 레퍼런스를 유지해야 한다. 이는 Consumer가 직접 가지고 있을 수도 있고, 상위 부모가 가지고 있을 수도 있다.</p>
+<h3 id="Pros"><a href="#Pros" class="headerlink" title="Pros"></a>Pros</h3><ul>
+<li>설명과 이해가 쉽다.</li>
+<li>Fake 구현으로 대체가 용이해 Testable하다.</li>
+<li>결정을 미룰 수 있다. 예를 들어 DB를 고를 동안 메모리 저장 방식을 사용하고 이를 대체한다고 했을 때 메모리 의존성 구현부의 초기화 부분을 DB로 바꾸기만 하면 되기 때문이다.</li>
+<li>한 기능을 같이 개발할 수 있다. Ouc와 의존성을 따로 개발함으로써 이는 가능하다.</li>
+</ul>
+<h3 id="Cons"><a href="#Cons" class="headerlink" title="Cons"></a>Cons</h3><ul>
+<li><strong>의존성 초기화가 분산</strong>되어 있어 중복이 일어날 수 있다.</li>
+<li>의존성이 다른 의존성에 의존할 수 있기 때문에 <strong>한 Ouc를 여러 Consumer가 사용할 경우 불필요한 중복 로직을 타야</strong> 한다.</li>
+</ul>
+<h2 id="Factories-approach"><a href="#Factories-approach" class="headerlink" title="Factories approach"></a>Factories approach</h2><p>On-demand 접근법은 확장 가능성이 낮은 <strong>분산</strong> 접근법이고, 이는 중복된 의존성 초기화 로직을 쓰게 한다. 이와 반대로 Factories 접근법은 <strong>중앙 집권적</strong> 접근법이다.</p>
+<p>이 접근법은 Ephemeral한 의존성에만 동작하며 싱글턴 같은 Long-lived 의존성에는 적합하지 않다.</p>
+<h3 id="Factories-class"><a href="#Factories-class" class="headerlink" title="Factories class"></a>Factories class</h3><ul>
+<li>많은 팩토리 메서드로 이루어지며 이 메서드들은 Ouc나 의존성을 생성한다.</li>
+<li>State를 가지지 않으며 어떠한 저장 프로퍼티도 가지지 않는다.</li>
+<li>목표 중 하나는 <strong>Consumer가 의존성 그래프를 알지 못해도 Ouc를 생성하는 것이 가능한 것</strong>이다.</li>
+</ul>
+<h3 id="Dependency-factory-methods"><a href="#Dependency-factory-methods" class="headerlink" title="Dependency factory methods"></a>Dependency factory methods</h3><h4 id="Resolving-protocol-dependencies"><a href="#Resolving-protocol-dependencies" class="headerlink" title="Resolving protocol dependencies"></a>Resolving protocol dependencies</h4><ul>
+<li>의존성 팩토리 메서드는 전형적으로 대체 가능성을 위해 ‘프로토콜’ 반환 타입을 가진다.</li>
+<li>이를 통해, 의존성 팩토리 메서드는 <strong>프로토콜과 실제 구현 타입의 매핑</strong>을 감싼다. 이를 <strong>resolution</strong>이라 한다.</li>
+<li>이유는 의존성 팩토리 메서드가 특정 프로토콜 의존성을 위해 어떤 구현을 생성해야 할지 풀어내기(resolving) 때문이다.</li>
+</ul>
+<h3 id="Ouc-factory-methods"><a href="#Ouc-factory-methods" class="headerlink" title="Ouc factory methods"></a>Ouc factory methods</h3><p>Ouc 팩토리 메서드의 책임은 Ouc를 초기화하는 데 필요한 의존성 그래프를 생성하는 것이며 의존성 팩토리 메서드와 비슷하게 생겼다. 유일한 다른 점은 <strong>Ouc 팩토리 메서드는 밖에서 불리는 반면, 의존성 팩토리 메서드는 안에서 불린다.</strong></p>
+<h3 id="Substituting-dependency-implementations-1"><a href="#Substituting-dependency-implementations-1" class="headerlink" title="Substituting dependency implementations"></a>Substituting dependency implementations</h3><p>On-demand 방식과 비슷하게 의존성 resolution 부분을 조건문으로 감싸면 된다. 하지만 더 쉬운 점은 Factory 클래스 내에서 모두 관리되기 때문에 모든 Consumer의 부분에 조건문을 넣을 필요없이 클래스 내의 의존성 resolution부분만 감싸면 된다.</p>
+<h3 id="Pros-1"><a href="#Pros-1" class="headerlink" title="Pros"></a>Pros</h3><ul>
+<li>Ephemeral한 의존성의 생성이 한 곳에서 이루어져 코드 제어가 쉬움</li>
+<li>테스트를 위한 fake 구현으로의 대체도 한 곳에서 변경이 가능해 쉬움</li>
+</ul>
+<h3 id="Cons-1"><a href="#Cons-1" class="headerlink" title="Cons"></a>Cons</h3><ul>
+<li>큰 앱의 경우, 팩토리 클래스가 매우 커질 수 있음</li>
+<li>Ephemeral에만 적용이 됨 =&gt; Container 접근법에서 해결</li>
+</ul>
+<h2 id="Single-container-approach"><a href="#Single-container-approach" class="headerlink" title="Single-container approach"></a>Single-container approach</h2><p>Contianer는 Factories 클래스의 <strong>stateful</strong> 버전으로 long-lived 객체를 가질 수 있다. 예를 들어 데이터 저장소 같은 경우이다.</p>
+<h3 id="Dependency-factory-methods-1"><a href="#Dependency-factory-methods-1" class="headerlink" title="Dependency factory methods"></a>Dependency factory methods</h3><p>Ephemeral 의존성을 생성하는 방식은 Factories 접근법과 같다. 하지만 long-lived 의존성을 다루는 부분이 다르다. Long-lived 의존성을 위해 저장 프로퍼티에서 의존성을 가져온다. 이 때문에 init 메서드에서 파라미터를 추가하지 않아도 된다는 이점이 생긴다.</p>
+<h3 id="Ouc-factory-methods-1"><a href="#Ouc-factory-methods-1" class="headerlink" title="Ouc factory methods"></a>Ouc factory methods</h3><p>위와 마찬가지로 저장 프로퍼티를 통해 Long-lived 의존성을 가져와 Ouc의 생성에 넣게 되고 파라미터를 추가하지 않아도 된다는 이점을 가진다. Consumer는 파라미터의 전달없이 Ouc를 생성해 사용이 가능하다.</p>
+<h3 id="Creating-and-holding-a-container"><a href="#Creating-and-holding-a-container" class="headerlink" title="Creating and holding a container"></a>Creating and holding a container</h3><p>Factories와 달리 Container는 재사용되는 의존성을 잡고 있기 때문에 하나만 생성되어야 한다. 그래서 앱의 launch 시기에 Container를 생성하는 것이 일반적이다.</p>
+<h3 id="Pros-2"><a href="#Pros-2" class="headerlink" title="Pros"></a>Pros</h3><ul>
+<li>Container가 앱 전체의 의존성 그래프를 관리할 수 있다.</li>
+<li>Container가 싱글턴을 관리할 수 있어 싱글턴이 전역으로 관리되지 않아도 된다.</li>
+<li>Container 클래스 밖에서 코드 변경없이 객체의 의존성 그래프를 변경할 수 있다.</li>
+</ul>
+<h3 id="Cons-2"><a href="#Cons-2" class="headerlink" title="Cons"></a>Cons</h3><ul>
+<li>한 Single-Container 클래스가 매우 커질 수 있다. =&gt; Container Hierarchy</li>
+</ul>
+<h2 id="Designing-container-hierarchies"><a href="#Designing-container-hierarchies" class="headerlink" title="Designing container hierarchies"></a>Designing container hierarchies</h2><h3 id="Single-Container의-이슈들"><a href="#Single-Container의-이슈들" class="headerlink" title="Single Container의 이슈들"></a>Single Container의 이슈들</h3><ul>
+<li>자라나는 컨테이너 클래스: 앱이 커질 수록, 너무 커진다.</li>
+<li>옵셔널 프로퍼티: 이상적으로 사용하지 않는 것이 좋다.</li>
+</ul>
+<p>이 문제들을 해결하기 위해 다음과 같이 한다.</p>
+<h3 id="Object-scopes"><a href="#Object-scopes" class="headerlink" title="Object scopes"></a>Object scopes</h3><p>객체가 사용될 수 있는 범위를 만들어 그 안에서는 이 객체가 있다고 보장할 수 있게 함으로써 불필요한 옵셔널을 줄인다. 대부분의 앱에서는 다음과 같은 scope를 가진다.</p>
+<ul>
+<li>App scope: 앱의 생명 주기와 같이 동작</li>
+<li><p>User scope: 한 유저의 계정과 관련</p>
+</li>
+<li><p>Feature scope</p>
+</li>
+<li>Interaction scope</li>
+</ul>
+<h3 id="Container-hierarchy"><a href="#Container-hierarchy" class="headerlink" title="Container hierarchy"></a>Container hierarchy</h3><p>Container는 갖고 있는 의존성들의 생명 주기를 관리한다. 그래서 설계한 Scope 하나당 하나의 Container가 매핑된다.</p>
+<h4 id="Designing-a-container-hierarchy"><a href="#Designing-a-container-hierarchy" class="headerlink" title="Designing a container hierarchy"></a>Designing a container hierarchy</h4><ul>
+<li>Child conatiner는 Parent container에게 의존성을 요청할 수 있다. 그 반대는 불가하다.</li>
+<li>App Container는 항상 root다.</li>
+<li>Child Container의 init에는 Parent Container를 인자로 넣는다. 또는 필요한 의존성을 갖고 있는 Parent Container를 저장 프로퍼티로 갖고 있는다.</li>
+</ul>
+<p>이러한 방식으로 첫 번째 이슈를 해결할 수 있다.</p>
+<h4 id="Capturing-data"><a href="#Capturing-data" class="headerlink" title="Capturing data"></a>Capturing data</h4><p>Container는 data model을 가지고 관리하는데, 이 값은 Container의 생명 주기동안에는 <strong>immutable</strong>하다. Data를 Captureing 한다는 의미는 mutable한 값을 immutable하게 변환한다는 뜻이다.</p>
+<p>예를 들어 <code>AppContainer</code> 가 user session을 관리한다고 하자. 그러면  <code>UserContainer</code> 는 <code>AppContainer</code> 를 인자로 받아 초기화 할 경우에 유저의 로그인 상태에 대해 신경쓸 필요가 없다. <code>UserContainer</code> 는 유저의 로그인 세션이 있어야만 동작하기 때문에 애초에 <code>UserContainer</code> 안에서는 불변 값으로 취급하고 동작할 수 있다.</p>
+<h3 id="Pros-3"><a href="#Pros-3" class="headerlink" title="Pros"></a>Pros</h3><ul>
+<li>Scoping을 통해 의존성을 설계하고 불필요한 싱글턴을 줄일 수 있다.</li>
+<li>Scope 안에 값을 가둬두는 것으로 mutable한 데이터를 immutable하게 다룰 수 있다.</li>
+<li>Container 클래스가 작게 쪼개진다.</li>
+</ul>
+<h3 id="Cons-3"><a href="#Cons-3" class="headerlink" title="Cons"></a>Cons</h3><ul>
+<li>Single-Container 보다 좀 더 복잡하다.</li>
+<li>복잡한 앱일 경우, 긴 Container 클래스를 갖게 된다.</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li>Advanced iOS App Architecture - Ch4</li>
+</ul>
+
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#기대할-수-있는목표"><span class="toc-number">1.</span> <span class="toc-text">기대할 수 있는목표</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#관련-용어"><span class="toc-number">2.</span> <span class="toc-text">관련 용어</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#의존성이-어떻게-생기는가"><span class="toc-number">3.</span> <span class="toc-text">의존성이 어떻게 생기는가?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#의존성-관리에서-핵심적-고려사항"><span class="toc-number">4.</span> <span class="toc-text">의존성 관리에서 핵심적 고려사항</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#의존성에-접근-Access-하는-것"><span class="toc-number">4.1.</span> <span class="toc-text">의존성에 접근(Access)하는 것</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#From-the-inside"><span class="toc-number">4.1.1.</span> <span class="toc-text">From the inside</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#From-the-outside"><span class="toc-number">4.1.2.</span> <span class="toc-text">From the outside</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#대체-가능성-Subsitutability-의-결정"><span class="toc-number">4.2.</span> <span class="toc-text">대체 가능성(Subsitutability)의 결정</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Designing-substitutability"><span class="toc-number">4.2.1.</span> <span class="toc-text">Designing substitutability</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#의존성-패턴"><span class="toc-number">5.</span> <span class="toc-text">의존성 패턴</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Dependency-Injection"><span class="toc-number">6.</span> <span class="toc-text">Dependency Injection</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#주입의-유형"><span class="toc-number">6.1.</span> <span class="toc-text">주입의 유형</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Substituting-dependency-implementations"><span class="toc-number">6.2.</span> <span class="toc-text">Substituting dependency implementations</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Compile-time-substitution"><span class="toc-number">6.2.1.</span> <span class="toc-text">Compile-time substitution</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Run-time-substitution"><span class="toc-number">6.2.2.</span> <span class="toc-text">Run-time substitution</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DI-적용-방법"><span class="toc-number"></span> <span class="toc-text">DI 적용 방법</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#On-demand-approach"><span class="toc-number">1.</span> <span class="toc-text">On-demand approach</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Initializing-ephemeral-dependencies"><span class="toc-number">1.1.</span> <span class="toc-text">Initializing ephemeral dependencies</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Finding-long-lived-dependencies"><span class="toc-number">1.2.</span> <span class="toc-text">Finding long-lived dependencies</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pros"><span class="toc-number">1.3.</span> <span class="toc-text">Pros</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cons"><span class="toc-number">1.4.</span> <span class="toc-text">Cons</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Factories-approach"><span class="toc-number">2.</span> <span class="toc-text">Factories approach</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Factories-class"><span class="toc-number">2.1.</span> <span class="toc-text">Factories class</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Dependency-factory-methods"><span class="toc-number">2.2.</span> <span class="toc-text">Dependency factory methods</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Resolving-protocol-dependencies"><span class="toc-number">2.2.1.</span> <span class="toc-text">Resolving protocol dependencies</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ouc-factory-methods"><span class="toc-number">2.3.</span> <span class="toc-text">Ouc factory methods</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Substituting-dependency-implementations-1"><span class="toc-number">2.4.</span> <span class="toc-text">Substituting dependency implementations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pros-1"><span class="toc-number">2.5.</span> <span class="toc-text">Pros</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cons-1"><span class="toc-number">2.6.</span> <span class="toc-text">Cons</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Single-container-approach"><span class="toc-number">3.</span> <span class="toc-text">Single-container approach</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Dependency-factory-methods-1"><span class="toc-number">3.1.</span> <span class="toc-text">Dependency factory methods</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ouc-factory-methods-1"><span class="toc-number">3.2.</span> <span class="toc-text">Ouc factory methods</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Creating-and-holding-a-container"><span class="toc-number">3.3.</span> <span class="toc-text">Creating and holding a container</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pros-2"><span class="toc-number">3.4.</span> <span class="toc-text">Pros</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cons-2"><span class="toc-number">3.5.</span> <span class="toc-text">Cons</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Designing-container-hierarchies"><span class="toc-number">4.</span> <span class="toc-text">Designing container hierarchies</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Single-Container의-이슈들"><span class="toc-number">4.1.</span> <span class="toc-text">Single Container의 이슈들</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Object-scopes"><span class="toc-number">4.2.</span> <span class="toc-text">Object scopes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Container-hierarchy"><span class="toc-number">4.3.</span> <span class="toc-text">Container hierarchy</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Designing-a-container-hierarchy"><span class="toc-number">4.3.1.</span> <span class="toc-text">Designing a container hierarchy</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Capturing-data"><span class="toc-number">4.3.2.</span> <span class="toc-text">Capturing data</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pros-3"><span class="toc-number">4.4.</span> <span class="toc-text">Pros</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cons-3"><span class="toc-number">4.5.</span> <span class="toc-text">Cons</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">5.</span> <span class="toc-text">Reference</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2019/06/29/Advanced-iOS-App-Architecture-Ch4-Object-Their-Dependencies/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2019/06/29/Advanced-iOS-App-Architecture-Ch4-Object-Their-Dependencies/&text=Advanced iOS App Architecture - Ch4: Object &amp; Their Dependencies (이론 부분)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2019/06/29/Advanced-iOS-App-Architecture-Ch4-Object-Their-Dependencies/&title=Advanced iOS App Architecture - Ch4: Object &amp; Their Dependencies (이론 부분)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2019/06/29/Advanced-iOS-App-Architecture-Ch4-Object-Their-Dependencies/&is_video=false&description=Advanced iOS App Architecture - Ch4: Object &amp; Their Dependencies (이론 부분)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Advanced iOS App Architecture - Ch4: Object &amp; Their Dependencies (이론 부분)&body=Check out this article: https://wnstkdyu.github.io/2019/06/29/Advanced-iOS-App-Architecture-Ch4-Object-Their-Dependencies/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2019/06/29/Advanced-iOS-App-Architecture-Ch4-Object-Their-Dependencies/&title=Advanced iOS App Architecture - Ch4: Object &amp; Their Dependencies (이론 부분)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2019/06/29/Advanced-iOS-App-Architecture-Ch4-Object-Their-Dependencies/&title=Advanced iOS App Architecture - Ch4: Object &amp; Their Dependencies (이론 부분)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2019/06/29/Advanced-iOS-App-Architecture-Ch4-Object-Their-Dependencies/&title=Advanced iOS App Architecture - Ch4: Object &amp; Their Dependencies (이론 부분)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2019/06/29/Advanced-iOS-App-Architecture-Ch4-Object-Their-Dependencies/&title=Advanced iOS App Architecture - Ch4: Object &amp; Their Dependencies (이론 부분)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2019/06/29/Advanced-iOS-App-Architecture-Ch4-Object-Their-Dependencies/&name=Advanced iOS App Architecture - Ch4: Object &amp; Their Dependencies (이론 부분)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Alpaca
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-116302583-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'alpacablog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
