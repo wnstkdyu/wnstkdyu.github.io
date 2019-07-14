@@ -6,17 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="HandheldFriendly" content="True">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="Reference">
+    <meta name="description" content="Redux란?Redux는 앱의 상태가 하나의 Container에 들어가 있는 구조로 상태를 변경하려면 현재 상태와 요구되는 변화를 바탕으로 새로운 상태를 만들어내야만 한다.  StoreStore는 앱의 모든 상태를 가지고 있다. 앱의 살아있는 스냅샷이라고 생각하면 된다. Store는 UI를 나타내는 데이터를 가지고 있다. State의 종류의 예 View s">
+<meta name="keywords" content="Redux">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Advanced iOS App Arcihtecture Ch 6 Redux">
+<meta property="og:title" content="Advanced iOS App Arcihtecture Ch 6 Architecture - Redux">
 <meta property="og:url" content="https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/index.html">
 <meta property="og:site_name" content="PacaLog">
-<meta property="og:description" content="Reference">
+<meta property="og:description" content="Redux란?Redux는 앱의 상태가 하나의 Container에 들어가 있는 구조로 상태를 변경하려면 현재 상태와 요구되는 변화를 바탕으로 새로운 상태를 만들어내야만 한다.  StoreStore는 앱의 모든 상태를 가지고 있다. 앱의 살아있는 스냅샷이라고 생각하면 된다. Store는 UI를 나타내는 데이터를 가지고 있다. State의 종류의 예 View s">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-07-13T11:20:13.055Z">
+<meta property="og:image" content="https://user-images.githubusercontent.com/22453984/61171046-e10a0900-a5ac-11e9-84a5-49e1f44816d5.png">
+<meta property="og:updated_time" content="2019-07-14T03:41:11.996Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Advanced iOS App Arcihtecture Ch 6 Redux">
-<meta name="twitter:description" content="Reference">
+<meta name="twitter:title" content="Advanced iOS App Arcihtecture Ch 6 Architecture - Redux">
+<meta name="twitter:description" content="Redux란?Redux는 앱의 상태가 하나의 Container에 들어가 있는 구조로 상태를 변경하려면 현재 상태와 요구되는 변화를 바탕으로 새로운 상태를 만들어내야만 한다.  StoreStore는 앱의 모든 상태를 가지고 있다. 앱의 살아있는 스냅샷이라고 생각하면 된다. Store는 UI를 나타내는 데이터를 가지고 있다. State의 종류의 예 View s">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/22453984/61171046-e10a0900-a5ac-11e9-84a5-49e1f44816d5.png">
     
     
         
@@ -36,7 +39,7 @@
         
     
     <!-- title -->
-    <title>Advanced iOS App Arcihtecture Ch 6 Redux</title>
+    <title>Advanced iOS App Arcihtecture Ch 6 Architecture - Redux</title>
     <!-- styles -->
     <link rel="stylesheet" href="/css/style.css">
     <!-- rss -->
@@ -81,20 +84,20 @@
     <div id="share" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/&text=Advanced iOS App Arcihtecture Ch 6 Redux"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/&title=Advanced iOS App Arcihtecture Ch 6 Redux"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/&is_video=false&description=Advanced iOS App Arcihtecture Ch 6 Redux"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Advanced iOS App Arcihtecture Ch 6 Redux&body=Check out this article: https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/&title=Advanced iOS App Arcihtecture Ch 6 Redux"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/&title=Advanced iOS App Arcihtecture Ch 6 Redux"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/&title=Advanced iOS App Arcihtecture Ch 6 Redux"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/&title=Advanced iOS App Arcihtecture Ch 6 Redux"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/&name=Advanced iOS App Arcihtecture Ch 6 Redux&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/&text=Advanced iOS App Arcihtecture Ch 6 Architecture - Redux"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/&title=Advanced iOS App Arcihtecture Ch 6 Architecture - Redux"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/&is_video=false&description=Advanced iOS App Arcihtecture Ch 6 Architecture - Redux"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Advanced iOS App Arcihtecture Ch 6 Architecture - Redux&body=Check out this article: https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/&title=Advanced iOS App Arcihtecture Ch 6 Architecture - Redux"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/&title=Advanced iOS App Arcihtecture Ch 6 Architecture - Redux"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/&title=Advanced iOS App Arcihtecture Ch 6 Architecture - Redux"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/&title=Advanced iOS App Arcihtecture Ch 6 Architecture - Redux"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/&name=Advanced iOS App Arcihtecture Ch 6 Architecture - Redux&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">1.</span> <span class="toc-text">Reference</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redux란"><span class="toc-number">1.</span> <span class="toc-text">Redux란?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Store"><span class="toc-number">2.</span> <span class="toc-text">Store</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#State의-종류의-예"><span class="toc-number">2.0.1.</span> <span class="toc-text">State의 종류의 예</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Derived-values"><span class="toc-number">2.0.2.</span> <span class="toc-text">Derived values</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Subscription"><span class="toc-number">2.1.</span> <span class="toc-text">Subscription</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Action-amp-Reducer"><span class="toc-number">3.</span> <span class="toc-text">Action &amp; Reducer</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Action"><span class="toc-number">3.1.</span> <span class="toc-text">Action</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reducer"><span class="toc-number">3.2.</span> <span class="toc-text">Reducer</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Threading"><span class="toc-number">3.2.1.</span> <span class="toc-text">Threading</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#알게된-점"><span class="toc-number">4.</span> <span class="toc-text">알게된 점</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -106,7 +109,7 @@
   <header>
     
     <h1 class="posttitle" itemprop="name headline">
-        Advanced iOS App Arcihtecture Ch 6 Redux
+        Advanced iOS App Arcihtecture Ch 6 Architecture - Redux
     </h1>
 
 
@@ -122,13 +125,54 @@
 
 
       
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Redux/">Redux</a>
+    </div>
+
 
     </div>
   </header>
   
 
   <div class="content" itemprop="articleBody">
-    <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2>
+    <h2 id="Redux란"><a href="#Redux란" class="headerlink" title="Redux란?"></a>Redux란?</h2><p>Redux는 앱의 상태가 하나의 Container에 들어가 있는 구조로 상태를 변경하려면 현재 상태와 요구되는 변화를 바탕으로 새로운 상태를 만들어내야만 한다.</p>
+<p><img width="687" alt="스크린샷 2019-07-13 오후 8 28 26" src="https://user-images.githubusercontent.com/22453984/61171046-e10a0900-a5ac-11e9-84a5-49e1f44816d5.png"></p>
+<h2 id="Store"><a href="#Store" class="headerlink" title="Store"></a>Store</h2><p>Store는 앱의 모든 상태를 가지고 있다. 앱의 살아있는 스냅샷이라고 생각하면 된다.</p>
+<p>Store는 UI를 나타내는 데이터를 가지고 있다.</p>
+<h4 id="State의-종류의-예"><a href="#State의-종류의-예" class="headerlink" title="State의 종류의 예"></a>State의 종류의 예</h4><ul>
+<li>View state:  UI를 보이거나 숨기기, 활성 상태 등을 결정</li>
+<li>Navigation state: 어떤 뷰가 보여야 할 지를 결정</li>
+<li>High-level state: 유저가 로그인 / 로그아웃을 했는 지에 대한 정보를 담음</li>
+<li>Data from web services: API로부터 온 response를 파싱하여 모델로써 저장</li>
+<li>Formatted strings: 화면에 표시하기 위해 Raw data를 변환한 문자열을 저장</li>
+</ul>
+<p>Store는 ‘The source of truth’로 앱의 화면에 표시하기 위한 데이터를 담아 다른 두 뷰가 다른 데이터를 표시하는 버그를 막는다.</p>
+<h4 id="Derived-values"><a href="#Derived-values" class="headerlink" title="Derived values"></a>Derived values</h4><p>Store는 앱의 큰 파일 자체를 담지 않고 URL로써 저장한다. Store 객체는 앱의 메모리에 계속 올라와 있기 때문에 용량이 큰 파일을 담고 있을 경우 os가 메모리를 확보하기 위해 앱을 강제로 종료시킬 수도 있다.</p>
+<p>###Modeling view state</p>
+<p>Redux 아키텍쳐에서 View는 상태를 갖지 않고 Store의 상태를 감지하고 대응할 뿐이다. Store는 항상 초기 상태를 가지며 invalid한 상태를 가지지 않는다. Redux는 <strong>개발자가 앱의 모든 가능한 상태를 정의하도록 강제</strong>한다.</p>
+<h3 id="Subscription"><a href="#Subscription" class="headerlink" title="Subscription"></a>Subscription</h3><p>View가 그려지기 위해, Store의 변화를 구독한다. <strong>변화가 일어날 때마다 View는 모든 상태에 따른 변화를 받는다.</strong> 이는 한 번에 한 프로퍼티의 조작이 가능한 MVVM과 다른 점이다.</p>
+<p>View는 로드될 때마다 store의 현재 상태를 필요로 한다. 로드될 때 View는 항상 빈 상태로 있고 Store를 구독한 다음에 업데이트를 하여 뷰가 다시 그려지게 된다. 이러한 짧은 지연이 발생하기 때문에 빈 상태일 때의 View를 잘 표시하여야 한다.</p>
+<h2 id="Action-amp-Reducer"><a href="#Action-amp-Reducer" class="headerlink" title="Action &amp; Reducer"></a>Action &amp; Reducer</h2><h3 id="Action"><a href="#Action" class="headerlink" title="Action"></a>Action</h3><ul>
+<li>상태 변화를 나타내는 immutable한 데이터이며 유저 인터랙션으로 생성한다.</li>
+<li>Dispatch하여 Store의 변화를 일으킬 수 있다.</li>
+</ul>
+<h3 id="Reducer"><a href="#Reducer" class="headerlink" title="Reducer"></a>Reducer</h3><ul>
+<li><strong>Store의 상태를 변화시키는 유일한 곳이다.</strong></li>
+<li>Action을 dispatching하는 것과 Store의 상태를 변화시키는 것의 중간 단계이다.</li>
+<li>Side-effect를 일으키지 않아야 하며, 때문에 scope 밖에서 상태를 변화시킬 수 있는 API를 제공하지 않는다.</li>
+<li>비즈니스 로직을 실행한다. 예) 데이터 가공</li>
+<li>많은 비즈니스 로직이 들어갈 경우 sub-reducer를 구성하여 로직을 나눈다.</li>
+</ul>
+<h4 id="Threading"><a href="#Threading" class="headerlink" title="Threading"></a>Threading</h4><p>Redux에서는 <strong>모든 Reducer를 같은 스레드 하에서 실행하는 것이 중요</strong>하다. 다른 스레드에서 할 경우, 데이터를 무결성을 해칠 수 있다. </p>
+<p>UI와 Store의 상태는 항상 Sync되어야 하기 때문에, 가장 쉬운 방법은 main 큐에서 돌리는 것이다.</p>
+<h2 id="알게된-점"><a href="#알게된-점" class="headerlink" title="알게된 점"></a>알게된 점</h2><ul>
+<li>Store는 앱의 모든 상태들을 보관한다.</li>
+<li>Store는 항상 메모리에 존재하기 때문에 메모리 관리에 힘써야 한다.</li>
+<li>Reducer는 Side-Effect를 일으키지 않도록 pure한 함수만 가져야 한다.</li>
+<li>상태 관리를 효율적으로 할 수 있게 해주지만 이 상태를 어떤 식으로 짤 지에 대해 고민이 필요할 것 같다.</li>
+</ul>
+
   </div>
 </article>
 
@@ -158,21 +202,21 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">1.</span> <span class="toc-text">Reference</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redux란"><span class="toc-number">1.</span> <span class="toc-text">Redux란?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Store"><span class="toc-number">2.</span> <span class="toc-text">Store</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#State의-종류의-예"><span class="toc-number">2.0.1.</span> <span class="toc-text">State의 종류의 예</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Derived-values"><span class="toc-number">2.0.2.</span> <span class="toc-text">Derived values</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Subscription"><span class="toc-number">2.1.</span> <span class="toc-text">Subscription</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Action-amp-Reducer"><span class="toc-number">3.</span> <span class="toc-text">Action &amp; Reducer</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Action"><span class="toc-number">3.1.</span> <span class="toc-text">Action</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reducer"><span class="toc-number">3.2.</span> <span class="toc-text">Reducer</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Threading"><span class="toc-number">3.2.1.</span> <span class="toc-text">Threading</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#알게된-점"><span class="toc-number">4.</span> <span class="toc-text">알게된 점</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
       <ul>
   <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/&text=Advanced iOS App Arcihtecture Ch 6 Redux"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/&title=Advanced iOS App Arcihtecture Ch 6 Redux"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/&is_video=false&description=Advanced iOS App Arcihtecture Ch 6 Redux"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Advanced iOS App Arcihtecture Ch 6 Redux&body=Check out this article: https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/&title=Advanced iOS App Arcihtecture Ch 6 Redux"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/&title=Advanced iOS App Arcihtecture Ch 6 Redux"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/&title=Advanced iOS App Arcihtecture Ch 6 Redux"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/&title=Advanced iOS App Arcihtecture Ch 6 Redux"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/&name=Advanced iOS App Arcihtecture Ch 6 Redux&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/&text=Advanced iOS App Arcihtecture Ch 6 Architecture - Redux"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/&title=Advanced iOS App Arcihtecture Ch 6 Architecture - Redux"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/&is_video=false&description=Advanced iOS App Arcihtecture Ch 6 Architecture - Redux"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Advanced iOS App Arcihtecture Ch 6 Architecture - Redux&body=Check out this article: https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/&title=Advanced iOS App Arcihtecture Ch 6 Architecture - Redux"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/&title=Advanced iOS App Arcihtecture Ch 6 Architecture - Redux"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/&title=Advanced iOS App Arcihtecture Ch 6 Architecture - Redux"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/&title=Advanced iOS App Arcihtecture Ch 6 Architecture - Redux"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2019/07/13/Advanced-iOS-App-Arcihtecture-Ch-6-Redux/&name=Advanced iOS App Arcihtecture Ch 6 Architecture - Redux&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
 </ul>
 
     </div>
