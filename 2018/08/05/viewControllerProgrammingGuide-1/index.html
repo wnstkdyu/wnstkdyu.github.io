@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/sizeClassCombination.png">
 <meta property="og:image" content="https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/rootVC.png">
 <meta property="og:image" content="https://wnstkdyu.github.io/2018/08/05/viewControllerProgrammingGuide-1/containerAsRootVC.png">
-<meta property="og:updated_time" content="2018-08-07T07:19:32.000Z">
+<meta property="og:updated_time" content="2019-07-30T10:34:42.243Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="View Controller Programming Guide for iOS - Overview">
 <meta name="twitter:description" content="The Role of View Controllers뷰 컨트롤러는 앱 내부 구조의 기반으로 다음과 같은 역할을 한다.  UI를 관리  데이터와의 인터랙션  UI의 전환  이러한 중요한 역할을 하기 때문에 뷰 컨트롤러는 개발자가 하는 모든 것의 중심에 있다. 다음과 같은 두 유형의 뷰 컨트롤러가 존재한다.  Content view controller: 앱 컨텐">
@@ -176,7 +176,7 @@
 <li>임시 파일에 먼저 저장하고 이후 실제 파일을 대체함으로써 안전한 저장이 가능.</li>
 <li>자동 저장 기능.</li>
 </ul>
-<h3 id="User-Interactions"><a href="#User-Interactions" class="headerlink" title="User Interactions"></a>User Interactions</h3><p>뷰 컨트롤러는 <strong>리스폰더 객체</strong>기 때문에 <em>리스폰더 체인</em>을 따라 내려오는 이벤트를 처리할 수 있다. 하지만 대부분 뷰가 터치 이벤트를 처리하는데 뷰는 터치를 받고 타겟 객체나 델리게이트에게 처리를 맡기는데, 이는 보통 뷰 컨트롤러이다. </p>
+<h3 id="User-Interactions"><a href="#User-Interactions" class="headerlink" title="User Interactions"></a>User Interactions</h3><p>뷰 컨트롤러는 <strong>리스폰더 객체</strong>기 때문에 <em>리스폰더 체인</em>을 따라 내려오는 이벤트를 처리할 수 있다. 하지만 대부분 뷰가 터치 이벤트를 처리한다. 뷰는 터치를 받고 일반적으로 뷰 컨트롤러가 맡는 타겟 객체나 델리게이트에게 이 결과를 전달한다.</p>
 <h4 id="Target-Action-패턴"><a href="#Target-Action-패턴" class="headerlink" title="Target-Action 패턴"></a>Target-Action 패턴</h4><p>타겟-액션 패턴은 객체가 이벤트가 일어날 시에 다른 객체에게 보내는 데 필요한 정보를 보유하는 패턴으로 다음과 같은 정보를 가지고 있는다.</p>
 <ul>
 <li>Action selector: 실행될 메서드를 식별.</li>
@@ -196,7 +196,10 @@
 <h4 id="Fine-grained"><a href="#Fine-grained" class="headerlink" title="Fine-grained"></a>Fine-grained</h4><p>어느 때나 일어날 수 있는 사이즈 변경을 뜻하며 유저가 기기를 회전시키는 것이 해당됨.</p>
 <h5 id="UITraitCollection"><a href="#UITraitCollection" class="headerlink" title="UITraitCollection"></a>UITraitCollection</h5><p>iOS 인터페이스 환경을 나타내는 클래스로 가로, 세로 사이즈 클래스, 디스플레이 스케일, 유저 인터페이스 idiom trait 등으로 이루어진다.</p>
 <ul>
-<li>Size class: <code>compact</code>와 <code>regular</code>로 표현되는 enum 타입으로 기기마다 다르다.</li>
+<li>Size class: <code>compact</code>와 <code>regular</code>로 표현되는 enum 타입으로 기기마다 다르다.<ul>
+<li><a href="https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/adaptivity-and-layout/" target="_blank" rel="noopener">HIG - Adaptivity and Layout</a></li>
+</ul>
+</li>
 <li>Display scale: <code>CGFloat</code>으로 표현되는 값으로 1.0은 비레티나, 2.0은 레티나 디스플레이를 나타낸다.</li>
 <li>User interface idiom: <code>phone</code>, <code>pad</code>, <code>tv</code>, <code>carPlay</code>로 표현되는 enum 타입으로 인터페이스 타입을 나타낸다.</li>
 </ul>
@@ -213,7 +216,7 @@
 <p>참고: <a href="https://wnstkdyu.github.io/2017/12/29/uiwindow/">PacaLog - UIWindow 공부</a></p>
 </blockquote>
 <h3 id="Continer-View-Controllers"><a href="#Continer-View-Controllers" class="headerlink" title="Continer View Controllers"></a>Continer View Controllers</h3><p>컨테이너 뷰 컨트롤러는 더욱 관리하기 쉽고 재사용이 가능한 조각들로 복잡한 인터페이스를 만들 수 있게 한다. 이는 자식 뷰 컨트롤러를 가지며 <code>UINavigationController</code>, <code>UISplitViewController</code>, <code>UIPageViewController</code>가 이러한 종류에 해당한다.</p>
-<p>컨테이너 뷰 컨트롤러도 물론 다른 컨테이너의 자식이 될 수 있다. 또 자식 뷰 컨트롤러는 다른 자식 뷰 컨트롤러에 대해 거의 알지 못한다.</p>
+<p>컨테이너 뷰 컨트롤러도 물론 다른 컨테이너의 자식이 될 수 있다. 또 자식 뷰 컨트롤러는 컨테이너와 다른 자식 뷰 컨트롤러에 대해 최소한의 정보만 가진다.</p>
 <p>다음 그림은 컨테이너 뷰 컨트롤러가 루트 뷰 컨트롤러로서 역할을 하는 모습을 보여주고 있다.</p>
 <img src="/2018/08/05/viewControllerProgrammingGuide-1/containerAsRootVC.png" title="image">
 <h3 id="Presented-View-Controllers"><a href="#Presented-View-Controllers" class="headerlink" title="Presented View Controllers"></a>Presented View Controllers</h3><p>뷰 컨트롤러를 <em>Presenting</em>하는 행위는 전의 뷰 컨트롤러의 컨텐츠를 가리면서 새 컨텐츠로 대체하는 행위로 주로 <em>Modally</em>(모달)하게 띄우는 데 사용된다.</p>
