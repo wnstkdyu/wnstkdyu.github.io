@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Current State of the ArtUITableViewDataSource, UICollectionViewDataSource에서 비교적 간단하고 직관적인 API를 전달해주는 것과 달리 지금의 앱은 점점 복잡해지고 있다.  UI data source가 controller에 의해 지원되는데 Controller는 하는 일이 점점 많아짐 Web Servic">
+<meta name="keywords" content="Data Source">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Advances in UI Data Sources - WWDC 2019 220">
+<meta property="og:url" content="https://wnstkdyu.github.io/2019/08/05/Advances-in-UI-Data-Sources-WWDC-2019-220/index.html">
+<meta property="og:site_name" content="PacaLog">
+<meta property="og:description" content="Current State of the ArtUITableViewDataSource, UICollectionViewDataSource에서 비교적 간단하고 직관적인 API를 전달해주는 것과 달리 지금의 앱은 점점 복잡해지고 있다.  UI data source가 controller에 의해 지원되는데 Controller는 하는 일이 점점 많아짐 Web Servic">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-08-05T04:06:43.703Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Advances in UI Data Sources - WWDC 2019 220">
+<meta name="twitter:description" content="Current State of the ArtUITableViewDataSource, UICollectionViewDataSource에서 비교적 간단하고 직관적인 API를 전달해주는 것과 달리 지금의 앱은 점점 복잡해지고 있다.  UI data source가 controller에 의해 지원되는데 Controller는 하는 일이 점점 많아짐 Web Servic">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Advances in UI Data Sources - WWDC 2019 220</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2019/08/04/Let-us-Go-2019-Summer/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2019/08/05/Advances-in-UI-Data-Sources-WWDC-2019-220/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2019/08/05/Advances-in-UI-Data-Sources-WWDC-2019-220/&text=Advances in UI Data Sources - WWDC 2019 220"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2019/08/05/Advances-in-UI-Data-Sources-WWDC-2019-220/&title=Advances in UI Data Sources - WWDC 2019 220"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2019/08/05/Advances-in-UI-Data-Sources-WWDC-2019-220/&is_video=false&description=Advances in UI Data Sources - WWDC 2019 220"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Advances in UI Data Sources - WWDC 2019 220&body=Check out this article: https://wnstkdyu.github.io/2019/08/05/Advances-in-UI-Data-Sources-WWDC-2019-220/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2019/08/05/Advances-in-UI-Data-Sources-WWDC-2019-220/&title=Advances in UI Data Sources - WWDC 2019 220"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2019/08/05/Advances-in-UI-Data-Sources-WWDC-2019-220/&title=Advances in UI Data Sources - WWDC 2019 220"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2019/08/05/Advances-in-UI-Data-Sources-WWDC-2019-220/&title=Advances in UI Data Sources - WWDC 2019 220"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2019/08/05/Advances-in-UI-Data-Sources-WWDC-2019-220/&title=Advances in UI Data Sources - WWDC 2019 220"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2019/08/05/Advances-in-UI-Data-Sources-WWDC-2019-220/&name=Advances in UI Data Sources - WWDC 2019 220&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Current-State-of-the-Art"><span class="toc-number">1.</span> <span class="toc-text">Current State of the Art</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Where-is-Our-Truth"><span class="toc-number">1.1.</span> <span class="toc-text">Where is Our Truth?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🆕-Diffable-Data-Source"><span class="toc-number">2.</span> <span class="toc-text">🆕 Diffable Data Source</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Snapshots"><span class="toc-number">2.1.</span> <span class="toc-text">Snapshots</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#네-가지-요소"><span class="toc-number">2.2.</span> <span class="toc-text">네 가지 요소</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DiffableDataSource를-사용하는-세-가지-주요-과정"><span class="toc-number">2.3.</span> <span class="toc-text">DiffableDataSource를 사용하는 세 가지 주요 과정</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#새-Snapshot-만드는-법"><span class="toc-number">2.3.1.</span> <span class="toc-text">새 Snapshot 만드는 법</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ItemIdentiferType의-정의"><span class="toc-number">2.3.2.</span> <span class="toc-text">ItemIdentiferType의 정의</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DataSource의-구성"><span class="toc-number">2.3.3.</span> <span class="toc-text">DataSource의 구성</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Considerations"><span class="toc-number">2.4.</span> <span class="toc-text">Considerations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IndexPath-based-API는-어떻게-되는-것인가"><span class="toc-number">2.5.</span> <span class="toc-text">IndexPath-based API는 어떻게 되는 것인가?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Performance"><span class="toc-number">2.5.1.</span> <span class="toc-text">Performance</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">3.</span> <span class="toc-text">Reference</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference-1"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Advances in UI Data Sources - WWDC 2019 220
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">PacaLog</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2019-08-05T04:00:39.000Z" itemprop="datePublished">2019-08-05</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Data-Source/">Data Source</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Current-State-of-the-Art"><a href="#Current-State-of-the-Art" class="headerlink" title="Current State of the Art"></a>Current State of the Art</h2><p><code>UITableViewDataSource</code>, <code>UICollectionViewDataSource</code>에서 비교적 간단하고 직관적인 API를 전달해주는 것과 달리 지금의 앱은 점점 복잡해지고 있다.</p>
+<ul>
+<li>UI data source가 controller에 의해 지원되는데 Controller는 하는 일이 점점 많아짐</li>
+<li>Web Services</li>
+<li>DB</li>
+</ul>
+<p>이러한 복잡한 앱을 만들다 보면(예: Controller가 데이터가 바뀌었다고 UI한테 알려줘야 하는 경우) 업데이트가 잘못되었을 경우, 다음과 같은 에러를 꽤 자주 보게 된다.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">*** <span class="type">Terminating</span> app due to uncaught exception '<span class="type">NSInternalInconsistencyException'</span>, reason: '<span class="type">Invalid</span> update: invalid number of sections. <span class="type">The</span> number of sections contained <span class="keyword">in</span> the collection view after the update (<span class="number">10</span>) must be <span class="built_in">equal</span> to the number of sections contained <span class="keyword">in</span> the collection view before the update (<span class="number">10</span>), plus or minus the number of sections inserted or deleted (<span class="number">0</span> inserted, <span class="number">1</span> deleted).'</span><br><span class="line">***</span><br></pre></td></tr></table></figure>
+<p>문제를 해결하기 위해서 가장 확실한 방법은 <code>reloadData()</code> 를 호출하는 것이지만 이 방법은 애니메이션이 없어 유저에게 좋은 인상을 주지 못한다.</p>
+<h3 id="Where-is-Our-Truth"><a href="#Where-is-Our-Truth" class="headerlink" title="Where is Our Truth?"></a>Where is Our Truth?</h3><ul>
+<li>Data source와 현재 UI 상태는 항상 동일해야 함</li>
+<li>현재의 방법은 에러가 일어나기 쉬운 상태</li>
+<li>중앙 집중된 Truth가 없음</li>
+</ul>
+<h2 id="🆕-Diffable-Data-Source"><a href="#🆕-Diffable-Data-Source" class="headerlink" title="🆕 Diffable Data Source"></a>🆕 Diffable Data Source</h2><ul>
+<li>❌ <code>performBatchUpdates()</code> - 크래시를 유발하고 귀찮으며 복잡함</li>
+<li>✅ <code>apply()</code> - 쉽고 자동으로 diffing</li>
+</ul>
+<h3 id="Snapshots"><a href="#Snapshots" class="headerlink" title="Snapshots"></a>Snapshots</h3><ul>
+<li>UI 상태의 truth</li>
+<li>섹션과 아이템의 Indexpath 대신 Unique identifier를 사용</li>
+</ul>
+<h3 id="네-가지-요소"><a href="#네-가지-요소" class="headerlink" title="네 가지 요소"></a>네 가지 요소</h3><ul>
+<li>iOS, tvOS<ul>
+<li><code>UICollectionViewDiffableDataSource</code></li>
+<li><code>UITableViewDiffableDataSource</code></li>
+</ul>
+</li>
+<li>MacOS<ul>
+<li><code>NSCollectionViewDiffableDataSource</code></li>
+</ul>
+</li>
+<li>All Platform<ul>
+<li><code>NSDiffableDataSourceSnapshot</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="DiffableDataSource를-사용하는-세-가지-주요-과정"><a href="#DiffableDataSource를-사용하는-세-가지-주요-과정" class="headerlink" title="DiffableDataSource를 사용하는 세 가지 주요 과정"></a>DiffableDataSource를 사용하는 세 가지 주요 과정</h3><ol>
+<li>새로운 Data로 DataSource를 업데이트한다.</li>
+<li>새로운 Snapshot을 만든다.</li>
+<li><code>apply()</code> 메서드를 통해 변화를 제출한다.</li>
+</ol>
+<h4 id="새-Snapshot-만드는-법"><a href="#새-Snapshot-만드는-법" class="headerlink" title="새 Snapshot 만드는 법"></a>새 Snapshot 만드는 법</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> mountains = mountainsController.filteredMountains(with: <span class="built_in">filter</span>).sorted &#123; $<span class="number">0</span>.name &lt; $<span class="number">1</span>.name &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// NSDiffableDataSourceSnapshot은 SectionIdentifierType과 ItemIdentiferType을 가지는 제네릭 타입</span></span><br><span class="line"><span class="keyword">let</span> snapshot = <span class="type">NSDiffableDataSourceSnapshot</span>&lt;<span class="type">Section</span>, <span class="type">MountainsController</span>.<span class="type">Mountain</span>&gt;()</span><br><span class="line"><span class="comment">// .main은 Section enum의 case</span></span><br><span class="line">snapshot.appendSections([.main])</span><br><span class="line"><span class="comment">// ItemIdetifierType의 배열을 전달해야 하지만</span></span><br><span class="line"><span class="comment">// Mountain은 해당 타입의 구현체이기 때문에 그대로 전달</span></span><br><span class="line">snapshot.appendItems(mountains)</span><br><span class="line">dataSource.apply(snapshot, animatingDifferences: <span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="ItemIdentiferType의-정의"><a href="#ItemIdentiferType의-정의" class="headerlink" title="ItemIdentiferType의 정의"></a>ItemIdentiferType의 정의</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Hashable을 따르기 때문에 DiffableDatasource가</span></span><br><span class="line"><span class="comment">// Unique한 identifier를 가지고</span></span><br><span class="line"><span class="comment">// 무엇이 추가 / 삭제되어야 하는지 알 수 있음</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Mountain</span>: <span class="title">Hashable</span> </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    <span class="keyword">let</span> identifier = <span class="type">UUID</span>()</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">hash</span><span class="params">(into hasher: <span class="keyword">inout</span> Hasher)</span></span> &#123;</span><br><span class="line">        hasher.combine(identifier)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> == <span class="params">(lhs: Mountain, rhs: Mountain)</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> lhs.identifier == rhs.identifier</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="DataSource의-구성"><a href="#DataSource의-구성" class="headerlink" title="DataSource의 구성"></a>DataSource의 구성</h4><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 원래 cellForItemAt, cellForRowAt에서 하던 일을</span></span><br><span class="line"><span class="comment">// 클로저로 전달하여 cell을 구성</span></span><br><span class="line"><span class="keyword">self</span>.dataSource = <span class="type">UITableViewDiffableDataSource</span></span><br><span class="line">    &lt;<span class="type">Section</span>, <span class="type">Item</span>&gt;(tableView: tableView) &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>]</span><br><span class="line">        (tableView: <span class="type">UITableView</span>, indexPath: <span class="type">IndexPath</span>, item: <span class="type">Item</span>) -&gt; <span class="type">UITableViewCell</span>? <span class="keyword">in</span></span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> <span class="keyword">self</span> = <span class="keyword">self</span>, <span class="keyword">let</span> wifiController = <span class="keyword">self</span>.wifiController <span class="keyword">else</span> &#123; <span class="keyword">return</span> <span class="literal">nil</span> &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> cell = tableView.dequeueReusableCell(</span><br><span class="line">        withIdentifier: <span class="type">WiFiSettingsViewController</span>.reuseIdentifier,</span><br><span class="line">        <span class="keyword">for</span>: indexPath)</span><br><span class="line">   <span class="comment">// Cell의 IdentifierType에 따라 Cell을 구성</span></span><br><span class="line">    <span class="comment">// network cell</span></span><br><span class="line">    <span class="keyword">if</span> item.isNetwork &#123;</span><br><span class="line">        cell.textLabel?.text = item.title</span><br><span class="line">        cell.accessoryType = .detailDisclosureButton</span><br><span class="line">        cell.accessoryView = <span class="literal">nil</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// configuration cells</span></span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> item.isConfig &#123;</span><br><span class="line">        cell.textLabel?.text = item.title</span><br><span class="line">        <span class="keyword">if</span> item.type == .wifiEnabled &#123;</span><br><span class="line">            <span class="keyword">let</span> enableWifiSwitch = <span class="type">UISwitch</span>()</span><br><span class="line">            enableWifiSwitch.isOn = wifiController.wifiEnabled</span><br><span class="line">            enableWifiSwitch.addTarget(<span class="keyword">self</span>, action: #selector(<span class="keyword">self</span>.toggleWifi(<span class="number">_</span>:)), <span class="keyword">for</span>: .touchUpInside)</span><br><span class="line">            cell.accessoryView = enableWifiSwitch</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            cell.accessoryView = <span class="literal">nil</span></span><br><span class="line">            cell.accessoryType = .detailDisclosureButton</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">fatalError</span>(<span class="string">"Unknown item type!"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cell</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Considerations"><a href="#Considerations" class="headerlink" title="Considerations"></a>Considerations</h3><ul>
+<li><code>performBatchUpdates()</code>, <code>insertItems()</code> 대신 <code>apply()</code> 를 호출하자.</li>
+<li>Snapshot을 구성하는 두 가지 방법</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Empty snapshot</span></span><br><span class="line"><span class="keyword">let</span> snapshot = <span class="type">NSDiffableDataSourceSnapshot</span>&lt;<span class="type">Section</span>, <span class="type">UUID</span>&gt;()</span><br><span class="line"></span><br><span class="line"><span class="comment">// Current data source snapshot copy</span></span><br><span class="line"><span class="keyword">let</span> snapshot = datasource.snapshot()</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>append</code> 뿐만 아니라 <code>insert</code>, <code>move</code> 메서드도 Snapshot이 제공</li>
+<li>Identifier는 unique해야 하며 Hashable을 준수해야 함.</li>
+</ul>
+<h3 id="IndexPath-based-API는-어떻게-되는-것인가"><a href="#IndexPath-based-API는-어떻게-되는-것인가" class="headerlink" title="IndexPath-based API는 어떻게 되는 것인가?"></a>IndexPath-based API는 어떻게 되는 것인가?</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">collectionView</span><span class="params">(<span class="number">_</span> collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)</span></span> &#123;</span><br><span class="line">	<span class="keyword">if</span> <span class="keyword">let</span> identifier = dataSource.itemIdentifier(<span class="keyword">for</span>: indexPath) &#123;</span><br><span class="line">        <span class="comment">// Identifier를 얻어 필요한 작업을 해주면 됨</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="Performance"><a href="#Performance" class="headerlink" title="Performance"></a>Performance</h4><ul>
+<li>가능한 한 빠르게 만들었음</li>
+<li>하지만 diffing은 linear한 동작이기 때문에 개발 단계에서 성능을 측정해보는 것이 매우 중요!</li>
+<li>Background 큐에서의 <code>apply()</code> 호출이 안전하기 때문에 성능을 고려해서 적용<ul>
+<li>main, background 큐 중 하나를 정해서 호출하자.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ul>
+<li><a href="https://developer.apple.com/videos/play/wwdc2019/220/" target="_blank" rel="noopener">WWDC 2019 220 - Advances in UI Data Sources</a></li>
+</ul>
+<h2 id="Reference-1"><a href="#Reference-1" class="headerlink" title="Reference"></a>Reference</h2>
+  </div>
+</article>
+
+    <div class="blog-post-comments">
+        <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the comments.</noscript>
+        </div>
+    </div>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Current-State-of-the-Art"><span class="toc-number">1.</span> <span class="toc-text">Current State of the Art</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Where-is-Our-Truth"><span class="toc-number">1.1.</span> <span class="toc-text">Where is Our Truth?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#🆕-Diffable-Data-Source"><span class="toc-number">2.</span> <span class="toc-text">🆕 Diffable Data Source</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Snapshots"><span class="toc-number">2.1.</span> <span class="toc-text">Snapshots</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#네-가지-요소"><span class="toc-number">2.2.</span> <span class="toc-text">네 가지 요소</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DiffableDataSource를-사용하는-세-가지-주요-과정"><span class="toc-number">2.3.</span> <span class="toc-text">DiffableDataSource를 사용하는 세 가지 주요 과정</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#새-Snapshot-만드는-법"><span class="toc-number">2.3.1.</span> <span class="toc-text">새 Snapshot 만드는 법</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ItemIdentiferType의-정의"><span class="toc-number">2.3.2.</span> <span class="toc-text">ItemIdentiferType의 정의</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DataSource의-구성"><span class="toc-number">2.3.3.</span> <span class="toc-text">DataSource의 구성</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Considerations"><span class="toc-number">2.4.</span> <span class="toc-text">Considerations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IndexPath-based-API는-어떻게-되는-것인가"><span class="toc-number">2.5.</span> <span class="toc-text">IndexPath-based API는 어떻게 되는 것인가?</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Performance"><span class="toc-number">2.5.1.</span> <span class="toc-text">Performance</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">3.</span> <span class="toc-text">Reference</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference-1"><span class="toc-number">4.</span> <span class="toc-text">Reference</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://wnstkdyu.github.io/2019/08/05/Advances-in-UI-Data-Sources-WWDC-2019-220/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://wnstkdyu.github.io/2019/08/05/Advances-in-UI-Data-Sources-WWDC-2019-220/&text=Advances in UI Data Sources - WWDC 2019 220"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://wnstkdyu.github.io/2019/08/05/Advances-in-UI-Data-Sources-WWDC-2019-220/&title=Advances in UI Data Sources - WWDC 2019 220"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://wnstkdyu.github.io/2019/08/05/Advances-in-UI-Data-Sources-WWDC-2019-220/&is_video=false&description=Advances in UI Data Sources - WWDC 2019 220"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Advances in UI Data Sources - WWDC 2019 220&body=Check out this article: https://wnstkdyu.github.io/2019/08/05/Advances-in-UI-Data-Sources-WWDC-2019-220/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://wnstkdyu.github.io/2019/08/05/Advances-in-UI-Data-Sources-WWDC-2019-220/&title=Advances in UI Data Sources - WWDC 2019 220"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://wnstkdyu.github.io/2019/08/05/Advances-in-UI-Data-Sources-WWDC-2019-220/&title=Advances in UI Data Sources - WWDC 2019 220"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://wnstkdyu.github.io/2019/08/05/Advances-in-UI-Data-Sources-WWDC-2019-220/&title=Advances in UI Data Sources - WWDC 2019 220"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://wnstkdyu.github.io/2019/08/05/Advances-in-UI-Data-Sources-WWDC-2019-220/&title=Advances in UI Data Sources - WWDC 2019 220"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://wnstkdyu.github.io/2019/08/05/Advances-in-UI-Data-Sources-WWDC-2019-220/&name=Advances in UI Data Sources - WWDC 2019 220&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Alpaca
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Posts</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+    <script type="text/javascript">
+        (function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-116302583-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+<!-- Disqus Comments -->
+
+    <script type="text/javascript">
+        var disqus_shortname = 'alpacablog';
+
+        (function(){
+            var dsq = document.createElement('script');
+            dsq.type = 'text/javascript';
+            dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+
+
